@@ -1,4 +1,6 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"cy31T3":[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"backbone.marionette":[function(require,module,exports){
+module.exports=require('ew+KRU');
+},{}],"ew+KRU":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.$ = require("jquery");
@@ -2475,28 +2477,41 @@ _.extend(Marionette.Module, {
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
-},{"backbone":"n1NM5u","jquery":"RIh26+","underscore":"zNh35D"}],"backbone.marionette":[function(require,module,exports){
-module.exports=require('cy31T3');
-},{}],"n1NM5u":[function(require,module,exports){
+},{"backbone":"Gwg3EL","jquery":"pfbO59","underscore":"gyY7j+"}],"Gwg3EL":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.underscore = require("underscore");
-//     Backbone.js 1.1.0
+//     Backbone.js 1.1.2
 
-//     (c) 2010-2011 Jeremy Ashkenas, DocumentCloud Inc.
-//     (c) 2011-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+//     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 //     Backbone may be freely distributed under the MIT license.
 //     For all details and documentation:
 //     http://backbonejs.org
 
-(function(){
+(function(root, factory) {
+
+  // Set up Backbone appropriately for the environment. Start with AMD.
+  if (typeof define === 'function' && define.amd) {
+    define(['underscore', 'jquery', 'exports'], function(_, $, exports) {
+      // Export global even in AMD case in case this script is loaded with
+      // others that may still expect a global Backbone.
+      root.Backbone = factory(root, exports, _, $);
+    });
+
+  // Next for Node.js or CommonJS. jQuery may not be needed as a module.
+  } else if (typeof exports !== 'undefined') {
+    var _ = require('underscore');
+    factory(root, exports, _);
+
+  // Finally, as a browser global.
+  } else {
+    root.Backbone = factory(root, {}, root._, (root.jQuery || root.Zepto || root.ender || root.$));
+  }
+
+}(this, function(root, Backbone, _, $) {
 
   // Initial Setup
   // -------------
-
-  // Save a reference to the global object (`window` in the browser, `exports`
-  // on the server).
-  var root = this;
 
   // Save the previous value of the `Backbone` variable, so that it can be
   // restored later on, if `noConflict` is used.
@@ -2508,25 +2523,12 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   var slice = array.slice;
   var splice = array.splice;
 
-  // The top-level namespace. All public Backbone classes and modules will
-  // be attached to this. Exported for both the browser and the server.
-  var Backbone;
-  if (typeof exports !== 'undefined') {
-    Backbone = exports;
-  } else {
-    Backbone = root.Backbone = {};
-  }
-
   // Current version of the library. Keep in sync with `package.json`.
-  Backbone.VERSION = '1.1.0';
-
-  // Require Underscore, if we're on the server, and it's not already present.
-  var _ = root._;
-  if (!_ && (typeof require !== 'undefined')) _ = require('underscore');
+  Backbone.VERSION = '1.1.2';
 
   // For Backbone's purposes, jQuery, Zepto, Ender, or My Library (kidding) owns
   // the `$` variable.
-  Backbone.$ = root.jQuery || root.Zepto || root.ender || root.$;
+  Backbone.$ = $;
 
   // Runs Backbone.js in *noConflict* mode, returning the `Backbone` variable
   // to its previous owner. Returns a reference to this Backbone object.
@@ -2592,7 +2594,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       var retain, ev, events, names, i, l, j, k;
       if (!this._events || !eventsApi(this, 'off', name, [callback, context])) return this;
       if (!name && !callback && !context) {
-        this._events = {};
+        this._events = void 0;
         return this;
       }
       names = name ? [name] : _.keys(this._events);
@@ -2688,7 +2690,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       case 1: while (++i < l) (ev = events[i]).callback.call(ev.ctx, a1); return;
       case 2: while (++i < l) (ev = events[i]).callback.call(ev.ctx, a1, a2); return;
       case 3: while (++i < l) (ev = events[i]).callback.call(ev.ctx, a1, a2, a3); return;
-      default: while (++i < l) (ev = events[i]).callback.apply(ev.ctx, args);
+      default: while (++i < l) (ev = events[i]).callback.apply(ev.ctx, args); return;
     }
   };
 
@@ -2833,7 +2835,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
       // Trigger all relevant attribute changes.
       if (!silent) {
-        if (changes.length) this._pending = true;
+        if (changes.length) this._pending = options;
         for (var i = 0, l = changes.length; i < l; i++) {
           this.trigger('change:' + changes[i], this, current[changes[i]], options);
         }
@@ -2844,6 +2846,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       if (changing) return this;
       if (!silent) {
         while (this._pending) {
+          options = this._pending;
           this._pending = false;
           this.trigger('change', this, options);
         }
@@ -3011,9 +3014,12 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     // using Backbone's restful methods, override this to change the endpoint
     // that will be called.
     url: function() {
-      var base = _.result(this, 'urlRoot') || _.result(this.collection, 'url') || urlError();
+      var base =
+        _.result(this, 'urlRoot') ||
+        _.result(this.collection, 'url') ||
+        urlError();
       if (this.isNew()) return base;
-      return base + (base.charAt(base.length - 1) === '/' ? '' : '/') + encodeURIComponent(this.id);
+      return base.replace(/([^\/])$/, '$1/') + encodeURIComponent(this.id);
     },
 
     // **parse** converts a response into the hash of attributes to be `set` on
@@ -3029,7 +3035,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
     // A model is new if it has never been saved to the server, and lacks an id.
     isNew: function() {
-      return this.id == null;
+      return !this.has(this.idAttribute);
     },
 
     // Check if the model is currently in a valid state.
@@ -3133,7 +3139,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           options.index = index;
           model.trigger('remove', model, this, options);
         }
-        this._removeReference(model);
+        this._removeReference(model, options);
       }
       return singular ? models[0] : models;
     },
@@ -3159,11 +3165,11 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       // Turn bare objects into model references, and prevent invalid models
       // from being added.
       for (i = 0, l = models.length; i < l; i++) {
-        attrs = models[i];
+        attrs = models[i] || {};
         if (attrs instanceof Model) {
           id = model = attrs;
         } else {
-          id = attrs[targetModel.prototype.idAttribute];
+          id = attrs[targetModel.prototype.idAttribute || 'id'];
         }
 
         // If a duplicate is found, prevent it from being added and
@@ -3183,14 +3189,13 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
           model = models[i] = this._prepareModel(attrs, options);
           if (!model) continue;
           toAdd.push(model);
-
-          // Listen to added models' events, and index models for lookup by
-          // `id` and by `cid`.
-          model.on('all', this._onModelEvent, this);
-          this._byId[model.cid] = model;
-          if (model.id != null) this._byId[model.id] = model;
+          this._addReference(model, options);
         }
-        if (order) order.push(existing || model);
+
+        // Do not add multiple models with the same `id`.
+        model = existing || model;
+        if (order && (model.isNew() || !modelMap[model.id])) order.push(model);
+        modelMap[model.id] = true;
       }
 
       // Remove nonexistent models if appropriate.
@@ -3228,7 +3233,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
         }
         if (sort || (order && order.length)) this.trigger('sort', this, options);
       }
-      
+
       // Return the added (or merged) model (or models).
       return singular ? models[0] : models;
     },
@@ -3240,7 +3245,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     reset: function(models, options) {
       options || (options = {});
       for (var i = 0, l = this.models.length; i < l; i++) {
-        this._removeReference(this.models[i]);
+        this._removeReference(this.models[i], options);
       }
       options.previousModels = this.models;
       this._reset();
@@ -3281,7 +3286,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     // Get a model from the set by id.
     get: function(obj) {
       if (obj == null) return void 0;
-      return this._byId[obj.id] || this._byId[obj.cid] || this._byId[obj];
+      return this._byId[obj] || this._byId[obj.id] || this._byId[obj.cid];
     },
 
     // Get the model at the given index.
@@ -3357,7 +3362,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       if (!options.wait) this.add(model, options);
       var collection = this;
       var success = options.success;
-      options.success = function(model, resp, options) {
+      options.success = function(model, resp) {
         if (options.wait) collection.add(model, options);
         if (success) success(model, resp, options);
       };
@@ -3387,10 +3392,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     // Prepare a hash of attributes (or other model) to be added to this
     // collection.
     _prepareModel: function(attrs, options) {
-      if (attrs instanceof Model) {
-        if (!attrs.collection) attrs.collection = this;
-        return attrs;
-      }
+      if (attrs instanceof Model) return attrs;
       options = options ? _.clone(options) : {};
       options.collection = this;
       var model = new this.model(attrs, options);
@@ -3399,8 +3401,16 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       return false;
     },
 
+    // Internal method to create a model's ties to a collection.
+    _addReference: function(model, options) {
+      this._byId[model.cid] = model;
+      if (model.id != null) this._byId[model.id] = model;
+      if (!model.collection) model.collection = this;
+      model.on('all', this._onModelEvent, this);
+    },
+
     // Internal method to sever a model's ties to a collection.
-    _removeReference: function(model) {
+    _removeReference: function(model, options) {
       if (this === model.collection) delete model.collection;
       model.off('all', this._onModelEvent, this);
     },
@@ -3429,7 +3439,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     'reject', 'every', 'all', 'some', 'any', 'include', 'contains', 'invoke',
     'max', 'min', 'toArray', 'size', 'first', 'head', 'take', 'initial', 'rest',
     'tail', 'drop', 'last', 'without', 'difference', 'indexOf', 'shuffle',
-    'lastIndexOf', 'isEmpty', 'chain'];
+    'lastIndexOf', 'isEmpty', 'chain', 'sample'];
 
   // Mix in each Underscore method as a proxy to `Collection#models`.
   _.each(methods, function(method) {
@@ -3441,7 +3451,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   });
 
   // Underscore methods that take a property name as an argument.
-  var attributeMethods = ['groupBy', 'countBy', 'sortBy'];
+  var attributeMethods = ['groupBy', 'countBy', 'sortBy', 'indexBy'];
 
   // Use attributes instead of properties.
   _.each(attributeMethods, function(method) {
@@ -3663,7 +3673,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     return xhr;
   };
 
-  var noXhrPatch = typeof window !== 'undefined' && !!window.ActiveXObject && !(window.XMLHttpRequest && (new XMLHttpRequest).dispatchEvent);
+  var noXhrPatch =
+    typeof window !== 'undefined' && !!window.ActiveXObject &&
+      !(window.XMLHttpRequest && (new XMLHttpRequest).dispatchEvent);
 
   // Map from CRUD to HTTP for our default `Backbone.sync` implementation.
   var methodMap = {
@@ -3722,12 +3734,18 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       var router = this;
       Backbone.history.route(route, function(fragment) {
         var args = router._extractParameters(route, fragment);
-        callback && callback.apply(router, args);
+        router.execute(callback, args);
         router.trigger.apply(router, ['route:' + name].concat(args));
         router.trigger('route', name, args);
         Backbone.history.trigger('route', router, name, args);
       });
       return this;
+    },
+
+    // Execute a route handler with the provided parameters.  This is an
+    // excellent place to do pre-route setup or post-route cleanup.
+    execute: function(callback, args) {
+      if (callback) callback.apply(this, args);
     },
 
     // Simple proxy to `Backbone.history` to save a fragment into the history.
@@ -3754,10 +3772,10 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       route = route.replace(escapeRegExp, '\\$&')
                    .replace(optionalParam, '(?:$1)?')
                    .replace(namedParam, function(match, optional) {
-                     return optional ? match : '([^\/]+)';
+                     return optional ? match : '([^/?]+)';
                    })
-                   .replace(splatParam, '(.*?)');
-      return new RegExp('^' + route + '$');
+                   .replace(splatParam, '([^?]*?)');
+      return new RegExp('^' + route + '(?:\\?([\\s\\S]*))?$');
     },
 
     // Given a route, and a URL fragment that it matches, return the array of
@@ -3765,7 +3783,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     // treated as `null` to normalize cross-browser behavior.
     _extractParameters: function(route, fragment) {
       var params = route.exec(fragment).slice(1);
-      return _.map(params, function(param) {
+      return _.map(params, function(param, i) {
+        // Don't decode the search params.
+        if (i === params.length - 1) return param || null;
         return param ? decodeURIComponent(param) : null;
       });
     }
@@ -3803,8 +3823,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
   // Cached regex for removing a trailing slash.
   var trailingSlash = /\/$/;
 
-  // Cached regex for stripping urls of hash and query.
-  var pathStripper = /[?#].*$/;
+  // Cached regex for stripping urls of hash.
+  var pathStripper = /#.*$/;
 
   // Has the history handling already been started?
   History.started = false;
@@ -3815,6 +3835,11 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     // The default interval to poll for hash changes, if necessary, is
     // twenty times a second.
     interval: 50,
+
+    // Are we at the app root?
+    atRoot: function() {
+      return this.location.pathname.replace(/[^\/]$/, '$&/') === this.root;
+    },
 
     // Gets the true hash value. Cannot use location.hash directly due to bug
     // in Firefox where location.hash will always be decoded.
@@ -3828,7 +3853,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     getFragment: function(fragment, forcePushState) {
       if (fragment == null) {
         if (this._hasPushState || !this._wantsHashChange || forcePushState) {
-          fragment = this.location.pathname;
+          fragment = decodeURI(this.location.pathname + this.location.search);
           var root = this.root.replace(trailingSlash, '');
           if (!fragment.indexOf(root)) fragment = fragment.slice(root.length);
         } else {
@@ -3859,7 +3884,8 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       this.root = ('/' + this.root + '/').replace(rootStripper, '/');
 
       if (oldIE && this._wantsHashChange) {
-        this.iframe = Backbone.$('<iframe src="javascript:0" tabindex="-1" />').hide().appendTo('body')[0].contentWindow;
+        var frame = Backbone.$('<iframe src="javascript:0" tabindex="-1">');
+        this.iframe = frame.hide().appendTo('body')[0].contentWindow;
         this.navigate(fragment);
       }
 
@@ -3877,7 +3903,6 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
       // opened by a non-pushState browser.
       this.fragment = fragment;
       var loc = this.location;
-      var atRoot = loc.pathname.replace(/[^\/]$/, '$&/') === this.root;
 
       // Transition from hashChange to pushState or vice versa if both are
       // requested.
@@ -3885,17 +3910,17 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
         // If we've started off with a route from a `pushState`-enabled
         // browser, but we're currently in a browser that doesn't support it...
-        if (!this._hasPushState && !atRoot) {
+        if (!this._hasPushState && !this.atRoot()) {
           this.fragment = this.getFragment(null, true);
-          this.location.replace(this.root + this.location.search + '#' + this.fragment);
+          this.location.replace(this.root + '#' + this.fragment);
           // Return immediately as browser will do redirect to new url
           return true;
 
         // Or if we've started out with a hash-based route, but we're currently
         // in a browser where it could be `pushState`-based instead...
-        } else if (this._hasPushState && atRoot && loc.hash) {
+        } else if (this._hasPushState && this.atRoot() && loc.hash) {
           this.fragment = this.getHash().replace(routeStripper, '');
-          this.history.replaceState({}, document.title, this.root + this.fragment + loc.search);
+          this.history.replaceState({}, document.title, this.root + this.fragment);
         }
 
       }
@@ -3907,7 +3932,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     // but possibly useful for unit testing Routers.
     stop: function() {
       Backbone.$(window).off('popstate', this.checkUrl).off('hashchange', this.checkUrl);
-      clearInterval(this._checkUrlInterval);
+      if (this._checkUrlInterval) clearInterval(this._checkUrlInterval);
       History.started = false;
     },
 
@@ -3955,7 +3980,7 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
       var url = this.root + (fragment = this.getFragment(fragment || ''));
 
-      // Strip the fragment of the query and hash for matching.
+      // Strip the hash for matching.
       fragment = fragment.replace(pathStripper, '');
 
       if (this.fragment === fragment) return;
@@ -4061,15 +4086,17 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
     };
   };
 
-}).call(this);
+  return Backbone;
+
+}));
 
 ; browserify_shim__define__module__export__(typeof Backbone != "undefined" ? Backbone : window.Backbone);
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
-},{"underscore":"zNh35D"}],"backbone":[function(require,module,exports){
-module.exports=require('n1NM5u');
-},{}],"RIh26+":[function(require,module,exports){
+},{"underscore":"gyY7j+"}],"backbone":[function(require,module,exports){
+module.exports=require('Gwg3EL');
+},{}],"pfbO59":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 /*!
  * jQuery JavaScript Library v1.10.2
@@ -13866,8 +13893,8 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 },{}],"jquery":[function(require,module,exports){
-module.exports=require('RIh26+');
-},{}],"zNh35D":[function(require,module,exports){
+module.exports=require('pfbO59');
+},{}],"gyY7j+":[function(require,module,exports){
 var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 //     Underscore.js 1.5.2
 //     http://underscorejs.org
@@ -15151,15 +15178,15 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 },{}],"underscore":[function(require,module,exports){
-module.exports=require('zNh35D');
-},{}]},{},["cy31T3","n1NM5u","RIh26+","zNh35D"])
+module.exports=require('gyY7j+');
+},{}]},{},["ew+KRU","Gwg3EL","pfbO59","gyY7j+"])
 ;
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     Controller = require('./controller'),
     Router = require('./router'),
-    ContactModel = require('./models/contact'),
-    ContactsCollection = require('./collections/contacts');
+    EpisodeModel = require('./models/episode'),
+    EpisodesCollection = require('./collections/episodes');
 
 module.exports = App = function App() {};
 
@@ -15173,10 +15200,10 @@ App.prototype.start = function(){
         App.data = {};
 
         // load up some initial data:
-        var contacts = new ContactsCollection();
-        contacts.fetch({
+        var episodes = new EpisodesCollection();
+        episodes.fetch({
             success: function() {
-                App.data.contacts = contacts;
+                App.data.episodes = episodes;
                 App.core.vent.trigger('app:start');
             }
         });
@@ -15202,39 +15229,46 @@ App.prototype.start = function(){
     App.core.start();
 };
 
-},{"./collections/contacts":2,"./controller":3,"./models/contact":5,"./router":6}],2:[function(require,module,exports){
+},{"./collections/episodes":2,"./controller":3,"./models/episode":5,"./router":6}],2:[function(require,module,exports){
 var Backbone = require('backbone'),
-    ContactModel = require('../models/contact');
+    EpisodeModel = require('../models/episode');
 
-module.exports = SampleCollection = Backbone.Collection.extend({
-    model:  ContactModel,
-    url: '/api/contacts'
+module.exports = EpisodesCollection = Backbone.Collection.extend({
+    model:  EpisodeModel,
+    url: '/api/episodes/',
+
+    initialize: function(options) {
+        if(options && options.category) this.url = this.url + options.category;
+    }
+
 });
 
-},{"../models/contact":5}],3:[function(require,module,exports){
+},{"../models/episode":5}],3:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
-    ContactsView = require('./views/contacts'),
+    EpisodesView = require('./views/episodes'),
+    EpisodesCollection = require('./collections/episodes'),
     ContactDetailsView = require('./views/contact_details'),
     AddContactView = require('./views/add');
 
 module.exports = Controller = Marionette.Controller.extend({
     initialize: function() {
         App.core.vent.trigger('app:log', 'Controller: Initializing');
-        window.App.views.contactsView = new ContactsView({ collection: window.App.data.contacts });
+        window.App.views.episodesView = new EpisodesView({ collection: window.App.data.episodes });
     },
 
     home: function() {
         App.core.vent.trigger('app:log', 'Controller: "Home" route hit.');
-        var view = window.App.views.contactsView;
+        var view = window.App.views.episodesView;
         this.renderView(view);
         window.App.router.navigate('#');
     },
 
-    details: function(id) {
-        App.core.vent.trigger('app:log', 'Controller: "Contact Details" route hit.');
-        var view = new ContactDetailsView({ model: window.App.data.contacts.get(id)});
+    category: function(category) {
+        App.core.vent.trigger('app:log', 'Controller: "Category" route hit.');
+        var view = new EpisodesView({ collection: new EpisodesCollection({ category: category }) });
+        view.collection.fetch();
         this.renderView(view);
-        window.App.router.navigate('details/' + id);
+        window.App.router.navigate('category/' + category);
     },
 
     add: function() {
@@ -15259,7 +15293,7 @@ module.exports = Controller = Marionette.Controller.extend({
     }
 });
 
-},{"./views/add":7,"./views/contact_details":8,"./views/contacts":9}],4:[function(require,module,exports){
+},{"./collections/episodes":2,"./views/add":7,"./views/contact_details":8,"./views/episodes":9}],4:[function(require,module,exports){
 var App = require('./app');
 var myapp = new App();
 myapp.start();
@@ -15267,8 +15301,9 @@ myapp.start();
 },{"./app":1}],5:[function(require,module,exports){
 var Backbone = require('backbone');
 
-module.exports = ContactModel = Backbone.Model.extend({
-    idAttribute: '_id'
+module.exports = EpisodeModel = Backbone.Model.extend({
+    idAttribute: '_id',
+    urlRoot: 'api/episode'
 });
 
 },{}],6:[function(require,module,exports){
@@ -15277,7 +15312,7 @@ var Marionette = require('backbone.marionette');
 module.exports = Router = Marionette.AppRouter.extend({
     appRoutes: {
         ''  : 'home',
-        'details/:id' : 'details',
+        'category/:category' : 'category',
         'add' : 'add'
     }
 });
@@ -15314,11 +15349,22 @@ var Marionette = require('backbone.marionette');
 module.exports = ContactDetailsView = Marionette.ItemView.extend({
     template: require('../../templates/contact_details.hbs'),
     events: {
-        'click a': 'goBack'
+        'click a.back': 'goBack',
+        'click a.delete': 'deleteContact'
     },
 
     goBack: function(e) {
         e.preventDefault();
+        window.App.controller.home();
+    },
+    deleteContact: function(e) {
+        e.preventDefault();
+        console.log('Deleting contact');
+        window.App.data.contacts.remove(this.model);
+
+        // this will actually send a DELETE to the server:
+        this.model.destroy();
+
         window.App.controller.home();
     }
 });
@@ -15327,7 +15373,7 @@ module.exports = ContactDetailsView = Marionette.ItemView.extend({
 var Marionette = require('backbone.marionette');
 
 var itemView = Marionette.ItemView.extend({
-    template: require('../../templates/contact_small.hbs'),
+    template: require('../../templates/episode.hbs'),
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
     },
@@ -15348,7 +15394,7 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
     itemView: itemView
 });
 
-},{"../../templates/contact_small.hbs":12}],10:[function(require,module,exports){
+},{"../../templates/episode.hbs":12}],10:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -15385,7 +15431,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack2 = helpers.phone) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.phone; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "<br/><br/>\n\n</div>\n\n<a href=\"#\"><< Back</a>\n";
+    + "<br/><br/>\n\n</div>\n\n<a href=\"#\" class=\"back\"><< Back</a> | <a href=\"#\" class=\"delete\">Delete Contact</a>\n";
   return buffer;
   });
 
@@ -15395,22 +15441,22 @@ var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"contact_small\">\n    <img src=\"http://www.gravatar.com/avatar/";
-  if (stack1 = helpers.gravatar) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.gravatar; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += "<div class=\"episode\">\n    <h3 class=\"episode__title\">\n        <a href=\"";
+  if (stack1 = helpers.link) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.link; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "?d=monsterid&s=45\"/>\n    <strong>"
-    + escapeExpression(((stack1 = ((stack1 = depth0.name),stack1 == null || stack1 === false ? stack1 : stack1.first)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " "
-    + escapeExpression(((stack1 = ((stack1 = depth0.name),stack1 == null || stack1 === false ? stack1 : stack1.last)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</strong><br/>\n    ";
-  if (stack2 = helpers.email) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.email; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "\n</div>\n";
+    + "\" target=\"_blank\">";
+  if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</a>\n    </h3>\n    <p class=\"episode__content\">\n        ";
+  if (stack1 = helpers.description) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </p>\n</div>\n";
   return buffer;
   });
 
