@@ -1,8 +1,7 @@
 var Marionette = require('backbone.marionette'),
     EpisodesView = require('./views/episodes'),
-    EpisodesCollection = require('./collections/episodes'),
-    ContactDetailsView = require('./views/contact_details'),
-    AddContactView = require('./views/add');
+    DifficultyView = require('./views/difficulty'),
+    EpisodesCollection = require('./collections/episodes');
 
 module.exports = Controller = Marionette.Controller.extend({
     initialize: function() {
@@ -25,11 +24,16 @@ module.exports = Controller = Marionette.Controller.extend({
         window.App.router.navigate('category/' + category);
     },
 
-    add: function() {
-        App.core.vent.trigger('app:log', 'Controller: "Add Contact" route hit.');
-        var view = new AddContactView();
-        this.renderView(view);
-        window.App.router.navigate('add');
+    difficulty: function() {
+        if(!App.data.user) {
+            window.App.router.navigate('/', { trigger: true });
+            return;
+        }
+        App.core.vent.trigger('app:log', 'Controller: "Difficulty" route hit.');
+        var el = $('<div class="popup">'),
+            view = new DifficultyView({ model: window.App.data.user, el: el[0] });
+        $('body').append(el);
+        view.render();
     },
 
     renderView: function(view) {

@@ -4,15 +4,8 @@ var itemView = Marionette.ItemView.extend({
     template: require('../../templates/episode.hbs'),
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
-    },
-    events: {
-        'click': 'showDetails'
-    },
-
-    showDetails: function() {
-        window.App.core.vent.trigger('app:log', 'Contacts View: showDetails hit.');
-        window.App.controller.details(this.model.id);
     }
+
 });
 
 module.exports = CollectionView = Marionette.CollectionView.extend({

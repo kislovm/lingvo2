@@ -4,6 +4,6 @@ module.exports = Router = Marionette.AppRouter.extend({
     appRoutes: {
         ''  : 'home',
         'category/:category' : 'category',
-        'add' : 'add'
+        'difficulty': 'difficulty'
     }
 });

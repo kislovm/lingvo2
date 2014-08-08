@@ -15185,7 +15185,7 @@ module.exports=require('gyY7j+');
 var Marionette = require('backbone.marionette'),
     Controller = require('./controller'),
     Router = require('./router'),
-    EpisodeModel = require('./models/episode'),
+    UserModel = require('./models/user'),
     EpisodesCollection = require('./collections/episodes');
 
 module.exports = App = function App() {};
@@ -15207,6 +15207,7 @@ App.prototype.start = function(){
                 App.core.vent.trigger('app:start');
             }
         });
+
     });
 
     App.core.vent.bind('app:start', function(options){
@@ -15218,8 +15219,23 @@ App.prototype.start = function(){
             Backbone.history.start();
         }
 
+        var user = new UserModel();
+        user.fetch({
+            success: function() {
+                App.data.user = user;
+                App.core.vent.trigger('user:init');
+            }
+        });
+
         //new up and views and render for base app here...
         App.core.vent.trigger('app:log', 'App: Done starting and running!');
+    });
+
+    App.core.vent.bind('user:init', function(options) {
+        App.core.vent.trigger('app:log', 'User: Initializing');
+
+        if(!App.data.user.get('difficulty')) App.router.navigate('difficulty', { trigger: true });
+
     });
 
     App.core.vent.bind('app:log', function(msg) {
@@ -15229,7 +15245,7 @@ App.prototype.start = function(){
     App.core.start();
 };
 
-},{"./collections/episodes":2,"./controller":3,"./models/episode":5,"./router":6}],2:[function(require,module,exports){
+},{"./collections/episodes":2,"./controller":3,"./models/user":6,"./router":7}],2:[function(require,module,exports){
 var Backbone = require('backbone'),
     EpisodeModel = require('../models/episode');
 
@@ -15246,9 +15262,8 @@ module.exports = EpisodesCollection = Backbone.Collection.extend({
 },{"../models/episode":5}],3:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     EpisodesView = require('./views/episodes'),
-    EpisodesCollection = require('./collections/episodes'),
-    ContactDetailsView = require('./views/contact_details'),
-    AddContactView = require('./views/add');
+    DifficultyView = require('./views/difficulty'),
+    EpisodesCollection = require('./collections/episodes');
 
 module.exports = Controller = Marionette.Controller.extend({
     initialize: function() {
@@ -15271,11 +15286,16 @@ module.exports = Controller = Marionette.Controller.extend({
         window.App.router.navigate('category/' + category);
     },
 
-    add: function() {
-        App.core.vent.trigger('app:log', 'Controller: "Add Contact" route hit.');
-        var view = new AddContactView();
-        this.renderView(view);
-        window.App.router.navigate('add');
+    difficulty: function() {
+        if(!App.data.user) {
+            window.App.router.navigate('/', { trigger: true });
+            return;
+        }
+        App.core.vent.trigger('app:log', 'Controller: "Difficulty" route hit.');
+        var el = $('<div class="popup">'),
+            view = new DifficultyView({ model: window.App.data.user, el: el[0] });
+        $('body').append(el);
+        view.render();
     },
 
     renderView: function(view) {
@@ -15293,7 +15313,7 @@ module.exports = Controller = Marionette.Controller.extend({
     }
 });
 
-},{"./collections/episodes":2,"./views/add":7,"./views/contact_details":8,"./views/episodes":9}],4:[function(require,module,exports){
+},{"./collections/episodes":2,"./views/difficulty":8,"./views/episodes":9}],4:[function(require,module,exports){
 var App = require('./app');
 var myapp = new App();
 myapp.start();
@@ -15307,84 +15327,60 @@ module.exports = EpisodeModel = Backbone.Model.extend({
 });
 
 },{}],6:[function(require,module,exports){
+var Backbone = require('backbone');
+
+module.exports = UserModel = Backbone.Model.extend({
+    urlRoot: 'user'
+});
+
+},{}],7:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Router = Marionette.AppRouter.extend({
     appRoutes: {
         ''  : 'home',
         'category/:category' : 'category',
-        'add' : 'add'
+        'difficulty': 'difficulty'
     }
 });
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
-module.exports = AddView = Marionette.ItemView.extend({
-    template: require('../../templates/add.hbs'),
+module.exports = DifficultyView = Marionette.ItemView.extend({
+
+    template: require('../../templates/difficulty_popup.hbs'),
+
     events: {
-        'click a.save-button': 'save'
+        'click .difficulty__submit': 'submit'
     },
 
-    save: function(e) {
-        e.preventDefault();
-        var newContact = {
-            name: {
-                first: this.$el.find('#name_first').val(),
-                last: this.$el.find('#name_last').val()
-            },
-            email: this.$el.find('#email').val(),
-            phone: this.$el.find('#phone').val()
-        };
+    submit: function() {
+        var val = this.$el.find(':radio:checked').val();
 
-        window.App.data.contacts.create(newContact);
-        window.App.core.vent.trigger('app:log', 'Add View: Saved new contact!');
-        window.App.controller.home();
+        if(!val) {
+            alert('Укажите уровень владения языком.')
+            return;
+        }
+
+        this.model
+            .set('difficulty', this.$el.find(':radio:checked').val())
+            .save();
+
+        this.remove();
     }
+
 });
 
-},{"../../templates/add.hbs":10}],8:[function(require,module,exports){
-var Marionette = require('backbone.marionette');
-
-module.exports = ContactDetailsView = Marionette.ItemView.extend({
-    template: require('../../templates/contact_details.hbs'),
-    events: {
-        'click a.back': 'goBack',
-        'click a.delete': 'deleteContact'
-    },
-
-    goBack: function(e) {
-        e.preventDefault();
-        window.App.controller.home();
-    },
-    deleteContact: function(e) {
-        e.preventDefault();
-        console.log('Deleting contact');
-        window.App.data.contacts.remove(this.model);
-
-        // this will actually send a DELETE to the server:
-        this.model.destroy();
-
-        window.App.controller.home();
-    }
-});
-
-},{"../../templates/contact_details.hbs":11}],9:[function(require,module,exports){
+},{"../../templates/difficulty_popup.hbs":10}],9:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 var itemView = Marionette.ItemView.extend({
     template: require('../../templates/episode.hbs'),
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
-    },
-    events: {
-        'click': 'showDetails'
-    },
-
-    showDetails: function() {
-        window.App.core.vent.trigger('app:log', 'Contacts View: showDetails hit.');
-        window.App.controller.details(this.model.id);
     }
+
 });
 
 module.exports = CollectionView = Marionette.CollectionView.extend({
@@ -15394,7 +15390,7 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
     itemView: itemView
 });
 
-},{"../../templates/episode.hbs":12}],10:[function(require,module,exports){
+},{"../../templates/episode.hbs":11}],10:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -15403,39 +15399,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"add_contact\">\n    <label for=\"name_first\">First Name:</label> <input type=\"text\" id=\"name_first\" /><br/>\n    <label for=\"name_last\">Last Name:</label> <input type=\"text\" id=\"name_last\" /><br/>\n    <label for=\"email\">Email:</label> <input type=\"text\" id=\"email\" /><br/>\n    <label for=\"phone\">Phone:</label> <input type=\"text\" id=\"phone\" /><br/>\n    <br/>\n    <a href=\"#\" class=\"save-button\">Save Contact</a> | <a href=\"#\"><< Back</a>\n</div>\n";
+  return "<div class=\"difficulty\">\n    <h3 class=\"difficulty__header\">Укажите ваш уровень владения языком</h3>\n    <form>\n        <ul class=\"difficulty__list\">\n            <li>\n                <input type=\"radio\" name=\"difficulty\" value=\"low\" id=\"difficulty-low\"/>\n                <label for=\"difficulty-low\">низкий</label>\n            </li>\n            <li>\n                <input type=\"radio\" name=\"difficulty\" value=\"medium\" id=\"difficulty-medium\"/>\n                <label for=\"difficulty-medium\">средний</label>\n            </li>\n            <li>\n                <input type=\"radio\" name=\"difficulty\" value=\"high\" id=\"difficulty-high\"/>\n                <label for=\"difficulty-high\">высокий</label>\n            </li>\n        </ul>\n        <input class=\"difficulty__submit\" type=\"button\" value=\"Указать\"/>\n    </form>\n</div>\n";
   });
 
-},{"hbsfy/runtime":16}],11:[function(require,module,exports){
-// hbsfy compiled Handlebars template
-var Handlebars = require('hbsfy/runtime');
-module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression;
-
-
-  buffer += "<div class=\"contact_full\">\n    <img src=\"http://www.gravatar.com/avatar/";
-  if (stack1 = helpers.gravatar) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.gravatar; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "?d=monsterid&s=250\"/>\n    <br/><br/>\n    <strong>Name:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = depth0.name),stack1 == null || stack1 === false ? stack1 : stack1.first)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " "
-    + escapeExpression(((stack1 = ((stack1 = depth0.name),stack1 == null || stack1 === false ? stack1 : stack1.last)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "<br/>\n    <strong>Email:</strong> ";
-  if (stack2 = helpers.email) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.email; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "<br/>\n    <strong>Phone:</strong> ";
-  if (stack2 = helpers.phone) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.phone; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "<br/><br/>\n\n</div>\n\n<a href=\"#\" class=\"back\"><< Back</a> | <a href=\"#\" class=\"delete\">Delete Contact</a>\n";
-  return buffer;
-  });
-
-},{"hbsfy/runtime":16}],12:[function(require,module,exports){
+},{"hbsfy/runtime":15}],11:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var Handlebars = require('hbsfy/runtime');
 module.exports = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -15460,7 +15427,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-},{"hbsfy/runtime":16}],13:[function(require,module,exports){
+},{"hbsfy/runtime":15}],12:[function(require,module,exports){
 /*jshint eqnull: true */
 
 module.exports.create = function() {
@@ -15628,7 +15595,7 @@ Handlebars.registerHelper('log', function(context, options) {
 return Handlebars;
 };
 
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 exports.attach = function(Handlebars) {
 
 // BEGIN(BROWSER)
@@ -15736,7 +15703,7 @@ return Handlebars;
 
 };
 
-},{}],15:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 exports.attach = function(Handlebars) {
 
 var toString = Object.prototype.toString;
@@ -15821,7 +15788,7 @@ Handlebars.Utils = {
 return Handlebars;
 };
 
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 var hbsBase = require("handlebars/lib/handlebars/base");
 var hbsUtils = require("handlebars/lib/handlebars/utils");
 var hbsRuntime = require("handlebars/lib/handlebars/runtime");
@@ -15832,5 +15799,5 @@ hbsRuntime.attach(Handlebars);
 
 module.exports = Handlebars;
 
-},{"handlebars/lib/handlebars/base":13,"handlebars/lib/handlebars/runtime":14,"handlebars/lib/handlebars/utils":15}]},{},[4])
+},{"handlebars/lib/handlebars/base":12,"handlebars/lib/handlebars/runtime":13,"handlebars/lib/handlebars/utils":14}]},{},[4])
 ;

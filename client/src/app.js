@@ -1,7 +1,7 @@
 var Marionette = require('backbone.marionette'),
     Controller = require('./controller'),
     Router = require('./router'),
-    EpisodeModel = require('./models/episode'),
+    UserModel = require('./models/user'),
     EpisodesCollection = require('./collections/episodes');
 
 module.exports = App = function App() {};
@@ -23,6 +23,7 @@ App.prototype.start = function(){
                 App.core.vent.trigger('app:start');
             }
         });
+
     });
 
     App.core.vent.bind('app:start', function(options){
@@ -34,8 +35,23 @@ App.prototype.start = function(){
             Backbone.history.start();
         }
 
+        var user = new UserModel();
+        user.fetch({
+            success: function() {
+                App.data.user = user;
+                App.core.vent.trigger('user:init');
+            }
+        });
+
         //new up and views and render for base app here...
         App.core.vent.trigger('app:log', 'App: Done starting and running!');
+    });
+
+    App.core.vent.bind('user:init', function(options) {
+        App.core.vent.trigger('app:log', 'User: Initializing');
+
+        if(!App.data.user.get('difficulty')) App.router.navigate('difficulty', { trigger: true });
+
     });
 
     App.core.vent.bind('app:log', function(msg) {

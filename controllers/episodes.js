@@ -3,7 +3,7 @@ var models = require('../app/models');
 module.exports = {
     index: function(req, res) {
 
-        models.Episode.find({}, function(err, data) {
+        models.Episode.find({}).limit(20).exec(function(err, data) {
             res.json(data);
         });
 

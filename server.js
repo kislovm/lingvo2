@@ -5,6 +5,7 @@ var express = require('express'),
     exphbs = require('express3-handlebars'),
     mongoose = require('mongoose'),
     seeder = require('./app/seeder'),
+    bodyParser = require('body-parser'),
     app = express();
 
 app.set('port', process.env.PORT || 3300);
@@ -15,11 +16,17 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.cookieParser('some-secret-value-here'));
+app.use(express.cookieParser());
+app.use(express.session({secret: 'apovu4b0g=8429IG4PB'}));
+app.use(express.json());
+app.use(express.urlencoded());
 app.use(app.router);
 app.use('/', express.static(path.join(__dirname, 'public')));
 
