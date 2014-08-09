@@ -12,7 +12,7 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
         var val = this.$el.find(':radio:checked').val();
 
         if(!val) {
-            alert('Укажите уровень владения языком.')
+            alert('Укажите уровень владения языком.');
             return;
         }
 

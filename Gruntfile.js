@@ -140,8 +140,8 @@ module.exports = function(grunt) {
         compass: {
             dist: {
                 options: {
-                    sassDir: 'sass',
-                    cssDir: 'css'
+                    sassDir: 'client/styles/sass',
+                    cssDir: 'public/css'
                 }
             }
         },
@@ -151,6 +151,10 @@ module.exports = function(grunt) {
             scripts: {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js'],
                 tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
+            },
+            compass: {
+                files: ['client/styles/**/*.sass'],
+                tasks: ['compass', 'copy:dev']
             },
             less: {
                 files: ['client/styles/**/*.less'],
@@ -246,8 +250,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('init:dev', ['clean', 'bower', 'browserify:vendor']);
 
-    grunt.registerTask('build:dev', ['clean:dev', 'browserify:app', 'browserify:test', 'jshint:dev', 'less:transpile', 'concat', 'copy:dev']);
-    grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'less:transpile', 'concat', 'cssmin', 'uglify', 'copy:prod']);
+    grunt.registerTask('build:dev', ['clean:dev', 'browserify:app', 'browserify:test', 'jshint:dev', 'compass', 'concat', 'copy:dev']);
+    grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'compass', 'concat', 'cssmin', 'uglify', 'copy:prod']);
 
     grunt.registerTask('heroku', ['init:dev', 'build:dev']);
 
