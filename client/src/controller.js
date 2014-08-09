@@ -24,7 +24,7 @@ module.exports = Controller = Marionette.Controller.extend({
         App.core.vent.trigger('app:log', 'Controller: "Category" route hit.');
         var view = new EpisodesView({ collection: new EpisodesCollection({ category: category }) });
         view.collection.fetch();
-        this.renderView(view);
+        window.App.layoutView.content.show(view);
         window.App.router.navigate('category/' + category);
     },
 
@@ -38,19 +38,6 @@ module.exports = Controller = Marionette.Controller.extend({
             view = new DifficultyView({ model: window.App.data.user, el: el[0] });
         $('body').append(el);
         view.render();
-    },
-
-    renderView: function(view) {
-        this.destroyCurrentView(view);
-        App.core.vent.trigger('app:log', 'Controller: Rendering new view.');
-        $('#js-boilerplate-app').html(view.render().el);
-    },
-
-    destroyCurrentView: function(view) {
-        if (!_.isUndefined(window.App.views.currentView)) {
-            App.core.vent.trigger('app:log', 'Controller: Destroying existing view.');
-            window.App.views.currentView.close();
-        }
-        window.App.views.currentView = view;
     }
+
 });

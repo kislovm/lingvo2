@@ -29,6 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(app.router);
 app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/client/images/', express.static(path.join(__dirname, '/client/images')));
 
 // development only
 if ('development' == app.get('env')) {

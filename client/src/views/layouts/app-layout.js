@@ -6,7 +6,8 @@ module.exports = AppLayoutView = Backbone.Marionette.Layout.extend({
     el: '.content',
 
     regions: {
-        content: '.js-boilerplate-app'
+        menu: '.themes-list-holder',
+        content: '.recs-holder'
     }
 });
 

@@ -7,9 +7,9 @@
 
 // Variables 
 $default-border-radius: 5px
-$main-font-color: black
-$icons: sprite-map("icons/*.png")
-$bs: border-box
+$main-font-color      : black
+$icons                : sprite-map("icons/*.png", $layout: smart)
+$bs                   : border-box
 
 
 // Mixins
@@ -28,12 +28,16 @@ body
     font-family: 'PT Sans', sans-serif
     font-size: 62.5%
     line-height: 1.8em
+    -webkit-text-size-adjust: 100%
     &.wood
         background: image-url('bg.jpg') repeat #e7d1ae
+        background-attachment: fixed
     &.gray
         background: image-url('bg3.png') repeat #e7d1ae
+        background-attachment: fixed
     &.blue
         background: image-url('bg2.png') repeat #e7d1ae
+        background-attachment: fixed
 .site-main-header
     font-size: 1.8em
     +background(linear-gradient(top, #464c56 ,#464c57 35%, #393f48))
@@ -54,6 +58,8 @@ a
     text-decoration: none
 strong, b
     font-weight: bold
+.sub-dark-color
+    color: #929292
 .logo 
     background: image-url('logo.png')
     display: block
@@ -72,8 +78,8 @@ strong, b
 .add-recomendation 
     font-size: .8em
     color: rgba(255,255,255,.7) !important
-    margin: 10px 0 0
     float: right
+    margin: 10px 0 0
     .icn-plus 
         margin: 0 0 -4px 7px
     &:hover 
@@ -81,6 +87,73 @@ strong, b
         .icn-plus
             +sprite-dimensions($icons, plus-hover)
             background-position: sprite-position($icons, plus-hover)
+.nav-item
+    color: rgba(255,255,255,.85) !important
+    display: inline-block
+    float: right
+    margin-left: 10px
+    padding: 10px 0 15px 10px
+    &:hover
+        color: white !important
+
+
+// User box
+.user-box
+    color: rgba(255,255,255,.7) 
+    text-align: right
+    float: right
+    margin-left: 15px
+    padding: 9px 0 16px 10px
+    position: relative
+    cursor: pointer
+    z-index: 5
+    &:hover
+        color: white
+        background: rgba(white,.35)
+        .user-box-items-holder
+            top: 40px
+            +opacity(100)
+            pointer-events: auto
+        x:-o-prefocus, .user-box-items-holder // opera fix
+            z-index: 5
+        .icn-user-arrow
+            +opacity(100)
+.icn-user-arrow
+    margin-bottom: -2px
+    +opacity(.6)
+.user-name
+    font-size: 1em
+.user-box-items-holder
+    font-size: .9em
+    text-align: left
+    background: white
+    display: block
+    +box-sizing($bs)
+    min-width: 150px
+    padding: 8px 0
+    +border-bottom-radius(3px)
+    +single-box-shadow(rgba(black,.35),0,3px,4px,0px)
+    position: absolute
+    top: 50px
+    right: 0
+    z-index: 4
+    +opacity(0)
+    pointer-events: none
+    +translateZ(0)
+    .user-box-item
+        color: gray
+        display: block
+        margin: 0 10px
+        padding: 3px 10px
+        border: none
+        &:hover
+            color: black
+x:-o-prefocus, .user-box-items-holder // opera fix
+    z-index: -1
+.hor-splitter
+    background: rgba(black,.2)
+    height: 1px
+    margin: 5px 10px
 
 
 // Grid
@@ -98,12 +171,11 @@ strong, b
     width: 260px
     +border-left-radius
     position: fixed
-    top: 65px
+    top: 60px
 .theme-item 
     display: block
     height: 50px
     border-bottom: solid 1px rgba(0,0,0,.05)
-    +single-transition(all, 170ms, ease-in-out, 1ms)
     cursor: pointer
     @extend %group
     &:first-child
@@ -117,6 +189,17 @@ strong, b
         background: #fff
         padding-left: 15px
         cursor: default
+.notification-counter
+    font-size: .8em
+    font-weight: bold 
+    color: white
+    background: #cf4a44
+    padding: 0 6px
+    border: solid 2px white
+    +border-radius(10px)
+    position: absolute
+    top: 16px
+    right: 20px
 .theme-icon-holder 
     float: left
     width: 50px
@@ -133,11 +216,9 @@ strong, b
     position: absolute
     right: 0
     +opacity(0)
-    +single-transition(all, 200ms, ease-in-out, 1ms)
     .theme-item.selected &
         right: -25px
         +opacity(1)
-        +single-transition(all, 100ms, ease-in-out, 100ms)
 
 
 // Banner
@@ -176,6 +257,77 @@ strong, b
             padding: 6px 25px
 
 
+// Filters
+.filters-holder
+    +background-image(linear-gradient(top, rgba(white, .95), rgba(white, .9)))
+    text-align: center
+    display: block
+    width: 600px
+    margin: -30px 50px 10px
+    padding: 5px 0
+    +border-radius
+    +box-shadow(rgba(black,.4) 0 1px 2px 0)
+    position: fixed
+    // margin: 30px 50px 0
+    // position: relative
+    z-index: 5
+    .big-btn
+        text-align: center
+        +box-sizing($bs)
+        float: left
+        width: 25%
+        margin: 0
+        +border-radius(0)
+        +box-shadow(rgba(0,0,0,.45) 0 1px 2px 0px)
+        &.first
+            +border-left-radius(3px)
+        &.last
+            +border-right-radius(3px)
+        &.selected
+            +box-shadow(rgba(0,0,0,.45) 0 1px 2px 0px, rgba(36, 194, 50, .3) 0 1px 20px 6px inset)
+    li
+        font-size: 1.7em
+        color: rgba(black,.7)
+        +box-sizing($bs)
+        display: inline-block
+        margin: 0 3px
+        padding: 5px 8px
+        +border-radius()
+        cursor: pointer
+        &:hover, &.selected
+            background: rgba(black,.2)
+            
+            
+
+        
+.filter-arrow-down
+    +arrow-shape(bottom)
+    display: inline-block
+    margin-left: 5px
+    border-width: 6px
+    border-top-color: $main-font-color
+    position: relative
+    top: -1px
+.filter-list
+    font-size: 1.6em
+    text-shadow: 0 1px 0 rgba(white,.9)
+    background: #f1f0ee
+    +background-image(linear-gradient(top, #fbf9fa, #f1f0ee))
+    width: 100%
+    padding: 10px 0
+    +border-radius
+    +box-shadow(rgba(black,.45) 0 2px 5px 0)
+    position: absolute
+    top: 45px
+    z-index: 10
+    > li
+        padding: 5px 5%
+        cursor: pointer
+        &:hover
+            background: white
+
+
+
 // Buttons
 .small-btn
     font-size: 1.4em
@@ -183,7 +335,15 @@ strong, b
     display: inline-block
     padding: 4px 10px
     +border-radius(3px)
-    +box-shadow(rgba(black,.4) 0 0 0 1px, rgba(white,.3) 0 2px 0px 0px)
+    +box-shadow(rgba(black,.2) 0 0 0 1px, rgba(white,.3) 0 2px 0px 0px)
+    +user-select(none)
+    cursor: pointer
+.big-btn
+    @extend .small-btn
+    font-size: 1.7em
+    font-weight: normal
+    padding: 10px 15px 9px
+    +box-shadow(rgba(black,.2) 0 0 0 1px, rgba(white,.3) 0 2px 0px 0px)
 .red-btn
     color: #fff !important
     text-shadow: 0 1px 0 rgba(black,.3)
@@ -198,6 +358,14 @@ strong, b
     +background-image(linear-gradient(top, #fbf9fa, #f1f0ee))
     &:hover
         +background-image(linear-gradient(top, #fbf9fa, #e5e5e3))
+    &:active
+        +box-shadow(rgba(black,.4) 0 0 0 1px, rgba(black,.5) 0 1px 3px 0px inset)
+.green-btn
+    color: #fff !important
+    text-shadow: 0 1px 0 rgba(black,.3)
+    +background-image(linear-gradient(top, #3f9e63, #1c7a40))
+    &:hover
+        +background-image(linear-gradient(top, #3f9e63, #196e3a))
     &:active
         +box-shadow(rgba(black,.4) 0 0 0 1px, rgba(black,.5) 0 1px 3px 0px inset)
 .disabled-btn
@@ -226,37 +394,67 @@ strong, b
     .icn-comments
         margin: 0 10px -5px 0
         +opacity(.6)
+.split-buttons-holder
+    text-align: center
+    margin: 0px 5% 20px
+    .small-btn
+        font-size: 1.5em
+        +box-sizing($bs)
+        float: left
+        min-height: 2.15em
+        padding: 6px 10px
+        +border-radius(0)
+        &:first-child
+            +border-left-radius
+        &:last-child
+            +border-right-radius    
+        i
+            margin: 0 8px -4px 0
+            +opacity(.5)
+        &:hover, .icn-fave-active
+            i
+            +opacity(1)
+.double-btn .small-btn
+    width: 50%            
+.triple-btn .small-btn
+    width: 33.3%
+
     
 
 // Popup
-.popup-bg
-    background: rgba(white,.55)
-    display: none
-    width: 100%
-    height: 100%
-    position: fixed
-    z-index: 10
 .popup-container
-    display: none
+    background: rgba(white,.85)
     width: 100%
     height: 100%
     overflow: auto
     position: fixed
-    top: 0px
-    left: 0px
-    z-index: 15
-.popup-holder 
+    top: 0
+    left: 0
+    z-index: 10
+    +opacity(0)
+    pointer-events: none
+    &.showing
+        z-index: 10
+        pointer-events: auto
+        +opacity(100)
+x:-o-prefocus, .popup-container // opera fix
+    z-index: -1
+.popup-holder
     width: 450px
-    margin: 70px 0 0 -225px
-    padding-bottom: 50px
+    margin-left: -225px
+    padding: 75px 0 50px
     position: absolute
     left: 50%
     z-index: 20
+    +translateY(-30px)
+    .showing &
+        +translateY(0)
 .popup-body
     background: white
     padding-bottom: 30px
     +border-radius
     +box-shadow(rgba(black,.45) 0 2px 5px 0)
+    position: relative
     h1
         font-size: 2.5em
         line-height: 1.2em
@@ -297,7 +495,6 @@ strong, b
     margin: 3px 0 0
     .error-field &
         display: block
-.radio-label
 .text-input
     font-family: 'PT Sans', sans-serif
     font-size: 1.8em
@@ -309,10 +506,15 @@ strong, b
     outline: none
     +border-radius
     +box-shadow(rgba(black,.6) 0 0 2px 0)
+    -webkit-appearance: none
     &:focus
         +box-shadow(rgba(black,.3) 0 0 2px 0, rgba(70,169,226,.9) 0 0 5px 0)
     .error-field &
         background: rgba(red,.05)
+.text-area
+    @extend .text-input
+    min-height: 150px
+    resize: vertical
 .radio-btn
     margin: 0 7px 0 10px
     position: relative
@@ -326,36 +528,45 @@ strong, b
     width: 72.91666667%
     margin: 40px 0 -3px
     +single-box-shadow(rgba(0,0,0,.3), 0, 0, 2px, 1px, inset)
-    &.not-signed-in
-        padding-top: 50px
+    padding-top: 55px
+    // &.not-signed-in
+    //     padding-top: 50px
 
 .rec 
     background: #fff
     width: 85.71428571%
     margin: 25px auto 50px
-    padding-bottom: 15px
+    padding-bottom: 8px
     +border-radius
     +single-box-shadow(rgba(0,0,0,.35), 0, 1px, 2px, 0px)
     position: relative
-    &:after 
-        content: ''
-        background: rgba(255,255,255,.2)
-        width: 80%
-        height: 1px
-        margin: 0 auto
-        +single-box-shadow(rgba(0,0,0,.07), 0, 1px, 0, 0)
-        position: absolute
-        bottom: -25px
-        left: 10%
-    h1 
+    // &:after 
+    //     content: ''
+    //     background: rgba(255,255,255,.2)
+    //     width: 80%
+    //     height: 1px
+    //     margin: 0 auto
+    //     +single-box-shadow(rgba(0,0,0,.07), 0, 1px, 0, 0)
+    //     position: absolute
+    //     bottom: -25px
+    //     left: 10%
+    > h1 
         font-size: 2.2em
         line-height: 1.2em
         font-weight: bold
-        padding: .5em 5% .3em
-    p 
+        padding: .5em 23% .3em 5%
+        position: relative
+        .small-btn
+            font-size: .6em
+            float: right
+            padding: 0 10px
+            position: absolute
+            top: 1em
+            right: 5%
+    > p 
         font-size: 1.5em
         padding: .5em 5%
-        a
+        > a
             border-bottom: solid 1px adjust-lightness(#2970c4, 45%)
 
 .rec-illustration
@@ -365,11 +576,12 @@ strong, b
 .tag 
     font-size: 0.9em
     color: white !important
-    display: inline-block
+    background: #346cd2 !important
+    display: none
     margin: 0 5px 5px 0
     padding: 3px 7px 2px
     +border-radius(5px)
-    +opacity(.9)
+    +opacity(.5)
     &:hover
         +opacity(100)
 .youtube-tag
@@ -386,6 +598,128 @@ strong, b
     background: #395993
 .vk-tag
     background: #6185aa
+
+
+// Polls
+.poll-holder
+    min-height: 130px
+    margin-top: 10px
+    padding-bottom: 10px
+    border-top: solid 2px #e8e8e8
+    position: relative
+.rec-mark-holder
+    text-align: center
+    +box-sizing($bs)
+    width: 110px
+    height: 110px
+    border: solid 3px #e8e8e8
+    +border-radius
+    position: absolute
+    top: 20px
+    right: 5%
+    > h1
+        font-size: 5em
+        font-weight: bold
+        line-height: 1em
+        margin-top: 17px
+    > h2
+        font-size: 1.4em
+        line-height: 1em
+        padding: 3px 10px
+.poll
+    width: 60%
+    margin: 0 0 0 5%
+    padding-bottom: 5px
+    border-bottom: solid 1px #e8e8e8
+    &:last-child
+        border-bottom: none
+    .poll-hide-mask
+        &.is-active
+            display: none
+    &:hover, &.hovered
+        .poll-hide-mask
+            display: block
+.poll-question
+    font-size: 1.7em
+    font-weight: bold
+    padding-top: 20px
+    padding-bottom: 3px
+.poll-answer
+    min-height: 18px
+    padding-left: 20px
+    position: relative
+    cursor: pointer
+    &:hover
+        .poll-radiobtn
+            background: #12be7b
+        .poll-answer-text
+            +translate(3px,0,0)
+    &:last-child
+        margin-bottom: 3px
+.poll-radiobtn
+    background: #e8e8e8
+    width: 12px
+    height: 12px
+    +border-radius(10px)
+    +box-shadow(rgba(black, .5) 0 1px 2px 0 inset)
+    position: absolute
+    top: 2px
+    left: 0
+.poll-answer-text
+    font-size: 1.4em
+    display: block
+    margin-top: 5px
+.poll-participants
+    font-size: 1.5em
+    font-weight: bold
+    float: left
+    clear: both
+    margin-top: .5em
+.poll-bar
+    display: none
+    background: #12be7b
+    +border-radius(2px)
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+.poll-legend
+    display: none
+    width: 80px
+    position: absolute
+    top: -6px
+    right: -90px
+.poll-results
+    pointer-events: none
+    .poll-answer
+        padding-left: 0
+    .poll-answer-text
+        font-size: 1.2em
+        position: relative
+        top: -5px
+    .poll-radiobtn
+        background: #e8e8e8 !important
+        height: 4px
+        width: 300px
+        top: 11px
+        +box-shadow(none)
+    .poll-bar, .poll-legend
+        display: block
+.save-rec
+    position: absolute
+    right: 5%
+    top: 140px
+        
+
+
+
+
+// Login page
+.single-page-body
+    @extend .popup-body
+    display: block
+    padding-top: 40px
+    +border-radius(0)
 
 
 // Icons
@@ -405,3 +739,6 @@ i
         content: ''
         display: table
         clear: both
+
+ 
+
