@@ -137,6 +137,15 @@ module.exports = function(grunt) {
             }
         },
 
+        compass: {
+            dist: {
+                options: {
+                    sassDir: 'sass',
+                    cssDir: 'css'
+                }
+            }
+        },
+
         // for changes to the front-end code
         watch: {
             scripts: {
@@ -231,6 +240,9 @@ module.exports = function(grunt) {
             test: ['client/spec/**/*.js']
         }
     });
+
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('init:dev', ['clean', 'bower', 'browserify:vendor']);
 
