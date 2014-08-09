@@ -103,14 +103,17 @@ module.exports = function(grunt) {
                     src: 'build/<%= pkg.name %>.css',
                     dest: 'public/css/<%= pkg.name %>.css'
                 }, {
-                    src: 'client/img/*',
-                    dest: 'public/img/'
+                    src: 'client/images/*',
+                    dest: 'public/images/',
+                    flatten: true,
+                    filter: 'isFile'
                 }]
             },
             prod: {
                 files: [{
-                    src: ['client/img/*'],
-                    dest: 'dist/img/'
+                    src: ['client/images/*'],
+                    dest: 'dist/images/',
+                    flatten: true
                 }]
             }
         },
