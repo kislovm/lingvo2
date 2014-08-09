@@ -8,6 +8,7 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
         'click .difficulty__submit': 'submit'
     },
 
+
     submit: function() {
         var val = this.$el.find(':radio:checked').val();
 
@@ -20,7 +21,8 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
             .set('difficulty', this.$el.find(':radio:checked').val())
             .save();
 
-        this.remove();
+        App.popup.removeClass('showing');
+        Backbone.history.history.back(); //this must be in popup view hide();
     }
 
 });

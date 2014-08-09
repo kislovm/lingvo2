@@ -2,6 +2,7 @@ var Marionette = require('backbone.marionette'),
     Controller = require('./controller'),
     Router = require('./router'),
     UserModel = require('./models/user'),
+    MenuView = require('./views/menu'),
     EpisodesCollection = require('./collections/episodes');
 
 module.exports = App = function App() {};
@@ -31,6 +32,7 @@ App.prototype.start = function(){
         if (Backbone.history) {
             App.controller = new Controller();
             App.router = new Router({ controller: App.controller });
+            App.layoutView.menu.show(new MenuView());
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
             Backbone.history.start();
         }

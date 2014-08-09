@@ -7,7 +7,8 @@ var Marionette = require('backbone.marionette'),
 module.exports = Controller = Marionette.Controller.extend({
     initialize: function() {
         App.core.vent.trigger('app:log', 'Controller: Initializing');
-        window.App.layoutView = new AppLayoutView();
+        App.layoutView = new AppLayoutView();
+        App.popup = $('.popup-container');
     },
 
     home: function() {
@@ -34,10 +35,8 @@ module.exports = Controller = Marionette.Controller.extend({
             return;
         }
         App.core.vent.trigger('app:log', 'Controller: "Difficulty" route hit.');
-        var el = $('<div class="popup">'),
-            view = new DifficultyView({ model: window.App.data.user, el: el[0] });
-        $('body').append(el);
-        view.render();
+        App.layoutView.popup.show(new DifficultyView({ model: window.App.data.user }));
+        App.popup.addClass('showing');
     }
 
 });
