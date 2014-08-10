@@ -10,7 +10,7 @@ module.exports = {
     },
     category: function(req, res) {
         console.log(req.params.category);
-        models.Episode.find({ category: req.params.category }, function(err, episodes) {
+        models.Episode.find({ category: req.params.category }).limit(10).exec(function(err, episodes) {
             if (err) {
                 res.json({error: 'Episodes not found.'});
             } else {
