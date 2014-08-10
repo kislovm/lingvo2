@@ -3,7 +3,7 @@ var models = require('./models'), Request = require('request'), FeedParser = req
 module.exports = {
     check: function() {
 
-//        models.Episode.remove().exec();
+        models.Episode.remove().exec();
 
         models.Episode.find({}, function(err, contacts) {
 
@@ -75,10 +75,11 @@ module.exports = {
                         .on('readable', function() {
                             var stream = this, item;
                             while (item = stream.read()) {
-
+                                //console.log(item.enclosures[0].url);
                                 var ep = {
                                     title: item.title,
                                     link: item.link,
+                                    image: item.enclosures[0].url,
                                     description: item.description,
                                     publicationDate: item.pubDate,
                                     category: _key
