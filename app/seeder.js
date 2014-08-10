@@ -79,7 +79,7 @@ module.exports = {
                                 var ep = {
                                     title: item.title,
                                     link: item.link,
-                                    image: item.enclosures[0].url,
+                                    image: item.enclosures && item.enclosures[0].url,
                                     description: item.description,
                                     publicationDate: item.pubDate,
                                     category: _key
