@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 
 
 var Episode = new Schema({
+    name: { type: String },
     title: { type: String },
     image: { type: String },
     description: { type: String },
