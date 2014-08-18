@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plain News</title>
+    <link href="/static/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+    <div class="content-holder group">
+        <aside class="sidebar">
+            <nav class="topics j-topics">
+                <span class="topic-link">Top Stories</span>
+                <span class="topic-link">Business</span>
+                <span class="topic-link">Technology</span>
+                <span class="topic-link">Entertainment</span>
+                <span class="topic-link selected">Sports</span>
+                <span class="topic-link">Science</span>
+                <span class="topic-link">Health</span>
+                <span class="topic-link">Spotlight</span>
+                <span class="topic-link">World</span>
+            </nav>
+        </aside>
+        <section class="news-feed">
+
+            <header class="main-header">
+                <h1>Plain news</h1>
+                <h2>it's easy to understand. <span class="highlight-color">Why?</span></h2>
+            </header>
+
+            <section class="language-lvl-selector j-languageLVL">
+                <h1>My english level:</h1>
+                <h2>Intermediate</h2>
+                <span class="language-lvl-selector-btn easier">Easier</span>
+                <span class="language-lvl-selector-btn harder">Harder</span>
+            </section>
+
+            <section class="articles"><!-- Toggle class «loading» for loading spinner -->
+
+                <div class="loading-spinner"></div>
+
+                <article class="article">
+                    <h1><a href="#">Withdrawal Turns MLB Commissioner Election Into Two-Man Race</a></h1>
+                    <a href="#" class="post-time">New York Times – 5 minutes ago</a>
+                    <p>Tim Brosnan, with then New York City Mayor Michael Bloomberg, withdrew from the commissioner race before the first ballot. Credit Bebeto Matthews/Associated Press.</p>
+                </article>
+
+                <article class="article">
+                    <h1><a href="#">Injured Hanley throws, but not swinging yet</a></h1>
+                    <a href="#" class="post-time">MLB.com – 1 hour ago</a>
+                    <p>ATLANTA — Hanley Ramirez has resumed physical activity after a strained right oblique muscle landed him on the disabled list on Sunday, retroactive to Saturday.</p>
+                </article>
+
+                <article class="article">
+                    <a href="#" class="illustration" style="background-image: url('http://www.wtae.com/image/view/-/4014278/highRes/2/-/maxh/480/maxw/640/-/xig3w7/-/Vince-Young-jpg.jpg')"></a>
+                    <h1><a href="#">Vince Young has a new job at the University</a></h1>
+                    <a href="#" class="post-time">USA TODAY – 2 hours ago</a>
+                    <p>Arizona State offensive lineman Edward Sarafin has become the first active Division I college football player to come out as gay. A fifth-year senior, Sarafin told Phoenix-based Compete, a magazine for gay sports, that he began telling team mates about his …</p>
+                </article>
+
+                <article class="article">
+                    <h1><a href="#">Red Wings GM Holland signs new four-year contract</a></h1>
+                    <a href="#" class="post-time">NHL.com – 2 hours ago</a>
+                    <p>General manager Ken Holland has signed a new four-year contract with the Detroit Red Wings that will keep him with the organization through the 2017-18 season, the team announced Thursday.</p>
+                </article>
+
+                <article class="article">
+                    <h1><a href="#">Withdrawal Turns MLB Commissioner Election Into Two-Man Race</a></h1>
+                    <a href="#" class="post-time">New York Times – 5 minutes ago</a>
+                    <p>Tim Brosnan, with then New York City Mayor Michael Bloomberg, withdrew from the commissioner race before the first ballot. Credit Bebeto Matthews/Associated Press.</p>
+                </article>
+            </section>
+
+        </section>
+        <aside class="sidebar"></aside>
+    </div>
+
+    <script>
+        // Floatin topics
+        var eTopTopics = $('.j-topics').offset().top,
+            eTopLanguageLVL = $('.j-languageLVL').offset().top;
+        $(window).scroll(function() {
+            if (eTopTopics - $(window).scrollTop() <= 15) {
+                $('.j-topics').css({'position':'fixed', 'top':'15px'});
+            } else {
+                $('.j-topics').css({'position':'', 'top':''});
+            };
+
+            if (eTopLanguageLVL - $(window).scrollTop() <= 0) {
+                $('.j-languageLVL, .articles').addClass('floating');
+            } else {
+                $('.j-languageLVL, .articles').removeClass('floating');
+            }
+        });
+    </script>
+</body>
+</html>
