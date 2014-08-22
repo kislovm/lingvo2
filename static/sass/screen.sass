@@ -1,7 +1,7 @@
 @import "compass/reset"
 @import "compass/css3/user-interface"
 @import "compass"
-@import "animation"
+// @import "animation"
 
 
 // Variables
@@ -106,8 +106,7 @@ body
     width: 60%
     min-height: 700px
     padding: 0 5%
-    &.loading
-        background
+    
 
 
 // Header
@@ -123,6 +122,34 @@ body
         font-size: 2.4em
         color: $sub-font-color
         padding-top: .2em
+
+
+// About project
+.about-project
+    background: $highlight-color
+    width: 24em
+    padding: 1.5em
+    +border-radius(5px)
+    position: absolute
+    top: 9em
+    +single-transition(all, 150ms, ease-in-out, 1ms)
+    left: 0
+    +opacity(0)
+    &.showing
+        left: -5em
+        +opacity(1)
+    &:before
+        content: ''
+        width: 0
+        height: 0
+        border-style: solid
+        border-width: 15px 15px 15px 0
+        border-color: transparent $highlight-color transparent transparent
+        position: absolute
+        top: 1.3em
+        left: -15px
+    .message
+        font-size: 1.5em
 
 
 // Navigation
@@ -239,3 +266,5 @@ body
         clear: both
 .hide
     display: none !important
+.pointer
+    cursor: pointer
