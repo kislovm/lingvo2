@@ -14,10 +14,7 @@ module.exports = Controller = Marionette.Controller.extend({
     home: function() {
         App.core.vent.trigger('app:log', 'Controller: "Home" route hit.');
 
-        if(!window.App.views.episodesView)
-            window.App.views.episodesView = new EpisodesView({ collection: window.App.data.episodes });
-
-        window.App.layoutView.content.show(window.App.views.episodesView);
+        window.App.layoutView.content.show(new EpisodesView({ collection: window.App.data.episodes }));
         window.App.router.navigate('#');
     },
 
@@ -27,16 +24,6 @@ module.exports = Controller = Marionette.Controller.extend({
         view.collection.fetch();
         window.App.layoutView.content.show(view);
         window.App.router.navigate('category/' + category);
-    },
-
-    difficulty: function() {
-        if(!App.data.user) {
-            window.App.router.navigate('/', { trigger: true });
-            return;
-        }
-        App.core.vent.trigger('app:log', 'Controller: "Difficulty" route hit.');
-        App.layoutView.popup.show(new DifficultyView({ model: window.App.data.user }));
-        App.popup.addClass('showing');
     }
 
 });

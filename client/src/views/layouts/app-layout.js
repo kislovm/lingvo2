@@ -1,13 +1,14 @@
 var Marionette = require('backbone.marionette');
 
-module.exports = AppLayoutView = Backbone.Marionette.Layout.extend({
+module.exports = AppLayoutView = Backbone.Marionette.LayoutView.extend({
     template: require('../../../templates/layout.hbs'),
 
-    el: '.content',
+    el: '.content-holder',
 
     regions: {
-        menu: '.themes-list-holder',
-        content: '.recs-holder',
+        menu: '.menu',
+        content: '.articles',
+        difficulty: '.language-lvl-selector',
         popup: '.popup-body'
     }
 });

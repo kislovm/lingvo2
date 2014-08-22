@@ -9,8 +9,8 @@ module.exports = MenuView = Marionette.ItemView.extend({
     },
 
     selectActive: function() {
-        this.$el.find('.theme-item').removeClass('selected');
-        this.$el.find('a[href="' + window.location.hash + '"] > .theme-item').addClass('selected');
+        $('.topic-link').removeClass('selected');
+        $('a[href="' + window.location.hash + '"] > .topic-link').addClass('selected');
     }
 
 });

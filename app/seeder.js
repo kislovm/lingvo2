@@ -144,7 +144,7 @@ module.exports = {
                                     category: _key
                                 };
 
-                            if(!description || description.length < 150) continue;
+                            if (!description || description.length < 150) continue;
 
                             models.Episode.findOne({ title: ep.title}, function(err, episode) {
                                 if (!err) {

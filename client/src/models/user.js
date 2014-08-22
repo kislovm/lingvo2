@@ -1,5 +1,8 @@
 var Backbone = require('backbone');
 
 module.exports = UserModel = Backbone.Model.extend({
-    urlRoot: 'user'
+    urlRoot: 'user',
+    defaults: {
+        difficulty: 'intermediate'
+    }
 });

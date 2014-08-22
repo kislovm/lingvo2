@@ -153,7 +153,7 @@ module.exports = function(grunt) {
                 tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
             },
             compass: {
-                files: ['client/styles/sass/*.sass'],
+                files: ['client/styles/**/*.sass'],
                 tasks: ['compass', 'copy:dev']
             },
             less: {

@@ -1,28 +1,44 @@
-var Marionette = require('backbone.marionette');
+var Marionette = require('backbone.marionette'),
+    UserModel = require('../models/user');
 
 module.exports = DifficultyView = Marionette.ItemView.extend({
 
-    template: require('../../templates/difficulty_popup.hbs'),
+    model: UserModel,
+
+    template: require('../../templates/difficulty.hbs'),
+
+    difficulties: [
+        'easy',
+        'intermediate',
+        'hard'
+    ],
 
     events: {
-        'click .difficulty__submit': 'submit'
+        'click .easier': 'easier',
+        'click .harder': 'harder'
+    },
+
+    initialize: function() {
+
+        this.listenTo(this.model, 'change', this.render);
+
     },
 
 
-    submit: function() {
-        var val = this.$el.find(':radio:checked').val();
+    easier: function() {
+        if (this.difficulties.indexOf(this.model.get('difficulty')) == 0) return;
 
-        if(!val) {
-            alert('Укажите уровень владения языком.');
-            return;
-        }
+        var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) - 1];
 
-        this.model
-            .set('difficulty', this.$el.find(':radio:checked').val())
-            .save();
+        this.model.set('difficulty', difficulty).save();
+    },
 
-        App.popup.removeClass('showing');
-        Backbone.history.history.back(); //this must be in popup view hide();
+    harder: function() {
+        if (this.difficulties.indexOf(this.model.get('difficulty')) == this.difficulties.length + 1) return;
+
+        var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) + 1];
+
+        this.model.set('difficulty', difficulty).save();
     }
 
 });

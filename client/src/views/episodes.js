@@ -13,5 +13,5 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
     initialize: function() {
         this.listenTo(this.collection, 'change', this.render);
     },
-    itemView: itemView
+    childView: itemView
 });
