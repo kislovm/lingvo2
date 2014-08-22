@@ -26,7 +26,7 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
 
 
     easier: function() {
-        if (this.difficulties.indexOf(this.model.get('difficulty')) == 0) return;
+        if (this.difficulties.indexOf(this.model.get('difficulty')) === 0) return;
 
         var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) - 1];
 

@@ -44,7 +44,6 @@ App.prototype.start = function() {
                 } else {
                     $('.j-topics').css({'position': '', 'top': ''});
                 }
-                ;
 
                 if (eTopLanguageLVL - $(window).scrollTop() <= 0) {
                     $('.j-languageLVL, .articles').addClass('floating');
