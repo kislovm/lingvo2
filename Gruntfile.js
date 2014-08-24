@@ -41,6 +41,7 @@ module.exports = function(grunt) {
                             path: 'client/requires/backbone/js/backbone.js',
                             exports: 'Backbone',
                             depends: {
+                                jquery: '$',
                                 underscore: 'underscore'
                             }
                         },
