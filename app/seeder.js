@@ -1,9 +1,12 @@
-var models = require('./models'), Request = require('request'), FeedParser = require('feedparser');
+var models = require('./models'),
+    Request = require('request'),
+    FeedParser = require('feedparser'),
+    Natural = require('natural');
 
 module.exports = {
     check: function() {
 
-        models.Episode.remove().exec();
+//        models.Episode.remove().exec();
 
         var feedUrls = {
             politics: [
@@ -69,6 +72,10 @@ module.exports = {
                 }
             ],
             tech: [
+                {
+                    url: 'http://feeds.feedburner.com/TechCrunch/',
+                    name: 'Techcrunch'
+                },
                 {
                     url: 'http://rss.cnn.com/rss/edition_technology.rss',
                     name: 'cnn'
@@ -140,7 +147,7 @@ module.exports = {
                                     link: item.link,
                                     image: image,
                                     description: description,
-                                    publicationDate: item.pubDate,
+                                    publicationDate: new Date(item.pubDate),
                                     category: _key
                                 };
 

@@ -62,6 +62,8 @@
         "proxyquire": "~0.5.2",
         "body-parser": "*",
         "request": "*",
-        "feedparser": "*"
+        "feedparser": "*",
+        "natural": "*",
+        "sanitize-html": "*"
     }
 }
