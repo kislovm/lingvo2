@@ -78,18 +78,6 @@ module.exports = function(grunt) {
             }
         },
 
-        less: {
-            transpile: {
-                files: {
-                    'build/<%= pkg.name %>.css': [
-                        'client/styles/reset.css',
-                        'client/requires/*/css/*',
-                        'client/styles/less/main.less'
-                    ]
-                }
-            }
-        },
-
         concat: {
             'build/<%= pkg.name %>.js': ['build/vendor.js', 'build/app.js']
         },
@@ -100,11 +88,11 @@ module.exports = function(grunt) {
                     src: 'build/<%= pkg.name %>.js',
                     dest: 'public/js/<%= pkg.name %>.js'
                 }, {
-                    src: 'build/<%= pkg.name %>.css',
-                    dest: 'public/css/<%= pkg.name %>.css'
-                }, {
                     src: 'client/images/*',
                     dest: 'public/images/'
+                }, {
+                    src: 'static/stylesheets/*.css',
+                    dest: 'public/css/<%= pkg.name %>.css'
                 }]
             },
             prod: {
@@ -137,28 +125,15 @@ module.exports = function(grunt) {
             }
         },
 
-        compass: {
-            dist: {
-                options: {
-                    sassDir: 'client/styles/sass',
-                    cssDir: 'public/css'
-                }
-            }
-        },
-
         // for changes to the front-end code
         watch: {
             scripts: {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js'],
                 tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
             },
-            compass: {
-                files: ['client/styles/**/*.sass'],
-                tasks: ['compass', 'copy:dev']
-            },
-            less: {
-                files: ['client/styles/**/*.less'],
-                tasks: ['less:transpile', 'copy:dev']
+            css: {
+                files: ['static/stylesheets/**/*.css'],
+                tasks: ['copy:dev']
             },
             test: {
                 files: ['build/app.js', 'client/spec/**/*.test.js'],
@@ -211,7 +186,7 @@ module.exports = function(grunt) {
 
         concurrent: {
             dev: {
-                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts', 'watch:less', 'watch:test'],
+                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts', 'watch:css', 'watch:test'],
                 options: {
                     logConcurrentOutput: true
                 }
@@ -245,13 +220,12 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('init:dev', ['clean', 'bower', 'browserify:vendor']);
 
-    grunt.registerTask('build:dev', ['clean:dev', 'browserify:app', 'browserify:test', 'jshint:dev', 'compass', 'concat', 'copy:dev']);
-    grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'compass', 'concat', 'cssmin', 'uglify', 'copy:prod']);
+    grunt.registerTask('build:dev', ['clean:dev', 'browserify:app', 'browserify:test', 'jshint:dev', 'concat', 'copy:dev']);
+    grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'concat', 'cssmin', 'uglify', 'copy:prod']);
 
     grunt.registerTask('heroku', ['init:dev', 'build:dev']);
 
