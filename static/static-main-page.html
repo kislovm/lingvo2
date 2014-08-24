@@ -28,7 +28,7 @@
 
             <header class="main-header">
                 <h1>Plain news</h1>
-                <h2>it's easy to understand. <span class="highlight-color">Why?</span></h2>
+                <h2>it's easy to understand. <span class="highlight-color pointer j-show-about">Why?</span></h2>
             </header>
 
             <section class="language-lvl-selector j-languageLVL">
@@ -75,7 +75,9 @@
             </section>
 
         </section>
-        <aside class="sidebar"></aside>
+        <aside class="sidebar">
+            <div class="about-project hide"><span class="message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, commodi, officiis, tempora doloremque illo obcaecati fuga id aliquam aspernatur eaque numquam qui eius. Placeat, laborum, ea quidem nostrum at tempore.</span></div>
+        </aside>
     </div>
 
     <script>
@@ -83,8 +85,8 @@
         var eTopTopics = $('.j-topics').offset().top,
             eTopLanguageLVL = $('.j-languageLVL').offset().top;
         $(window).scroll(function() {
-            if (eTopTopics - $(window).scrollTop() <= 15) {
-                $('.j-topics').css({'position':'fixed', 'top':'15px'});
+            if (eTopTopics - $(window).scrollTop() <= 75) {
+                $('.j-topics').css({'position':'fixed', 'top':'75px'});
             } else {
                 $('.j-topics').css({'position':'', 'top':''});
             };
@@ -95,6 +97,18 @@
                 $('.j-languageLVL, .articles').removeClass('floating');
             }
         });
+        $('.j-show-about').hover(
+            function() {
+                $('.about-project').removeClass('hide').delay(1).queue(function(){
+                    $(this).addClass("showing").dequeue();
+                });
+            },
+            function() {
+                $('.about-project').removeClass('showing').delay(150).queue(function(){
+                    $(this).addClass('hide').dequeue();
+                });
+            }
+        );
     </script>
 </body>
 </html>
