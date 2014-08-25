@@ -39,8 +39,8 @@ App.prototype.start = function() {
             //Макаевский говнокод -- поправить.
             var eTopTopics = $('.j-topics').offset().top, eTopLanguageLVL = $('.j-languageLVL').offset().top;
             $(window).scroll(function() {
-                if (eTopTopics - $(window).scrollTop() <= 15) {
-                    $('.j-topics').css({'position': 'fixed', 'top': '15px'});
+                if (eTopTopics - $(window).scrollTop() <= 75) {
+                    $('.j-topics').css({'position': 'fixed', 'top': '75px'});
                 } else {
                     $('.j-topics').css({'position': '', 'top': ''});
                 }
@@ -51,6 +51,18 @@ App.prototype.start = function() {
                     $('.j-languageLVL, .articles').removeClass('floating');
                 }
             });
+            $('.j-show-about').hover(
+                function() {
+                    $('.about-project').removeClass('hide').delay(1).queue(function(){
+                        $(this).addClass("showing").dequeue();
+                    });
+                },
+                function() {
+                    $('.about-project').removeClass('showing').delay(150).queue(function(){
+                        $(this).addClass('hide').dequeue();
+                    });
+                }
+            );
 
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
             Backbone.history.start();
