@@ -126,10 +126,12 @@ body
 
 // About project
 .about-project
-    background: $highlight-color
+    background: white
     width: 24em
     padding: 1.5em
+    border: solid 3px $link-color
     +border-radius(5px)
+    +box-shadow($link-hover-color 0 2px 0)
     position: absolute
     top: 9em
     +single-transition(all, 150ms, ease-in-out, 1ms)
@@ -144,7 +146,7 @@ body
         height: 0
         border-style: solid
         border-width: 15px 15px 15px 0
-        border-color: transparent $highlight-color transparent transparent
+        border-color: transparent $link-color transparent transparent
         position: absolute
         top: 1.3em
         left: -15px
