@@ -16,10 +16,6 @@ module.exports = {
             if (err) {
                 res.json({error: 'Episodes not found.'});
             } else {
-                episodes.forEach(function(episode) {
-                    var date = episode.publicationDate;
-                    data && (episode.publicationDate = [date.getDate(), date.getMonth(), date.getFullYear()].join('.'));
-                });
                 res.json(episodes);
             }
         });
@@ -34,7 +30,7 @@ module.exports = {
             episodes.forEach(function(episode){
                 tokenizer.tokenize(sanitizeHtml(episode.description)).map(function(token) {
                     if(token && token.length > 4 &&
-                        ['border', 'height', 'width', 'padding', 'style', 'margin'].indexOf(token) === -1) {
+                        ['border', 'height', 'width', 'padding', 'style', 'margin', 'href'].indexOf(token) === -1) {
                         tokens[token] = (tokens[token] ? tokens[token] + 1 : 1);
                     }
                 });
