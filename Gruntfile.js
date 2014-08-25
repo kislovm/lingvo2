@@ -84,6 +84,7 @@ module.exports = function(grunt) {
         },
 
         compass: {
+            watch: true,
             dist: {
                 options: {
                     sassDir: 'client/styles/sass',
@@ -140,28 +141,17 @@ module.exports = function(grunt) {
             scripts: {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js'],
                 tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
-            },
-            css: {
-                files: ['client/styles/**/*.sass'],
-                tasks: ['compass']
-            },
-            test: {
-                files: ['build/app.js', 'client/spec/**/*.test.js'],
-                tasks: ['browserify:test']
-            },
-            karma: {
-                files: ['build/tests.js'],
-                tasks: ['jshint:test', 'karma:watcher:run']
             }
         },
 
         // for changes to the node code
         nodemon: {
             dev: {
+                script: 'server.js',
                 options: {
-                    file: 'server.js',
                     nodeArgs: ['--debug'],
                     watchedFolders: ['controllers', 'app'],
+                    ignore: ['app/bower_components/**'],
                     env: {
                         PORT: '3300'
                     }
@@ -196,7 +186,7 @@ module.exports = function(grunt) {
 
         concurrent: {
             dev: {
-                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts', 'watch:css', 'watch:test'],
+                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts', 'compass:watch'],
                 options: {
                     logConcurrentOutput: true
                 }
