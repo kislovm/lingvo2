@@ -1,7 +1,6 @@
 @import "compass/reset"
 @import "compass/css3/user-interface"
 @import "compass"
-// @import "animation"
 
 
 // Variables
@@ -32,6 +31,17 @@ $link-hover-color      : adjust-lightness($link-color, -10%)
     @media all and (-webkit-min-device-pixel-ratio: 1.5) 
         background-image: image_url($x2img)
         background-size: $w $h
+
+@mixin breakpoint($point)
+    @if $point == iphone 
+        @media only screen and (min-width: 320px) and (max-width: 1024px) // 568px 
+            @content 
+    @else if $point == ipad 
+        @media only screen and (min-width: 768px) and (max-width: 1024px)
+            @content
+    @else if $point == pc 
+        @media only screen and (min-width: 1025px) 
+        @content 
 
 // Fonts
 @font-face
@@ -88,24 +98,31 @@ a, .fake-link
 // Main
 body 
     @extend .light-font
-    -webkit-font-smoothing: antialiased
     font-size: 62.5%
+    -webkit-font-smoothing: antialiased
+    -webkit-text-size-adjust: 100%
+    -webkit-font-smoothing: antialiased
     color: $main-font-color
     background: $main-bg-color
 .content-holder
-    width: 960px
+    width: 100%
+    max-width: 960px
     margin: 0 auto
 .sidebar
     float: left    
     width: 20%
     min-height: 1px
     position: relative
+    +breakpoint(iphone)
+        display: none
 .news-feed
     background: white
     float: left
     width: 60%
     min-height: 700px
     padding: 0 5%
+    +breakpoint(iphone)
+        width: 100%
     
 
 
@@ -114,6 +131,8 @@ body
     text-align: center
     padding: 3em 0 1.5em
     border-bottom: solid 2px $border-color
+    +breakpoint(iphone)
+        padding-top: 1.5em
     h1
         @extend .bold-lined-font
         font-size: 7.2em
@@ -173,7 +192,37 @@ body
     &.selected
         @extend .medium-font
         color: $highlight-color
-
+.mobile-navigation-holder
+    position: relative
+    +breakpoint(iphone)
+        display: block
+    +breakpoint(pc)
+        display: none
+.mobile-navigation
+    font-size: 1.6em
+    width: 100%
+    position: absolute
+    top: 0.2em
+    left: 0
+    +opacity(0)
+.mobile-navigation-selected
+    @extend .medium-font
+    font-size: 1.6em
+    color: $highlight-color
+    display: block
+    padding: .5em 1em
+    border-bottom: solid 1px $border-color
+    &:after
+        content: ''
+        font-size: 1.6em
+        width: 0
+        height: 0
+        border-style: solid
+        border-width: 5px 5px 0 5px
+        border-color: $highlight-color transparent transparent transparent
+        position: absolute
+        top: .55em
+        right: 1em
 
 
 // Language level selector
@@ -186,12 +235,21 @@ body
     padding: 1.5em 0
     border-bottom: solid 1px $border-color
     position: relative
+    +breakpoint(iphone)
+        width: auto
+        height: auto
+        margin: 0
+        padding-bottom: 4em
     &.floating
         margin: 0 20px
         +box-shadow(rgba(black,.6) 0 4px 6px -7px)
         position: fixed
         top: 0
         z-index: 2
+        +breakpoint(iphone)
+            margin: 0
+            +box-shadow(none)
+            position: relative
     h1
         @extend .bold-font
         font-size: 1.5em
@@ -208,9 +266,22 @@ body
     +border-radius(5px)
     position: absolute
     top: 1.25em
+    +user-select(none)
+    +breakpoint(iphone)
+        margin: 0 .3em
+        border-color: $border-color
+        position: relative
     &:hover
         border-color: $highlight-color
         cursor: pointer
+        +breakpoint(iphone)
+            border-color: $border-color
+    &:active
+        border-color: $highlight-color
+    &.disabled
+        border-color: transparent !important
+        pointer-events: none
+        +opacity(.3)
     &.easier
         left: 0
     &.harder
@@ -220,8 +291,12 @@ body
 // Articles
 .articles
     margin: 0 8%
+    +breakpoint(iphone)
+        margin: 0 2%
     &.floating
         padding-top: 70px
+        +breakpoint(iphone)
+            padding-top: 0
     &.loading
         .article
             display: none
@@ -258,6 +333,9 @@ body
         margin-bottom: 1.3em
         padding-top: 50%
         +border-radius(10px)
+    img
+        max-width: 100%
+        height: auto
 
 
 // Helpers
