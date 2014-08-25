@@ -10,7 +10,7 @@ module.exports = MenuView = Marionette.ItemView.extend({
 
     selectActive: function() {
         $('.topic-link').removeClass('selected');
-        $('a[href="' + window.location.hash + '"] > .topic-link').addClass('selected');
+        $('a[href="' + (window.location.hash || '#') + '"] > .topic-link').addClass('selected');
     }
 
 });
