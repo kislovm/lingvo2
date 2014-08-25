@@ -92,7 +92,7 @@ module.exports = function(grunt) {
                     src: 'client/images/*',
                     dest: 'public/images/'
                 }, {
-                    src: 'static/stylesheets/*.css',
+                    src: 'client/styles/stylesheets/*.css',
                     dest: 'public/css/<%= pkg.name %>.css'
                 }]
             },
