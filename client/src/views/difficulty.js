@@ -10,7 +10,7 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     difficulties: [
         'easy',
         'intermediate',
-        'hard'
+        'advanced'
     ],
 
     events: {
@@ -19,9 +19,21 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     },
 
     initialize: function() {
-
         this.listenTo(this.model, 'change', this.render);
+    },
 
+    onRender: function() {
+        this.harderButton = this.$el.find('.harder');
+        this.easierButton = this.$el.find('.easier');
+        this._updateDisabled();
+    },
+
+    _updateDisabled: function() {
+        if (this.difficulties.indexOf(this.model.get('difficulty')) === 0) {
+            this.easierButton.addClass('disabled');
+        } else if (this.difficulties.indexOf(this.model.get('difficulty')) + 1 === this.difficulties.length) {
+            this.harderButton.addClass('disabled');
+        }
     },
 
 
