@@ -35,7 +35,7 @@ $link-hover-color      : adjust-lightness($link-color, -10%)
 
 @mixin breakpoint($point)
     @if $point == iphone 
-        @media only screen and (min-width: 320px) and (max-width: 568px) 
+        @media only screen and (min-width: 320px) and (max-width: 1024px) // 568px 
             @content 
     @else if $point == ipad 
         @media only screen and (min-width: 768px) and (max-width: 1024px)
@@ -132,6 +132,8 @@ body
     text-align: center
     padding: 3em 0 1.5em
     border-bottom: solid 2px $border-color
+    +breakpoint(iphone)
+        padding-top: 1.5em
     h1
         @extend .bold-lined-font
         font-size: 7.2em
@@ -191,7 +193,37 @@ body
     &.selected
         @extend .medium-font
         color: $highlight-color
-
+.mobile-navigation-holder
+    position: relative
+    +breakpoint(iphone)
+        display: block
+    +breakpoint(pc)
+        display: none
+.mobile-navigation
+    font-size: 1.6em
+    width: 100%
+    position: absolute
+    top: 0.2em
+    left: 0
+    +opacity(0)
+.mobile-navigation-selected
+    @extend .medium-font
+    font-size: 1.6em
+    color: $highlight-color
+    display: block
+    padding: .5em 1em
+    border-bottom: solid 1px $border-color
+    &:after
+        content: ''
+        font-size: 1.6em
+        width: 0
+        height: 0
+        border-style: solid
+        border-width: 5px 5px 0 5px
+        border-color: $highlight-color transparent transparent transparent
+        position: absolute
+        top: .55em
+        right: 1em
 
 
 // Language level selector
@@ -205,13 +237,20 @@ body
     border-bottom: solid 1px $border-color
     position: relative
     +breakpoint(iphone)
-        width: 100%
+        width: auto
+        height: auto
+        margin: 0
+        padding-bottom: 4em
     &.floating
         margin: 0 20px
         +box-shadow(rgba(black,.6) 0 4px 6px -7px)
         position: fixed
         top: 0
         z-index: 2
+        +breakpoint(iphone)
+            margin: 0
+            +box-shadow(none)
+            position: relative
     h1
         @extend .bold-font
         font-size: 1.5em
@@ -229,9 +268,17 @@ body
     position: absolute
     top: 1.25em
     +user-select(none)
+    +breakpoint(iphone)
+        margin: 0 .3em
+        border-color: $border-color
+        position: relative
     &:hover
         border-color: $highlight-color
         cursor: pointer
+        +breakpoint(iphone)
+            border-color: $border-color
+    &:active
+        border-color: $highlight-color
     &.disabled
         border-color: transparent !important
         pointer-events: none
@@ -245,8 +292,12 @@ body
 // Articles
 .articles
     margin: 0 8%
+    +breakpoint(iphone)
+        margin: 0 2%
     &.floating
         padding-top: 70px
+        +breakpoint(iphone)
+            padding-top: 0
     &.loading
         .article
             display: none
