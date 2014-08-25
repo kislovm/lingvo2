@@ -18,7 +18,7 @@ module.exports = {
             } else {
                 episodes.forEach(function(episode) {
                     var date = episode.publicationDate;
-                    episode.publicationDate = [date.getDate(), date.getMonth(), date.getFullYear()].join('.');
+                    data && (episode.publicationDate = [date.getDate(), date.getMonth(), date.getFullYear()].join('.'));
                 });
                 res.json(episodes);
             }
