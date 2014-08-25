@@ -7,6 +7,7 @@ module.exports.initialize = function(app) {
     app.get('/', home.index);
     app.get('/api/episodes', episodes.index);
     app.get('/api/episodes/:category', episodes.category);
+    app.get('/count', episodes.count);
     app.post('/user', user.set);
     app.get('/user', user.get);
 };

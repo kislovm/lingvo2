@@ -30,6 +30,7 @@ app.use(express.urlencoded());
 app.use(app.router);
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use('/client/images/', express.static(path.join(__dirname, '/client/images')));
+app.use('/static/fonts/', express.static(path.join(__dirname, '/static/fonts')));
 
 // development only
 if ('development' == app.get('env')) {
