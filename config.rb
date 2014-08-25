@@ -10,6 +10,8 @@ javascripts_dir = "javascripts"
 preferred_syntax = :sass
 output_style = :compressed
 
+require 'animation'
+
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
 
