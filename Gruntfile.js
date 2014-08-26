@@ -84,13 +84,12 @@ module.exports = function(grunt) {
         },
 
         compass: {
-            watch: true,
-            dist: {
+            watch: {
                 options: {
-                    sassDir: 'client/styles/sass',
-                    cssDir: 'public/css'
+                    basePath: 'client/styles'
                 }
             }
+
         },
 
         copy: {
