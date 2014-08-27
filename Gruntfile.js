@@ -84,12 +84,12 @@ module.exports = function(grunt) {
         },
 
         compass: {
-            watch: {
+            dist: {
                 options: {
-                    basePath: 'client/styles'
+                    sassDir: 'client/styles/sass',
+                    cssDir: 'public/css'
                 }
             }
-
         },
 
         copy: {
@@ -140,6 +140,13 @@ module.exports = function(grunt) {
             scripts: {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js'],
                 tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
+            },
+            css: {
+                files: ['client/styles/**/*.sass'],
+                tasks: ['compass']
+            },
+            options: {
+                interval: 100
             }
         },
 
@@ -185,7 +192,7 @@ module.exports = function(grunt) {
 
         concurrent: {
             dev: {
-                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts', 'compass:watch'],
+                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts', 'compass', 'watch:css'],
                 options: {
                     logConcurrentOutput: true
                 }
