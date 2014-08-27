@@ -199,8 +199,22 @@ body
     +breakpoint(pc)
         display: none
 .mobile-navigation
-    font-size: 1.6em
+    white-space: nowrap
     width: 100%
+    padding: 1em 0 1em 1em
+    border-bottom: solid 1px $border-color
+    overflow: scroll
+    position: relative
+    &::-webkit-scrollbar
+        display: none
+    span
+        font-size: 1.6em
+        vertical-align: middle
+        display: inline-block
+        margin-right: 1em
+        &.selected
+            @extend .medium-font
+            color: $highlight-color
 
 
 // Language level selector

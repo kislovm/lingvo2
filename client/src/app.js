@@ -63,6 +63,16 @@ App.prototype.start = function() {
                     });
                 }
             );
+            $('.mobile-navigation span').click(function(){
+                var el = $(this),
+                    position = el.position(),
+                    margin = 10,
+                    elPosition = position.left;
+                el.parent().scrollLeft(elPosition - margin);
+
+                console.log(elPosition);
+                // el.parent().animate({scrollLeft: elPosition}, 800);
+            });
 
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
             Backbone.history.start();
