@@ -63,7 +63,10 @@ App.prototype.start = function() {
                     });
                 }
             );
-            
+            $('.j-show-about').click(function(){
+                $('.mobile-about-project').toggleClass('hide');
+            });
+
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
             Backbone.history.start();
         }
