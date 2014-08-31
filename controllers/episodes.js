@@ -37,8 +37,7 @@ module.exports = {
 
             episodes.forEach(function(episode){
                 tokenizer.tokenize(sanitizeHtml(episode.description), { allowedTags: [] }).map(function(token) {
-                    if(token && token.length > 4 &&
-                        ['border', 'height', 'width', 'padding', 'style', 'margin', 'href'].indexOf(token) === -1) {
+                    if(['border', 'height', 'width', 'padding', 'style', 'margin', 'href', 'nbsp', 's'].indexOf(token) === -1) {
                         tokens[token] = (tokens[token] ? tokens[token] + 1 : 1);
                     }
                 });
