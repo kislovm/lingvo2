@@ -1,12 +1,12 @@
 var models = require('./models'),
     Request = require('request'),
     FeedParser = require('feedparser'),
-    Natural = require('natural');
+    sanitizeHtml = require('sanitize-html');
 
 module.exports = {
     check: function() {
 
-//        models.Episode.remove().exec();
+        //models.Episode.remove().exec();
 
         var feedUrls = {
             politics: [
@@ -137,19 +137,33 @@ module.exports = {
                             //item.title == 'The best quotes' && console.log(item);
 
 
-                            var image = item.enclosures && item.enclosures.length ?
-                                    item.enclosures[0].url : item.meta['rss:image'].url['#'],
+                            var image,
                                 description = (item.summary.length > item.description.length ?
                                     item.summary : item.description) || item.meta.description,
                                 ep = {
                                     name: feed.name,
                                     title: item.title,
                                     link: item.link,
-                                    image: image,
-                                    description: description,
                                     publicationDate: new Date(item.pubDate),
                                     category: _key
                                 };
+
+                            ep.description = sanitizeHtml(description, {
+                                transformTags: {
+                                    'img': function(tagName, attribs) {
+
+                                        if(!image &&
+                                            attribs.src.indexOf('jpg') != -1 &&
+                                            attribs.src.indexOf('videos.usatoday.net') == -1)
+                                            image = attribs.src;
+
+
+                                        return {};
+                                    }
+                                }
+                            });
+
+                            image && (ep.image = image);
 
                             if (!description || description.length < 150) continue;
 
