@@ -1,7 +1,6 @@
 var Marionette = require('backbone.marionette'),
     AppLayoutView = require('./views/layouts/app-layout'),
     EpisodesView = require('./views/episodes'),
-    DifficultyView = require('./views/difficulty'),
     EpisodesCollection = require('./collections/episodes');
 
 module.exports = Controller = Marionette.Controller.extend({
