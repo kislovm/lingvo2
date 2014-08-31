@@ -7,7 +7,6 @@ module.exports = Controller = Marionette.Controller.extend({
     initialize: function() {
         App.core.vent.trigger('app:log', 'Controller: Initializing');
         App.layoutView = new AppLayoutView();
-        App.popup = $('.popup-container');
     },
 
     home: function() {
