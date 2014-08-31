@@ -3,10 +3,22 @@ var Backbone = require('backbone'),
 
 module.exports = EpisodesCollection = Backbone.Collection.extend({
     model:  EpisodeModel,
-    url: function() { return '/api/episodes/' + this.category; },
+    url: function() { return '/api/episodes/' + this.category + '/' + this.page; },
 
     initialize: function(options) {
+        var _this = this;
+        this.page = '0';
         this.category = options && options.category || 'all';
+    },
+
+    increment: function() {
+        this.page++;
+        this.fetch();
+    },
+
+    parse: function(data) {
+        if(this.toJSON() && this.toJSON().length) return this.toJSON().concat(data);
+        else return data;
     }
 
 });
