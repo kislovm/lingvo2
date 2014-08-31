@@ -5,8 +5,8 @@ var home = require('../controllers/home'),
 
 module.exports.initialize = function(app) {
     app.get('/', home.index);
-    app.get('/api/episodes', episodes.index);
-    app.get('/api/episodes/:category', episodes.category);
+    app.get('/api/episodes/all/:page?', episodes.index);
+    app.get('/api/episodes/:category/:page?', episodes.category);
     app.get('/count', episodes.count);
     app.post('/user', user.set);
     app.get('/user', user.get);

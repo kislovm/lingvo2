@@ -4,20 +4,28 @@ var models = require('../app/models'),
 
 module.exports = {
     index: function(req, res) {
-
-        models.Episode.find({}).limit(20).sort('-publicationDate').exec(function(err, episodes) {
-            res.json(episodes);
+        var skip = 10 * (req.params.page || 0);
+        models.Episode.find({})
+            .skip(skip)
+            .limit(10)
+            .sort('-publicationDate').exec(function(err, episodes) {
+                res.json(episodes);
         });
 
     },
     category: function(req, res) {
-        console.log(req.params.category);
-        models.Episode.find({ category: req.params.category }).sort('-publicationDate').limit(10).exec(function(err, episodes) {
-            if (err) {
-                res.json({error: 'Episodes not found.'});
-            } else {
-                res.json(episodes);
-            }
+        var skip = 10 * (req.params.page || 0);
+        models.Episode
+            .find({ category: req.params.category })
+            .sort('-publicationDate')
+            .skip(skip)
+            .limit(10)
+            .exec(function(err, episodes) {
+                if (err) {
+                    res.json({error: 'Episodes not found.'});
+                } else {
+                    res.json(episodes);
+                }
         });
     },
     count: function(req, res) {

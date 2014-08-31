@@ -3,7 +3,7 @@ var Backbone = require('backbone'),
 
 module.exports = EpisodesCollection = Backbone.Collection.extend({
     model:  EpisodeModel,
-    url: '/api/episodes/',
+    url: '/api/episodes/all',
 
     initialize: function(options) {
         if(options && options.category) this.url = this.url + options.category;
