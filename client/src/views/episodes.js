@@ -23,6 +23,14 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
                 _this.collection.increment();
         });
         this.listenTo(this.collection, 'change', this.render);
+        this.listenTo(App.data.user, 'change', this._onDifficultyChange);
     },
+
+    _onDifficultyChange: function() {
+        this.collection.reset();
+        this.collection.page = '0';
+        this.collection.fetch();
+    },
+
     childView: itemView
 });

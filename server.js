@@ -5,6 +5,7 @@ var express = require('express'),
     exphbs = require('express3-handlebars'),
     mongoose = require('mongoose'),
     seeder = require('./app/seeder'),
+    difficulty = require('./app/difficulty'),
     bodyParser = require('body-parser'),
     app = express();
 
@@ -44,7 +45,9 @@ mongoose.connection.on('open', function() {
 
     // check if the db is empty, if so seed it with some contacts:
     seeder.check();
+    difficulty.set()
     setInterval(function() { try { seeder.check() } catch(e) {} }, '50000');
+    setInterval(function() { try { difficulty.set() } catch(e) {} }, '100000');
 });
 
 //routes list:

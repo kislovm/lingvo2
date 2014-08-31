@@ -28,9 +28,8 @@ App.prototype.start = function() {
 
     });
 
-    App.core.vent.bind('app:start', function(options) {
+    App.core.vent.bind('app:start', function() {
         App.core.vent.trigger('app:log', 'App: Starting');
-        console.log(Backbone.history);
         if (Backbone.history) {
             App.controller = new Controller();
             App.router = new Router({ controller: App.controller });
@@ -68,7 +67,6 @@ App.prototype.start = function() {
             });
 
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
-            Backbone.history.start();
         }
 
         var user = new UserModel();
@@ -86,6 +84,7 @@ App.prototype.start = function() {
     App.core.vent.bind('user:init', function(options) {
         App.core.vent.trigger('app:log', 'User: Initializing');
         App.layoutView.difficulty.show(new DifficultyView({ model: App.data.user }));
+        Backbone.history.start();
     });
 
     App.core.vent.bind('app:log', function(msg) {
