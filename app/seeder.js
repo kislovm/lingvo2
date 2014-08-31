@@ -6,7 +6,7 @@ var models = require('./models'),
 module.exports = {
     check: function() {
 
-        //models.Episode.remove().exec();
+//        models.Episode.remove().exec();
 
         var feedUrls = {
             politics: [
@@ -149,6 +149,7 @@ module.exports = {
                                 };
 
                             ep.description = sanitizeHtml(description, {
+                                allowedTags: [],
                                 transformTags: {
                                     'img': function(tagName, attribs) {
 
