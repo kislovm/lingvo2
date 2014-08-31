@@ -9,8 +9,12 @@ module.exports = MenuView = Marionette.ItemView.extend({
     },
 
     selectActive: function() {
+        //ОЛОЛО БЫДЛОКОД
+
         $('.topic-link').removeClass('selected');
+        $('.mobile-navigation > a').removeClass('selected');
         $('a[href="' + (window.location.hash || '#') + '"] > .topic-link').addClass('selected');
+        $('.mobile-navigation > a[href="' + (window.location.hash || '#') + '"]').addClass('selected');
     }
 
 });
