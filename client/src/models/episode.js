@@ -2,5 +2,14 @@ var Backbone = require('backbone');
 
 module.exports = EpisodeModel = Backbone.Model.extend({
     idAttribute: '_id',
-    urlRoot: 'api/episode'
+    urlRoot: 'api/episode',
+    parse: function(data) {
+        if(data) {
+            var date = new Date(data.publicationDate);
+
+            data.formattedDate = date.toLocaleDateString();
+
+            return data;
+        }
+    }
 });
