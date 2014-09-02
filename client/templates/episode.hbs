@@ -1,7 +1,9 @@
 <h1><a href="{{ link }}" target="_blank">{{ title }}</a></h1>
+
+<a href="#" class="post-time">{{ name }} – {{ publicationDate }}</a>
+
 {{#if image}}
     <a href="#" class="illustration" style="background-image: url('{{ image }}')"></a>
 {{/if}}
-<a href="#" class="post-time">{{ name }} – {{ publicationDate }}</a>
 
 <p>{{{ description }}}</p>
