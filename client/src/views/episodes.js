@@ -23,7 +23,7 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
                 _this.collection.increment();
         });
         this.listenTo(this.collection, 'change', this.render);
-        this.listenTo(App.data.user, 'change', this._onDifficultyChange);
+        this.listenTo(App.data.user, 'sync', this._onDifficultyChange);
     },
 
     _onDifficultyChange: function() {
