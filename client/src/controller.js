@@ -21,7 +21,7 @@ module.exports = Controller = Marionette.Controller.extend({
     category: function(category) {
         if($(window).scrollTop() > App.headerHeight) $(window).scrollTop(App.headerHeight);
         App.core.vent.trigger('app:log', 'Controller: "Category" route hit.');
-        var view = new EpisodesView({ collection: new EpisodesCollection({ category: category }) });
+        var view = new EpisodesView({ collection: new EpisodesCollection([], { category: category }) });
         view.collection.fetch();
         window.App.layoutView.content.show(view);
         window.App.router.navigate('category/' + category);

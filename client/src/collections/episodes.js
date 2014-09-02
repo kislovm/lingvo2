@@ -5,8 +5,7 @@ module.exports = EpisodesCollection = Backbone.Collection.extend({
     model:  EpisodeModel,
     url: function() { return '/api/episodes/' + this.category + '/' + this.page; },
 
-    initialize: function(options) {
-        var _this = this;
+    initialize: function(data, options) {
         this.page = '0';
         this.category = options && options.category || 'all';
     },
