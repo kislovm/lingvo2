@@ -22,53 +22,53 @@ module.exports = {
                 social: [
                     {
                         url: 'http://rss.cnn.com/rss/cnn_allpolitics.rss',
-                        name: 'cnn'
+                        name: 'CNN'
                     }
                 ],
                 economics: [
                     {
                         url: 'http://www.economist.com/feeds/print-sections/79/finance-and-economics.xml',
-                        name: 'economist'
+                        name: 'Economist'
                     },
                     {
                         url: 'http://feeds.bbci.co.uk/news/business/economy/rss.xml',
-                        name: 'bbc'
+                        name: 'BBC'
                     },
                     {
                         url: 'http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=money1',
-                        name: 'usatoday'
+                        name: 'USATODAY'
                     },
                     {
                         url: 'http://www.forbes.com/markets/index.xml',
-                        name: 'forbes'
+                        name: 'Forbes'
                     }
                 ],
                 world: [
                     {
                         url: 'http://rss.cnn.com/rss/edition_world.rss',
-                        name: 'cnn'
+                        name: 'CNN'
                     },
                     {
                         url: 'http://feeds.bbci.co.uk/news/world/rss.xml',
-                        name: 'bbc'
+                        name: 'BBC'
                     },
                     {
                         url: 'http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news4',
-                        name: 'usatoday'
+                        name: 'USATODAY'
                     }
                 ],
                 sport: [
                     {
                         url: 'http://rss.cnn.com/rss/edition_sport.rss',
-                        name: 'cnn'
+                        name: 'CNN'
                     },
                     {
                         url: 'http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=sports1',
-                        name: 'usatoday'
+                        name: 'USATODAY'
                     },
                     {
                         url: 'http://www.forbes.com/sportsmoney/index.xml',
-                        name: 'forbes'
+                        name: 'Forbes'
                     }
                 ],
                 tech: [
@@ -78,27 +78,27 @@ module.exports = {
                     },
                     {
                         url: 'http://rss.cnn.com/rss/edition_technology.rss',
-                        name: 'cnn'
+                        name: 'CNN'
                     },
                     {
                         url: 'http://rssfeeds.usatoday.com/usatoday-TechTopStories',
-                        name: 'usatoday'
+                        name: 'USATODAY'
                     },
                     {
                         url: 'http://www.forbes.com/technology/index.xml',
-                        name: 'forbes'
+                        name: 'Forbes'
                     }
                 ],
                 science: [
                     {
                         url: 'http://feeds.bbci.co.uk/news/science_and_environment/rss.xml?edition=uk',
-                        name: 'bbc'
+                        name: 'BBC'
                     }
                 ],
                 culture: [
                     {
                         url: 'http://www.telegraph.co.uk/culture/tvandradio/bbc/rss',
-                        name: 'telegraph'
+                        name: 'Telegraph'
                     }
                 ]
             };
