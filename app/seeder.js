@@ -118,6 +118,9 @@ module.exports = {
                         if (res.statusCode != 200) return this.emit('error', new Error('Bad status code'));
 
                         stream.pipe(feedparser);
+                    }).on('error',function(e){
+                       console.log("Error: " + hostNames[i] + "\n" + e.message);
+                       console.log( e.stack );
                     });
 
                     // Handle HTTP errors
