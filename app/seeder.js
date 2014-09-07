@@ -119,9 +119,9 @@ module.exports = {
 
                         stream.pipe(feedparser);
                     }).on('error',function(e){
-                       console.log("Error: " + hostNames[i] + "\n" + e.message);
+                       console.log("Error: " + key + "\n" + e.message);
                        console.log( e.stack );
-                    });
+                    });;
 
                     // Handle HTTP errors
                     feedparser.on('error', function(error) {
