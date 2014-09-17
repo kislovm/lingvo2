@@ -8,9 +8,15 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     template: require('../../templates/difficulty.hbs'),
 
     difficulties: [
-        'easy',
-        'intermediate',
-        'advanced'
+        'General',
+        'Business English',
+        'For TOEFL',
+        'For GMAT',
+        'Hobby',
+        'Travel',
+        'Tech',
+        'Irregular verbs',
+        'Sport'
     ],
 
     events: {
