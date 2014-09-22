@@ -45,7 +45,7 @@ mongoose.connection.on('open', function() {
 
     // check if the db is empty, if so seed it with some contacts:
     seeder.check();
-    difficulty.set()
+    difficulty.set();
     setInterval(function() { try { seeder.check() } catch(e) {} }, '50000');
     setInterval(function() { try { difficulty.set() } catch(e) {} }, '100000');
 });

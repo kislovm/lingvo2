@@ -121,7 +121,7 @@ module.exports = {
                     }).on('error',function(e){
                        console.log("Error: " + key + "\n" + e.message);
                        console.log( e.stack );
-                    });;
+                    });
 
                     // Handle HTTP errors
                     feedparser.on('error', function(error) {
