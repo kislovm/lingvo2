@@ -10,7 +10,7 @@ var Episode = new Schema({
     difficulty: { type: String },
     publicationDate: { type: Date },
     description: { type: String },
-    category: { type: String },
+    category: { type: [String] },
     link: { type: String }
 });
 
