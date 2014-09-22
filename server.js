@@ -9,7 +9,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     app = express();
 
-app.set('port', process.env.PORT || 3300);
+app.set('port', process.env.PORT || 3301);
 app.set('views', __dirname + '/views');
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
