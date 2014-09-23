@@ -148,7 +148,7 @@ module.exports = {
                                         title: item.title,
                                         link: item.link,
                                         publicationDate: new Date(item.pubDate),
-                                        category: _key
+                                        //category: _key
                                     };
 
                                 ep.description = sanitizeHtml(description, {
