@@ -5,7 +5,7 @@ var models = require('../app/models'),
 module.exports = {
     index: function(req, res) {
         var skip = 10 * (req.params.page || 0);
-        models.Episode.find({ category: 'general' })
+        models.Episode.find({ lexica: 'general' })
             .skip(skip)
             .limit(10)
             .sort('-publicationDate').exec(function(err, episodes) {
@@ -16,7 +16,7 @@ module.exports = {
     category: function(req, res) {
         var skip = 10 * (req.params.page || 0);
         models.Episode
-            .find({ category: req.params.category })
+            .find({ lexica: req.params.category })
             .sort('-publicationDate')
             .skip(skip)
             .limit(10)
