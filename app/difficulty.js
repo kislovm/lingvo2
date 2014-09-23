@@ -11,7 +11,7 @@ module.exports = {
                 ],
                 counter = 0;
 
-            models.Episode.limit(50).find({ 'category.0': { $exists: false } }, function(err, episodes) {
+            models.Episode.find({ 'lexica': { $exists: false } }).limit(200).exec(function(err, episodes) {
                 episodes.forEach(function(episode) {
                     var tokens = tokenizer.tokenize(sanitizeHtml(episode.description, { allowedTags: [] }));
 
@@ -29,17 +29,15 @@ module.exports = {
                                 used.push(token);
                             }
 
-                            if (hits/count > 0.4 && episode.category.indexOf(dict.name) == -1)
-                                (episode.category && episode.category instanceof Array ?
-                                    episode.category.push(dict.name) : episode.category = [dict.name]);
-
-                            if (!episode.category.length) episode.category = ['nothing'];
-
-                            console.log('processed ' + ++counter + ' episodes');
+                            if (hits/count > 0.4 && episode.lexica.indexOf(dict.name) == -1)
+                                (episode.lexica && episode.lexica instanceof Array ?
+                                    episode.lexica.push(dict.name) : episode.category = [dict.name]);
 
                             episode.save();
                         });
                     });
+                    console.log('processed ' + ++counter + ' episodes');
+
                 });
 
             });
