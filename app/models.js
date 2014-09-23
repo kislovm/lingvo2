@@ -11,6 +11,7 @@ var Episode = new Schema({
     publicationDate: { type: Date },
     description: { type: String },
     category: { type: [String] },
+    lexica: { type: [String] },
     link: { type: String }
 });
 
