@@ -1,7 +1,7 @@
 var models = require('./models'), Natural = require('natural'), sanitizeHtml = require('sanitize-html');
 
 module.exports = {
-    set: function() {
+    set: function(id) {
         try {
 
             var tokenizer = new Natural.WordTokenizer(),
@@ -11,7 +11,7 @@ module.exports = {
                 ],
                 counter = 0;
 
-            models.Episode.find({ 'lexica': { $exists: false } }).limit(200).exec(function(err, episodes) {
+            models.Episode.find({ 'lexica': { $exists: false }, 'processed': { $ne: id } }).limit(200).exec(function(err, episodes) {
                 episodes.forEach(function(episode) {
                     var tokens = tokenizer.tokenize(sanitizeHtml(episode.description, { allowedTags: [] }));
 
@@ -33,9 +33,13 @@ module.exports = {
                                 (episode.lexica && episode.lexica instanceof Array ?
                                     episode.lexica.push(dict.name) : episode.category = [dict.name]);
 
-                            episode.save();
                         });
                     });
+
+                    episode.processed = id;
+
+                    episode.save();
+
                     console.log('processed ' + ++counter + ' episodes');
 
                 });
