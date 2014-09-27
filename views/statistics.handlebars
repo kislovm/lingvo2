@@ -1,0 +1,33 @@
+<aside class="sidebar">
+</aside>
+<section class="news-feed">
+
+    <header class="main-header">
+        <h1>Статистика</h1>
+    </header>
+
+    <section class="articles"><!-- Toggle class «loading» for loading spinner -->
+
+        <article class="article">
+            <p>
+                Всего статей {{ articlesCount }}
+            </p>
+        </article>
+
+        <article class="article">
+            <p>Статьи по месяцам:</p>
+            {{#each episodesByMonthArray }}
+                <p>Месяц: {{ date }} статей: {{ count }}</p>
+            {{/each}}
+        </article>
+
+        <article class="article">
+            <p>Статьи по дням:</p>
+            {{#each episodesByDateArray }}
+                <p>Дата: {{ date }} статей: {{ count }}</p>
+            {{/each}}
+        </article>
+
+    </section>
+
+</section>
