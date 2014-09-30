@@ -7,7 +7,7 @@ module.exports = EpisodeModel = Backbone.Model.extend({
         if(data) {
             var date = new Date(data.publicationDate);
 
-            data.formattedDate = [date.getDay(), date.getMonth(), date.getFullYear()].join('.');
+            data.formattedDate = [date.getDay(), date.getMonth() + 1, date.getFullYear()].join('.');
 
             return data;
         }
