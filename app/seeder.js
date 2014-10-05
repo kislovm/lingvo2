@@ -148,7 +148,7 @@ module.exports = {
                                         title: item.title,
                                         link: item.link,
                                         publicationDate: new Date(item.pubDate),
-                                        //category: _key
+                                        category: _key
                                     };
 
                                 ep.description = sanitizeHtml(description, {
@@ -170,8 +170,9 @@ module.exports = {
                                 });
 
                                 image && (ep.image = image);
-
+                                                               
                                 if (!description || description.length < 150) continue;
+                                
 
                                 models.Episode.findOne({ title: ep.title}, function(err, episode) {
                                     if (!err) {
@@ -180,10 +181,10 @@ module.exports = {
 
                                             episode.save(function(err) {
                                                 if (!err) {
-                                                    //                                                    console.log('Inserted episode with category ' +
-                                                    //                                                        ep.category +
-                                                    //                                                        ' and title ' +
-                                                    //                                                        ep.title);
+                                                                                                        console.log('Inserted episode with category ' +
+                                                                                                            ep.category +
+                                                                                                            ' and title ' +
+                                                                                                            ep.title);
                                                 }
                                             });
                                         }
