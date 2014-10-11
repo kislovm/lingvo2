@@ -20,6 +20,8 @@ module.exports = {
                 ],
                 counter = 0;
 
+            Natural.PorterStemmer.attach();
+
             models.Episode.find({ 'processed': { $ne: id } }).limit(2000).exec(function(err, episodes) {
 
                 episodes.forEach(function(episode) {
@@ -29,15 +31,20 @@ module.exports = {
                         var count = 0,
                             classificator = dict.classificator || defaultClassificator,
                             hits = 0,
-                            used = [];
+                            used = [],
+                            truncatedWords = dict.words.map(function(word) {
+                                return word.stem();
+                            });
 
                         tokens.forEach(function(token) {
-                            if (used.indexOf(token) == -1) {
+                            var truncatedToken = token.stem();
+
+                            if (used.indexOf(truncatedToken) == -1) {
                                 count++;
-                                if (dict.words.indexOf(token) != -1) {
+                                if (truncatedWords.indexOf(truncatedToken) != -1) {
                                     hits++;
                                 }
-                                used.push(token);
+                                used.push(truncatedToken);
                             }
 
                             if (classificator(hits, count))
