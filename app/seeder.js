@@ -193,7 +193,14 @@ module.exports = {
 
                             }
                         }).on('end', function() {
-                            console.log('successfully updated rss');
+                            var arr = [];
+
+                            models.Episode.find({}, function(err, episodes) {
+                                episodes.forEach(function(episode) {
+                                   if(arr.indexOf(episode.title) != -1) { console.log('removed double ' +episode.title); episode.remove() };
+                                   arr.push(episode.title);
+                                });
+                            });
                         });
                 });
             }
