@@ -1,9 +1,9 @@
-<h1><a href="{{ link }}" target="_blank">{{ title }}</a></h1>
+<h1><a href="{{ link }}" target="_blank" onclick="counter.reachGoal('inside-article')">{{ title }}</a></h1>
 
 <a href="#" class="post-time">{{ name }} – {{ formattedDate }}</a>
 
 {{#if image}}
-    <a href="#" class="illustration" style="background-image: url('{{ image }}')"></a>
+    <a href="#" class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
 {{/if}}
 
 <p>{{{ description }}}</p>

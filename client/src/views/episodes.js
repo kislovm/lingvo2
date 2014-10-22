@@ -21,6 +21,7 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
         $(window).scroll(function() {
             if($(window).scrollTop() + $(window).height() > ($('body').height() - 100))
                 _this.collection.increment();
+                counter.reachGoal('scroll-down');
         });
         this.listenTo(this.collection, 'change', this.render);
         this.listenTo(App.data.user, 'sync', this._onDifficultyChange);
