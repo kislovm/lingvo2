@@ -11,21 +11,21 @@ parseRssCnnCom = function($, desc) {
   return $('p').filter('[class~=\'cnn_storypgraphtxt\']')
                .map(function() {
                  return $(this).text();
-               }).join('\n');
+               }).get().join('\n');
 },
 parseBbcCoUk = function ($, desc) {
   return $('div[class~=\'story-body\']')
     .find('p:not([class])')
     .map(function(i, e) {
       return $(e).text();
-    }).join('\n');
+    }).get().join('\n');
 },
 economist_com_parse = function($, desc) {
   var paragraphs = $('div[class~=\'main-content\']')
     .find('p:not([class])')
     .map(function(i, e) {
       return $(e).text();
-    });
+    }).get();
   article = paragraphs.join('\n\n').trim();
   desc = desc.trim().slice(0, -3).slice(-10);
 
@@ -52,7 +52,7 @@ parseWwwForbesComParse = function($, desc) {
     .find('p:not([class])')
     .map(function(i, e) {
      return $(e).text();
-    });
+   }).get();
 
   article = paragraphs.join('\n\n').trim();
   desc = desc.trim().slice(-10);
@@ -70,14 +70,14 @@ parseTelegraphFeedsportalCom = function($, desc) {
     .find('p:not([class]), h3')
     .map(function(i, e) {
       return $(e).text();
-    }).join('\n');
+    }).get().join('\n');
 },
 parseFeedproxyGoogleCom = function($, desc) {
   var paragraphs = $('div[class~=\'article-entry\']')
     .find('p:not([class])')
     .map(function(i, e) {
       return $(e).text();
-    });
+    }).get();
 
     article = paragraphs.join('\n\n');
     desc = desc.trim().slice(-20, -10);
