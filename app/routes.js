@@ -1,10 +1,11 @@
 var home = require('../controllers/home'),
-    contacts = require('../controllers/contacts'),
+    stat = require('../controllers/stat'),
     episodes = require('../controllers/episodes');
     user = require('../controllers/user');
 
 module.exports.initialize = function(app) {
     app.get('/', home.index);
+    app.get('/stat', stat.index);
     app.get('/api/episodes/all/:page?', episodes.index);
     app.get('/api/episodes/:category/:page?', episodes.category);
     app.get('/count', episodes.count);

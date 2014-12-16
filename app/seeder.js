@@ -1,7 +1,124 @@
 var models = require('./models'),
     Request = require('request'),
     FeedParser = require('feedparser'),
-    sanitizeHtml = require('sanitize-html');
+    sanitizeHtml = require('sanitize-html'),
+    cheerio = require("cheerio"),
+    jQuery = require("jquery");
+String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
+
+var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
+
+function rss_cnn_com_parse($, desc) {
+  paragraphs = [];
+  $('p').filter("[class~='cnn_storypgraphtxt']")
+        .each(function() {
+          paragraphs.push($(this).text());
+        });
+
+    return paragraphs.join('\n');
+}
+
+function bbc_co_uk_parse($, desc) {
+  paragraphs = [];
+  $("div[class~='story-body']").find('p:not([class])')
+                               .each(function(i, e) {
+                                  paragraphs.push($(e).text());
+                                });
+  return paragraphs.join('\n');
+}
+
+function economist_com_parse($, desc) {
+  paragraphs = [];
+  $("div[class~='main-content']").find('p:not([class])')
+                                 .each(function(i, e) {
+                                   paragraphs.push($(e).text());
+                                 });
+  article = paragraphs.join('\n\n').trim();
+  desc = desc.trim().slice(0, -3).slice(-10);
+
+  desc_begin = article.search(desc);
+  if (desc_begin != -1) {
+    desc_end = desc_begin + 10;
+    return article.slice(desc_end);
+  }
+
+  return article;
+}
+
+function rssfeeds_usatoday_com_parse($, desc) {
+  paragraphs = [];
+  // $("article[class~='asset story clearfix']")
+  $('p:not([class])').each(function(i, e) {
+                            if($(e).parent().get(0).parent.name == 'article') {
+                              paragraphs.push($(e).text());
+                            }
+                          });
+  return paragraphs.join('\n\n');
+}
+
+function www_forbes_com_parse($, desc) {
+  paragraphs = [];
+  $("div[class~='body_inner']").find('p:not([class])')
+                               .each(function(i, e) {
+                                 paragraphs.push($(e).text());
+                               });
+  article = paragraphs.join('\n\n').trim();
+  desc = desc.trim().slice(-10);
+
+  desc_begin = article.search(desc);
+  if (desc_begin != -1) {
+    desc_end = desc_begin + 10;
+    return article.slice(desc_end);
+  }
+
+  return article;
+}
+
+function telegraph_feedsportal_com_parse($, desc) {
+  paragraphs = [];
+  $("div[id~='mainBodyArea']").find('p:not([class]), h3')
+                              .each(function(i, e) {
+                                paragraphs.push($(e).text());
+                              });
+
+  return paragraphs.join('\n');
+}
+
+function feedproxy_google_com_parse($, desc) {
+  paragraphs = [];
+  $("div[class~='article-entry']").find('p:not([class])')
+                                       .each(function(i, e) {
+                                         paragraphs.push($(e).text());
+                                       });
+
+    article = paragraphs.join('\n\n');
+    desc = desc.trim().slice(-20, -10);
+    desc_begin = article.search(desc);
+    if(desc_begin != -1) {
+      desc_end = desc_begin + 20;
+      return article.slice(desc_end);
+    }
+    return article;
+}
+
+var parse_handlers = {'rss.cnn.com': rss_cnn_com_parse, 'www.bbc.co.uk': bbc_co_uk_parse,
+                      'www.economist.com': economist_com_parse, 'rssfeeds.usatoday.com': rssfeeds_usatoday_com_parse,
+                      'www.forbes.com': www_forbes_com_parse, 'telegraph.feedsportal.com': telegraph_feedsportal_com_parse,
+                      'feedproxy.google.com': feedproxy_google_com_parse};
+
+function get_domain(url) {
+  var matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
+  return matches && matches[1];
+}
+
+function extract_article_body(url, $, desc) {
+  var domain = get_domain(url);
+  if (!(domain in parse_handlers)) {
+    console.log("ERROR: unkown domain [" + domain + "]");
+    return;
+  }
+  return parse_handlers[domain]($, desc);
+}
 
 module.exports = {
     check: function() {
@@ -121,11 +238,12 @@ module.exports = {
                     }).on('error',function(e){
                        console.log("Error: " + key + "\n" + e.message);
                        console.log( e.stack );
-                    });;
+                    });
 
                     // Handle HTTP errors
                     feedparser.on('error', function(error) {
-                        console.log('http error while parsing rss');
+                        console.log('http error while parsing rss ' + error);
+                        console.log( error.stack );
                     })
 
                         // Store the feed's metadata
@@ -173,26 +291,50 @@ module.exports = {
 
                                 if (!description || description.length < 150) continue;
 
-                                models.Episode.findOne({ title: ep.title}, function(err, episode) {
-                                    if (!err) {
-                                        if (!episode) {
-                                            episode = new models.Episode(ep);
+                                Request(ep.link, function(err, res, body){
+                                  article = ''
+                                  if(err) {
+                                    console.log(err);
+                                  } else{
+                                      $ = cheerio.load(body);
+                                      ep.body = extract_article_body(ep.link, $, ep.description);
+                                  }
 
-                                            episode.save(function(err) {
-                                                if (!err) {
-                                                    //                                                    console.log('Inserted episode with category ' +
-                                                    //                                                        ep.category +
-                                                    //                                                        ' and title ' +
-                                                    //                                                        ep.title);
-                                                }
-                                            });
-                                        }
+                                  // console.log('[link]: ' + ep.link);
+                                  // console.log('[desc]: [' + ep.description + ']');
+                                  // console.log('[article]: [' + ep.body + ']');
+
+                                  models.Episode.findOne({ title: ep.title}, function(err, episode) {
+                                    if (!err) {
+                                      if (!episode) {
+                                        episode = new models.Episode(ep);
+
+                                        episode.save(function(err) {
+                                          if (!err) {
+                                            console.log('Inserted episode with category ' +
+                                            ep.category +
+                                            ' and title ' +
+                                            ep.title);
+                                          }
+                                        });
+                                      }
                                     }
-                                });
+                                  });
+
+                                  });
+
+
 
                             }
                         }).on('end', function() {
-                            console.log('successfully updated rss');
+                            var arr = [];
+
+                            models.Episode.find({}, function(err, episodes) {
+                                episodes.forEach(function(episode) {
+                                   if(arr.indexOf(episode.title) != -1) { console.log('removed double ' +episode.title); episode.remove() };
+                                   arr.push(episode.title);
+                                });
+                            });
                         });
                 });
             }
