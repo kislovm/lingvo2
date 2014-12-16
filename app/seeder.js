@@ -287,7 +287,7 @@ module.exports = {
                       $ = cheerio.load(body);
                       ep.body = extract_article_body(ep.link, $, ep.description);
                     }
-                    
+
                     // console.log('[link]: ' + ep.link);
                     // console.log('[desc]: [' + ep.description + ']');
                     // console.log('[article]: [' + ep.body + ']');
