@@ -13,7 +13,8 @@ var Episode = new Schema({
     category: { type: [String] },
     lexica: { type: [String] },
     processed: { type: String },
-    link: { type: String }
+    link: { type: String },
+    body: { type: String }
 });
 
 module.exports = {

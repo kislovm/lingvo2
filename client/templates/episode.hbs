@@ -6,4 +6,70 @@
     <a href="#" class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
 {{/if}}
 
-<p>{{{ description }}}</p>
+<div class="text-container">
+
+  <p>{{{ description }}}</p>
+
+  <div class="text-container">
+
+    <div class="content hideContent">
+      <p> {{{ body }}} </p>
+    </div>
+    <div id="show-more">
+      <a href="#">Show more</a>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  // $(".show-more a").on("click", function() {
+    // var $this = $(this);
+    // var $content = $this.parent().prev("div.content");
+    // var linkText = $this.text().toUpperCase();
+    //
+    // if(linkText === "SHOW MORE") {
+    //   linkText = "Show less";
+    //
+    //   $content.switchClass("hideContent", "showContent", 100);
+    // } else {
+    //   linkText = "Show more";
+    //   $content.switchClass("showContent", "hideContent", 100);
+    // };
+    //
+    // $this.text(linkText);
+  // });
+</script>
+
+<style>
+div.text-container {
+  margin: 0 auto;
+  width: 75%;
+}
+
+.hideContent {
+  overflow: hidden;
+  line-height: 1em;
+  height: 2em;
+}
+
+.showContent {
+  line-height: 1em;
+  height: auto;
+}
+.showContent{
+  height: auto;
+}
+
+h1 {
+  font-size: 24px;
+}
+p {
+  padding: 10px 0;
+}
+.show-more {
+  padding: 10px 0;
+  text-align: center;
+}
+
+</style>
