@@ -1,38 +1,32 @@
+String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
 var models = require('./models'),
     Request = require('request'),
     FeedParser = require('feedparser'),
     sanitizeHtml = require('sanitize-html'),
-    cheerio = require("cheerio"),
-    jQuery = require("jquery");
-String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
+    cheerio = require('cheerio'),
+    jQuery = require('jquery');
 
-var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
+// var $ = require('jquery')(require('jsdom').jsdom().parentWindow);
 
-function rss_cnn_com_parse($, desc) {
-  paragraphs = [];
-  $('p').filter("[class~='cnn_storypgraphtxt']")
-        .each(function() {
-          paragraphs.push($(this).text());
-        });
-
-    return paragraphs.join('\n');
-}
-
-function bbc_co_uk_parse($, desc) {
-  paragraphs = [];
-  $("div[class~='story-body']").find('p:not([class])')
-                               .each(function(i, e) {
-                                  paragraphs.push($(e).text());
-                                });
-  return paragraphs.join('\n');
-}
-
-function economist_com_parse($, desc) {
-  paragraphs = [];
-  $("div[class~='main-content']").find('p:not([class])')
-                                 .each(function(i, e) {
-                                   paragraphs.push($(e).text());
-                                 });
+var parseRssCnnCom = function($, desc) {
+  return $('p').filter('[class~=\'cnn_storypgraphtxt\']')
+               .map(function() {
+                 return $(this).text();
+               }).join('\n');
+},
+parseBbcCoUk = function ($, desc) {
+  return $('div[class~=\'story-body\']')
+    .find('p:not([class])')
+    .map(function(i, e) {
+      return $(e).text();
+    }).join('\n');
+},
+economist_com_parse = function($, desc) {
+  var paragraphs = $('div[class~=\'main-content\']')
+    .find('p:not([class])')
+    .map(function(i, e) {
+      return $(e).text();
+    });
   article = paragraphs.join('\n\n').trim();
   desc = desc.trim().slice(0, -3).slice(-10);
 
@@ -43,25 +37,24 @@ function economist_com_parse($, desc) {
   }
 
   return article;
-}
-
-function rssfeeds_usatoday_com_parse($, desc) {
-  paragraphs = [];
-  // $("article[class~='asset story clearfix']")
+},
+parseRssfeedsUsatodayCom = function($, desc) {
+  var paragraphs = [];
+  // $('article[class~='asset story clearfix']')
   $('p:not([class])').each(function(i, e) {
                             if($(e).parent().get(0).parent.name == 'article') {
                               paragraphs.push($(e).text());
                             }
                           });
   return paragraphs.join('\n\n');
-}
+},
+parseWwwForbesComParse = function($, desc) {
+  var paragraphs = $('div[class~=\'body_inner\']')
+    .find('p:not([class])')
+    .each(function(i, e) {
+     return $(e).text();
+    });
 
-function www_forbes_com_parse($, desc) {
-  paragraphs = [];
-  $("div[class~='body_inner']").find('p:not([class])')
-                               .each(function(i, e) {
-                                 paragraphs.push($(e).text());
-                               });
   article = paragraphs.join('\n\n').trim();
   desc = desc.trim().slice(-10);
 
@@ -72,24 +65,20 @@ function www_forbes_com_parse($, desc) {
   }
 
   return article;
-}
-
-function telegraph_feedsportal_com_parse($, desc) {
-  paragraphs = [];
-  $("div[id~='mainBodyArea']").find('p:not([class]), h3')
-                              .each(function(i, e) {
-                                paragraphs.push($(e).text());
-                              });
-
-  return paragraphs.join('\n');
-}
-
-function feedproxy_google_com_parse($, desc) {
-  paragraphs = [];
-  $("div[class~='article-entry']").find('p:not([class])')
-                                       .each(function(i, e) {
-                                         paragraphs.push($(e).text());
-                                       });
+},
+parseTelegraphFeedsportalCom = function($, desc) {
+  return $('div[id~=\'mainBodyArea\']')
+    .find('p:not([class]), h3')
+    .map(function(i, e) {
+      return $(e).text();
+    }).join('\n');
+},
+parseFeedproxyGoogleCom = function($, desc) {
+  var paragraphs = $('div[class~=\'article-entry\']')
+    .find('p:not([class])')
+    .map(function(i, e) {
+      return $(e).text();
+    });
 
     article = paragraphs.join('\n\n');
     desc = desc.trim().slice(-20, -10);
@@ -99,25 +88,22 @@ function feedproxy_google_com_parse($, desc) {
       return article.slice(desc_end);
     }
     return article;
-}
-
-var parse_handlers = {'rss.cnn.com': rss_cnn_com_parse, 'www.bbc.co.uk': bbc_co_uk_parse,
-                      'www.economist.com': economist_com_parse, 'rssfeeds.usatoday.com': rssfeeds_usatoday_com_parse,
-                      'www.forbes.com': www_forbes_com_parse, 'telegraph.feedsportal.com': telegraph_feedsportal_com_parse,
-                      'feedproxy.google.com': feedproxy_google_com_parse};
-
-function get_domain(url) {
+},
+parseHandlers = {'rss.cnn.com': parseRssCnnCom, 'www.bbc.co.uk': parseBbcCoUk,
+                    'www.economist.com': economist_com_parse, 'rssfeeds.usatoday.com': parseRssfeedsUsatodayCom,
+                    'www.forbes.com': parseWwwForbesComParse, 'telegraph.feedsportal.com': parseTelegraphFeedsportalCom,
+                    'feedproxy.google.com': parseFeedproxyGoogleCom},
+getDomain = function(url) {
   var matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
   return matches && matches[1];
-}
-
-function extract_article_body(url, $, desc) {
-  var domain = get_domain(url);
-  if (!(domain in parse_handlers)) {
-    console.log("ERROR: unkown domain [" + domain + "]");
+},
+extract_article_body = function(url, $, desc) {
+  var domain = getDomain(url);
+  if (!(domain in parseHandlers)) {
+    console.log('ERROR: unkown domain [' + domain + ']');
     return;
   }
-  return parse_handlers[domain]($, desc);
+  return parseHandlers[domain]($, desc);
 }
 
 module.exports = {
@@ -236,7 +222,7 @@ module.exports = {
 
                         stream.pipe(feedparser);
                     }).on('error',function(e){
-                       console.log("Error: " + key + "\n" + e.message);
+                       console.log('Error: ' + key + '\n' + e.message);
                        console.log( e.stack );
                     });
 
