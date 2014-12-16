@@ -7,6 +7,9 @@ var models = require('./models'),
     sanitizeHtml = require('sanitize-html'),
     cheerio = require('cheerio'),
     jQuery = require('jquery'),
+// replaceParenthese = function(str) {
+//   return str.replace(/\(/, '\\(').replace(/\)/, '\\)').replace(/\[/, '\\[').replace(/\]/, '\\]')
+// },
 parseRssCnnCom = function($, desc) {
   return $('p').filter('[class~=\'cnn_storypgraphtxt\']')
                .map(function() {
@@ -29,7 +32,7 @@ economist_com_parse = function($, desc) {
   article = paragraphs.join('\n\n').trim();
   desc = desc.trim().slice(0, -3).slice(-10);
 
-  desc_begin = article.search(desc);
+  desc_begin = article.lastIndexOf(desc);
   if (desc_begin != -1) {
     desc_end = desc_begin + 10;
     return article.slice(desc_end);
@@ -57,7 +60,7 @@ parseWwwForbesComParse = function($, desc) {
   article = paragraphs.join('\n\n').trim();
   desc = desc.trim().slice(-10);
 
-  desc_begin = article.search(desc);
+  desc_begin = article.lastIndexOf(desc);
   if (desc_begin != -1) {
     desc_end = desc_begin + 10;
     return article.slice(desc_end);
@@ -81,7 +84,7 @@ parseFeedproxyGoogleCom = function($, desc) {
 
     article = paragraphs.join('\n\n');
     desc = desc.trim().slice(-20, -10);
-    desc_begin = article.search(desc);
+    desc_begin = article.lastIndexOf(desc);
     if(desc_begin != -1) {
       desc_end = desc_begin + 20;
       return article.slice(desc_end);
