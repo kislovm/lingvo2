@@ -1,14 +1,13 @@
 String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
+// var $ = require('jquery')(require('jsdom').jsdom().parentWindow);
+
 var models = require('./models'),
     Request = require('request'),
     FeedParser = require('feedparser'),
     sanitizeHtml = require('sanitize-html'),
     cheerio = require('cheerio'),
-    jQuery = require('jquery');
-
-// var $ = require('jquery')(require('jsdom').jsdom().parentWindow);
-
-var parseRssCnnCom = function($, desc) {
+    jQuery = require('jquery'),
+parseRssCnnCom = function($, desc) {
   return $('p').filter('[class~=\'cnn_storypgraphtxt\']')
                .map(function() {
                  return $(this).text();
