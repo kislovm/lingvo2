@@ -50,7 +50,7 @@ parseRssfeedsUsatodayCom = function($, desc) {
 parseWwwForbesComParse = function($, desc) {
   var paragraphs = $('div[class~=\'body_inner\']')
     .find('p:not([class])')
-    .each(function(i, e) {
+    .map(function(i, e) {
      return $(e).text();
     });
 
