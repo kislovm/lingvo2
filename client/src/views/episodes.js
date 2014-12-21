@@ -37,6 +37,28 @@ var itemView = Marionette.ItemView.extend({
 });
 
 module.exports = CollectionView = Marionette.CollectionView.extend({
+    // el: $(".show-more"),
+    events: {
+        'click .show-more a': 'showMore'
+    },
+    showMore: function(el) {
+        alert("LALKA");
+        var $this = $(this);
+        var $content = this.el.parent().prev("div.content");
+        var linkText = $this.text().toUpperCase();
+        alert($content.getClass());
+        if(linkText === "SHOW MORE") {
+          linkText = "Show less";
+
+          $content.switchClass("hideContent", "showContent", 100);
+        } else {
+          linkText = "Show more";
+          $content.switchClass("showContent", "hideContent", 100);
+        }
+
+        $this.text(linkText);
+    },
+
     initialize: function() {
         var _this = this;
 
