@@ -3,6 +3,29 @@ var Marionette = require('backbone.marionette');
 var itemView = Marionette.ItemView.extend({
     template: require('../../templates/episode.hbs'),
 
+    events: {
+        'click .show-more': 'showMore'
+    },
+    showMore: function(el) {
+        var $el = this.$el,
+            $content = $el.find('.content'),
+            linkText = $el.find('.show-more a').text().toUpperCase();
+        if(!this.opened) {
+          linkText = "Show less";
+          $content.removeClass('hideContent').addClass('showContent');
+        } else {
+          linkText = "Show more";
+          $content.removeClass('showContent').addClass('hideContent');
+        }
+
+        console.log(this.opened);
+        this.opened = !this.opened;
+
+        $el.find('.show-more a').text(linkText);
+    },
+
+    opened: false,
+
     tagName: 'article',
 
     className: 'article',
@@ -14,27 +37,6 @@ var itemView = Marionette.ItemView.extend({
 });
 
 module.exports = CollectionView = Marionette.CollectionView.extend({
-    events: {
-        'click .show-more': 'showMore'
-    },
-    showMore: function(el) {
-        var $el = this.$el,
-            $content = $el.find('.content'),
-            linkText = $el.find('.show-more a').text().toUpperCase();
-        if(!this.opened) {
-          linkText = "Show less";
-
-          $content.toggleClass("hideContent", "showContent", 100);
-        } else {
-          linkText = "Show more";
-          $content.toggleClass("showContent", "hideContent", 100);
-        }
-
-        this.opened = !!this.opened;
-
-        $el.find('.show-more a').text(linkText);
-    },
-
     initialize: function() {
         var _this = this;
 
