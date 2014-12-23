@@ -75,7 +75,7 @@ parseTelegraphFeedsportalCom = function($, desc) {
     return $(e).text();
   }).get().join('\n');
 },
-parseFeedproxyGoogleCom = function($, desc) {
+parseFeedProxyGoogleCom = function($, desc) {
   var paragraphs = $('div[class~=\'article-entry\']')
   .find('p:not([class])')
   .map(function(i, e) {
@@ -94,18 +94,29 @@ parseFeedproxyGoogleCom = function($, desc) {
 parseHandlers = {'rss.cnn.com': parseRssCnnCom, 'www.bbc.co.uk': parseBbcCoUk,
 'www.economist.com': economist_com_parse, 'rssfeeds.usatoday.com': parseRssfeedsUsatodayCom,
 'www.forbes.com': parseWwwForbesComParse, 'telegraph.feedsportal.com': parseTelegraphFeedsportalCom,
-'feedproxy.google.com': parseFeedproxyGoogleCom},
+'feedproxy.google.com': parseFeedProxyGoogleCom},
 getDomain = function(url) {
   var matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
   return matches && matches[1];
 },
-extract_article_body = function(url, $, desc) {
+extractArticleBody = function(url, $, desc) {
   var domain = getDomain(url);
   if (!(domain in parseHandlers)) {
     console.log('ERROR: unkown domain [' + domain + ']');
     return;
   }
   return parseHandlers[domain]($, desc);
+},
+originalArticleLinks = {'rss.cnn.com': 'cnn.com', 'www.bbc.co.uk': 'bbc.com', 'www.economist.com': 'economist.com',
+                        'rssfeeds.usatoday.com': 'usatoday.com', 'www.forbes.com': 'forbes.com',
+                        'telegraph.feedsportal.com':'telegraph.co.uk', 'feedproxy.google.com': 'techcrunch.com'},
+getOriginalArticleLink = function(link) {
+  var domain = getDomain(url);
+  if (!(domain in parseHandlers)) {
+    console.log('ERROR: unkown domain [' + domain + ']');
+    return;
+  }
+  return originalArticleLinks[domain];
 }
 
 module.exports = {
@@ -285,7 +296,8 @@ module.exports = {
                       console.log(err);
                     } else{
                       $ = cheerio.load(body);
-                      ep.body = extract_article_body(ep.link, $, ep.description);
+                      ep.body = extractArticleBody(ep.link, $, ep.description);
+                      ep.originalArticleLink = getOriginalArticleLink(ep.link);
                     }
 
                     // console.log('[link]: ' + ep.link);

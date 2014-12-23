@@ -14,7 +14,8 @@ var Episode = new Schema({
     lexica: { type: [String] },
     processed: { type: String },
     link: { type: String },
-    body: { type: String }
+    body: { type: String },
+    originalArticleLink: { type: String }
 });
 
 module.exports = {
