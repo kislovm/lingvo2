@@ -24,9 +24,9 @@ parseBbcCoUk = function ($, desc) {
   }).get();
 
   if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-    return paragraphs.slice(1).join('\n\n');
+    return paragraphs.slice(1).join('');
   }
-  return paragraphs.join('\n\n');
+  return paragraphs.join('');
 },
 economistComParse = function($, desc) {
   var paragraphs = $('div[class~=\'main-content\']')
@@ -36,9 +36,9 @@ economistComParse = function($, desc) {
   }).get();
 
   if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-    return paragraphs.slice(1).join('\n\n');
+    return paragraphs.slice(1).join('');
   }
-  return paragraphs.join('\n\n');
+  return paragraphs.join('');
 },
 parseRssfeedsUsatodayCom = function($, desc) {
   var paragraphs = [];
@@ -48,7 +48,7 @@ parseRssfeedsUsatodayCom = function($, desc) {
       paragraphs.push($(e).text());
     }
   });
-  return paragraphs.join('\n\n');
+  return paragraphs.join('');
 },
 parseWwwForbesComParse = function($, desc) {
   var paragraphs = $('div[class~=\'body_inner\']')
@@ -58,16 +58,16 @@ parseWwwForbesComParse = function($, desc) {
   }).get();
 
   if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-    return paragraphs.slice(1).join('\n\n');
+    return paragraphs.slice(1).join('');
   }
-  return paragraphs.join('\n\n');
+  return paragraphs.join('');
 },
 parseTelegraphFeedsportalCom = function($, desc) {
   return $('div[id~=\'mainBodyArea\']')
   .find('p:not([class]), h3')
   .map(function(i, e) {
     return $(e).text();
-  }).get().join('\n');
+  }).get().join('');
 },
 decodeHtmlEntity = function(str) {
   str = str.replace(/&#(\d+);/g, function(match, dec) {
@@ -82,7 +82,7 @@ parseFeedProxyGoogleCom = function($, desc) {
     return $(e).text();
   }).get();
 
-  article = decodeHtmlEntity(paragraphs.join('\n\n')).trim();
+  article = decodeHtmlEntity(paragraphs.join('')).trim();
   desc = decodeHtmlEntity(desc).trim().slice(-60, -40);
 
   desc_begin = article.lastIndexOf(desc);
