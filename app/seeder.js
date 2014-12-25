@@ -17,28 +17,28 @@ parseRssCnnCom = function($, desc) {
   }).get().join('\n');
 },
 parseBbcCoUk = function ($, desc) {
-  return $('div[class~=\'story-body\']')
+  var paragraphs = $('div[class~=\'story-body\']')
   .find('p:not([class])')
   .map(function(i, e) {
     return $(e).text();
-  }).get().join('\n');
+  }).get();
+
+  if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
+    return paragraphs.slice(1).join('\n\n');
+  }
+  return paragraphs.join('\n\n');
 },
-economist_com_parse = function($, desc) {
+economistComParse = function($, desc) {
   var paragraphs = $('div[class~=\'main-content\']')
   .find('p:not([class])')
   .map(function(i, e) {
     return $(e).text();
   }).get();
-  article = paragraphs.join('\n\n').trim();
-  desc = desc.trim().slice(0, -3).slice(-10);
 
-  desc_begin = article.lastIndexOf(desc);
-  if (desc_begin != -1) {
-    desc_end = desc_begin + 10;
-    return article.slice(desc_end);
+  if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
+    return paragraphs.slice(1).join('\n\n');
   }
-
-  return article;
+  return paragraphs.join('\n\n');
 },
 parseRssfeedsUsatodayCom = function($, desc) {
   var paragraphs = [];
@@ -57,16 +57,10 @@ parseWwwForbesComParse = function($, desc) {
     return $(e).text();
   }).get();
 
-  article = paragraphs.join('\n\n').trim();
-  desc = desc.trim().slice(-10);
-
-  desc_begin = article.lastIndexOf(desc);
-  if (desc_begin != -1) {
-    desc_end = desc_begin + 10;
-    return article.slice(desc_end);
+  if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
+    return paragraphs.slice(1).join('\n\n');
   }
-
-  return article;
+  return paragraphs.join('\n\n');
 },
 parseTelegraphFeedsportalCom = function($, desc) {
   return $('div[id~=\'mainBodyArea\']')
@@ -75,6 +69,12 @@ parseTelegraphFeedsportalCom = function($, desc) {
     return $(e).text();
   }).get().join('\n');
 },
+decodeHtmlEntity = function(str) {
+  str = str.replace(/&#(\d+);/g, function(match, dec) {
+    return String.fromCharCode(dec);
+  });
+  return str.replace(/&(\w+);/g, '');
+},
 parseFeedProxyGoogleCom = function($, desc) {
   var paragraphs = $('div[class~=\'article-entry\']')
   .find('p:not([class])')
@@ -82,19 +82,20 @@ parseFeedProxyGoogleCom = function($, desc) {
     return $(e).text();
   }).get();
 
-  article = paragraphs.join('\n\n');
-  desc = desc.trim().slice(-20, -10);
+  article = decodeHtmlEntity(paragraphs.join('\n\n')).trim();
+  desc = decodeHtmlEntity(desc).trim().slice(-60, -40);
+
   desc_begin = article.lastIndexOf(desc);
   if(desc_begin != -1) {
-    desc_end = desc_begin + 20;
+    desc_end = desc_begin + 50;
     return article.slice(desc_end);
   }
   return article;
 },
 parseHandlers = {'rss.cnn.com': parseRssCnnCom, 'www.bbc.co.uk': parseBbcCoUk,
-'www.economist.com': economist_com_parse, 'rssfeeds.usatoday.com': parseRssfeedsUsatodayCom,
-'www.forbes.com': parseWwwForbesComParse, 'telegraph.feedsportal.com': parseTelegraphFeedsportalCom,
-'feedproxy.google.com': parseFeedProxyGoogleCom},
+                 'www.economist.com': economistComParse, 'rssfeeds.usatoday.com': parseRssfeedsUsatodayCom,
+                 'www.forbes.com': parseWwwForbesComParse, 'telegraph.feedsportal.com': parseTelegraphFeedsportalCom,
+                 'feedproxy.google.com': parseFeedProxyGoogleCom},
 getDomain = function(url) {
   var matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
   return matches && matches[1];
@@ -110,9 +111,9 @@ extractArticleBody = function(url, $, desc) {
 originalArticleLinks = {'rss.cnn.com': 'cnn.com', 'www.bbc.co.uk': 'bbc.com', 'www.economist.com': 'economist.com',
                         'rssfeeds.usatoday.com': 'usatoday.com', 'www.forbes.com': 'forbes.com',
                         'telegraph.feedsportal.com':'telegraph.co.uk', 'feedproxy.google.com': 'techcrunch.com'},
-getOriginalArticleLink = function(link) {
+getOriginalArticleLink = function(url) {
   var domain = getDomain(url);
-  if (!(domain in parseHandlers)) {
+  if (!(domain in originalArticleLinks)) {
     console.log('ERROR: unkown domain [' + domain + ']');
     return;
   }
@@ -297,6 +298,9 @@ module.exports = {
                     } else{
                       $ = cheerio.load(body);
                       ep.body = extractArticleBody(ep.link, $, ep.description);
+                      if(getDomain(ep.link) == 'feedproxy.google.com') {
+                        ep.description = ep.description.slice(0, -19);
+                      }
                       ep.originalArticleLink = getOriginalArticleLink(ep.link);
                     }
 
