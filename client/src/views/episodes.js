@@ -13,6 +13,7 @@ var itemView = Marionette.ItemView.extend({
     if(!this.opened) {
       linkText = "Show less";
       $content.removeClass('hideContent').addClass('showContent');
+      counter.reachGoal('show-more');
     } else {
       linkText = "Show more";
       $content.removeClass('showContent').addClass('hideContent');
@@ -21,6 +22,7 @@ var itemView = Marionette.ItemView.extend({
     this.opened = !this.opened;
 
     $el.find('.show-more a').text(linkText);
+
   },
 
   opened: false,
