@@ -18,7 +18,6 @@ var itemView = Marionette.ItemView.extend({
       $content.removeClass('showContent').addClass('hideContent');
     }
 
-    console.log(this.opened);
     this.opened = !this.opened;
 
     $el.find('.show-more a').text(linkText);
@@ -27,7 +26,7 @@ var itemView = Marionette.ItemView.extend({
   opened: false,
 
   tagName: 'article',
-  
+
   className: 'article',
 
   initialize: function() {
