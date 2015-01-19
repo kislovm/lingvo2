@@ -15,8 +15,16 @@ module.exports = {
     },
     category: function(req, res) {
         var skip = 10 * (req.params.page || 0);
+        var query = {};
+        if(req.params.category !== 'general') {
+          query['lexica'] = req.params.category;
+        }
+        if(req.params.theme !== 'general') {
+          query['category'] = req.params.theme;
+        }
+
         models.Episode
-            .find({ lexica: req.params.category })
+            .find(query)
             .sort('-publicationDate')
             .skip(skip)
             .limit(10)
