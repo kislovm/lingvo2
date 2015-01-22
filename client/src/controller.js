@@ -14,17 +14,21 @@ module.exports = Controller = Marionette.Controller.extend({
         if($(window).scrollTop() > App.headerHeight) $(window).scrollTop(App.headerHeight);
         App.core.vent.trigger('app:log', 'Controller: "Home" route hit.');
 
-        window.App.layoutView.content.show(new EpisodesView({ collection: window.App.data.episodes }));
-        window.App.router.navigate('#');
-    },
+        var view = new EpisodesView({ collection: window.App.data.episodes });
+        // var view = new EpisodesView({ collection: new EpisodesCollection([], { category: null, theme: null }) });
 
-    category: function(category) {
-        if($(window).scrollTop() > App.headerHeight) $(window).scrollTop(App.headerHeight);
-        App.core.vent.trigger('app:log', 'Controller: "Category" route hit.');
-        var view = new EpisodesView({ collection: new EpisodesCollection([], { category: category }) });
         view.collection.fetch();
         window.App.layoutView.content.show(view);
-        window.App.router.navigate('category/' + category);
+        window.App.router.navigate('category/general/general');
+    },
+
+    category: function(category, theme) {
+        if($(window).scrollTop() > App.headerHeight) $(window).scrollTop(App.headerHeight);
+        App.core.vent.trigger('app:log', 'Controller: "Category" route hit.');
+        var view = new EpisodesView({ collection: new EpisodesCollection([], { category: category, theme: theme }) });
+        view.collection.fetch();
+        window.App.layoutView.content.show(view);
+        window.App.router.navigate('category/' + category + '/' + theme);
     }
 
 });

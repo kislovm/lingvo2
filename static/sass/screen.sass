@@ -21,7 +21,7 @@ $link-hover-color      : adjust-lightness($link-color, -10%)
 
 
 // Reset
-*, *:before, *:after 
+*, *:before, *:after
     +box-sizing(border-box)
 
 
@@ -29,7 +29,7 @@ $link-hover-color      : adjust-lightness($link-color, -10%)
 @mixin retina($image_name, $w: auto, $h: auto, $extention: '.png') // Usage: +retina('cream_pixels', 160px, 160px)
     background-image: image_url($image_name + $extention)
     $x2img: $image_name + '@2x' + $extention
-    @media all and (-webkit-min-device-pixel-ratio: 1.5) 
+    @media all and (-webkit-min-device-pixel-ratio: 1.5)
         background-image: image_url($x2img)
         background-size: $w $h
 
@@ -86,7 +86,7 @@ a, .fake-link
 
 
 // Main
-body 
+body
     @extend .light-font
     -webkit-font-smoothing: antialiased
     font-size: 62.5%
@@ -96,7 +96,7 @@ body
     width: 960px
     margin: 0 auto
 .sidebar
-    float: left    
+    float: left
     width: 20%
     min-height: 1px
     position: relative
@@ -106,7 +106,7 @@ body
     width: 60%
     min-height: 700px
     padding: 0 5%
-    
+
 
 
 // Header
@@ -173,8 +173,6 @@ body
     &.selected
         @extend .medium-font
         color: $highlight-color
-
-
 
 // Language level selector
 .language-lvl-selector
