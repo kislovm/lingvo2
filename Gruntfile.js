@@ -65,17 +65,6 @@ module.exports = function(grunt) {
                     transform: ['hbsfy'],
                     external: ['jquery', 'underscore', 'backbone', 'backbone.marionette']
                 }
-            },
-            test: {
-                files: {
-                    'build/tests.js': [
-                        'client/spec/**/*.test.js'
-                    ]
-                },
-                options: {
-                    transform: ['hbsfy'],
-                    external: ['jquery', 'underscore', 'backbone', 'backbone.marionette']
-                }
             }
         },
 
@@ -165,20 +154,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // server tests
-        simplemocha: {
-            options: {
-                globals: ['expect', 'sinon'],
-                timeout: 3000,
-                ignoreLeaks: false,
-                ui: 'bdd',
-                reporter: 'spec'
-            },
-
-            server: {
-                src: ['spec/spechelper.js', 'spec/**/*.test.js']
-            }
-        },
 
         // mongod server launcher
         shell: {
@@ -196,33 +171,12 @@ module.exports = function(grunt) {
                 options: {
                     logConcurrentOutput: true
                 }
-            },
-            test: {
-                tasks: ['watch:karma'],
-                options: {
-                    logConcurrentOutput: true
-                }
-            }
-        },
-
-        // for front-end tdd
-        karma: {
-            options: {
-                configFile: 'karma.conf.js'
-            },
-            watcher: {
-                background: true,
-                singleRun: false
-            },
-            test: {
-                singleRun: true
             }
         },
 
         jshint: {
-            all: ['Gruntfile.js', 'client/src/**/*.js', 'client/spec/**/*.js'],
-            dev: ['client/src/**/*.js'],
-            test: ['client/spec/**/*.js']
+            all: ['Gruntfile.js', 'client/src/**/*.js'],
+            dev: ['client/src/**/*.js']
         }
     });
 
@@ -231,16 +185,11 @@ module.exports = function(grunt) {
 
     grunt.registerTask('init:dev', ['clean', 'bower', 'browserify:vendor']);
 
-    grunt.registerTask('build:dev', ['clean:dev', 'browserify:app', 'browserify:test', 'jshint:dev', 'concat', 'compass', 'copy:dev']);
+    grunt.registerTask('build:dev', ['clean:dev', 'browserify:app', 'jshint:dev', 'concat', 'compass', 'copy:dev']);
     grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'concat', 'cssmin', 'uglify', 'copy:prod']);
 
     grunt.registerTask('heroku', ['init:dev', 'build:dev']);
 
     grunt.registerTask('server', ['build:dev', 'concurrent:dev']);
-    grunt.registerTask('test:server', ['simplemocha:server']);
 
-    grunt.registerTask('test:client', ['karma:test']);
-    grunt.registerTask('tdd', ['karma:watcher:start', 'concurrent:test']);
-
-    grunt.registerTask('test', ['test:server', 'test:client']);
 };
