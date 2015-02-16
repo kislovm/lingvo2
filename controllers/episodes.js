@@ -14,14 +14,13 @@ module.exports = {
 
     },
     category: function(req, res) {
-        var skip = 10 * (req.params.page || 0);
-        var query = {};
-        if(req.params.category !== 'general') {
-          query['lexica'] = req.params.category;
-        }
-        if(req.params.theme !== 'general') {
-          query['category'] = req.params.theme;
-        }
+        var skip = 10 * (req.params.page || 0),
+            query = {
+                lexica: req.session.difficulty || 'general',
+                category: req.params.theme || 'general'
+            };
+        
+        console.log(query);
 
         models.Episode
             .find(query)

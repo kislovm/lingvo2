@@ -1,16 +1,7 @@
 var Marionette = require('backbone.marionette'),
-    UserModel = require('../models/user'),
+    UserModel = require('../models/user');
     EpisodesView = require('./episodes'),
-    EpisodesCollection = require('../collections/episodes'),
-applyDifficulty = function(lexica) {
-  var origUrl = Backbone.history.fragment;
-  // alert(origUrl);
-  var firstSlash = origUrl.indexOf('/');
-  var theme = origUrl.slice(origUrl.indexOf('/', firstSlash + 1) + 1);
-  var newUrl = origUrl.slice(0, firstSlash + 1) + lexica + '/' + theme;
-
-  window.App.router.navigate(newUrl, true);
-};
+    EpisodesCollection = require('../collections/episodes');
 
 module.exports = DifficultyView = Marionette.ItemView.extend({
 
@@ -24,15 +15,7 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
         'For TOEFL',
         'For GMAT',
         'For GRE',
-        'Irregular verbs',
-    ],
-    difficulties_links: [
-    'general',
-    'business',
-    'toefl',
-    'gmat',
-    'gre',
-    'irregular',
+        'Irregular verbs'
     ],
 
     events: {
@@ -65,7 +48,6 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
         var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) - 1];
 
         this.model.set('difficulty', difficulty).save();
-        applyDifficulty(this.difficulties_links[this.difficulties.indexOf(this.model.get('difficulty'))]);
     },
 
     harder: function(el) {
@@ -74,7 +56,6 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
         var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) + 1];
 
         this.model.save({ difficulty: difficulty });
-        applyDifficulty(this.difficulties_links[this.difficulties.indexOf(this.model.get('difficulty'))]);
     }
 
 });
