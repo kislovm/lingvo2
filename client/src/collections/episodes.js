@@ -7,7 +7,7 @@ module.exports = EpisodesCollection = Backbone.Collection.extend({
 
     initialize: function(data, options) {
         this.page = '0';
-        this.category = options && options.category || 'general';
+        this.category = options && options.category || 'all';
     },
 
     increment: function() {

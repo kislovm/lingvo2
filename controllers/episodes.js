@@ -16,9 +16,11 @@ module.exports = {
     category: function(req, res) {
         var skip = 10 * (req.params.page || 0),
             query = {
-                lexica: req.session.difficulty || 'general',
-                category: req.params.category || 'general'
+                lexica: req.session.difficulty || 'general'
             };
+
+        req.params.category != 'all' &&
+            (query.category = req.params.category);
 
         models.Episode
             .find(query)
