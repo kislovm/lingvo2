@@ -17,10 +17,8 @@ module.exports = {
         var skip = 10 * (req.params.page || 0),
             query = {
                 lexica: req.session.difficulty || 'general',
-                category: req.params.theme || 'general'
+                category: req.params.category || 'general'
             };
-        
-        console.log(query);
 
         models.Episode
             .find(query)

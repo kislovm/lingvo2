@@ -3,12 +3,11 @@ var Backbone = require('backbone'),
 
 module.exports = EpisodesCollection = Backbone.Collection.extend({
     model:  EpisodeModel,
-    url: function() { return '/api/episodes/' + this.category + '/' + this.theme + '/' + this.page; },
+    url: function() { return '/api/episodes/' + this.category + '/'  + this.page; },
 
     initialize: function(data, options) {
         this.page = '0';
-        this.category = options && options.category || 'all';
-        this.theme = options && options.theme || 'all';
+        this.category = options && options.category || 'general';
     },
 
     increment: function() {
