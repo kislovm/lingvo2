@@ -1,7 +1,5 @@
 var Marionette = require('backbone.marionette'),
     UserModel = require('../models/user');
-    EpisodesView = require('./episodes'),
-    EpisodesCollection = require('../collections/episodes');
 
 module.exports = DifficultyView = Marionette.ItemView.extend({
 
