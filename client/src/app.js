@@ -107,7 +107,7 @@ App.prototype.start = function() {
                 $('.dictionary .message').html(data.dictionary.map(function(word) {
                     return $('<li>'+ word +'</li>');
                 }));
-            }, 'json')
+            }, 'json');
         });
 
         Backbone.history.start();
