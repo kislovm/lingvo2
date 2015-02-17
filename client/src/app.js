@@ -52,18 +52,35 @@ App.prototype.start = function() {
             });
             $('.j-show-about').hover(
                 function() {
-                    $('.about-project').removeClass('hide').delay(1).queue(function(){
+                    $('.how').removeClass('hide').delay(1).queue(function(){
                         $(this).addClass("showing").dequeue();
                     });
                 },
                 function() {
-                    $('.about-project').removeClass('showing').delay(150).queue(function(){
+                    $('.how').removeClass('showing').delay(150).queue(function(){
                         $(this).addClass('hide').dequeue();
                     });
                 }
             );
             $('.j-show-about').click(function(){
-                $('.mobile-about-project').toggleClass('hide');
+                $('.mobile-how').toggleClass('hide');
+            });
+
+            $('.j-show-dictionary').click(function() {
+                if($('.dictionary').hasClass('hide')) {
+                    $(this).text('Hide dictionary');
+                    $('.dictionary').removeClass('hide').delay(1).queue(function() {
+                        $(this).addClass("showing").dequeue();
+                    });
+                } else {
+                    $(this).text('Show dictionary');
+                    $('.dictionary').removeClass('showing').delay(150).queue(function() {
+                        $(this).addClass('hide').dequeue();
+                    });
+                }
+            });
+            $('.j-show-dictionary').click(function(){
+                $('.mobile-dictionary').toggleClass('hide');
             });
 
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
@@ -84,6 +101,15 @@ App.prototype.start = function() {
     App.core.vent.bind('user:init', function(options) {
         App.core.vent.trigger('app:log', 'User: Initializing');
         App.layoutView.difficulty.show(new DifficultyView({ model: App.data.user }));
+
+        App.data.user.on('sync', function() {
+            $.get('/dictionary', function(data) {
+                $('.dictionary .message').html(data.dictionary.map(function(word) {
+                    return $('<li>'+ word +'</li>');
+                }));
+            }, 'json')
+        });
+
         Backbone.history.start();
     });
 

@@ -18,8 +18,16 @@ module.exports = {
     },
 
     get: function(req, res) {
+        var difficulties = {
+            'general': 'General',
+            'business': 'Business English',
+            'toefl': 'For TOEFL',
+            'gmat': 'For GMAT',
+            'gre': 'For GRE',
+            'irregular': 'Irregular verbs'
+        };
 
-        res.json({ difficulty: req.session.difficulty });
+        res.json({ difficulty: difficulties[req.session.difficulty] });
 
     }
 };
