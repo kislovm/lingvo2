@@ -18,7 +18,25 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
 
     events: {
         'click .easier': 'easier',
-        'click .harder': 'harder'
+        'click .harder': 'harder',
+        'click .j-show-dictionary': 'showDictionary'
+    },
+
+    showDictionary: function() {
+        if($('.dictionary').hasClass('hide')) {
+            $('.j-show-dictionary').text('Hide dictionary');
+            $('.dictionary').removeClass('hide').delay(1).queue(function() {
+                $(this).addClass("showing").dequeue();
+            });
+        } else {
+            $('.j-show-dictionary').text('Show dictionary');
+            $('.dictionary').removeClass('showing').delay(150).queue(function() {
+                $(this).addClass('hide').dequeue();
+            });
+        }
+
+        $('.mobile-dictionary').toggleClass('hide');
+
     },
 
     initialize: function() {

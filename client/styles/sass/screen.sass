@@ -190,13 +190,24 @@ body
 .about-project.dictionary
     height: 400px
     overflow-y: auto
-    left: 0
+    left: 510px
     z-index: 998
+    +breakpoint(ipad)
+        display: none
+
 
 .mobile-about-project.dictionary
     height: 200px
     overflow-y: auto
 
+.language-lvl-selector
+    h2.dictionary-header
+        +breakpoint(iphone)
+            padding-top: 2em
+            margin-bottom: -1em
+        +breakpoint(ipad)
+            padding-top: 2em
+            margin-bottom: -1em
 
 // Navigation
 .topics
@@ -249,7 +260,7 @@ body
     text-align: center
     background: white
     width: 432px
-    height: 70px
+    height: 100px
     margin: 0 20px
     padding: 1.5em 0
     border-bottom: solid 1px $border-color
@@ -276,7 +287,14 @@ body
         @extend .bold-font
         font-size: 2em
         color: $highlight-color
-        padding-top: .2em
+        padding-top: .1em
+        margin-bottom: .5em
+    hr
+        +breakpoint(iphone)
+            display: none
+        +breakpoint(ipad)
+            display: none
+
 .language-lvl-selector-btn
     font-size: 1.5em
     text-transform: uppercase

@@ -66,22 +66,6 @@ App.prototype.start = function() {
                 $('.mobile-how').toggleClass('hide');
             });
 
-            $('.j-show-dictionary').click(function() {
-                if($('.dictionary').hasClass('hide')) {
-                    $(this).text('Hide dictionary');
-                    $('.dictionary').removeClass('hide').delay(1).queue(function() {
-                        $(this).addClass("showing").dequeue();
-                    });
-                } else {
-                    $(this).text('Show dictionary');
-                    $('.dictionary').removeClass('showing').delay(150).queue(function() {
-                        $(this).addClass('hide').dequeue();
-                    });
-                }
-            });
-            $('.j-show-dictionary').click(function(){
-                $('.mobile-dictionary').toggleClass('hide');
-            });
 
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
         }
