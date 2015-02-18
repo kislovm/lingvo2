@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
+    Mixed = Schema.Types.Mixed;
 
 
 var Episode = new Schema({
@@ -10,6 +10,8 @@ var Episode = new Schema({
     difficulty: { type: String },
     publicationDate: { type: Date },
     description: { type: String },
+    processedDescription: { type: Mixed },
+    processedBody: { type: Mixed },
     category: { type: [String] },
     lexica: { type: [String] },
     processed: { type: String },

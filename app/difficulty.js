@@ -25,7 +25,11 @@ module.exports = {
             models.Episode.find({ 'processed': { $ne: id } }).limit(2000).exec(function(err, episodes) {
 
                 episodes.forEach(function(episode) {
-                    var tokens = tokenizer.tokenize(sanitizeHtml(episode.description, { allowedTags: [] }));
+                    var tokens = tokenizer.tokenize(sanitizeHtml(episode.description, { allowedTags: [] })),
+                         processedDescription = {},
+                         processedBody = {};
+
+                    episode.body && tokens.concat(tokenizer.tokenize(sanitizeHtml(episode.body, { allowedTags: [] })));
 
                     dicts.forEach(function(dict) {
                         var count = 0,
@@ -52,9 +56,27 @@ module.exports = {
                                     episode.lexica.push(dict.name) : episode.category = [dict.name]);
 
                         });
+
+                        processedDescription[dict.name] = episode.description.split(' ').map(function(word) {
+                            if (truncatedWords.indexOf(word.stem().match(/\w+/) && word.stem().match(/\w+/)[0]) != -1)
+                                return '<span class="highlight">'+ word +'</span>';
+                            else
+                                return word;
+                        }).join(' ');
+
+                        processedBody[dict.name] = episode.body && episode.body.split(' ').map(function(word) {
+                            if (truncatedWords.indexOf(word.stem().match(/\w+/) && word.stem().match(/\w+/)[0]) != -1)
+                                return '<span class="highlight">'+ word +'</span>';
+                            else
+                                return word;
+                        }).join(' ');
+
                     });
 
+                    episode.processedDescription = processedDescription;
+                    episode.processedBody = processedBody;
                     episode.processed = id;
+
 
                     episode.save();
 

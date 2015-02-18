@@ -5,11 +5,16 @@ var models = require('../app/models'),
 module.exports = {
     index: function(req, res) {
         var skip = 10 * (req.params.page || 0);
-        models.Episode.find({ lexica: 'general' })
+        models.Episode.find({ lexica: req.session.difficulty || 'general' })
             .skip(skip)
             .limit(10)
             .sort('-publicationDate').exec(function(err, episodes) {
-                res.json(episodes);
+                res.json(episodes.map(function(episode) {
+                    episode.description = episode.processedDescription[req.session.difficulty];
+                    episode.body && episode.processedBody && (episode.body = episode.processedBody[req.session.difficulty]);
+
+                    return episode;
+                }));
         });
 
     },
@@ -31,7 +36,14 @@ module.exports = {
                 if (err) {
                     res.json({error: 'Episodes not found.'});
                 } else {
-                    res.json(episodes);
+                    res.json(episodes.map(function(episode) {
+                        episode.description = episode.processedDescription[req.session.difficulty];
+                        episode.body && episode.processedBody && (episode.body = episode.processedBody[req.session.difficulty]);
+
+                        return episode;
+                    }));
+
+
                 }
         });
     },
