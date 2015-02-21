@@ -1,4 +1,5 @@
 var Marionette = require('backbone.marionette'),
+    ControlsView = require('./controls.js'),
     UserModel = require('../models/user');
 
 module.exports = DifficultyView = Marionette.ItemView.extend({
@@ -40,13 +41,14 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     },
 
     initialize: function() {
-        this.listenTo(this.model, 'change', this.render);
+        this.listenTo(this.model, 'change:difficulty', this.render);
     },
 
     onRender: function() {
         this.harderButton = this.$el.find('.harder');
         this.easierButton = this.$el.find('.easier');
         this._updateDisabled();
+        this.controlsView = new ControlsView({ model: this.model, el: this.$el.find('.user-controls') })
     },
 
     _updateDisabled: function() {

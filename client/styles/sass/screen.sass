@@ -189,16 +189,19 @@ body
       
 .about-project.dictionary
     height: 400px
-    overflow-y: auto
+    overflow-y: hidden
     left: 510px
     z-index: 998
     +breakpoint(ipad)
         display: none
-
+    .message
+        overflow-y: scroll
+        height: 100%
 
 .mobile-about-project.dictionary
-    height: 200px
-    overflow-y: auto
+    .message
+        height: 200px
+        overflow-y: auto
 
 .language-lvl-selector
     h2.dictionary-header
@@ -407,5 +410,12 @@ p
     text-align: center
     cursor: pointer
 
-.highlight
-    background: lime
+.highlight-yes
+    .highlight
+        background: lime
+
+
+.user-controls
+    text-align: left
+    border-bottom: 1px solid #ccc
+    padding-bottom: 10px
