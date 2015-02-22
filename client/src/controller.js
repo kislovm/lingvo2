@@ -15,11 +15,9 @@ module.exports = Controller = Marionette.Controller.extend({
         App.core.vent.trigger('app:log', 'Controller: "Home" route hit.');
 
         var view = new EpisodesView({ collection: window.App.data.episodes });
-        // var view = new EpisodesView({ collection: new EpisodesCollection([], { category: null, theme: null }) });
 
         view.collection.fetch();
         window.App.layoutView.content.show(view);
-        window.App.router.navigate('category/general/general');
     },
 
     category: function(category) {
