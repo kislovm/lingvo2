@@ -1,5 +1,6 @@
 var Marionette = require('backbone.marionette'),
     ControlsView = require('./controls.js'),
+    DictionaryView = require('./dictionary.js'),
     UserModel = require('../models/user');
 
 module.exports = DifficultyView = Marionette.ItemView.extend({
@@ -54,6 +55,7 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
         this.easierButton = this.$el.find('.easier');
         this._updateDisabled();
         this.controlsView = new ControlsView({ model: this.model, el: this.$el.find('.user-controls') });
+        this.dictionaryView = new DictionaryView({ model: this.model, el: this.$el.find('.dictionary-view')} );
     },
 
     _updateDisabled: function() {
@@ -63,7 +65,7 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
 
 
     easier: function() {
-        if (this.difficulties.indexOf(this.model.get('difficulty')) === 0) return;
+        if (this.model.get('difficulty') == _.first(this.difficulties)) return;
 
         var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) - 1];
 
@@ -71,7 +73,7 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     },
 
     harder: function() {
-        if (this.difficulties.indexOf(this.model.get('difficulty')) + 1 === this.difficulties.length) return;
+        if (this.model.get('difficulty') == _.last(this.difficulties)) return;
 
         var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) + 1];
 

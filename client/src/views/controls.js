@@ -8,7 +8,8 @@ module.exports = ControlsView = Marionette.ItemView.extend({
     template: require('../../templates/controls.hbs'),
 
     events: {
-        'change .highlight-switcher': 'toggleHighlight'
+        'change .highlight-switcher': 'toggleHighlight',
+        'change .random-select': 'toggleRandom'
     },
 
     initialize: function() {
@@ -17,6 +18,10 @@ module.exports = ControlsView = Marionette.ItemView.extend({
 
     toggleHighlight: function() {
         this.model.set('highlight', this.$el.find('.highlight-switcher').is(':checked'));
+    },
+
+    toggleRandom: function() {
+        this.model.set('random', !!parseInt(this.$el.find('.random-select').val()));
     }
 
 });

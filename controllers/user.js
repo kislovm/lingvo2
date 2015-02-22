@@ -12,6 +12,8 @@ module.exports = {
         };
 
         req.session.difficulty = difficulties[req.body.difficulty];
+        req.session.random = req.body.random;
+        req.session.customDictionary = req.body.random && req.body.customDictionary;
 
         res.json({ success: true });
 

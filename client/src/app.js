@@ -88,9 +88,7 @@ App.prototype.start = function() {
 
         App.data.user.on('sync', function() {
             $.get('/dictionary', function(data) {
-                $('.dictionary .message').html(data.dictionary.map(function(word) {
-                    return $('<li>'+ word +'</li>');
-                }));
+                App.data.user.set('dictionary', data.dictionary);
             }, 'json');
         });
 
