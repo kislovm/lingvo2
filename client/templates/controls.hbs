@@ -1,2 +1,18 @@
-<input type="checkbox" class="highlight-switcher" id="highlight-switcher"/>
-<label for="highlight-switcher">Highlight words</label>
+<div>
+    <label for="language-select">My language</label>
+    <select id="language-select">
+        <option>English</option>
+        <option>Chinese</option>
+    </select>
+</div>
+<div>
+    <label for="language-select">Show</label>
+    <select id="language-select">
+        <option>Full dictionary</option>
+        <option>10 random words</option>
+    </select>
+</div>
+<div>
+    <input type="checkbox" {{#if highlight }}checked="checked"{{/if}} class="highlight-switcher" id="highlight-switcher"/>
+    <label for="highlight-switcher">Highlight words</label>
+</div>

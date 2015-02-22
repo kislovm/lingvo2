@@ -41,22 +41,24 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     },
 
     initialize: function() {
-        this.listenTo(this.model, 'change:difficulty', this.render);
+        this.listenTo(this.model, 'change:difficulty', this.toggleDifficulty);
+    },
+
+    toggleDifficulty: function() {
+        this.$el.find('.difficulty').text(this.model.get('difficulty'));
+        this._updateDisabled();
     },
 
     onRender: function() {
         this.harderButton = this.$el.find('.harder');
         this.easierButton = this.$el.find('.easier');
         this._updateDisabled();
-        this.controlsView = new ControlsView({ model: this.model, el: this.$el.find('.user-controls') })
+        this.controlsView = new ControlsView({ model: this.model, el: this.$el.find('.user-controls') });
     },
 
     _updateDisabled: function() {
-        if (this.difficulties.indexOf(this.model.get('difficulty')) === 0) {
-            this.easierButton.addClass('disabled');
-        } else if (this.difficulties.indexOf(this.model.get('difficulty')) + 1 === this.difficulties.length) {
-            this.harderButton.addClass('disabled');
-        }
+        this.harderButton.toggleClass('disabled', this.model.get('difficulty') == _.last(this.difficulties));
+        this.easierButton.toggleClass('disabled', this.model.get('difficulty') == _.first(this.difficulties));
     },
 
 
@@ -68,7 +70,7 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
         this.model.set('difficulty', difficulty).save();
     },
 
-    harder: function(el) {
+    harder: function() {
         if (this.difficulties.indexOf(this.model.get('difficulty')) + 1 === this.difficulties.length) return;
 
         var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) + 1];

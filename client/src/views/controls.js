@@ -16,7 +16,7 @@ module.exports = ControlsView = Marionette.ItemView.extend({
     },
 
     toggleHighlight: function() {
-        this.model.set('highlight', !this.model.get('highlight'));
+        this.model.set('highlight', this.$el.find('.highlight-switcher').is(':checked'));
     }
 
 });

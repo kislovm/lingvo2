@@ -37,6 +37,10 @@ var itemView = Marionette.ItemView.extend({
         App.data.user.get('highlight') ?
             this.$el.addClass('highlight-yes') :
             this.$el.removeClass('highlight-yes');
+    },
+
+    onRender: function() {
+        this.toggleHighlight();
     }
 
 });
