@@ -17,6 +17,7 @@ module.exports = parser = function(dicts, episode) {
         var count = 0,
             classificator = dict.classificator ||
                 defaultClassificator, hits = 0, used = [], truncatedWords = dict.words.map(function(word) {
+                if(word.original) return word.original.stem();
                 return word.stem();
             });
 

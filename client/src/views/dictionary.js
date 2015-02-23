@@ -32,6 +32,8 @@ module.exports = DictionaryView = Marionette.ItemView.extend({
 
     onRender: function() {
         this.$el.find('.message').html(this.getData().map(function(word) {
+            if (word.original) word = word.original + ' - ' + word.translation;
+
             return $('<li>'+ word +'</li>')
         }));
 

@@ -15,7 +15,7 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.logger('dev'));
