@@ -8,7 +8,8 @@ module.exports = parser = function(dicts, episode) {
         processedBody = {},
         tokenizer = new Natural.WordTokenizer(),
         tokens = tokenizer.tokenize(sanitizeHtml(episode.description, { allowedTags: [] })),
-        defaultClassificator = function(hits,count) { return hits/count > 0.3; };
+        defaultClassificator = function(hits,count) { return hits/count > 0.3; },
+        ok = false;
 
     episode.body && tokens.concat(tokenizer.tokenize(sanitizeHtml(episode.body, { allowedTags: [] })));
 
@@ -21,7 +22,7 @@ module.exports = parser = function(dicts, episode) {
 
         tokens.forEach(function(token) {
             var truncatedToken = token.stem();
-
+            
             if (used.indexOf(truncatedToken) == -1) {
                 count++;
                 if (truncatedWords.indexOf(truncatedToken) != -1) {
@@ -30,12 +31,16 @@ module.exports = parser = function(dicts, episode) {
                 used.push(truncatedToken);
             }
 
-            if (classificator(hits, count) && episode.lexica.indexOf(dict.name) == -1)
-                (episode.lexica &&
-                episode.lexica instanceof
-                Array ?
-                    episode.lexica.push(dict.name) :
-                    episode.category = [dict.name]);
+            if(classificator(hits, count)) {
+                ok = true;
+            }
+
+            if (classificator(hits, count) && episode.lexica.indexOf(dict.name) == -1) {
+                
+                (episode.lexica && episode.lexica instanceof
+                Array ? episode.lexica.push(dict.name) : episode.category = [dict.name]);
+
+            }
 
         });
 
@@ -55,7 +60,8 @@ module.exports = parser = function(dicts, episode) {
 
     return {
         processedDescription: processedDescription,
-        processedBody: processedBody
+        processedBody: processedBody,
+        ok: ok
     };
 
 };
