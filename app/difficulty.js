@@ -19,7 +19,7 @@ module.exports = {
                 ],
                 counter = 0;
 
-            models.Episode.find({ 'processed': { $ne: id } }).limit(2000).exec(function(err, episodes) {
+            models.Episode.find({ 'processed': { $ne: id } }).limit(1000).exec(function(err, episodes) {
 
                 episodes.forEach(function(episode) {
                     var result = parser(dicts, episode);
