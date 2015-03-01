@@ -33,6 +33,14 @@ module.exports = {
         return this._tokenizer.tokenize(sanitizeHtml(text), { allowedTags: [] });
     },
 
+    highlight: function(text, truncatedWords) {
+        return text.split(' ').map(function(word) {
+            if (truncatedWords.indexOf(word.stem().match(/\w+/) && word.stem().match(/\w+/)[0]) != -1)
+                return '<span class="highlight">' + word + '</span>'; else
+                return word;
+        }).join(' ');
+    },
+
     _tokenizer: new Natural.WordTokenizer(),
 
     parse: function(dicts, episode) {
@@ -73,18 +81,8 @@ module.exports = {
 
             });
 
-            processedDescription[dict.name] = episode.description.split(' ').map(function(word) {
-                if (truncatedWords.indexOf(word.stem().match(/\w+/) && word.stem().match(/\w+/)[0]) != -1)
-                    return '<span class="highlight">' + word + '</span>'; else
-                    return word;
-            }).join(' ');
-
-            processedBody[dict.name] = episode.body && episode.body.split(' ').map(function(word) {
-                if (truncatedWords.indexOf(word.stem().match(/\w+/) && word.stem().match(/\w+/)[0]) != -1)
-                    return '<span class="highlight">' + word + '</span>'; else
-                    return word;
-            }).join(' ');
-
+            processedDescription[dict.name] = this.highlight(episode.description, truncatedWords);
+            processedBody[dict.name] = episode.body && this.highlight(episode.body, truncatedWords);
 
         }, this);
 

@@ -38,11 +38,9 @@ module.exports = {
                     }
 
                     res.json(episodes.map(function(episode) {
-                        if (req.session.customDictionary) {
-                            var result = parser.parse([{ name: 'custom', words: req.session.customDictionary }], episode);
-
-                            episode.description = result.processedDescription['custom'];
-                            episode.body && episode.processedBody && (episode.body = result.processedBody['custom']);
+                        if (customDictionary) {
+                            episode.description = parser.highlight(episode.description, customDictionary);
+                            episode.body && episode.processedBody && (episode.body = parser.highlight(episode.body, customDictionary));
 
                             return episode;
                         }
