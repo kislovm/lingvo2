@@ -1,124 +1,117 @@
-String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
-// var $ = require('jquery')(require('jsdom').jsdom().parentWindow);
-
 var models = require('./models'),
-Request = require('request'),
-FeedParser = require('feedparser'),
-sanitizeHtml = require('sanitize-html'),
-cheerio = require('cheerio'),
-jQuery = require('jquery'),
-// replaceParenthese = function(str) {
-//   return str.replace(/\(/, '\\(').replace(/\)/, '\\)').replace(/\[/, '\\[').replace(/\]/, '\\]')
-// },
-parseRssCnnCom = function($, desc) {
-  return $('p').filter('[class~=\'zn-body__paragraph\']')
-  .map(function() {
-    return $(this).text();
-  }).get().join('\n');
-},
-parseBbcCoUk = function ($, desc) {
-  var paragraphs = $('div[class~=\'story-body\']')
-  .find('p:not([class])')
-  .map(function(i, e) {
-    return $(e).text();
-  }).get();
+    Request = require('request'),
+    FeedParser = require('feedparser'),
+    sanitizeHtml = require('sanitize-html'),
+    cheerio = require('cheerio'),
+    jQuery = require('jquery'),
+    parseRssCnnCom = function($) {
+      return $('p').filter('[class~=\'zn-body__paragraph\']')
+      .map(function() {
+        return $(this).text();
+      }).get().join('\n');
+    },
+    parseBbcCoUk = function ($, desc) {
+      var paragraphs = $('div[class~=\'story-body\']')
+      .find('p:not([class])')
+      .map(function(i, e) {
+        return $(e).text();
+      }).get();
 
-  if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-    return paragraphs.slice(1).join('');
-  }
-  return paragraphs.join('');
-},
-economistComParse = function($, desc) {
-  var paragraphs = $('div[class~=\'main-content\']')
-  .find('p:not([class])')
-  .map(function(i, e) {
-    return $(e).text();
-  }).get();
+      if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
+        return paragraphs.slice(1).join('');
+      }
+      return paragraphs.join('');
+    },
+    economistComParse = function($, desc) {
+      var paragraphs = $('div[class~=\'main-content\']')
+      .find('p:not([class])')
+      .map(function(i, e) {
+        return $(e).text();
+      }).get();
 
-  if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-    return paragraphs.slice(1).join('');
-  }
-  return paragraphs.join('');
-},
-parseRssfeedsUsatodayCom = function($, desc) {
-  var paragraphs = [];
-  // $('article[class~='asset story clearfix']')
-  $('p:not([class])').each(function(i, e) {
-    if($(e).parent().get(0).parent.name == 'article') {
-      paragraphs.push($(e).text());
-    }
-  });
-  return paragraphs.join('');
-},
-parseWwwForbesComParse = function($, desc) {
-  var paragraphs = $('div[class~=\'body_inner\']')
-  .find('p:not([class])')
-  .map(function(i, e) {
-    return $(e).text();
-  }).get();
+      if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
+        return paragraphs.slice(1).join('');
+      }
+      return paragraphs.join('');
+    },
+    parseRssfeedsUsatodayCom = function($) {
+      var paragraphs = [];
 
-  if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-    return paragraphs.slice(1).join('');
-  }
-  return paragraphs.join('');
-},
-parseTelegraphFeedsportalCom = function($, desc) {
-  return $('div[id~=\'mainBodyArea\']')
-  .find('p:not([class]), h3')
-  .map(function(i, e) {
-    return $(e).text();
-  }).get().join('');
-},
-decodeHtmlEntity = function(str) {
-  str = str.replace(/&#(\d+);/g, function(match, dec) {
-    return String.fromCharCode(dec);
-  });
-  return str.replace(/&(\w+);/g, '');
-},
-parseFeedProxyGoogleCom = function($, desc) {
-  var paragraphs = $('div[class~=\'article-entry\']')
-  .find('p:not([class])')
-  .map(function(i, e) {
-    return $(e).text();
-  }).get();
+      $('p:not([class])').each(function(i, e) {
+        if($(e).parent().get(0).parent.name == 'article') {
+          paragraphs.push($(e).text());
+        }
+      });
+      return paragraphs.join('');
+    },
+    parseWwwForbesComParse = function($, desc) {
+      var paragraphs = $('div[class~=\'body_inner\']')
+      .find('p:not([class])')
+      .map(function(i, e) {
+        return $(e).text();
+      }).get();
 
-  article = decodeHtmlEntity(paragraphs.join('')).trim();
-  desc = decodeHtmlEntity(desc).trim().slice(-60, -40);
+      if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
+        return paragraphs.slice(1).join('');
+      }
+      return paragraphs.join('');
+    },
+    parseTelegraphFeedsportalCom = function($) {
+      return $('div[id~=\'mainBodyArea\']')
+      .find('p:not([class]), h3')
+      .map(function(i, e) {
+        return $(e).text();
+      }).get().join('');
+    },
+    decodeHtmlEntity = function(str) {
+      str = str.replace(/&#(\d+);/g, function(match, dec) {
+        return String.fromCharCode(dec);
+      });
+      return str.replace(/&(\w+);/g, '');
+    },
+    parseFeedProxyGoogleCom = function($, desc) {
+      var paragraphs = $('div[class~=\'article-entry\']')
+      .find('p:not([class])')
+      .map(function(i, e) {
+        return $(e).text();
+      }).get();
 
-  desc_begin = article.lastIndexOf(desc);
-  if(desc_begin != -1) {
-    desc_end = desc_begin + 50;
-    return article.slice(desc_end);
-  }
-  return article;
-},
-parseHandlers = {'rss.cnn.com': parseRssCnnCom, 'www.bbc.co.uk': parseBbcCoUk,
-                 'www.economist.com': economistComParse, 'rssfeeds.usatoday.com': parseRssfeedsUsatodayCom,
-                 'www.forbes.com': parseWwwForbesComParse, 'telegraph.feedsportal.com': parseTelegraphFeedsportalCom,
-                 'feedproxy.google.com': parseFeedProxyGoogleCom},
-getDomain = function(url) {
-  var matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
-  return matches && matches[1];
-},
-extractArticleBody = function(url, $, desc) {
-  var domain = getDomain(url);
-  if (!(domain in parseHandlers)) {
-    console.log('ERROR: unkown domain [' + domain + ']');
-    return;
-  }
-  return parseHandlers[domain]($, desc);
-},
-originalArticleLinks = {'rss.cnn.com': 'cnn.com', 'www.bbc.co.uk': 'bbc.com', 'www.economist.com': 'economist.com',
-                        'rssfeeds.usatoday.com': 'usatoday.com', 'www.forbes.com': 'forbes.com',
-                        'telegraph.feedsportal.com':'telegraph.co.uk', 'feedproxy.google.com': 'techcrunch.com'},
-getOriginalArticleLink = function(url) {
-  var domain = getDomain(url);
-  if (!(domain in originalArticleLinks)) {
-    console.log('ERROR: unkown domain [' + domain + ']');
-    return;
-  }
-  return originalArticleLinks[domain];
-}
+      var article = decodeHtmlEntity(paragraphs.join('')).trim();
+      desc = decodeHtmlEntity(desc).trim().slice(-60, -40);
+
+      var desc_begin = article.lastIndexOf(desc);
+      if(desc_begin != -1) {
+        return article.slice(desc_begin + 50);
+      }
+      return article;
+    },
+    parseHandlers = {'rss.cnn.com': parseRssCnnCom, 'www.bbc.co.uk': parseBbcCoUk,
+                     'www.economist.com': economistComParse, 'rssfeeds.usatoday.com': parseRssfeedsUsatodayCom,
+                     'www.forbes.com': parseWwwForbesComParse, 'telegraph.feedsportal.com': parseTelegraphFeedsportalCom,
+                     'feedproxy.google.com': parseFeedProxyGoogleCom},
+    getDomain = function(url) {
+      var matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
+      return matches && matches[1];
+    },
+    extractArticleBody = function(url, $, desc) {
+      var domain = getDomain(url);
+      if (!(domain in parseHandlers)) {
+        console.log('ERROR: unkown domain [' + domain + ']');
+        return;
+      }
+      return parseHandlers[domain]($, desc);
+    },
+    originalArticleLinks = {'rss.cnn.com': 'cnn.com', 'www.bbc.co.uk': 'bbc.com', 'www.economist.com': 'economist.com',
+                            'rssfeeds.usatoday.com': 'usatoday.com', 'www.forbes.com': 'forbes.com',
+                            'telegraph.feedsportal.com':'telegraph.co.uk', 'feedproxy.google.com': 'techcrunch.com'},
+    getOriginalArticleLink = function(url) {
+      var domain = getDomain(url);
+      if (!(domain in originalArticleLinks)) {
+        console.log('ERROR: unkown domain [' + domain + ']');
+        return;
+      }
+      return originalArticleLinks[domain];
+    };
 
 module.exports = {
   check: function() {
@@ -223,11 +216,11 @@ module.exports = {
       for (var key in feedUrls) {
         var feedMeta;
 
-        // Get the feed by URL
         feedUrls[key].forEach(function(feed) {
           var _key = key;
 
-          var request = Request(feed.url), feedparser = new FeedParser();
+          var request = Request(feed.url),
+              feedparser = new FeedParser();
 
           request.on('response', function(res) {
             var stream = this;
@@ -253,19 +246,17 @@ module.exports = {
           .on('readable', function() {
             var stream = this, item;
             while (item = stream.read()) {
-              //item.title == 'The best quotes' && console.log(item);
 
-
-              var image, description = (item.summary.length >
-                item.description.length ?
-                item.summary :
-                item.description) || item.meta.description, ep = {
-                  name: feed.name,
-                  title: item.title,
-                  link: item.link,
-                  publicationDate: new Date(item.pubDate),
-                  category: _key
-                };
+              var image,
+                  description = (item.summary.length > item.description.length ?
+                      item.summary : item.description) || item.meta.description,
+                  ep = {
+                      name: feed.name,
+                      title: item.title,
+                      link: item.link,
+                      publicationDate: new Date(item.pubDate),
+                      category: _key
+                  };
 
                 ep.description = sanitizeHtml(description, {
                   allowedTags: [],
@@ -293,17 +284,13 @@ module.exports = {
                     if(err) {
                       console.log(err);
                     } else{
-                      $ = cheerio.load(body);
+                      var $ = cheerio.load(body);
                       ep.body = extractArticleBody(ep.link, $, ep.description);
                       if(getDomain(ep.link) == 'feedproxy.google.com') {
                         ep.description = ep.description.slice(0, -19);
                       }
                       ep.originalArticleLink = getOriginalArticleLink(ep.link);
                     }
-
-                    // console.log('[link]: ' + ep.link);
-                    // console.log('[desc]: [' + ep.description + ']');
-                    // console.log('[article]: [' + ep.body + ']');
 
                     models.Episode.findOne({ title: ep.title}, function(err, episode) {
                       if (!err) {
@@ -331,14 +318,7 @@ module.exports = {
 
                 }
               }).on('end', function() {
-                var arr = [];
 
-                models.Episode.find({}, function(err, episodes) {
-                  episodes.forEach(function(episode) {
-                    if(arr.indexOf(episode.title) != -1) { console.log('removed double ' +episode.title); episode.remove() };
-                    arr.push(episode.title);
-                  });
-                });
               });
             });
           }
