@@ -23,6 +23,6 @@ mongoose.connection.on('open', function() {
 
     doStuff();
 
-    //try { seeder.check(); } catch (e) { }
-    //setInterval(function() { try { seeder.check(); } catch(e) {} }, '150000');
+    try { seeder.check(); } catch (e) { }
+    setInterval(function() { try { seeder.check(); } catch(e) {} }, '150000');
 });
