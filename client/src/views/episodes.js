@@ -61,13 +61,13 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
     },
 
     _onDifficultyChange: function() {
-        var $el = this.$el;
+        var articles = $('.articles');
 
         this.collection.reset();
         this.collection.page = '0';
         this.xhr && this.xhr.readyState < 4 && this.xhr.abort();
-        $el.addClass('loading');
-        this.xhr = this.collection.fetch().always(function() { $el.removeClass('loading') });
+        articles.addClass('loading');
+        this.xhr = this.collection.fetch().always(function() { articles.removeClass('loading') });
     },
 
     childView: itemView
