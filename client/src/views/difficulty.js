@@ -55,6 +55,8 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
         this.easierButton = this.$el.find('.easier');
         this._updateDisabled();
         this.controlsView = new ControlsView({ model: this.model, el: this.$el.find('.user-controls') });
+        a = new ControlsView({ model: this.model, el: $('.mobile-user-controls') });
+        b = new DictionaryView({ model: this.model, el: $('.mobile-dictionary-view')} );
         this.dictionaryView = new DictionaryView({ model: this.model, el: this.$el.find('.dictionary-view')} );
     },
 
