@@ -1,6 +1,9 @@
 var Natural = require('natural'),
     sanitizeHtml = require('sanitize-html');
 
+
+Natural.PorterStemmer.attach();
+
 module.exports = {
 
     defaultClassificator: function(hits, count) {
@@ -22,7 +25,6 @@ module.exports = {
     },
 
     _preprocessDict: function(dict) {
-        Natural.PorterStemmer.attach();
         return dict.map(function(word) {
             if (word.original) return word.original.stem();
             return word.stem();
@@ -44,7 +46,6 @@ module.exports = {
     _tokenizer: new Natural.WordTokenizer(),
 
     parse: function(dicts, episode) {
-        Natural.PorterStemmer.attach();
         this._preprocessDicts(dicts);
 
         var processedDescription = {},
