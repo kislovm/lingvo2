@@ -31,36 +31,36 @@ module.exports = {
         req.params.category != 'all' &&
             (query.category = req.params.category);
 
-        if(req.session.random && req.session.customDictionary) {
-            var arr = [];
-
-            models.Episode.find({ category: req.params.category }).exec(function(err, episodes) {
-                for(var i=0; i<episodes.length; i++) {
-                    var episode = episodes[i];
-
-                    var result = parser([{
-                        name: 'custom',
-                        words: req.session.customDictionary,
-                        classificator: function(hits) { return !!hits; }
-                    }], episode);
-
-                    episode.description = result.processedDescription['custom'];
-                    episode.body = result.processedBody['custom'];
-
-                    result.ok && arr.push(episode);
-
-                    if(arr.length > 30) continue;
-                }
-
-                res.json(arr);
-
-            });
-
-            return;
-        }
+        //if(req.session.random && req.session.customDictionary) {
+        //    var arr = [];
+        //
+        //    models.Episode.find({ category: req.params.category }).exec(function(err, episodes) {
+        //        for(var i=0; i<episodes.length; i++) {
+        //            var episode = episodes[i];
+        //
+        //            var result = parser([{
+        //                name: 'custom',
+        //                words: req.session.customDictionary,
+        //                classificator: function(hits) { return !!hits; }
+        //            }], episode);
+        //
+        //            episode.description = result.processedDescription['custom'];
+        //            episode.body = result.processedBody['custom'];
+        //
+        //            result.ok && arr.push(episode);
+        //
+        //            if(arr.length > 30) continue;
+        //        }
+        //
+        //        res.json(arr);
+        //
+        //    });
+        //
+        //    return;
+        //}
 
         models.Episode
-            .find(query)
+            .find()
             .sort('-publicationDate')
             .skip(skip)
             .limit(10)

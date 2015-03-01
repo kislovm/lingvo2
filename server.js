@@ -1,7 +1,7 @@
 var express = require('express'),
     http = require('http'),
     path = require('path'),
-    mongoose = require('mongoose'),
+    mongoose = require('Mongoose'),
     routes = require('./app/routes'),
     exphbs = require('express3-handlebars'),
     bodyParser = require('body-parser'),

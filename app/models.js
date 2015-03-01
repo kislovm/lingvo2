@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require('Mongoose'),
     Schema = mongoose.Schema,
     Mixed = Schema.Types.Mixed;
 
@@ -14,6 +14,7 @@ var Episode = new Schema({
     processedBody: { type: Mixed },
     category: { type: [String] },
     lexica: { type: [String] },
+    tokens: { type: [String] },
     processed: { type: String },
     link: { type: String },
     body: { type: String },

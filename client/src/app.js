@@ -11,7 +11,7 @@ module.exports = App = function App() {};
 App.prototype.start = function() {
     App.core = new Marionette.Application();
 
-    App.core.on("before:start", function(options) {
+    App.core.on("before:start", function() {
         App.core.vent.trigger('app:log', 'App: Initializing');
 
         App.views = {};
