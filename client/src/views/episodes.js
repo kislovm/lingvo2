@@ -48,6 +48,7 @@ var itemView = Marionette.ItemView.extend({
 module.exports = CollectionView = Marionette.CollectionView.extend({
     initialize: function() {
         var _this = this;
+        this.$el.prepend('<div class="loading-spinner">');
 
         //Здесь этому не место. Нужно вынести в глобал и тригерить эвент или сделать вью для ленты.
         $(window).scroll(function() {
@@ -60,10 +61,13 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
     },
 
     _onDifficultyChange: function() {
+        var $el = this.$el;
+
         this.collection.reset();
         this.collection.page = '0';
         this.xhr && this.xhr.readyState < 4 && this.xhr.abort();
-        this.xhr = this.collection.fetch();
+        $el.addClass('loading');
+        this.xhr = this.collection.fetch().always(function() { $el.removeClass('loading') });
     },
 
     childView: itemView
