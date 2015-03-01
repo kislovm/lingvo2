@@ -11,7 +11,7 @@ jQuery = require('jquery'),
 //   return str.replace(/\(/, '\\(').replace(/\)/, '\\)').replace(/\[/, '\\[').replace(/\]/, '\\]')
 // },
 parseRssCnnCom = function($, desc) {
-  return $('p').filter('[class~=\'cnn_storypgraphtxt\']')
+  return $('p').filter('[class~=\'zn-body__paragraph\']')
   .map(function() {
     return $(this).text();
   }).get().join('\n');
@@ -237,13 +237,11 @@ module.exports = {
             stream.pipe(feedparser);
           }).on('error',function(e){
             console.log('Error: ' + key + '\n' + e.message);
-            console.log( e.stack );
           });
 
           // Handle HTTP errors
           feedparser.on('error', function(error) {
             console.log('http error while parsing rss ' + error);
-            console.log( error.stack );
           })
 
           // Store the feed's metadata
@@ -292,7 +290,6 @@ module.exports = {
                   if (!description || description.length < 150) continue;
 
                   Request(ep.link, function(err, res, body){
-                    article = ''
                     if(err) {
                       console.log(err);
                     } else{
@@ -321,6 +318,9 @@ module.exports = {
                               ep.title);
                             }
                           });
+                        } else if(!episode.body) {
+                            episode.body = ep.body;
+                            episode.save();
                         }
                       }
                     });

@@ -21,6 +21,14 @@ module.exports = {
         }, this);
     },
 
+    _preprocessDict: function(dict) {
+        Natural.PorterStemmer.attach();
+        return dict.map(function(word) {
+            if (word.original) return word.original.stem();
+            return word.stem();
+        });
+    },
+
     _tokenize: function(text) {
         return this._tokenizer.tokenize(sanitizeHtml(text), { allowedTags: [] });
     },

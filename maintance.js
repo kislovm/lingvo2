@@ -24,5 +24,5 @@ mongoose.connection.on('open', function() {
     doStuff();
 
     try { seeder.check(); } catch (e) { }
-    setInterval(function() { try { seeder.check(); } catch(e) {} }, '150000');
+    setInterval(function() { try { seeder.check(); } catch(e) {} }, '300000');
 });

@@ -31,36 +31,14 @@ module.exports = {
         req.params.category != 'all' &&
             (query.category = req.params.category);
 
-        //if(req.session.random && req.session.customDictionary) {
-        //    var arr = [];
-        //
-        //    models.Episode.find({ category: req.params.category }).exec(function(err, episodes) {
-        //        for(var i=0; i<episodes.length; i++) {
-        //            var episode = episodes[i];
-        //
-        //            var result = parser([{
-        //                name: 'custom',
-        //                words: req.session.customDictionary,
-        //                classificator: function(hits) { return !!hits; }
-        //            }], episode);
-        //
-        //            episode.description = result.processedDescription['custom'];
-        //            episode.body = result.processedBody['custom'];
-        //
-        //            result.ok && arr.push(episode);
-        //
-        //            if(arr.length > 30) continue;
-        //        }
-        //
-        //        res.json(arr);
-        //
-        //    });
-        //
-        //    return;
-        //}
+        if(req.session.random && req.session.customDictionary) {
+            var customDictionary = parser._preprocessDict(req.session.customDictionary);
+
+            query.tokens = { $in: customDictionary };
+        }
 
         models.Episode
-            .find()
+            .find(query)
             .sort('-publicationDate')
             .skip(skip)
             .limit(10)
@@ -69,6 +47,15 @@ module.exports = {
                     res.json({error: 'Episodes not found.'});
                 } else {
                     res.json(episodes.map(function(episode) {
+                        if (req.session.customDictionary) {
+                            var result = parser.parse([{ name: 'custom', words: req.session.customDictionary }], episode);
+
+                            episode.processedDescription = result.processedDescription['custom'];
+                            episode.body && episode.processedBody && (episode.body = result.processedBody['custom']);
+
+                            return episode;
+                        }
+
                         episode.description = episode.processedDescription[difficulty];
                         episode.body && episode.processedBody && (episode.body = episode.processedBody[difficulty]);
 
