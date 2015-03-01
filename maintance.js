@@ -1,4 +1,4 @@
-var mongoose = require('Mongoose'),
+var mongoose = require('mongoose'),
     seeder = require('./app/seeder'),
     difficulty = require('./app/difficulty');
 
