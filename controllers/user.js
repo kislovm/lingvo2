@@ -29,7 +29,12 @@ module.exports = {
             'irregular': 'Irregular verbs'
         };
 
-        res.json({ difficulty: difficulties[req.session.difficulty] });
+        res.json({
+            difficulty: difficulties[req.session.difficulty],
+            random: req.session.random,
+            customDictionary: req.session.random && req.session.customDictionary
+
+        });
 
     }
 };

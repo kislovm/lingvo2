@@ -14,6 +14,12 @@ module.exports = ControlsView = Marionette.ItemView.extend({
 
     initialize: function() {
         this.render();
+        this.model.on('change', this.render, this);
+    },
+
+    onRender: function() {
+        this.$el.find('.highlight-switcher').val(this.model.get('highlight'));
+        this.$el.find('.random-select').val(this.model.get('random') ? '1' : '0');
     },
 
     toggleHighlight: function() {

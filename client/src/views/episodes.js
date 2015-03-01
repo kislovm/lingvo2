@@ -52,7 +52,7 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
         //Здесь этому не место. Нужно вынести в глобал и тригерить эвент или сделать вью для ленты.
         $(window).scroll(function() {
             if ($(window).scrollTop() + $(window).height() > ($('body').height() - 100))
-                _this.collection.increment();
+                !App.data.user.get('random') && _this.collection.increment();
             counter.reachGoal('scroll-down');
         });
         this.listenTo(this.collection, 'change', this.render);
@@ -62,7 +62,8 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
     _onDifficultyChange: function() {
         this.collection.reset();
         this.collection.page = '0';
-        this.collection.fetch();
+        this.xhr && this.xhr.readyState < 4 && this.xhr.abort();
+        this.xhr = this.collection.fetch();
     },
 
     childView: itemView
