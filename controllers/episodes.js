@@ -20,6 +20,7 @@ module.exports = {
         if(req.session.random && req.session.customDictionary) {
             var customDictionary = parser._preprocessDict(req.session.customDictionary);
 
+            delete query.lexica;
             query.tokens = { $in: customDictionary };
         }
 
