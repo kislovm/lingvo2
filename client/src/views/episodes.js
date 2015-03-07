@@ -80,7 +80,7 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
         this.xhr = collection
             .fetch()
             .always(function() {
-                articles.removeClass('loading')
+                articles.removeClass('loading');
             });
     },
 

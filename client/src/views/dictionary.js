@@ -22,11 +22,18 @@ module.exports = DictionaryView = Marionette.ItemView.extend({
 
     getData: function() {
         if(this.model.get('random')) {
-              this.model.set('customDictionary', _.shuffle(this.model.get('dictionary')).slice(-20));
-              this.model.save();
-              return this.model.get('customDictionary');
+
+            this.model.set('customDictionary', _.shuffle(this.model.get('dictionary')).slice(-20));
+
+            this.xhr && this.xhr.abort();
+            this.xhr = this.model.save();
+
+            return this.model.get('customDictionary');
+
           } else {
+
               return this.model.get('dictionary');
+
           }
     },
 
