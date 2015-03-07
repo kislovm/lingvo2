@@ -71,7 +71,9 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
 
         var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) - 1];
 
-        this.xhr && this.xhr.readyState < 4 && this.xhr.abort();
+        if(this.xhr && this.xhr.readyState < 4)
+            this.xhr.abort();
+
         this.xhr = this.model.set('difficulty', difficulty).save();
     },
 

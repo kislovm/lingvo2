@@ -25,7 +25,9 @@ module.exports = DictionaryView = Marionette.ItemView.extend({
 
             this.model.set('customDictionary', _.shuffle(this.model.get('dictionary')).slice(-20));
 
-            this.xhr && this.xhr.abort();
+            if(this.xhr)
+                this.xhr.abort();
+
             this.xhr = this.model.save();
 
             return this.model.get('customDictionary');

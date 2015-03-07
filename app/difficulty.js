@@ -20,7 +20,7 @@ module.exports = {
     counter: 0,
 
     find: function(id) {
-        return models.Episode.find({'processed': {$ne: id}}).limit(10).exec();
+        return models.Episode.find({ 'processed': { $ne: id } }).limit(10).exec();
     },
 
     processMany: function(episodes, id) {

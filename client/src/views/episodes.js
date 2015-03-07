@@ -34,8 +34,9 @@ var itemView = Marionette.ItemView.extend({
     },
 
     toggleHighlight: function() {
-        App.data.user.get('highlight') ?
-            this.$el.addClass('highlight-yes') :
+        if(App.data.user.get('highlight'))
+            this.$el.addClass('highlight-yes');
+        else
             this.$el.removeClass('highlight-yes');
     },
 
@@ -53,7 +54,8 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
         //Здесь этому не место. Нужно вынести в глобал и тригерить эвент или сделать вью для ленты.
         $(window).scroll(function() {
             if ($(window).scrollTop() + $(window).height() > ($('body').height() - 100))
-                !App.data.user.get('random') && _this.collection.increment();
+                if(!App.data.user.get('random'))
+                    _this.collection.increment();
             counter.reachGoal('scroll-down');
         });
         this.listenTo(this.collection, 'change', this.render);
@@ -73,7 +75,8 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
         collection.reset();
         collection.page = '0';
 
-        this.xhr && this.xhr.readyState < 4 && this.xhr.abort();
+        if(this.xhr && this.xhr.readyState < 4)
+            this.xhr.abort();
 
         articles.addClass('loading');
 
