@@ -60,14 +60,28 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
         this.listenTo(App.data.user, 'sync', this._onDifficultyChange);
     },
 
-    _onDifficultyChange: function() {
-        var articles = $('.articles');
+    _getArticles: function() {
+        if(!this._articles) this._articles = $('.articles');
 
-        this.collection.reset();
-        this.collection.page = '0';
+        return this._articles;
+    },
+
+    _onDifficultyChange: function() {
+        var articles = this._getArticles(),
+            collection = this.collection;
+
+        collection.reset();
+        collection.page = '0';
+
         this.xhr && this.xhr.readyState < 4 && this.xhr.abort();
+
         articles.addClass('loading');
-        this.xhr = this.collection.fetch().always(function() { articles.removeClass('loading') });
+
+        this.xhr = collection
+            .fetch()
+            .always(function() {
+                articles.removeClass('loading')
+            });
     },
 
     childView: itemView
