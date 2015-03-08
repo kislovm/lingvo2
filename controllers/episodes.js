@@ -33,7 +33,7 @@ module.exports = {
                 if (err) {
                     res.json({error: 'Episodes not found.'});
                 } else {
-                    if(!episodes.length) {
+                    if(customDictionary && !episodes.length) {
                         res.json([{ description: 'No articles found' }]);
                         return;
                     }
