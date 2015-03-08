@@ -87,7 +87,9 @@ App.prototype.start = function() {
         App.layoutView.difficulty.show(new DifficultyView({ model: App.data.user }));
 
         App.data.user.on('sync', function() {
-            $.get('/dictionary', function(data) {
+
+            if(App.data.xhr) App.data.xhr.abort();
+            App.data.xhr = $.get('/dictionary', function(data) {
                 App.data.user.set('dictionary', data.dictionary);
             }, 'json');
         });
