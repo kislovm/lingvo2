@@ -25,14 +25,16 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     },
 
     showDictionary: function() {
-        if($('.dictionary').hasClass('hide')) {
+        var dictionary = $('.dictionary');
+
+        if(dictionary.hasClass('hide')) {
             $('.j-show-dictionary').text('Hide dictionary');
-            $('.dictionary').removeClass('hide').delay(1).queue(function() {
+            dictionary.removeClass('hide').delay(1).queue(function() {
                 $(this).addClass("showing").dequeue();
             });
         } else {
             $('.j-show-dictionary').text('Show dictionary');
-            $('.dictionary').removeClass('showing').delay(150).queue(function() {
+            dictionary.removeClass('showing').delay(150).queue(function() {
                 $(this).addClass('hide').dequeue();
             });
         }
@@ -54,10 +56,12 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
         this.harderButton = this.$el.find('.harder');
         this.easierButton = this.$el.find('.easier');
         this._updateDisabled();
-        this.controlsView = new ControlsView({ model: this.model, el: this.$el.find('.user-controls') });
-        a = new ControlsView({ model: this.model, el: $('.mobile-user-controls') });
-        b = new DictionaryView({ model: this.model, el: $('.mobile-dictionary-view')} );
-        this.dictionaryView = new DictionaryView({ model: this.model, el: this.$el.find('.dictionary-view')} );
+
+        new ControlsView({ model: this.model, el: this.$el.find('.user-controls') });
+        new ControlsView({ model: this.model, el: $('.mobile-user-controls') });
+
+        new DictionaryView({ model: this.model, el: $('.mobile-dictionary-view')} );
+        new DictionaryView({ model: this.model, el: this.$el.find('.dictionary-view')} );
     },
 
     _updateDisabled: function() {
