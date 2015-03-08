@@ -34,6 +34,12 @@ module.exports = DictionaryView = Marionette.ItemView.extend({
 
           } else {
 
+
+              if(this.xhr)
+                  this.xhr.abort();
+
+              this.xhr = this.model.save();
+
               return this.model.get('dictionary');
 
           }

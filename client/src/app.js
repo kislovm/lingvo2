@@ -85,14 +85,18 @@ App.prototype.start = function() {
     App.core.vent.bind('user:init', function(options) {
         App.core.vent.trigger('app:log', 'User: Initializing');
         App.layoutView.difficulty.show(new DifficultyView({ model: App.data.user }));
+        App.data.dictionary = {};
 
-        App.data.user.on('sync', function() {
+        App.data.user.on('change:difficulty', function() {
+            if(App.data.dictionary[App.data.user.get('difficulty')])
+                App.data.user.set('dictionary', App.data.dictionary[App.data.user.get('difficulty')]);
 
             if(App.data.xhr) App.data.xhr.abort();
             App.data.xhr = $.get('/dictionary', function(data) {
+                App.data.dictionary[App.data.user.get('difficulty')] = data.dictionary;
                 App.data.user.set('dictionary', data.dictionary);
             }, 'json');
-        });
+        }).trigger('change:difficulty');
 
         Backbone.history.start();
     });
