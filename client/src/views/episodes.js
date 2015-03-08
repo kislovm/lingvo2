@@ -5,7 +5,7 @@ var itemView = Marionette.ItemView.extend({
 
     events: {
         'click .show-more': 'showMore'
-    }, showMore: function(el) {
+    }, showMore: function() {
         var $el = this.$el, $content = $el.find('.content'), linkText = $el.find('.show-more a').text().toUpperCase();
         if (!this.opened) {
             linkText = "Show less";
@@ -70,7 +70,8 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
 
     _onDifficultyChange: function() {
         var articles = this._getArticles(),
-            collection = this.collection;
+            collection = this.collection,
+            _this = this;
 
         collection.reset();
         collection.page = '0';
@@ -80,10 +81,21 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
 
         articles.addClass('loading');
 
-        this.xhr = collection
+        if(this._timeout)
+            clearTimeout(this._timeout);
+
+        this._timeout = setTimeout(function() {
+            _this._fetchCollection();
+        }, 500);
+    },
+
+    _fetchCollection: function() {
+        var article = this._getArticles();
+
+        this.xhr = this.collection
             .fetch()
             .always(function() {
-                articles.removeClass('loading');
+                article.removeClass('loading');
             });
     },
 
