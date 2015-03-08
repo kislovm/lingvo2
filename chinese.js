@@ -1973,7 +1973,6 @@ module.exports = { general:
      { original: 'puzzling', chinese: '令人不解的' } ],
   gre: 
    [ { original: 'aberrant', chinese: '异常' },
-     { original: 'word', chinese: '词' },
      { original: 'abscond', chinese: '潜逃' },
      { original: 'advocate', chinese: '倡导' },
      { original: 'amalgamate', chinese: '合并' },
@@ -2145,6 +2144,7 @@ module.exports = { general:
      { original: 'verbose', chinese: 'verbose' },
      { original: 'vex', chinese: '威克斯' },
      { original: 'voracious', chinese: '贪婪的' },
+     { original: 'word', chinese: '词' },
      { original: 'wretched', chinese: '可怜' },
      { original: 'waver', chinese: '动摇' },
      { original: 'zeal', chinese: '热情' } ],
