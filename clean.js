@@ -7,11 +7,17 @@ mongoose.connection.on('open', function() {
 
     var arr = [];
 
-    models.Episode.find({}, function(err, episodes) {
-	episodes.forEach(function(episode) {
-            if(episode.name == 'Economist') { console.log(episode); };
-            arr.push(episode.title.slice(20));
+    models.Episode
+        .find({})
+        .select('title')
+        .exec()
+        .then(function(episodes) {
+            episodes.forEach(function(episode) {
+                if(episode.title in arr) console.log(episode.title);
+                arr.push(episode.title);
+            });
         });
-    });
+
+    return 0;
 
 });
