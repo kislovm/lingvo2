@@ -52,7 +52,7 @@ module.exports = DictionaryView = Marionette.ItemView.extend({
             return $('<li>'+ word +'</li>');
         }));
 
-        this.$el.find('.show-next').toggleClass('show', this.model.get('random'));
+        this.$el.find('.show-next').toggleClass('show', !!this.model.get('random'));
     }
 
 });
