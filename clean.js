@@ -16,13 +16,17 @@ mongoose.connection.on('open', function() {
         .then(function(episodes) {
             episodes.forEach(function(episode) {
                 arr.forEach(function(title) {
-                    if(natural.LevenshteinDistance(episode.title, title) < 2)
-                    console.log(episode.title, title);
+                    if(natural.LevenshteinDistance(episode.title, title) < 2) {
+                        console.log(episode.title, title);
+                        episode.remove()
+                    }
                 });
 
                 arr.push(episode.title);
             });
-            console.log('all done');
+            console.log('');
+            console.log('-------------');
+            console.log('ALL DONE');
         });
 
     return 0;
