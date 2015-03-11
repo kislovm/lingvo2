@@ -14,8 +14,12 @@ mongoose.connection.on('open', function() {
         .select('title')
         .exec()
         .then(function(episodes) {
+            var counter = 0;
             episodes.forEach(function(episode) {
+                if(episode.title.indexOf('Viewfinder:') != -1) console.log(episode);
+                console.log(++counter);
                 arr.forEach(function(title) {
+
                     if(natural.LevenshteinDistance(episode.title, title) < 2) {
                         console.log(episode.title, title);
                         episode.remove()
