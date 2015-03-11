@@ -1,5 +1,7 @@
-var models = require('./app/models'),
-    mongoose = require('mongoose');
+var models = require('./app/models');
+var mongoose = require('mongoose');
+var natural = require('natural');
+
 
 mongoose.connect('mongodb://localhost/MyApp');
 
@@ -13,9 +15,14 @@ mongoose.connection.on('open', function() {
         .exec()
         .then(function(episodes) {
             episodes.forEach(function(episode) {
-                if(episode.title in arr) console.log(episode.title);
+                arr.forEach(function(title) {
+                    if(natural.LevenshteinDistance(episode.title, title) < 2)
+                    console.log(episode.title, title);
+                });
+
                 arr.push(episode.title);
             });
+            console.log('all done');
         });
 
     return 0;
