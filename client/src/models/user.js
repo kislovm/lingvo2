@@ -4,6 +4,7 @@ module.exports = UserModel = Backbone.Model.extend({
     urlRoot: 'user',
     defaults: {
         difficulty: 'General',
-        highlight: false
+        highlight: false,
+        language: 'chinese'
     }
 });

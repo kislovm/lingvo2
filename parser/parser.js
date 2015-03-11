@@ -52,7 +52,8 @@ module.exports = {
             processedBody = {},
             descriptionTokens = this._tokenize(episode.description),
             bodyTokens = episode.body ? this._tokenize(episode.body) : [],
-            tokens = descriptionTokens.concat(bodyTokens);
+            tokens = descriptionTokens.concat(bodyTokens),
+            matches = [];
 
         dicts.forEach(function(dict) {
 
@@ -68,10 +69,10 @@ module.exports = {
 
                 if (used.indexOf(truncatedToken) == -1) {
                     count++;
-                    if (truncatedWords.indexOf(truncatedToken) != -1) {
+                    if (truncatedWords.indexOf(truncatedToken.match(/\w+/) && truncatedToken.match(/\w+/)[0]) != -1) {
                         hits++;
                     }
-                    used.push(truncatedToken);
+                    used.push(truncatedToken.match(/\w+/)[0]);
                 }
 
                 if (classificator(hits, count) && episode.lexica.indexOf(dict.name) == -1) {
@@ -84,13 +85,14 @@ module.exports = {
 
             processedDescription[dict.name] = this.highlight(episode.description, truncatedWords);
             processedBody[dict.name] = episode.body && this.highlight(episode.body, truncatedWords);
+            matches = matches.concat(used);
 
         }, this);
 
         return {
             processedDescription: processedDescription,
             processedBody: processedBody,
-            tokens: tokens
+            tokens: matches
         };
 
     }

@@ -18,23 +18,23 @@
 //    var resu = { name: dict.name, words: [] };
 //
 //    dict.words.forEach(function(word) {
-//        translate(word, { from: 'en', to: 'zh', key: key}, function(err, res){
+//        translate(word, { from: 'en', to: 'pt', key: key}, function(err, res){
 //            resu.words.push({ original: word, chinese: res.text[0] });
 //
 //            if(dict.words.length == resu.words.length)
 //                result.push(resu);
 //
-//            if(result.length == dicts.length) console.log(JSON.stringify(result));
+//            if(result.length == dicts.length) console.log('module.exports=', JSON.stringify(result));
 //        });
 //
 //    });
 //
 //
 //});
-//
 
 
-chinese = require('./chinese-new');
+
+chinese = require('./turkish-new');
 
 dicts = {};
 

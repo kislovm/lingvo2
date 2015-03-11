@@ -9,7 +9,8 @@ module.exports = ControlsView = Marionette.ItemView.extend({
 
     events: {
         'change .highlight-switcher': 'toggleHighlight',
-        'change .random-select': 'toggleRandom'
+        'change .random-select': 'toggleRandom',
+        'change .language-select': 'changeLanguage'
     },
 
     initialize: function() {
@@ -20,6 +21,7 @@ module.exports = ControlsView = Marionette.ItemView.extend({
     onRender: function() {
         this.$el.find('.highlight-switcher').val(this.model.get('highlight'));
         this.$el.find('.random-select').val(this.model.get('random') ? '1' : '0');
+        this.$el.find('.language-select').val(this.model.get('language'));
     },
 
     toggleHighlight: function() {
@@ -28,6 +30,11 @@ module.exports = ControlsView = Marionette.ItemView.extend({
 
     toggleRandom: function() {
         this.model.set('random', !!parseInt(this.$el.find('.random-select').val()));
+    },
+
+    changeLanguage: function() {
+        this.model.set('language', this.$el.find('.language-select').val());
+        this.model.save();
     }
 
 });
