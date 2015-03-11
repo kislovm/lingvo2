@@ -38,8 +38,9 @@ module.exports = {
     highlight: function(text, truncatedWords) {
         return text.split(' ').map(function(word) {
             if (truncatedWords.indexOf(word.stem().match(/\w+/) && word.stem().match(/\w+/)[0]) != -1)
-                return '<span class="highlight">' + word + '</span>'; else
-                return word;
+                return '<span title="Перевод" class="word highlight">' + word + '</span>';
+            else
+                return '<span title="Перевод" class="word">' + word + '</span>';
         }).join(' ');
     },
 
