@@ -8,19 +8,18 @@
 
 <div class="text-container">
 
-  <p>{{{ description }}}</p>
+  <p>
+      {{{ description }}}
 
-{{#if body}}
-  <div class="text-container">
-
-    <div class="content hideContent">
-      <p> {{{ body }}} </p>
-      <span>Original article: </span><a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a>
-    </div>
-    <div class="show-more">
-      <a>Show more</a>
-    </div>
-  </div>
-{{/if}}
+        {{#if body}}
+            <div class="content hideContent">
+               {{{ body }}}
+              <span>Original article: </span><a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a>
+            </div>
+            <div class="show-more">
+              <a>Show more</a>
+            </div>
+        {{/if}}
+  </p>
 
 </div>
