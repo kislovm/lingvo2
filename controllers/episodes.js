@@ -26,6 +26,7 @@ module.exports = {
 
         models.Episode
             .find(query)
+            .select('title link name publicationDate image processedDescription body originalArticleLink')
             .sort('-publicationDate')
             .skip(skip)
             .limit(10)
