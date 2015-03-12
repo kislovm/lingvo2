@@ -11,6 +11,7 @@ mongoose.connection.on('open', function() {
 
     models.Episode
         .find({})
+        //.sort('-publicationDate')
         .select('title')
         .exec()
         .then(function(episodes) {

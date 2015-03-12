@@ -8,7 +8,7 @@ var models = require('./models'),
       return $('p').filter('[class~=\'zn-body__paragraph\']')
       .map(function() {
         return $(this).text();
-      }).get().join('\n');
+      }).get().join('</br>');
     },
     parseBbcCoUk = function ($, desc) {
       var paragraphs = $('div[class~=\'story-body\']')
@@ -18,21 +18,21 @@ var models = require('./models'),
       }).get();
 
       if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-        return paragraphs.slice(1).join('');
+        return paragraphs.slice(1).join('</br>');
       }
-      return paragraphs.join('');
+      return paragraphs.join('</br>');
     },
     economistComParse = function($, desc) {
       var paragraphs = $('div[class~=\'main-content\']')
-      .find('p:not([class])')
-      .map(function(i, e) {
-        return $(e).text();
-      }).get();
+          .find('p:not([class])')
+          .map(function(i, e) {
+            return $(e).text();
+          }).get();
 
       if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-        return paragraphs.slice(1).join('');
+        return paragraphs.slice(1).join('</br>');
       }
-      return paragraphs.join('');
+      return paragraphs.join('</br>');
     },
     parseRssfeedsUsatodayCom = function($) {
       var paragraphs = [];
@@ -42,7 +42,7 @@ var models = require('./models'),
           paragraphs.push($(e).text());
         }
       });
-      return paragraphs.join('');
+      return paragraphs.join('</br>');
     },
     parseWwwForbesComParse = function($, desc) {
       var paragraphs = $('div[class~=\'body_inner\']')
@@ -52,16 +52,16 @@ var models = require('./models'),
       }).get();
 
       if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-        return paragraphs.slice(1).join('');
+        return paragraphs.slice(1).join('</br>');
       }
-      return paragraphs.join('');
+      return paragraphs.join('</br>');
     },
     parseTelegraphFeedsportalCom = function($) {
       return $('div[id~=\'mainBodyArea\']')
       .find('p:not([class]), h3')
       .map(function(i, e) {
         return $(e).text();
-      }).get().join('');
+      }).get().join('</br>');
     },
     decodeHtmlEntity = function(str) {
       str = str.replace(/&#(\d+);/g, function(match, dec) {
@@ -76,7 +76,7 @@ var models = require('./models'),
         return $(e).text();
       }).get();
 
-      var article = decodeHtmlEntity(paragraphs.join('')).trim();
+      var article = decodeHtmlEntity(paragraphs.join('</br>')).trim();
       desc = decodeHtmlEntity(desc).trim().slice(-60, -40);
 
       var desc_begin = article.lastIndexOf(desc);
