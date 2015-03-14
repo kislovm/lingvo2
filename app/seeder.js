@@ -280,6 +280,10 @@ module.exports = {
 
                   if (!description || description.length < 150) continue;
 
+                  if (ep.description.indexOf('...', this.length - '...'.length) !== -1) {
+                      ep.description = ep.description.slice(0, -3);
+                  }
+
                   Request(ep.link, function(err, res, body){
                     if(err) {
                       console.log(err);
