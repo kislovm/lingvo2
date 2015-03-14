@@ -50,8 +50,8 @@ App.prototype.start = function() {
                     $('.j-languageLVL, .articles').removeClass('floating');
                 }
             });
-            $('.j-show-about').hover(
-                function() {
+            $('.j-show-about')
+                .hover(function() {
                     $('.how').removeClass('hide').delay(1).queue(function(){
                         $(this).addClass("showing").dequeue();
                     });
@@ -60,11 +60,10 @@ App.prototype.start = function() {
                     $('.how').removeClass('showing').delay(150).queue(function(){
                         $(this).addClass('hide').dequeue();
                     });
-                }
-            );
-            $('.j-show-about').click(function(){
-                $('.mobile-how').toggleClass('hide');
-            });
+                })
+                .click(function() {
+                    $('.mobile-how').toggleClass('hide');
+                });
 
 
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
