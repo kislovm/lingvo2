@@ -12,22 +12,28 @@ mongoose.connection.on('open', function() {
     models.Episode
         .find({})
         //.sort('-publicationDate')
-        .select('title')
+        .select('description')
         .exec()
         .then(function(episodes) {
             var counter = 0;
+            console.log(1);
             episodes.forEach(function(episode) {
-                if(episode.title.indexOf('Viewfinder:') != -1) console.log(episode);
                 console.log(++counter);
-                arr.forEach(function(title) {
+                //arr.forEach(function(title) {
+                //
+                //    if(natural.LevenshteinDistance(episode.title, title) < 2) {
+                //        console.log(episode.title, title);
+                //        episode.remove()
+                //    }
+                //});
+                //
+                //arr.push(episode.title);
 
-                    if(natural.LevenshteinDistance(episode.title, title) < 2) {
-                        console.log(episode.title, title);
-                        episode.remove()
-                    }
-                });
 
-                arr.push(episode.title);
+                if (episode.description.indexOf('...') === episode.description.length - 3) {
+                    episode.description = episode.description.slice(0, -3);
+                    episode.save();
+                }
             });
             console.log('');
             console.log('-------------');

@@ -280,7 +280,7 @@ module.exports = {
 
                   if (!description || description.length < 150) continue;
 
-                  if (ep.description.indexOf('...', this.length - '...'.length) !== -1) {
+                  if (ep.description.indexOf('...') === ep.description.length - 3) {
                       ep.description = ep.description.slice(0, -3);
                   }
 
