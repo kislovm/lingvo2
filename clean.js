@@ -15,10 +15,10 @@ mongoose.connection.on('open', function() {
         .select('description')
         .exec()
         .then(function(episodes) {
-            var counter = 0;
-            console.log(1);
+            var counter = 0,
+                trimmed = 0;
             episodes.forEach(function(episode) {
-                console.log(++counter);
+                ++counter;
                 //arr.forEach(function(title) {
                 //
                 //    if(natural.LevenshteinDistance(episode.title, title) < 2) {
@@ -33,9 +33,15 @@ mongoose.connection.on('open', function() {
                 if (episode.description.indexOf('...') === episode.description.length - 3) {
                     episode.description = episode.description.slice(0, -3);
                     episode.save();
+                    trimmed++;
+                    console.log(episode.description);
                 }
             });
             console.log('');
+            console.log('-------------');
+            console.log('Processed: ' + counter);
+            console.log('-------------');
+            console.log('Trimmed: ' + trimmed);
             console.log('-------------');
             console.log('ALL DONE');
         });
