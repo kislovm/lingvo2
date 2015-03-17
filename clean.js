@@ -28,9 +28,8 @@ mongoose.connection.on('open', function() {
                 //});
                 //
                 //arr.push(episode.title);
-
-
-                if (episode.description.indexOf('...') === episode.description.length - 3) {
+                
+                if (episode.description.indexOf('...') === (episode.description.length - 4)) {
                     episode.description = episode.description.slice(0, -3);
                     episode.save();
                     trimmed++;
