@@ -15,20 +15,18 @@ mongoose.connection.on('open', function() {
         difficulty
             .find(id)
             .then(function(episodes) {
-                if(episodes && episodes.length) {
+                var count = episodes && episodes.length;
+
+                if(count) {
                     difficulty.processMany(episodes, id);
-
-                    return 1;
-
                 }
-                return 0;
+                return count
             })
             .then(function(result) {
-                if(result) {
+                if (result) {
                     doStuff();
-                }
-                else {
-                    setTimeout(doStuff, 1000);
+                } else {
+                    setTimeout(doStuff, 5000);
                 }
             });
     }
