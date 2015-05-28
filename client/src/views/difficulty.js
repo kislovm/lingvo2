@@ -1,4 +1,6 @@
-var Marionette = require('backbone.marionette'),
+var $ = require('jquery'),
+    Backbone = require('backbone'),
+    Marionette = require('backbone.marionette'),
     ControlsView = require('./controls.js'),
     DictionaryView = require('./dictionary.js'),
     UserModel = require('../models/user');
@@ -65,15 +67,19 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     },
 
     _updateDisabled: function() {
-        this.harderButton.toggleClass('disabled', this.model.get('difficulty') == _.last(this.difficulties));
-        this.easierButton.toggleClass('disabled', this.model.get('difficulty') == _.first(this.difficulties));
+        var len = this.difficulties.length;
+
+        this.harderButton.toggleClass('disabled', this.model.get('difficulty') == this.difficulties[len-1]);
+        this.easierButton.toggleClass('disabled', this.model.get('difficulty') == this.difficulties[0]);
     },
 
 
     easier: function() {
-        if (this.model.get('difficulty') == _.first(this.difficulties)) return;
+        var difficulties = this.difficulties;
 
-        var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) - 1];
+        if (this.model.get('difficulty') == difficulties[0]) return;
+
+        var difficulty = difficulties[difficulties.indexOf(this.model.get('difficulty')) - 1];
 
         if(this.xhr && this.xhr.readyState < 4)
             this.xhr.abort();
@@ -82,9 +88,11 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     },
 
     harder: function() {
-        if (this.model.get('difficulty') == _.last(this.difficulties)) return;
+        var difficulties = this.difficulties;
 
-        var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) + 1];
+        if (this.model.get('difficulty') == difficulties[difficulties.length-1]) return;
+
+        var difficulty = difficulties[difficulties.indexOf(this.model.get('difficulty')) + 1];
 
         if(this.xhr && this.xhr.readyState < 4)
             this.xhr.abort();

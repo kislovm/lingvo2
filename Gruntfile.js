@@ -1,3 +1,5 @@
+var vendor = 'jquery backbone backbone.marionette'.split(' ');
+
 module.exports = function(grunt) {
 
     require('time-grunt')(grunt);
@@ -5,15 +7,6 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-
-        bower: {
-            install: {
-                options: {
-                    targetDir: 'client/requires',
-                    layout: 'byComponent'
-                }
-            }
-        },
 
         clean: {
             build: ['build'],
@@ -25,34 +18,11 @@ module.exports = function(grunt) {
 
         browserify: {
             vendor: {
-                src: ['client/requires/**/*.js'],
-                dest: 'build/vendor.js',
+                files: {
+                    'build/vendor.js': []
+                },
                 options: {
-                    shim: {
-                        jquery: {
-                            path: 'client/requires/jquery/js/jquery.js',
-                            exports: '$'
-                        },
-                        underscore: {
-                            path: 'client/requires/underscore/js/underscore.js',
-                            exports: '_'
-                        },
-                        backbone: {
-                            path: 'client/requires/backbone/js/backbone.js',
-                            exports: 'Backbone',
-                            depends: [
-                                'jquery: $',
-                                'underscore: underscore'
-                            ]
-                        },
-                        'backbone.marionette': {
-                            path: 'client/requires/backbone.marionette/js/backbone.marionette.js',
-                            exports: 'Marionette',
-                            depends: [
-                                'backbone: Backbone'
-                            ]
-                        }
-                    }
+                    require: vendor
                 }
             },
             app: {
@@ -61,7 +31,7 @@ module.exports = function(grunt) {
                 },
                 options: {
                     transform: ['hbsfy'],
-                    external: ['jquery', 'underscore', 'backbone', 'backbone.marionette']
+                    external: vendor
                 }
             }
         },
@@ -144,7 +114,6 @@ module.exports = function(grunt) {
                 options: {
                     nodeArgs: ['--debug'],
                     watchedFolders: ['controllers', 'app'],
-                    ignore: ['app/bower_components/**'],
                     env: {
                         PORT: '3300'
                     }
@@ -181,9 +150,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
 
-    grunt.registerTask('init:dev', ['clean', 'bower', 'browserify:vendor']);
+    grunt.registerTask('init:dev', ['clean', 'browserify:vendor']);
 
-    grunt.registerTask('build:dev', ['clean:dev', 'browserify:app', 'jshint:dev', 'concat', 'compass', 'copy:dev']);
+    grunt.registerTask('build:dev', ['clean:dev', 'browserify:vendor', 'browserify:app', 'jshint:dev', 'concat', 'compass', 'copy:dev']);
     grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'concat', 'cssmin', 'uglify', 'copy:prod']);
 
     grunt.registerTask('heroku', ['init:dev', 'build:dev']);

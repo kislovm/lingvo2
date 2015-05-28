@@ -1,3 +1,4 @@
+var $ = require('jquery');
 var Marionette = require('backbone.marionette');
 
 module.exports = MenuView = Marionette.ItemView.extend({

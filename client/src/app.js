@@ -1,4 +1,6 @@
-var Marionette = require('backbone.marionette'),
+var $ = require('jquery'),
+    Backbone = require('backbone'),
+    Marionette = require('backbone.marionette'),
     Controller = require('./controller'),
     Router = require('./router'),
     UserModel = require('./models/user'),

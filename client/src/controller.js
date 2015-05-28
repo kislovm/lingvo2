@@ -1,4 +1,5 @@
-var Marionette = require('backbone.marionette'),
+var $ = require('jquery'),
+    Marionette = require('backbone.marionette'),
     AppLayoutView = require('./views/layouts/app-layout'),
     EpisodesView = require('./views/episodes'),
     EpisodesCollection = require('./collections/episodes');

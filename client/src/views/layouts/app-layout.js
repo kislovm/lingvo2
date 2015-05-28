@@ -1,6 +1,6 @@
 var Marionette = require('backbone.marionette');
 
-module.exports = AppLayoutView = Backbone.Marionette.LayoutView.extend({
+module.exports = AppLayoutView = Marionette.LayoutView.extend({
     template: require('../../../templates/layout.hbs'),
 
     el: '.content-holder',

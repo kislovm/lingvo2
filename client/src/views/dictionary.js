@@ -1,5 +1,6 @@
-var Marionette = require('backbone.marionette'),
-    UserModel = require('../models/user');
+var $ = require('jquery');
+var Marionette = require('backbone.marionette');
+var UserModel = require('../models/user');
 
 module.exports = DictionaryView = Marionette.ItemView.extend({
 
