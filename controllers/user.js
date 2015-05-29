@@ -1,4 +1,9 @@
 var models = require('../app/models');
+var dictionary = require('../app/dictionary.js');
+var shuffle = function (array){
+    for(var j, x, i = array.length; i; j = Math.floor(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
+    return array;
+};
 
 module.exports = {
     set: function(req, res) {
@@ -11,10 +16,13 @@ module.exports = {
             'Irregular verbs': 'irregular'
         };
 
+        delete req.session.customDictionary;
         req.session.difficulty = difficulties[req.body.difficulty];
         req.session.random = req.body.random;
-        req.session.customDictionary = req.body.random && req.body.customDictionary;
         req.session.language = req.body.language;
+
+        if (!!req.session.random)
+            req.session.customDictionary = shuffle(dictionary(req.session.difficulty, req.session.language)).slice(-20);
 
         res.json({ success: true });
 
@@ -32,9 +40,7 @@ module.exports = {
 
         res.json({
             difficulty: difficulties[req.session.difficulty],
-            random: req.session.random,
-            customDictionary: req.session.random && req.session.customDictionary
-
+            random: req.session.random
         });
 
     }

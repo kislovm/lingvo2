@@ -1,5 +1,4 @@
 var $ = require('jquery'),
-    Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
     ControlsView = require('./controls.js'),
     DictionaryView = require('./dictionary.js'),
@@ -77,9 +76,9 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     easier: function() {
         var difficulties = this.difficulties;
 
-        if (this.model.get('difficulty') == difficulties[0]) return;
+        if (this.model.get('difficulty') == this.difficulties[0]) return;
 
-        var difficulty = difficulties[difficulties.indexOf(this.model.get('difficulty')) - 1];
+        var difficulty = this.difficulties[this.difficulties.indexOf(this.model.get('difficulty')) - 1];
 
         if(this.xhr && this.xhr.readyState < 4)
             this.xhr.abort();
@@ -90,9 +89,9 @@ module.exports = DifficultyView = Marionette.ItemView.extend({
     harder: function() {
         var difficulties = this.difficulties;
 
-        if (this.model.get('difficulty') == difficulties[difficulties.length-1]) return;
+        if (this.model.get('difficulty') == difficulties[difficulties.lenght-1]) return;
 
-        var difficulty = difficulties[difficulties.indexOf(this.model.get('difficulty')) + 1];
+        var difficulty = this.difficulties[difficulties.indexOf(this.model.get('difficulty')) + 1];
 
         if(this.xhr && this.xhr.readyState < 4)
             this.xhr.abort();

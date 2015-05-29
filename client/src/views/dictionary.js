@@ -1,10 +1,13 @@
 var $ = require('jquery');
 var Marionette = require('backbone.marionette');
 var UserModel = require('../models/user');
+var DictionaryCollection = require('../collections/dictionary');
 
 module.exports = DictionaryView = Marionette.ItemView.extend({
 
     model: UserModel,
+
+    collection: new DictionaryCollection(),
 
     template: require('../../templates/dictionary.hbs'),
 
@@ -18,37 +21,18 @@ module.exports = DictionaryView = Marionette.ItemView.extend({
     },
 
     initialize: function() {
-        this.listenTo(this.model, 'change:dictionary change:random', this.render);
+        this.listenTo(this.model, 'sync', this.fetchData);
+        this.listenTo(this.collection, 'reset', this.render);
+        this.fetchData();
     },
 
-    getData: function() {
-        if(this.model.get('random')) {
-
-            this.model.set('customDictionary', _.shuffle(this.model.get('dictionary')).slice(-20));
-
-            if(this.xhr)
-                this.xhr.abort();
-
-            this.xhr = this.model.save();
-
-            return this.model.get('customDictionary');
-
-          } else {
-
-
-              if(this.xhr)
-                  this.xhr.abort();
-
-              this.xhr = this.model.save();
-
-              return this.model.get('dictionary');
-
-          }
+    fetchData: function() {
+        this.collection.fetch({ reset: true });
     },
 
     onRender: function() {
-        this.$el.find('.message').html(this.getData().map(function(word) {
-            if (word.original) word = word.original + ' - ' + word.translation;
+        this.$el.find('.message').html(this.collection.toJSON().map(function(word) {
+            if (word.original) word = word.original + ' — ' + word.translation;
 
             return $('<li>'+ word +'</li>');
         }));

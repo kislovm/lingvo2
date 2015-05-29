@@ -1,38 +1,13 @@
-var models = require('../app/models'),
-    langs = {
-        chinese: require('../chinese'),
-        arabic: require('../arabic'),
-        portugal: require('../portugal'),
-        russian: require('../russian'),
-        spanish: require('../spanish'),
-        turkish: require('../turkish')
-    };
+var dictionary = require('../app/dictionary.js');
 
 module.exports = {
 
-
-
     get: function(req, res) {
-        var difficulty = req.session.difficulty || 'general';
-
-        if(!this.dictionary)
-            this.dictionary = {
-                chinese: {},
-                arabic: {},
-                portugal: {},
-                russian: {},
-                spanish: {},
-                turkish: {}
-            };
-
-        if(!this.dictionary[req.session.language || 'chinese'][difficulty])
-            this.dictionary[req.session.language || 'chinese'][difficulty] = langs[req.session.language || 'chinese'][difficulty].map(function(word) {
-                return { original: word.original, translation: word.chinese }
-            });
-
-        res.json({
-            dictionary: this.dictionary[req.session.language || 'chinese'][difficulty]
-        });
+        if (req.session.customDictionary) {
+            res.json(req.session.customDictionary);
+        } else {
+            res.json(dictionary(req.session.difficulty || 'general', req.session.language || 'chinese'));
+        }
 
     }
 };

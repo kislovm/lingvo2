@@ -30,6 +30,7 @@ module.exports = ControlsView = Marionette.ItemView.extend({
 
     toggleRandom: function() {
         this.model.set('random', !!parseInt(this.$el.find('.random-select').val()));
+        this.model.save();
     },
 
     changeLanguage: function() {
