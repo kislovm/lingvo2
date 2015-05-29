@@ -40,15 +40,23 @@ module.exports = {
                     }
 
                     res.json(episodes.map(function(episode) {
+                        episode = episode.toJSON();
+
                         if (customDictionary) {
                             episode.description = parser.highlight(episode.description, customDictionary);
-                            episode.body && episode.processedBody && (episode.body = parser.highlight(episode.body, customDictionary));
+                            episode.body && (episode.body = parser.highlight(episode.body, customDictionary));
+
+                            delete episode.processedDescription;
+                            delete episode.processedBody;
 
                             return episode;
                         }
 
                         episode.description = episode.processedDescription[difficulty];
                         episode.body && episode.processedBody && (episode.body = episode.processedBody[difficulty]);
+
+                        delete episode.processedDescription;
+                        delete episode.processedBody;
 
                         return episode;
                     }));
