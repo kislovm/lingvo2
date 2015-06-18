@@ -5,8 +5,11 @@ var $ = require('jquery'),
     Router = require('./router'),
     UserModel = require('./models/user'),
     MenuView = require('./views/menu'),
+    AuthView = require('./views/auth'),
     DifficultyView = require('./views/difficulty'),
     EpisodesCollection = require('./collections/episodes');
+
+var dictModel = require('./models/dictionary-popup-model');
 
 module.exports = App = function App() {};
 
@@ -28,6 +31,9 @@ App.prototype.start = function() {
             }
         });
 
+        App.data.dictModel = new dictModel();
+        App.data.dictModel.fetch();
+
     });
 
     App.core.vent.bind('app:start', function() {
@@ -36,6 +42,7 @@ App.prototype.start = function() {
             App.controller = new Controller();
             App.router = new Router({ controller: App.controller });
             App.layoutView.menu.show(new MenuView());
+            (new AuthView()).render();
 
             //Макаевский говнокод -- поправить.
             var eTopTopics = $('.j-topics').offset().top, eTopLanguageLVL = $('.j-languageLVL').offset().top;

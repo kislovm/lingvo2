@@ -11,6 +11,14 @@ var express = require('express'),
     expressErrorHandler = require('express-error-handler'),
     app = express();
 
+var MongoStore = require('connect-mongo')(expressSession);
+
+var oauth = require('./oauth.js');
+var passport = require('passport');
+
+//connect to the db server:
+var connection = mongoose.connect('mongodb://localhost/MyApp');
+
 app.set('port', process.env.PORT || 3301);
 app.set('views', __dirname + '/views');
 app.engine('handlebars', exphbs({
@@ -19,16 +27,27 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-app.use(bodyParser.json({limit: '50mb'}));
+passport.serializeUser(function(user, done) { done(null, user); });
+passport.deserializeUser(function(obj, done) { done(null, obj); });
+
+app.use(expressSession({
+    secret: 'apovu4b0g=8429IG4PB',
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+passport.use(oauth.facebook);
+passport.use(oauth.twitter);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(methodOverride());
 app.use(cookieParser());
-app.use(expressSession({
-    secret: 'apovu4b0g=8429IG4PB',
-    resave: true,
-    saveUninitialized: true
-}));
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use('/client/images/', express.static(path.join(__dirname, '/client/images')));
@@ -38,9 +57,6 @@ app.use('/static/fonts/', express.static(path.join(__dirname, '/static/fonts')))
 if ('development' == app.get('env')) {
     app.use(expressErrorHandler());
 }
-
-//connect to the db server:
-mongoose.connect('mongodb://localhost/MyApp');
 
 //routes list:
 routes.initialize(app);

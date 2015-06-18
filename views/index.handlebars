@@ -3,6 +3,20 @@
 <section class="news-feed">
 
     <header class="main-header">
+        <section class="auth">
+            {{#if user}}
+                <a class="fake-link dictionary-popup" class="dictionaries-popup">Dictionaries</a>
+                |
+                <a href="/account" class="auth__user-name">{{{ user.name }}}</a>
+                |
+                <a href="/logout" class="auth__logout">Logout</a>
+            {{else}}
+                Login&nbsp;via
+                <a href="/auth/facebook" class="auth__facebook-login">Facebook</a>
+                |
+                <a href="/auth/twitter" class="auth__facebook-login">Twitter</a>
+            {{/if}}
+        </section>
         <h1>UpVoc</h1>
         <h2>improve your English vocabulary. <span onclick="counter.reachGoal('how')" class="highlight-color pointer j-show-about">How?</span></h2>
         <div class="mobile-about-project mobile-how hide">

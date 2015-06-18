@@ -1,0 +1,61 @@
+<aside class="sidebar">
+</aside>
+<section class="news-feed">
+
+    <header class="main-header">
+        <section class="auth">
+            {{#if user}}
+                <a href="/" class="auth__index">Home</a>
+                |
+                <a href="/logout" class="auth__logout">Logout</a>
+            {{else}}
+                Login&nbsp;via
+                <a href="/auth/facebook" class="auth__facebook-login">Facebook</a>
+                |
+                <a href="/auth/facebook" class="auth__facebook-login">Twitter</a>
+            {{/if}}
+        </section>
+        <h1>Profile</h1>
+    </header>
+
+    <section class="articles">
+
+        <article class="article">
+            <form action="/account/edit">
+                <p>
+                    Name: <input value="{{{ user.name }}}" name="name"/>
+                </p>
+                <p>
+                    Email: <input value="{{{ user.email }}}" name="email"/>
+                </p>
+                <p>
+                    <input type="submit" value="Save">
+                </p>
+            </form>
+        </article>
+
+        <article class="article">
+            <p>
+                My dictionaries:
+            </p>
+            {{#each dictionaries}}
+                <p>
+                    {{{ this.name }}}&nbsp;({{{ this.words.length }}})
+                    &nbsp;
+                    <a href="/dictionary/edit/{{{ this.name }}}">Edit</a>
+                    {{#if this.deletable}}
+                        &nbsp;
+                        <a href="/dictionary/delete/{{{ this.name }}}">Delete</a>
+                    {{/if}}
+                </p>
+            {{/each}}
+            <p>
+                <form action="/dictionary/add">
+                    Name: <input name="name"/>&nbsp;<input type="submit" value="Add">
+                </form>
+            </p>
+        </article>
+
+    </section>
+
+</section>

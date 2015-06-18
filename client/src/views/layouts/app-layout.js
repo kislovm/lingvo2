@@ -1,7 +1,6 @@
 var Marionette = require('backbone.marionette');
 
 module.exports = AppLayoutView = Marionette.LayoutView.extend({
-    template: require('../../../templates/layout.hbs'),
 
     el: '.content-holder',
 
@@ -9,7 +8,8 @@ module.exports = AppLayoutView = Marionette.LayoutView.extend({
         menu: '.menu',
         content: '.articles',
         difficulty: '.language-lvl-selector',
-        popup: '.popup-body'
+        popup: '.popup-body',
+        auth: '.auth'
     }
 });
 

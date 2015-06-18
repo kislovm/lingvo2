@@ -1,6 +1,7 @@
 @import "compass/reset"
 @import "compass/css3/user-interface"
 @import "compass"
+@import "popup"
 
 
 // Variables
@@ -402,9 +403,6 @@ div.text-container
 .hideContent
     display: none
 
-.showContent
-    display: block
-
 h1
     font-size: 24px
 
@@ -455,34 +453,16 @@ p
     text-decoration: none
 
 
-.word:hover:after
-    background: #111
-    background: rgba(0,0,0,.8)
-    border-radius: .5em
-    bottom: 1.35em
-    color: #fff
-    content: attr(title)
-    display: block
-    left: 1em
-    padding: .3em 1em
-    position: absolute
-    text-shadow: 0 1px 0 #000
-    white-space: nowrap
-    z-index: 98
-
-.word:hover:before
-    border: solid
-    border-color: #111 transparent
-    border-color: rgba(0,0,0,.8) transparent
-    border-width: .4em .4em 0 .4em
-    bottom: 1em
-    content: ""
-    display: block
-    left: 2em
-    position: absolute
-    z-index: 99
-
-
 .original-article-link
     line-height: 3em
     display: block
+
+.auth
+    font-size: 1.3em
+    width: 100%
+    padding: 0 0 20px
+    text-align: right
+    margin: -20px 25px 0
+
+.dictionary-popup__part
+    padding: 15px

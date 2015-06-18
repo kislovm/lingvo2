@@ -7,6 +7,7 @@ module.exports = {
     index: function(req, res) {
         this.category(req, res);
     },
+
     category: function(req, res) {
         var skip = 10 * (req.params.page || 0),
             difficulty = req.session.difficulty || 'general',
@@ -60,10 +61,10 @@ module.exports = {
 
                         return episode;
                     }));
-
                 }
         });
     },
+
     count: function(req, res) {
         var tokenizer = new Natural.WordTokenizer(),
             tokens = {},

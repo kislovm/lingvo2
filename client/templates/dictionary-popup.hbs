@@ -1,0 +1,22 @@
+{{#if dictionaries.length}}
+    <p>
+        <label for="autosave-words">Autosave words</label>
+        <input
+                {{#if autosave}}checked="checked"{{/if}}
+                id="autosave-words"
+                type="checkbox"/>
+    </p>
+    <p>
+        Save words in
+        <select>
+            {{#each dictionaries}}
+                <option
+                    value="{{ this.name }}">
+                    {{ this.name }}
+                </option>
+            {{/each}}
+        </select>
+    </p>
+{{else}}
+    Loading...
+{{/if}}

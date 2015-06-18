@@ -1,0 +1,42 @@
+<aside class="sidebar">
+</aside>
+<section class="news-feed">
+
+    <header class="main-header">
+        <section class="auth">
+            {{#if user}}
+                <a href="/" class="auth__index">Home</a>
+                |
+                <a href="/account" class="auth__account">{{{ user.name }}}</a>
+                |
+                <a href="/logout" class="auth__logout">Logout</a>
+            {{else}}
+                Login&nbsp;via
+                <a href="/auth/facebook" class="auth__facebook-login">Facebook</a>
+                |
+                <a href="/auth/facebook" class="auth__facebook-login">Twitter</a>
+            {{/if}}
+        </section>
+        <h1>Profile</h1>
+    </header>
+
+    <section class="articles">
+        <article class="article">
+            <p>
+                Dictionary «{{{ dictionary.name }}}»:
+            </p>
+            {{#each dictionary.words}}
+                <p>
+                    {{{ this.text }}} <a href="/word/{{{ this._id }}}/delete">Delete</a>
+                    <ul>
+                        {{#each this.translation.translations}}
+                            <li>— {{ this.text }}</li>
+                        {{/each}}
+                    </ul>
+                </p>
+            {{/each}}
+        </article>
+
+    </section>
+
+</section>

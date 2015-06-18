@@ -1,0 +1,10 @@
+{{ word }} [{{ transcription }}]
+{{#if translations.length}}
+    Translations:
+    <ul>
+    {{#each translations}}
+        <li>— {{this.text}}</li>
+    {{/each}}
+    </ul>
+{{/if}}
+<a class="word__save fake-link">Add to dictionary</a>

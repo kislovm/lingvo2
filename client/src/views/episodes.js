@@ -1,51 +1,6 @@
 var $ = require('jquery');
 var Marionette = require('backbone.marionette');
-
-var itemView = Marionette.ItemView.extend({
-    template: require('../../templates/episode.hbs'),
-
-    events: {
-        'click .show-more': 'showMore'
-    }, showMore: function() {
-        var $el = this.$el, $content = $el.find('.content'), linkText = $el.find('.show-more a').text().toUpperCase();
-        if (!this.opened) {
-            linkText = "Show less";
-            $content.removeClass('hideContent').addClass('showContent');
-            counter.reachGoal('show-more');
-        } else {
-            linkText = "Show more";
-            $content.removeClass('showContent').addClass('hideContent');
-        }
-
-        this.opened = !this.opened;
-
-        $el.find('.show-more a').text(linkText);
-
-    },
-
-    opened: false,
-
-    tagName: 'article',
-
-    className: 'article',
-
-    initialize: function() {
-        this.listenTo(this.model, 'change', this.render);
-        this.listenTo(App.data.user, 'change:highlight', this.toggleHighlight);
-    },
-
-    toggleHighlight: function() {
-        if(App.data.user.get('highlight'))
-            this.$el.addClass('highlight-yes');
-        else
-            this.$el.removeClass('highlight-yes');
-    },
-
-    onRender: function() {
-        this.toggleHighlight();
-    }
-
-});
+var itemView = require('./episode');
 
 module.exports = CollectionView = Marionette.CollectionView.extend({
     initialize: function() {

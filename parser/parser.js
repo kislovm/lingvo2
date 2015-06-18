@@ -37,10 +37,13 @@ module.exports = {
 
     highlight: function(text, truncatedWords) {
         return text.split(' ').map(function(word) {
-            if (truncatedWords.indexOf(word.stem().match(/\w+/) && word.stem().match(/\w+/)[0]) != -1)
+            var stemedWord = word.stem().match(/\w+/) || [];
+
+            if (truncatedWords.indexOf(stemedWord[0]) != -1) {
                 return '<span title="Перевод" class="word highlight">' + word + '</span>';
-            else
+            } else {
                 return '<span title="Перевод" class="word">' + word + '</span>';
+            }
         }).join(' ');
     },
 
@@ -67,13 +70,14 @@ module.exports = {
             tokens.forEach(function(token) {
 
                 var truncatedToken = token.stem();
+                var matchedToken = truncatedToken.match(/\w+/) || [];
 
                 if (used.indexOf(truncatedToken) == -1) {
                     count++;
-                    if (truncatedWords.indexOf(truncatedToken.match(/\w+/) && truncatedToken.match(/\w+/)[0]) != -1) {
+                    if (truncatedWords.indexOf(matchedToken[0]) != -1) {
                         hits++;
                     }
-                    used.push(truncatedToken.match(/\w+/)[0]);
+                    used.push(matchedToken[0]);
                 }
 
                 if (classificator(hits, count) && episode.lexica.indexOf(dict.name) == -1) {

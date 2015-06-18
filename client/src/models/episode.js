@@ -4,14 +4,23 @@ module.exports = EpisodeModel = Backbone.Model.extend({
     idAttribute: '_id',
     urlRoot: 'api/episode',
     parse: function(data) {
-        if(data) {
-            if(!data.publicationDate) return data;
+        if(!data) return;
 
-            var date = new Date(data.publicationDate);
+        var pubDate = data.publicationDate;
+        var description = data.description;
 
-            data.formattedDate = [date.getDate(), date.getMonth() + 1, date.getFullYear()].join('.');
+        if (!!pubDate) data.formattedDate = this._formatDate(pubDate);
 
-            return data;
-        }
+        data.description = description.split(' ').map(function (word) {
+            return word;
+        }).join(' ');
+
+        return data;
+    },
+
+    _formatDate: function(date) {
+        date = new Date(date);
+
+        return [date.getDate(), date.getMonth() + 1, date.getFullYear()].join('.');
     }
 });
