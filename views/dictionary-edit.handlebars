@@ -28,6 +28,7 @@
             {{#each dictionary.words}}
                 <p>
                     {{{ this.text }}} <a href="/word/{{{ this._id }}}/delete">Delete</a>
+                    [{{ this.translation.transcription }}]
                     <ul>
                         {{#each this.translation.translations}}
                             <li>— {{ this.text }}</li>

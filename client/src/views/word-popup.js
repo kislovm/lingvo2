@@ -23,7 +23,7 @@ module.exports = Marionette.ItemView.extend({
     _save: function() {
         $.post('/dictionary/add/word', this.model.toJSON(), 'json')
             .success(function() {
-                alert('Word saved');
+                alert('Word saved to dictionary ' + App.data.dictModel.get('selected'));
             });
     }
 
