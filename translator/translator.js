@@ -9,7 +9,7 @@ module.exports = function () {
             from !== 'en' && reject(Error("Translation from en only, have: " + from));
             langs.indexOf(to) === -1 && reject(Error("Translation to [" + langs + "] only, have: " + to));
  
-            var url = 'https://glosbe.com/gapi/translate?from=' + from + '&dest=' + to + '&format=json&phrase=' + what + '&pretty=true';
+            var url = 'https://glosbe.com/gapi/translate?from=' + from + '&dest=' + to + '&format=json&phrase=' + what.toLowerCase() + '&pretty=true';
             request.get(url, function (error, response, body) {
               if (!error && response.statusCode == 200) {
                   var body = JSON.parse(body)['tuc'];
