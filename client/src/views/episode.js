@@ -14,12 +14,19 @@ module.exports = Marionette.ItemView.extend({
 
     openPopup: function(e) {
         var target = $(e.currentTarget);
+        var word = target.text().match(/\w+/);
 
-        ModuiPopup.open({
-            target : target,
-            position : 'top center',
-            contents : new WordPopup({ model: new Model({ word: target.text().match(/\w+/) }) })
-        });
+        $.get('/translate/' + word, 'json')
+            .then((function(data) {
+                data.word = word;
+                data.translations = data.translations.slice(0,3);
+
+                ModuiPopup.open({
+                    target : target,
+                    position : 'top center',
+                    contents : new WordPopup({ model: new Model(data) })
+                });
+            }).bind(this));
     },
 
     showMore: function() {

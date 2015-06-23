@@ -40,7 +40,8 @@ module.exports = {
 
         res.json({
             difficulty: difficulties[req.session.difficulty],
-            random: req.session.random
+            random: req.session.random,
+            language: req.session.language || 'chinese'
         });
 
     }

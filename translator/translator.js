@@ -1,10 +1,12 @@
 var Promise = require('es6-promise').Promise;
 var request = require('request');
 
-var translatorDict = require('./dict');
+var translatorDict = require('./dict2');
  
 module.exports = function () {
     this.translate = function(from, to, what) {
+        var getTranscription = this.getTranscription;
+
         return new Promise(function(resolve, reject) {
             from !== 'en' && reject(Error("Translation from en only, have: " + from));
             langs.indexOf(to) === -1 && reject(Error("Translation to [" + langs + "] only, have: " + to));
@@ -12,10 +14,10 @@ module.exports = function () {
             var url = 'https://glosbe.com/gapi/translate?from=' + from + '&dest=' + to + '&format=json&phrase=' + what.toLowerCase() + '&pretty=true';
             request.get(url, function (error, response, body) {
               if (!error && response.statusCode == 200) {
-                  var body = JSON.parse(body)['tuc'];
+                  body = JSON.parse(body)['tuc'];
                   
                   if (!body || body.length === 0) {
-                      resolve({'phrase': what, 'transcription': translatorDict[what], 'translations': []});
+                      resolve({'phrase': what, 'transcription': getTranscription(what), 'translations': []});
                   } else {
                       var phrases = body.filter(function(v) { return 'phrase' in v;})
                                         .map(function(v) { return v['phrase']});
@@ -26,6 +28,15 @@ module.exports = function () {
               }
              });
         });
+    };
+
+    this.getTranscription = function (word) {
+        do {
+            console.log(word);
+            if(translatorDict[word]) {
+                return translatorDict[word];
+            }
+        } while(word = word.slice(0, -1))
     };
  
     this.languages = function() {

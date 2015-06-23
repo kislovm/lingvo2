@@ -14,10 +14,6 @@ module.exports = Marionette.ItemView.extend({
         if (App.data.dictModel.get('autosave')) {
             this._save();
         }
-        $.get('/translate/' + this.model.get('word'), 'json')
-            .then((function(data) {
-                this.model.set(data);
-            }).bind(this));
     },
 
     _save: function() {

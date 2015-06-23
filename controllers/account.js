@@ -86,7 +86,15 @@ module.exports = {
     },
 
     deleteWord: function(req, res) {
-        Word.remove({ _id: req.params.id }).exec()
+        Word.findOne({ _id: req.params.id }).populate('dictionary').exec()
+            .then(function(word) {
+                word.dictionary.words.pull({ _id: req.params.id });
+
+                return word.dictionary.save();
+            })
+            .then(function() {
+                return Word.remove({ _id: req.params.id }).exec()
+            })
             .then(function() {
                 res.redirect('/account');
                 done();

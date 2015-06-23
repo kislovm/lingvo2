@@ -11,8 +11,10 @@ module.exports = EpisodesCollection = Backbone.Collection.extend({
     },
 
     increment: function() {
-        this.page++;
-        this.fetch();
+        if (!this.xhr || this.xhr.readyState == 4) {
+            this.page++;
+            this.xhr = this.fetch();
+        }
     },
 
     parse: function(data) {
