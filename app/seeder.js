@@ -7,7 +7,9 @@ var models = require('./models'),
     parseRssCnnCom = function($) {
       return $('p').filter('[class~=\'zn-body__paragraph\']')
       .map(function() {
-        return $(this).text();
+          var text = $(this).text();
+          if(text.indexOf('(CNN)') != -1 ) return '';
+          return rext
       }).get().join('</br>');
     },
     parseBbcCoUk = function ($, desc) {
