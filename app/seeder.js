@@ -9,7 +9,7 @@ var models = require('./models'),
       .map(function() {
           var text = $(this).text();
           if(text.indexOf('(CNN)') != -1 ) return '';
-          return rext
+          return text
       }).get().join('</br>');
     },
     parseBbcCoUk = function ($, desc) {
