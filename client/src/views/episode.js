@@ -14,7 +14,7 @@ module.exports = Marionette.ItemView.extend({
 
     openPopup: function(e) {
         var target = $(e.currentTarget);
-        var word = target.text().match(/\w+/);
+        var word = target.text().match(/\w+'?\w?/);
 
         $.get('/translate/' + word, 'json')
             .then((function(data) {

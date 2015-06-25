@@ -17,11 +17,11 @@ module.exports = function () {
                   body = JSON.parse(body)['tuc'];
                   
                   if (!body || body.length === 0) {
-                      resolve({'phrase': what, 'transcription': getTranscription(what), 'translations': []});
+                      resolve({'phrase': what, 'transcription': ['No transcription'], 'translations': []});
                   } else {
                       var phrases = body.filter(function(v) { return 'phrase' in v;})
                                         .map(function(v) { return v['phrase']});
-                      resolve({'phrase': what, 'transcription': translatorDict[what], 'translations': phrases});
+                      resolve({'phrase': what, 'transcription': getTranscription(what), 'translations': phrases});
                   }
               } else {
                   reject(Error('[' + error + '] status code: ' + response.statusCode));

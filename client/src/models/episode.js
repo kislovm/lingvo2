@@ -20,8 +20,8 @@ module.exports = EpisodeModel = Backbone.Model.extend({
         console.log($(data.description).text());
 
         if (!$(data.description).text().match(/\w/)) {
-            data.description = data.body.slice(0, 120) + '...';
-            data.body = data.body.slice(120);
+            data.description = data.body;
+            data.body = '';
         }
 
 
