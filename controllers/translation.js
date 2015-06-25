@@ -24,6 +24,7 @@ module.exports = {
                     if (!transcription && translation.transcription) transcription = translation.transcription;
                 } else {
                     res.json(translation);
+                    done();
                 }
             })
             .then(function() {

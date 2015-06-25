@@ -1,4 +1,4 @@
-var dict = JSON.parse(require('./translator/dict'));
+var dict = require('./translator/dict');
 
 var newDict = {};
 
