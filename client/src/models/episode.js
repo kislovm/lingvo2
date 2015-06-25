@@ -1,4 +1,5 @@
 var Backbone = require('backbone');
+var $ = require('jquery');
 
 module.exports = EpisodeModel = Backbone.Model.extend({
     idAttribute: '_id',
@@ -7,7 +8,6 @@ module.exports = EpisodeModel = Backbone.Model.extend({
         if(!data) return;
 
         var pubDate = data.publicationDate;
-        var description = data.description;
 
         if(!data.processedTitle) {
             data.processedTitle = data.title.split(' ').map(function(word) {
@@ -17,9 +17,14 @@ module.exports = EpisodeModel = Backbone.Model.extend({
 
         if (!!pubDate) data.formattedDate = this._formatDate(pubDate);
 
-        data.description = description.split(' ').map(function (word) {
-            return word;
-        }).join(' ');
+        console.log($(data.description).text());
+
+        if (!$(data.description).text().match(/\w/)) {
+            data.description = data.body.slice(0, 120) + '...';
+            data.body = data.body.slice(120);
+        }
+
+
 
         return data;
     },
