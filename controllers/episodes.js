@@ -18,6 +18,10 @@ module.exports = {
         req.params.category && req.params.category != 'all' &&
             (query.category = req.params.category);
 
+        if(req.session.source) {
+            query.originalArticleLink = req.session.source
+        }
+
         if(req.session.random && req.session.customDictionary) {
             var customDictionary = parser._preprocessDict(req.session.customDictionary);
 
