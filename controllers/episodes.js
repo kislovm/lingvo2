@@ -12,7 +12,7 @@ module.exports = {
         var skip = 10 * (req.params.page || 0),
             difficulty = req.session.difficulty || 'general',
             query = {
-                lexica: difficulty
+                //lexica: difficulty
             };
 
         if (req.params.category && req.params.category != 'all') {
