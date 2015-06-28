@@ -9,6 +9,7 @@ module.exports = Marionette.ItemView.extend({
 
     events: {
         'click .show-more': 'showMore',
+        'click .illustration': 'showMore',
         'click .word': 'openPopup'
     },
 
