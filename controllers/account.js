@@ -73,7 +73,18 @@ module.exports = {
 
 
     deleteDictonary: function(req, res) {
-        Dictionary.find({ name: req.params.name, user: req.user._id }).remove().exec()
+        var user = req.user;
+
+        Dictionary.find({ name: req.params.name, user: user._id }).remove().exec()
+            .then(function() {
+                return Dictionary.findOne({
+                    user: user._id
+                }).exec()
+            })
+            .then(function(dictionary) {
+                user.selected = dictionary;
+                return user.save();
+            })
             .then(function() {
                 res.redirect('/account');
             });
