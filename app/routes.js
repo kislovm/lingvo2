@@ -58,7 +58,9 @@ function addUser(req, res, next) {
 
     UserModel.findById(req.session.passport.user).populate('selected').exec()
         .then(function (u) {
-            if (u.selected) {
+            if(!u) {
+                next();
+            } else if (u.selected) {
                 req.user = u;
                 next();
             } else {
