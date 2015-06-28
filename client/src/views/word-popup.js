@@ -17,10 +17,14 @@ module.exports = Marionette.ItemView.extend({
     },
 
     _save: function() {
-        $.post('/dictionary/add/word', this.model.toJSON(), 'json')
-            .success(function() {
-                alert('Word saved to dictionary ' + App.data.dictModel.get('selected'));
-            });
+        if(App.data.dictModel.get('selected')) {
+            $.post('/dictionary/add/word', this.model.toJSON(), 'json')
+                .success(function () {
+                    alert('Word saved to dictionary ' + App.data.dictModel.get('selected'));
+                });
+        } else {
+            alert('Please login to save all your words to personal dictionary');
+        }
     }
 
 });
