@@ -6,6 +6,7 @@ var home = require('../controllers/home'),
     translation = require('../controllers/translation');
 
 var UserModel = require('./models').User;
+var DictionaryModel = require('./models').Dictionary;
 
 var account = require('../controllers/account');
 
@@ -53,11 +54,31 @@ module.exports.initialize = function(app) {
 };
 
 function addUser(req, res, next) {
+    var user;
+
     UserModel.findById(req.session.passport.user).populate('selected').exec()
-        .then(function (user) {
-            req.user = user;
-            return next();
-        });
+        .then(function (u) {
+            if (u.selected) {
+                req.user = u;
+                next();
+            } else {
+                return UserModel.findById(req.session.passport.user).exec();
+            }
+        },
+        function() {
+            return UserModel.findById(req.session.passport.user).exec();
+        })
+        .then(function(u) {
+            user = u;
+
+            return DictionaryModel.findOne({ user: user._id }).exec();
+        })
+        .then(function(dictionary) {
+            user.selected = dictionary;
+
+            return user.save();
+        })
+        .then(addUser.bind(req, res, next))
 }
 
 function ensureAuthenticated(req, res, next) {

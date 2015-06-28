@@ -8,7 +8,6 @@ module.exports = {
         Dictionary.find({ user: req.user._id }).exec()
             .then(function(dictionaries) {
                 res.render('account', { user: req.user, dictionaries: dictionaries });
-                done();
             });
     },
 
@@ -18,7 +17,6 @@ module.exports = {
         req.user.save()
             .then(function() {
                 res.redirect('/account');
-                done();
             });
     },
 
@@ -34,7 +32,6 @@ module.exports = {
                     autosave: user.autosave
                 });
 
-                done();
             });
     },
 
@@ -47,7 +44,6 @@ module.exports = {
             })
             .then(function() {
                 res.json({ success: true });
-                done()
             });
     },
 
@@ -72,7 +68,6 @@ module.exports = {
             function(error) { console.log(error) })
             .then(function(dictionary) {
                 res.render('dictionary-edit', { user: req.user, dictionary: dictionary });
-                done();
             });
     },
 
@@ -81,7 +76,6 @@ module.exports = {
         Dictionary.find({ name: req.params.name, user: req.user._id }).remove().exec()
             .then(function() {
                 res.redirect('/account');
-                done();
             });
     },
 
@@ -97,7 +91,6 @@ module.exports = {
             })
             .then(function() {
                 res.redirect('/account');
-                done();
             });
     },
 
@@ -118,7 +111,6 @@ module.exports = {
             })
             .then(function() {
                 res.redirect('/account');
-                done();
             });
     },
 
@@ -137,7 +129,6 @@ module.exports = {
                     })).save();
                 } else {
                     res.json({ error: 'already added' });
-                    done();
                 }
             })
             .then(function(word){
@@ -146,7 +137,6 @@ module.exports = {
             })
             .then(function() {
                 res.json({ success: true });
-                done();
             });
     }
 
