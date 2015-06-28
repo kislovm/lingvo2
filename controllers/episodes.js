@@ -15,19 +15,20 @@ module.exports = {
                 lexica: difficulty
             };
 
-        req.params.category && req.params.category != 'all' &&
-            (query.category = req.params.category);
+        if (req.params.category && req.params.category != 'all') {
+            query.category = req.params.category;
+        }
 
-        if(req.session.source) {
+        if (req.session.source) {
             query.originalArticleLink = req.session.source
         }
 
-        if(req.session.random && req.session.customDictionary) {
-            var customDictionary = parser._preprocessDict(req.session.customDictionary);
-
-            delete query.lexica;
-            query.tokens = { $in: customDictionary };
-        }
+        //if (req.session.random && req.session.customDictionary) {
+        //    var customDictionary = parser._preprocessDict(req.session.customDictionary);
+        //
+        //    delete query.lexica;
+        //    query.tokens = { $in: customDictionary };
+        //}
 
         models.Episode
             .find(query)

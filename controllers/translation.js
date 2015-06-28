@@ -33,7 +33,7 @@ module.exports = {
                         translations: translation.text.map(function(word) {
                             return { text: word }
                         }),
-                        transcription: transcription || 'No transcription'
+                        transcription: 'No transcription'
                     });
                 });
             });
