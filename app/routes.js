@@ -21,8 +21,8 @@ module.exports.initialize = function(app) {
 
     app.get('/count', episodes.count);
 
-    app.post('/user', user.set);
-    app.get('/user', user.get);
+    app.post('/user', addUser, user.set);
+    app.get('/user', addUser, user.get);
 
     app.get('/account', ensureAuthenticated, addUser, account.index);
     app.get('/account/edit', ensureAuthenticated, addUser, account.edit);

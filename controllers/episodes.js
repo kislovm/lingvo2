@@ -12,7 +12,7 @@ module.exports = {
         var skip = 10 * (req.params.page || 0),
             difficulty = req.session.difficulty || 'general',
             query = {
-                //lexica: difficulty
+                //suslexica: difficulty
             };
 
         if (req.params.category && req.params.category != 'all') {
@@ -57,6 +57,8 @@ module.exports = {
 
                             return episode;
                         }
+
+                        if(!episode.processedDescription || !episode.processedBody) return;
 
                         episode.description = episode.processedDescription[difficulty];
                         episode.body && episode.processedBody && (episode.body = episode.processedBody[difficulty]);

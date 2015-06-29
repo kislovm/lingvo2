@@ -17,8 +17,6 @@ module.exports = EpisodeModel = Backbone.Model.extend({
 
         if (!!pubDate) data.formattedDate = this._formatDate(pubDate);
 
-        console.log($(data.description).text());
-
         if (!$(data.description).text().match(/\w/)) {
             data.description = data.body;
             data.body = '';

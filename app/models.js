@@ -25,6 +25,7 @@ var User = {
     created: Date,
     name: String,
     email: String,
+    language: String,
     autosave: { type: Boolean, default: true },
     selected: { type: Schema.Types.ObjectId, ref: 'Dictionary' }
 };

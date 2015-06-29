@@ -36,14 +36,18 @@ module.exports = {
     },
 
     highlight: function(text, truncatedWords) {
-        return text.split(' ').map(function(word) {
-            var stemedWord = word.stem().match(/\w+/) || [];
+        return text.split(/\s+/g).map(function(token) {
+            var words = token.match(/\w+/g) || [];
 
-            if (truncatedWords.indexOf(stemedWord[0]) != -1) {
-                return '<span title="Перевод" class="word highlight">' + word + '</span>';
-            } else {
-                return '<span title="Перевод" class="word">' + word + '</span>';
-            }
+            return words.map(function(word) {
+                if (word == 'br') return '</br>';
+
+                if (truncatedWords.indexOf(word.stem()) != -1) {
+                    return '<span title="Перевод" class="word highlight">' + word + '</span>';
+                } else {
+                    return '<span title="Перевод" class="word">' + word + '</span>';
+                }
+            }).join(' ');
         }).join(' ');
     },
 

@@ -21,6 +21,11 @@ module.exports = {
         req.session.random = req.body.random;
         req.session.language = req.body.language;
         req.session.source = req.body.source;
+        
+        if (req.user) {
+            req.user.language = req.session.language;
+            req.user.save();
+        }
 
         if (!!req.session.random)
             req.session.customDictionary = shuffle(dictionary(req.session.difficulty, req.session.language)).slice(-20);
@@ -42,7 +47,7 @@ module.exports = {
         res.json({
             difficulty: difficulties[req.session.difficulty],
             random: req.session.random,
-            language: req.session.language || 'chinese',
+            language: (req.user ? req.user.language : req.session.language) || 'chinese',
             source: req.session.source
         });
 
