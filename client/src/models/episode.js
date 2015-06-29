@@ -5,12 +5,12 @@ module.exports = EpisodeModel = Backbone.Model.extend({
     idAttribute: '_id',
     urlRoot: 'api/episode',
     parse: function(data) {
-        if(!data) return;
+        if(!data || !data.title) return;
 
         var pubDate = data.publicationDate;
 
         if(!data.processedTitle) {
-            data.processedTitle = data.title && data.title.split(' ').map(function(word) {
+            data.processedTitle = data.title.split(' ').map(function(word) {
                 return '<span class="word">' + word + '</span>';
             }).join(' ');
         }
