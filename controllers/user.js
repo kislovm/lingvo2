@@ -21,6 +21,7 @@ module.exports = {
         req.session.random = req.body.random;
         req.session.language = req.body.language;
         req.session.source = req.body.source;
+        req.session.highlightDict = req.body.highlightDict;
         
         if (req.user) {
             req.user.language = req.session.language;
@@ -48,7 +49,8 @@ module.exports = {
             difficulty: difficulties[req.session.difficulty],
             random: req.session.random,
             language: (req.user ? req.user.language : req.session.language) || 'chinese',
-            source: req.session.source
+            source: req.session.source,
+            highlightDict: req.session.highlightDict
         });
 
     }

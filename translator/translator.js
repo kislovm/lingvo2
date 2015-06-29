@@ -32,7 +32,6 @@ module.exports = function () {
 
     this.getTranscription = function (word) {
         do {
-            console.log(word);
             if(translatorDict[word]) {
                 return translatorDict[word];
             }
@@ -47,7 +46,7 @@ module.exports = function () {
             arabic: {
                 'shortcut' : 'ar'
             },
-            portuguese: {
+            portugal: {
                 'shortcut' : 'pt'
             },
             russian: {

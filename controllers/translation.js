@@ -8,7 +8,7 @@ module.exports = {
         var translator = new Translator();
         var langs = translator.languages();
         var word = req.params.word.toLowerCase();
-        var lang = langs[req.session.language || 'chinese'].shortcut;
+        var lang = langs[(req.session.language) || 'chinese'].shortcut;
         var transcription = translator.getTranscription(word);
 
         translator.translate('en', lang, word)

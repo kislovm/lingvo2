@@ -12,7 +12,7 @@ module.exports = {
         var skip = 10 * (req.params.page || 0),
             difficulty = req.session.difficulty || 'general',
             query = {
-                //suslexica: difficulty
+                //lexica: difficulty
             };
 
         if (req.params.category && req.params.category != 'all') {
@@ -20,7 +20,7 @@ module.exports = {
         }
 
         if (req.session.source) {
-            query.originalArticleLink = req.session.source
+            query.originalArticleLink = req.session.source;
         }
 
         if (req.session.random && req.session.customDictionary) {
@@ -28,6 +28,11 @@ module.exports = {
 
             //delete query.lexica;
             //query.tokens = { $in: customDictionary };
+        }
+
+        if (req.session.highlightDict && req.user) {
+            customDictionary = parser._preprocessDict(req.session.selectedDictionaryWords || []);
+            console.log(customDictionary)
         }
 
         models.Episode

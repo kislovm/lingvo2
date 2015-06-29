@@ -7,6 +7,7 @@ var home = require('../controllers/home'),
 
 var UserModel = require('./models').User;
 var DictionaryModel = require('./models').Dictionary;
+var WordModel = require('./models').Word;
 
 var account = require('../controllers/account');
 
@@ -16,8 +17,8 @@ module.exports.initialize = function(app) {
     app.get('/', addUser, home.index);
     app.get('/stat', stat.index);
 
-    app.get('/api/episodes/all/all/:page?', episodes.index);
-    app.get('/api/episodes/:category/:page?', episodes.category);
+    app.get('/api/episodes/all/all/:page?', addUser, addDictWords, episodes.index);
+    app.get('/api/episodes/:category/:page?', addUser, addDictWords, episodes.category);
 
     app.get('/count', episodes.count);
 
@@ -52,6 +53,21 @@ module.exports.initialize = function(app) {
         res.redirect('/');
     });
 };
+
+function addDictWords(req, res, next) {
+    if (req.user) {
+        WordModel.find({ dictionary: req.user.selected }).exec()
+            .then(function(words) {
+                req.session.selectedDictionaryWords = words.map(function (word) {
+                    return word.text;
+                });
+                return next();
+        });
+    } else {
+        return next();
+    }
+
+}
 
 function addUser(req, res, next) {
     var user;

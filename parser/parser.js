@@ -36,11 +36,11 @@ module.exports = {
     },
 
     highlight: function(text, truncatedWords) {
-        return text.split(/\s+/g).map(function(token) {
-            var words = token.match(/\w+/g) || [];
+        return text.split(/(\s|<br>|<\/br>)/g).map(function(token) {
+            var words = token.match(/\w+('|.|,)?(\w+)?/g) || [];
 
             return words.map(function(word) {
-                if (word == 'br') return '</br>';
+                if (word == 'br' || word == 'br>') return '</br>';
 
                 if (truncatedWords.indexOf(word.stem()) != -1) {
                     return '<span title="Перевод" class="word highlight">' + word + '</span>';
