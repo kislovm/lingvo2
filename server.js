@@ -50,8 +50,8 @@ app.use(methodOverride());
 app.use(cookieParser());
 
 app.use('/', express.static(path.join(__dirname, 'public')));
-app.use('/client/images/', express.static(path.join(__dirname, '/client/images')));
-app.use('/static/fonts/', express.static(path.join(__dirname, '/static/fonts')));
+app.use('/img/', express.static(path.join(__dirname, '/client/images')));
+app.use('/fonts/', express.static(path.join(__dirname, '/client/fonts')));
 
 // development only
 if ('development' == app.get('env')) {

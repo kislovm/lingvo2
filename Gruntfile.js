@@ -40,15 +40,6 @@ module.exports = function(grunt) {
             'build/<%= pkg.name %>.js': ['build/vendor.js', 'build/app.js']
         },
 
-        compass: {
-            dist: {
-                options: {
-                    sassDir: 'client/styles/sass',
-                    cssDir: 'public/css'
-                }
-            }
-        },
-
         copy: {
             dev: {
                 files: [{
@@ -58,8 +49,8 @@ module.exports = function(grunt) {
                     src: 'client/images/*',
                     dest: 'public/images/'
                 }, {
-                    src: 'client/styles/stylesheets/*.css',
-                    dest: 'public/css/<%= pkg.name %>.css'
+                    src: 'client/styles/*.css',
+                    dest: 'build/<%= pkg.name %>.css'
                 }]
             },
             prod: {
@@ -74,7 +65,7 @@ module.exports = function(grunt) {
         cssmin: {
             minify: {
                 src: ['build/<%= pkg.name %>.css'],
-                dest: 'dist/css/<%= pkg.name %>.css'
+                dest: 'public/css/<%= pkg.name %>.css'
             }
         },
 
@@ -97,10 +88,6 @@ module.exports = function(grunt) {
             scripts: {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js'],
                 tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
-            },
-            css: {
-                files: ['client/styles/**/*.sass'],
-                tasks: ['compass']
             },
             options: {
                 interval: 100
@@ -134,7 +121,7 @@ module.exports = function(grunt) {
 
         concurrent: {
             dev: {
-                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts', 'compass', 'watch:css'],
+                tasks: ['nodemon:dev', 'shell:mongo', 'watch:scripts'],
                 options: {
                     logConcurrentOutput: true
                 }
@@ -148,11 +135,10 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-compass');
 
     grunt.registerTask('init:dev', ['clean', 'browserify:vendor']);
 
-    grunt.registerTask('build:dev', ['clean:dev', 'browserify:vendor', 'browserify:app', 'jshint:dev', 'concat', 'compass', 'copy:dev']);
+    grunt.registerTask('build:dev', ['clean:dev', 'browserify:vendor', 'browserify:app', 'jshint:dev', 'concat', 'copy:dev', 'cssmin']);
     grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'concat', 'cssmin', 'uglify', 'copy:prod']);
 
     grunt.registerTask('heroku', ['init:dev', 'build:dev']);
