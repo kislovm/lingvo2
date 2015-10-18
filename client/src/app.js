@@ -41,39 +41,7 @@ App.prototype.start = function() {
         if (Backbone.history) {
             App.controller = new Controller();
             App.router = new Router({ controller: App.controller });
-            App.layoutView.menu.show(new MenuView());
-            (new AuthView()).render();
-
-            //Макаевский говнокод -- поправить.
-            var eTopTopics = $('.j-topics').offset().top, eTopLanguageLVL = $('.j-languageLVL').offset().top;
-            $(window).scroll(function() {
-                if (eTopTopics - $(window).scrollTop() <= 75) {
-                    $('.j-topics').css({'position': 'fixed', 'top': '75px'});
-                } else {
-                    $('.j-topics').css({'position': '', 'top': ''});
-                }
-
-                if (eTopLanguageLVL - $(window).scrollTop() <= 0) {
-                    $('.j-languageLVL, .articles').addClass('floating');
-                } else {
-                    $('.j-languageLVL, .articles').removeClass('floating');
-                }
-            });
-            $('.j-show-about')
-                .hover(function() {
-                    $('.how').removeClass('hide').delay(1).queue(function(){
-                        $(this).addClass("showing").dequeue();
-                    });
-                },
-                function() {
-                    $('.how').removeClass('showing').delay(150).queue(function(){
-                        $(this).addClass('hide').dequeue();
-                    });
-                })
-                .click(function() {
-                    $('.mobile-how').toggleClass('hide');
-                });
-
+            new AuthView().render();
 
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
         }
@@ -92,8 +60,6 @@ App.prototype.start = function() {
 
     App.core.vent.bind('user:init', function(options) {
         App.core.vent.trigger('app:log', 'User: Initializing');
-        App.layoutView.difficulty.show(new DifficultyView({ model: App.data.user }));
-
         Backbone.history.start();
     });
 

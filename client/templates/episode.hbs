@@ -1,25 +1,11 @@
-<h1><a>{{{ processedTitle }}}</a></h1>
-
-<a class="post-time">{{ name }} – {{ formattedDate }}</a>
-
-{{#if image}}
-    <a class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
-{{/if}}
-
-<div class="text-container">
-
-  <p>
-      {{{ description }}}
-
-        {{#if body}}
-            <div class="content hideContent">
-               {{{ body }}}
-              <span class="original-article-link">Original&nbsp;article:&nbsp;<a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a></span>
-            </div>
-            <div class="show-more">
-              <a>Show more</a>
-            </div>
-        {{/if}}
-  </p>
-
+<div class="novelty">
+    <h2 class="name-news"><a>{{{ processedTitle }}}</a></h2>
+    <a href="#"><blockquote class="newsinform">{{ name }} – {{ formattedDate }}</blockquote></a>
+    <p class="news"><span></span>{{{ body }}}</p>
+    <p>
+        <a href="" class="more-news">See more...</a>
+    </p>
+    <p>
+        <span class="original-article-link">Original&nbsp;article:&nbsp;<a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a></span>
+    </p>
 </div>
