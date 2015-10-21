@@ -674,7 +674,21 @@ p{
 }
 .news{
 	font: 17px 'Helvetica', sans-serif;
+	line-height: 24px;
 	color: #000;
+	height: 100px;
+	overflow: hidden;
+	position: relative;	
+	background: -webkit-gradient(linear, left top,left bottom,color-stop(0.3, #000),color-stop(1, #FFF));, black;
+	-webkit-background-clip: text;
+	color: transparent;
+}
+.news:after {
+	content: '';
+	position: absolute; top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+
 }
 .more-news{
 	display: inline-block;
@@ -686,7 +700,7 @@ p{
 }
 .novelty{
 	border-bottom: 1px solid #E5E5E5;
-	width: 100%;
+	width: 111%;
 	height: auto;
 }
 

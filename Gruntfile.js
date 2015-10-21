@@ -86,8 +86,9 @@ module.exports = function(grunt) {
         // for changes to the front-end code
         watch: {
             scripts: {
-                files: ['client/templates/*.hbs', 'client/src/**/*.js'],
+                files: ['client/templates/*.hbs', 'client/src/**/*.js', 'client/styles/*.css'],
                 tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
+
             },
             options: {
                 interval: 100
