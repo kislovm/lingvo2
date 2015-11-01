@@ -61,7 +61,7 @@ ul{
 	padding: 35px;
 	float: left;
 	padding-top: 55px;
-	min-width: 130px;
+	min-width: 10%;
 }
 .logo a,
 .menu a{
@@ -188,7 +188,6 @@ p{
 	margin-left: 0;
 }
 .menu{
-	margin-left: 110px;
 	text-align: center;
 	font-family: 'Condensed-Bold', sans-serif;
 	font-size: 26px;
@@ -196,7 +195,7 @@ p{
 	color: black;
 	text-transform: uppercase;
 	float: left;
-	min-width: 960px;
+	min-width: 100%;
 
 	
 }
@@ -668,7 +667,7 @@ p{
 }
  .name-news{
  	display: inline-block;
- 	width: 650px;
+ 	width: 80%;
  	margin-bottom: 10px;
 	text-align: left;
 	font: 32px 'Condensed-Bold', sans-serif;
