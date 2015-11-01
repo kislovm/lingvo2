@@ -19,7 +19,7 @@ var passport = require('passport');
 //connect to the db server:
 var connection = mongoose.connect('mongodb://localhost/MyApp');
 
-app.set('port', process.env.PORT || 3301);
+app.set('port', process.env.PORT || 3302);
 app.set('views', __dirname + '/views');
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
