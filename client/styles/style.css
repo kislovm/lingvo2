@@ -202,7 +202,7 @@ p{
 }
 .main-header{
 	border-bottom: 5px solid #E74A42;
-	width: 1366px;
+	width: 100%;
 	margin: 0 auto;
 	background: #F9F9F9;
 
@@ -402,16 +402,20 @@ p{
 	padding-bottom: 5px;
 	color: #999999;
 	vertical-align: 30px;
+	position: relative;
 }
 .settings-title{
 	position: relative;
 }
-.settings-title:after{
+.settings-section-title {
+	position: relative;
+}
+.settings-section-title:after{
 	content: "";
 	top: 42px;
-	left: 14px;
+	left: -1px;
 	position: absolute;
-	width: 254px;
+	width: 96%;
 	height: 1px;
 	background: #999999;
 }
@@ -429,10 +433,10 @@ p{
 .settings-title a{
 	color: inherit;
 }
-.settings-title h3:after{
+.settings-title:after{
 	cursor: pointer;
 	top: 28px;
-	right: 152px;
+	left: 23px;
 	content: "";
 	width: 112px;
 	height: 2px;
@@ -558,10 +562,13 @@ p{
 	font: 15px 'Helvetica', sans-serif;
 	color: #999999;
 }
-.settings-lang h4:after{
+.settings-lang-link {
+	position: relative;
+}
+.settings-lang-link:after{
 	cursor: pointer;
 	top: 18px;
-	right: 152px;
+	left: 2px;
 	content: "";
 	width: 106px;
 	height: 2px;
@@ -569,10 +576,10 @@ p{
 	background: url("../img/under-line.png") repeat center;
 }
 
-.settings-lang h4:before{
+.settings-lang-link:before{
 	cursor: pointer;
 	top: 8px;
-	right: 136px;
+	left: 115px;
 	content: "";
 	width: 9px;
 	height: 5px;
@@ -585,10 +592,10 @@ p{
 }
 .settings-lang:after{
 	content: "";
-	top: 60px;
-	left: 14px;
+	top: 61px;
+	left: 24px;
 	position: absolute;
-	width: 254px;
+	width: 88%;
 	height: 1px;
 	background: #999999;
 }
@@ -613,6 +620,7 @@ p{
 	padding-bottom: 5px;
 	color: #999999;
 	vertical-align: 30px;
+	position: relative;
 
 }
 .dict-title:after{
@@ -630,7 +638,7 @@ p{
 .dict-title h3:after{
 	cursor: pointer;
 	top: 28px;
-	right: 116px;
+	left: 1px;
 	content: "";
 	width: 142px;
 	height: 2px;
@@ -644,7 +652,7 @@ p{
 	content: "";
 	position: absolute;
 	background: url("../img/close-icon.png") no-repeat center;
-	left: 175px;
+	left: 155px;
 	top: 12px;
 }
 .center-content{
@@ -710,6 +718,7 @@ p{
 	height: 15px;
 	background: #E5E5E5;
 	margin-bottom: 14px;
+	margin-right: 0;
 
 
 	-webkit-border-radius: 50px;
@@ -903,7 +912,7 @@ p{
 .right-col-func{
 	font: 15px 'Helvetica', sans-serif;
 	color: #5D5D5D;
-	width: 160px;
+	width: 30%;
 	float: right;
 	position: relative;
 }
@@ -917,6 +926,7 @@ p{
 .dict-box{
 	display: inline-block;
 	cursor: pointer;
+	position: relative;
 
 }
 .dictboxer1:after{
@@ -930,8 +940,8 @@ p{
 }
 .dictboxer1:before{
 	cursor: pointer;
-	top: 8px;
-	right: 96px;
+	top: 6px;
+	right: -16px;
 	content: "";
 	width: 9px;
 	height: 5px;
@@ -940,7 +950,7 @@ p{
 }
 .dictboxer2:after{
 	content: "";
-	top: 79px;
+	top: 17px;
 	left: 1px;
 	width: 48px;
 	height: 2px;
@@ -949,8 +959,8 @@ p{
 }
 .dictboxer2:before{
 	cursor: pointer;
-	top: 70px;
-	right: 96px;
+	top: 6px;
+	right: -16px;
 	content: "";
 	width: 9px;
 	height: 5px;
