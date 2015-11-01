@@ -61,5 +61,8 @@
     "sanitize-html": "*",
     "time-grunt": "~0.2.3",
     "yandex-translate": "^2.1.0"
+  },
+  "devDependencies": {
+    "grunt-serve": "^0.1.6"
   }
 }
