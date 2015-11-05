@@ -58,7 +58,7 @@ ul{
 	color: #323232;
 	font-size: 42px;
 	line-height: 51px;
-	padding: 20px;
+	padding: 40px 20px;
 	float: left;
 	width: 165px;
 }
@@ -196,7 +196,8 @@ p{
 }
 .main-header{
 	border-bottom: 5px solid #E74A42;
-	width: 1000px;
+	min-width: 1000px;
+    width: 100%;
 	margin: 0 auto;
 	background: #F9F9F9;
 
