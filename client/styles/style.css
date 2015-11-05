@@ -58,10 +58,9 @@ ul{
 	color: #323232;
 	font-size: 42px;
 	line-height: 51px;
-	padding: 35px;
+	padding: 20px;
 	float: left;
-	padding-top: 55px;
-	min-width: 10%;
+	width: 165px;
 }
 .logo a,
 .menu a{
@@ -86,8 +85,7 @@ p{
  display: inline-block;
 }
 .top-section{
-	margin-top: 43px;
-	min-width: 890px;
+	margin-top: 30px;
 	border-bottom: 1px solid #3D434B;
 	padding-bottom: 15px;
 }
@@ -148,9 +146,6 @@ p{
 	margin-left: 30px;
 	display: inline-block;
 }
-.bottom-section{
-	width: 1060px;
-}
 .soc-ic a{
 	display: inline-block;
 	
@@ -201,13 +196,13 @@ p{
 }
 .main-header{
 	border-bottom: 5px solid #E74A42;
-	width: 100%;
+	width: 1000px;
 	margin: 0 auto;
 	background: #F9F9F9;
 
 }	
 .middle-section{
-	width: 1366px;
+	width: 1000px;
 	margin: 0 auto;
 	margin-top: 10px;
 }
@@ -587,16 +582,7 @@ p{
 }
 .settings-lang{
 	position: relative;
-	padding-bottom: 50px;
-}
-.settings-lang:after{
-	content: "";
-	top: 61px;
-	left: 24px;
-	position: absolute;
-	width: 88%;
-	height: 1px;
-	background: #999999;
+	padding-bottom: 10px;
 }
 .lang{
 	margin-top: 10px;
@@ -606,7 +592,7 @@ p{
 }
 .dictionaries-section{
 	float: right;
-	width: 21%;
+	width: 240px;
 	background: #F7F7F7;
 	margin-right: 10px;
 	margin-top: 20px;
@@ -627,7 +613,7 @@ p{
 	top: 42px;
 	left: 14px;
 	position: absolute;
-	width: 254px;
+	width: 90%;
 	height: 1px;
 	background: #999999;
 }
@@ -656,21 +642,19 @@ p{
 }
 .center-content{
 	float: left;
-	margin-left: 10px;
-	width: 50%;
-	color: #2A81B4;
-	padding-top: 20px;
-	
+    margin: 0 55px;
+    width: 420px;
+    color: #2A81B4;
+    padding-top: 20px;
 }
 .center-content a{
 	color: #2A81B4;
 }
  .name-news{
  	display: inline-block;
- 	width: 80%;
  	margin-bottom: 10px;
 	text-align: left;
-	font: 32px 'Condensed-Bold', sans-serif;
+	font: 25px 'Condensed-Bold', sans-serif;
 	color: #2A81B4;
 }
 .newsinform{
@@ -680,8 +664,7 @@ p{
 
 }
 .news{
-	font: 17px 'Helvetica', sans-serif;
-	line-height: 24px;
+	font: 15px 'Helvetica', sans-serif;
 	color: #000;
 	height: 100px;
 	overflow: hidden;
@@ -707,8 +690,6 @@ p{
 }
 .novelty{
 	border-bottom: 1px solid #E5E5E5;
-	width: 111%;
-	height: auto;
 }
 
 .slider-check {
