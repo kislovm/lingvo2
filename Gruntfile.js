@@ -87,7 +87,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js', 'client/styles/*.css'],
-                tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
+                tasks: ['clean:dev', 'browserify:app', 'concat','cssmin', 'copy:dev']
 
             },
             options: {
