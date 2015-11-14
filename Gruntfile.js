@@ -49,8 +49,12 @@ module.exports = function(grunt) {
                     src: 'client/images/*',
                     dest: 'public/images/'
                 }, {
-                    src: 'client/styles/*.css',
-                    dest: 'build/<%= pkg.name %>.css'
+                    src: 'client/styles/style.css',
+                    dest: 'build/myapp.css'
+                },
+                {
+                	src: 'client/styles/media-queries.css',
+                    dest: 'build/media-queries.css'
                 }]
             },
             prod: {
@@ -66,6 +70,9 @@ module.exports = function(grunt) {
             minify: {
                 src: ['build/<%= pkg.name %>.css'],
                 dest: 'public/css/<%= pkg.name %>.css'
+
+                
+
             }
         },
 
@@ -145,5 +152,7 @@ module.exports = function(grunt) {
     grunt.registerTask('heroku', ['init:dev', 'build:dev']);
 
     grunt.registerTask('server', ['build:dev', 'concurrent:dev']);
+
+    grunt.loadNpmTasks('grunt-livereload');
 
 };
