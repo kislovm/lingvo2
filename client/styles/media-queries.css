@@ -38,6 +38,7 @@
     font-size: 18px;
     background: #a8191d;
     padding: 0;
+    padding-right: 15px;
     width: auto;
   }
   .main-header .logo a {
@@ -53,9 +54,7 @@
   }
   .bottom-section>.menu {
     width: 228px;
-    margin-right: 40px;
     position: relative;
-    right: 40px;
    
   }
   .menu li:nth-child(5),
@@ -71,14 +70,17 @@
 @media screen and (max-width: 370px) {
 
   #wrapper {
-    width: 368px;
+    width: 320px;
     margin: 0 auto;
   }
   .middle-section {
-    width: 368px;
+    width: 320px;
   }
-  .background .main-header {
-    width: 340px;
+  .background>.main-header {
+    min-width: 320px;
+    margin: 0;
+    height: 51px;
+    border: none;
   }
   .settings-section, .dictionaries-section, .logo-p{
     display: none;
@@ -94,41 +96,87 @@
     margin: 0;
     width: 320px;
   }
-  .middle-section {
-    min-width: 340px;
-  }
   .main-header .logo {
     font-size: 18px;
     background: #a8191d;
     padding: 0;
-    width: auto;
+    padding-right: 15px;
+  }
+  .main-header .logo a {
+    width: 65px;
+    margin: 0 auto;
   }
   .main-header .logo a {
     color: white;
   }
   .main-header .header {
     margin-left: 0;
+    height: 30px;
+    width: 320px;
   }
   .bottom-section .menu li {
       font-size: 16px;  
       margin: 0;
       padding: 0;
+
   }
-  .bottom-section>.menu {
-    width: 228px;
-    margin-right: 40px;
+  .top-section {
     position: relative;
-    right: 40px;
+    bottom: 51px;
+    left: 67px;
+    margin-left: 10px;
+    width: 243px;
+    height: 19px;
+  }
+ 
+  .bottom-section>.menu {
+    width: 320px;
+    position: relative;
+    bottom: 66px;
+    background: #ebebeb;
+    
+   
    
   }
   .menu li:nth-child(5),
     .menu li:nth-child(6) {
       display: none;
     }
+  .menu li:first-child {
+    margin-left: 6px;
+    border-left: none;
+  } 
+  .menu li a{
+    border-right: 1px solid #d5d1d1;
+    padding-right: 4px;
+    
+  } 
+  .menu li:nth-child(4) > a {
+    border-right: none;
+  }
   .bottom-section {
     margin: 0 auto;
   }
-  
+  .enter {
+    display: block;
+    float: right;
+    height: 51px;
+    width: 51px;
+    background: #a8191d url('../img/enter-icon.png') no-repeat;
+    background-position: 10px 10px;
+    position: relative;
+    bottom: 16px;
+  }
+  .switch-lang {
+     
+      background: transparent;
+      border: none;
+      padding-right: 5px;
+      color: white;
+      width: auto;
+      height: auto;
 
+  }
+  select
 
 }
