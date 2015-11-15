@@ -5,7 +5,8 @@
   }
 
   .main-header {
-    width: 320px;
+    min-width: 320px;
+    border-bottom: none;
   }
   .settings-section, .soc-ic, .dictionaries-section, .soc-p{
     display: none !important;
@@ -25,6 +26,7 @@
     padding-top: 16px;
     background: #7c1216;
     color: white;
+    width: 277px;
   }
 
   .center-content {
@@ -43,9 +45,12 @@
   }
   .main-header .logo a {
     color: white;
+    padding-left: 16px;
   }
   .main-header .header {
     margin-left: 0;
+    height: 50px;
+    width: 167px;
   }
   .bottom-section .menu li {
       font-size: 16px;  
@@ -53,10 +58,13 @@
       padding: 0;
   }
   .bottom-section>.menu {
-    width: 228px;
+    width: 374px;
+    background: #ebebeb;
     position: relative;
+    right: 97px;
    
   }
+
   .menu li:nth-child(5),
     .menu li:nth-child(6) {
       display: none;
@@ -64,6 +72,82 @@
   .bottom-section {
     margin: 0 auto;
   }
+  .settings-section, .dictionaries-section, .logo-p{
+    display: none;
+  }
+  .enter {
+    display: block;
+    float: right;
+    height: 51px;
+    width: 51px;
+    background: #a8191d url('../img/enter-icon.png') no-repeat;
+    background-position: 10px 10px;
+    position: relative;
+    bottom: 16px;
+  }
+  .menu li:nth-child(5),
+    .menu li:nth-child(6) {
+      display: none;
+    }
+  .menu li:first-child {
+    margin-left: 6px;
+    border-left: none;
+  } 
+  .menu li a{
+    border-right: 1px solid #d5d1d1;
+    padding-right: 15px;
+     padding-left: 15px;
+    
+  } 
+  .menu li:nth-child(4) > a {
+    border-right: none;
+  }
+  .top-line {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 35px;
+    background: none;
+    height: 30px;
+    display: block;
+  }
+  .allocation p {
+    font: 13px 'Myriad', sans-serif;
+    background: #fbfeae;
+    padding-left: 65px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: relative;
+  }
+  .allocation p:after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    float: right;
+    font-size: 0;
+    cursor: pointer;
+    background: url("../img/show-cross.png") no-repeat center;
+    background-size: 30%;
+    cursor: pointer;
+   
+  }
+  .allocation {
+    width: 375px;
+    margin: 0;
+    position: relative;
+    right: 30px;
+    
+  }
+  .showbtn {
+    display: none;
+  }
+  .title-line {
+    display: none;
+  }
+
+
 
 }
 
@@ -90,6 +174,7 @@
     padding-top: 16px;
     background: #7c1216;
     color: white;
+    width: 243px;
   }
 
   .center-content {
@@ -103,11 +188,9 @@
     padding-right: 15px;
   }
   .main-header .logo a {
-    width: 65px;
-    margin: 0 auto;
-  }
-  .main-header .logo a {
     color: white;
+    padding-left: 5px;
+    padding-right: 5px;
   }
   .main-header .header {
     margin-left: 0;
@@ -134,6 +217,7 @@
     position: relative;
     bottom: 66px;
     background: #ebebeb;
+    right: 0;
     
    
    
@@ -148,7 +232,8 @@
   } 
   .menu li a{
     border-right: 1px solid #d5d1d1;
-    padding-right: 4px;
+    padding-right: 9px;
+    padding-left: 10px;
     
   } 
   .menu li:nth-child(4) > a {

@@ -211,7 +211,7 @@ p{
 	margin-top: 10px;
 }
 .top-line{
-	width: 1368px;
+	width: 100%;
 	margin: 0 auto;
 	background: #FFFF6D url("../img/top-line-bg.png") no-repeat;
 }
