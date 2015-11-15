@@ -10,6 +10,14 @@
     font-family: 'Helvetica'; /* Гарнитура шрифта */
     src: url(../fonts/HelveticaLight.eot); /* Путь к файлу со шрифтом */
    }
+    @font-face {
+    font-family: 'Helvetica-Med'; /* Гарнитура шрифта */
+    src: url(../fonts/HelveticaBlack.ttf); /* Путь к файлу со шрифтом */
+   }
+    @font-face {
+    font-family: 'Helvetica-Bold'; /* Гарнитура шрифта */
+    src: url(../fonts/HelveticaBold.ttf); /* Путь к файлу со шрифтом */
+   }
      @font-face {
     font-family: 'Condensed-Bold'; /* Гарнитура шрифта */
     src: url(../fonts/DINCondensedBold.ttf); /* Путь к файлу со шрифтом */
@@ -611,6 +619,10 @@ p{
 	color: #999999;
 	vertical-align: 30px;
 	position: relative;
+
+}
+.showsettings {
+	display: none;
 
 }
 .dict-title:after{

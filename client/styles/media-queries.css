@@ -53,15 +53,23 @@
     width: 167px;
   }
   .bottom-section .menu li {
-      font-size: 16px;  
+      font-size: 14px;  
       margin: 0;
       padding: 0;
+      font: 14px 'Helvetica-Med', sans-serif;
+      text-transform: none;
+      margin-top: 10px;
+      margin-left: 10px;
+      float: left;
   }
   .bottom-section>.menu {
-    width: 374px;
+    width: 375px;
+    height: 34px;
+    margin: 0;
     background: #ebebeb;
     position: relative;
-    right: 97px;
+    right: 98px;
+    bottom: 2px;
    
   }
 
@@ -90,13 +98,13 @@
       display: none;
     }
   .menu li:first-child {
-    margin-left: 6px;
     border-left: none;
+
   } 
   .menu li a{
     border-right: 1px solid #d5d1d1;
-    padding-right: 15px;
-     padding-left: 15px;
+    padding-right: 10px;
+     padding-left: 10px;
     
   } 
   .menu li:nth-child(4) > a {
@@ -137,7 +145,8 @@
     width: 375px;
     margin: 0;
     position: relative;
-    right: 30px;
+    bottom: 6px;
+    left: -28px;
     
   }
   .showbtn {
@@ -146,6 +155,62 @@
   .title-line {
     display: none;
   }
+  .center-content {
+    padding-top: 0;
+  }
+  .name-news {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 18px;
+  }
+  .name-news .word {
+    color: black;
+  }
+  .news {
+    background: -webkit-gradient(linear, left top,left bottom,color-stop(0, #000),color-stop(1, #000));, black;
+  -webkit-background-clip: text;
+  color: transparent;
+  }
+
+  a>.newsinform {
+    width: 180px;
+    position: relative;
+    top: 140px;
+    left: 70px;
+    color: grey;
+    display: block;
+    margin: 0;
+
+  }
+
+  .switch-lang {
+    background: #7c1216;
+    border: none;
+    padding-right: 6px;
+    position: relative;
+    top: 1px;
+    color: white;
+  }
+  .news {
+    font: 13px 'Helvetica-Med', sans-serif;
+    height: 105px;
+  }
+  .name-news {
+    font: 16px 'Helvetica-Bold', sans-serif;
+  }
+  .showsettings {
+  display: block;
+  width: 300px;
+  background: #7c1216;
+  position: fixed;
+  bottom: 0%;
+  left: 35px;
+  z-index: 1000;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
 
 
 
