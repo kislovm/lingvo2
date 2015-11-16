@@ -8,7 +8,7 @@
    }
      @font-face {
     font-family: 'Helvetica'; /* Гарнитура шрифта */
-    src: url(../fonts/HelveticaLight.eot); /* Путь к файлу со шрифтом */
+    src: url(../fonts/HelveticaLight.ttf); /* Путь к файлу со шрифтом */
    }
     @font-face {
     font-family: 'Helvetica-Med'; /* Гарнитура шрифта */
@@ -626,7 +626,8 @@ p{
 
 }
 .showsettings:after {
-	position: relative;
+	content: '';
+
 
 }
 .dict-title:after{
@@ -1102,5 +1103,61 @@ p{
 }
 #wrapper{
 	display: none;
+}
+.translate-window {
+	width: 266px;
+	height: 156px;
+	background: white;
+	position: relative;
+}
+.translate-window-title {
+	text-align: center;
+	font: 18px 'Helvetica-Bold', sans-serif;
+	color: black;
+	margin: 5px;
+}
+.translate-window-transcription {
+	display: block;
+	color: #808080;
+	font: 14px 'Helvetica', sans-serif;
+	text-align: center;
+}
+.translate-window-translate {
+	font: 14px 'Helvetica', sans-serif;
+	color: #2d2d2d;
+	display: block;
+	margin-top: 10px;
+	text-align: center;
+}
+.translate-window-save {
+	display: inline-block;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 133px;
+	border: 1px solid black;
+}
+.translate-window-close {
+	display: inline-block;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 133px;
+	border: 1px solid black;
+	border-left: none;
+}
+.save-span {
+	display: block;
+	padding: 10px;
+	text-align: center;
+	font: 14px 'Helvetica-Bold', sans-serif;
+	color: black;
+}
+.close-span {
+	display: block;
+	padding: 10px;
+	text-align: center;
+	font: 14px 'Helvetica-Bold', sans-serif;
+	color: black;
 }
 

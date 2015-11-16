@@ -27,8 +27,8 @@
     background: #7c1216;
     color: white;
     width: 277px;
+     font: 14px 'Helvetica', sans-serif;
   }
-
   .center-content {
     margin: 0;
     width: 320px;
@@ -119,7 +119,7 @@
     display: block;
   }
   .allocation p {
-    font: 13px 'Myriad', sans-serif;
+    font: 13px 'Helvetica', sans-serif;
     background: #fbfeae;
     padding-left: 65px;
     padding-top: 5px;
@@ -159,7 +159,7 @@
     padding-top: 0;
   }
   .name-news {
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 0;
     font-size: 18px;
   }
@@ -172,10 +172,10 @@
   color: transparent;
   }
 
-  a>.newsinform {
+  .newsinform {
     width: 180px;
     position: relative;
-    top: 140px;
+    top: 139px;
     left: 70px;
     color: grey;
     display: block;
@@ -190,13 +190,16 @@
     position: relative;
     top: 1px;
     color: white;
+     font: 14px 'Helvetica', sans-serif;
+     -webkit-appearance: none;
+
   }
   .news {
     font: 13px 'Helvetica-Med', sans-serif;
     height: 105px;
   }
   .name-news {
-    font: 16px 'Helvetica-Bold', sans-serif;
+    font: 17px 'Helvetica-Bold', sans-serif;
   }
   .showsettings {
   display: block;
@@ -217,7 +220,7 @@
   left: 336px;
   z-index: 1001;
   width: 40px;
-  height: 24px;
+  height: 25px;
   background: #a8191d url('../img/gear.png') no-repeat;
   background-position: 45% 45%;
 
@@ -226,6 +229,14 @@
  .showspan {
     font: 13px 'Helvetica-Med', sans-serif;
   }
+  .translate-window {
+  width: 266px;
+  height: 156px;
+  background: white;
+  position: fixed;
+  z-index: 1004;
+  left: 54px;
+ }
 
 
 
@@ -280,7 +291,7 @@
   }
   .bottom-section .menu li {
     margin: 0;
-    margin-top: 5px;
+    margin-top: 8px;
   }
   .bottom-section .menu li:first-child {
     margin-left: 10px;
@@ -311,6 +322,10 @@
     
    
    
+  }
+   .name-news {
+    margin-top: 10px;
+    font: 17px 'Helvetica-Bold', sans-serif;
   }
   .menu li:nth-child(5),
     .menu li:nth-child(6) {
@@ -353,6 +368,27 @@
       color: white;
       width: auto;
       height: auto;
+       font: 14px 'Helvetica', sans-serif;
+       -webkit-appearance: none;
+
+  }
+  .switch-lang:after {
+     
+     content: '';
+
+  }
+  .allocation p {
+    font: 13px 'Helvetica', sans-serif;
+   
+  }
+   .newsinform {
+    width: 180px;
+    position: relative;
+    bottom: 137px;
+    left: 70px;
+    color: grey;
+    display: block;
+    margin: 0;
 
   }
   .name-news {
@@ -383,7 +419,7 @@
   left: 282px;
   z-index: 1001;
   width: 40px;
-  height: 24px;
+  height: 25px;
   background: #a8191d url('../img/gear.png') no-repeat;
   background-position: 45% 45%;
 
@@ -396,5 +432,13 @@
   .showspan {
     font: 13px 'Helvetica-Med', sans-serif;
   }
+   .translate-window {
+  width: 266px;
+  height: 156px;
+  background: white;
+  position: fixed;
+  z-index: 1004;
+  left: 27px;
+ }
 
 }
