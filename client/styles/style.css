@@ -357,6 +357,7 @@ p{
 .settings-slide {
     background: #F7F7F7;
     position: absolute;
+    z-index: 999;
 }
 .checkbox-settings{
 	display: none;
@@ -384,7 +385,8 @@ p{
 	font: 11px/13px 'Helvetica', sans-serif;
 	padding-bottom: 3px;
 	font-style: italic;
-
+    float: left;
+    clear: both;
 }
 .settings-news{
 	color: #999999;
@@ -483,7 +485,7 @@ p{
 	-ms-transition: all .4s ease;
 	transition: all .4s ease;
 	display: inline-block;
-	
+	left: 0;
 }
 .circle2{
 	cursor: pointer;
@@ -497,6 +499,11 @@ p{
 	left: 135px;
 	
 }
+.settings-lang-dif{
+    float: left;
+    clear: both;
+}
+
 .settings-lang-dif h4{
 	padding-left: 25px;
 	font: 15px 'Helvetica', sans-serif;
@@ -598,6 +605,7 @@ p{
 	background: #F7F7F7;
 	margin-right: 10px;
 	margin-top: 20px;
+    z-index: -1;
 }
 .dict-title h3{
 	font: 26px/31px 'Condensed-Bold', sans-serif;
