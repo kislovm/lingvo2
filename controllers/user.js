@@ -46,11 +46,12 @@ module.exports = {
         };
 
         res.json({
+            registred: !!req.user,
             difficulty: difficulties[req.session.difficulty],
-            random: req.session.random,
+            random: !!req.session.random,
             language: (req.user ? req.user.language : req.session.language) || 'chinese',
-            source: req.session.source,
-            highlightDict: req.session.highlightDict
+            source: !!req.session.source,
+            highlightDict: !!req.session.highlightDict
         });
 
     }

@@ -4,9 +4,24 @@ module.exports = Marionette.LayoutView.extend({
 
     template: require('../../templates/dictionary-section.hbs'),
 
-    events: {
-        'change .autosave-slider': 'autosaveChange',
-        'change .highlight-slider': 'highlightSlider'
+    events: function() {
+        if(!App.data.user.get('registred')) {
+            return {
+                'click input': 'notRegistred',
+                'click select': 'notRegistred'
+            }
+        } else {
+            return {
+                'change .autosave-slider': 'autosaveChange',
+                'change .highlight-slider': 'highlightSlider'
+            }
+        }
+    },
+
+    notRegistred: function(e)
+    {
+        e.preventDefault();
+        alert('Пожалуйста, зарегистрируйтесь');
     },
 
     autosaveChange: function(e)
