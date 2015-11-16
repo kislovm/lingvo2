@@ -50,11 +50,11 @@ module.exports = Marionette.ItemView.extend({
 
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
-        this.listenTo(App.data.user, 'change:highlight', this.toggleHighlight);
+        //this.listenTo(App.data.user, 'change:highlight', this.toggleHighlight);
     },
 
     toggleHighlight: function() {
-        this.$el.toggleClass('highlight-yes', !!App.data.user.get('highlight'));
+        //this.$el.toggleClass('highlight-yes', !!App.data.user.get('highlight'));
     },
 
     onRender: function() {

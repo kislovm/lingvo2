@@ -1,11 +1,12 @@
 var Marionette = require('backbone.marionette');
 
-module.exports = AppLayoutView = Marionette.LayoutView.extend({
+module.exports = Marionette.LayoutView.extend({
 
     el: '.content-holder',
 
     regions: {
-        content: '.center-content'
+        content: '.center-content',
+        dictionaries: '.dictionaries-section'
     }
 });
 

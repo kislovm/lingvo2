@@ -10,8 +10,8 @@ module.exports = CollectionView = Marionette.CollectionView.extend({
         //Здесь этому не место. Нужно вынести в глобал и тригерить эвент или сделать вью для ленты.
         $(window).scroll(function() {
             if ($(window).scrollTop() + $(window).height() > ($('body').height() - 100))
-                if(!App.data.user.get('random'))
-                    _this.collection.increment();
+                //if(!App.data.user.get('random'))
+                //    _this.collection.increment();
             counter.reachGoal('scroll-down');
         });
         this.listenTo(this.collection, 'change', this.render);

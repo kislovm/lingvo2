@@ -2,14 +2,10 @@ var $ = require('jquery'),
     Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
     Controller = require('./controller'),
-    Router = require('./router'),
-    UserModel = require('./models/user'),
-    MenuView = require('./views/menu'),
-    AuthView = require('./views/auth'),
-    DifficultyView = require('./views/difficulty'),
-    EpisodesCollection = require('./collections/episodes');
+    Router = require('./router');
 
-var dictModel = require('./models/dictionary-popup-model');
+var DictModel = require('./models/dictionary-popup-model');
+var UserModel = require('./models/user');
 
 module.exports = App = function App() {};
 
@@ -22,17 +18,13 @@ App.prototype.start = function() {
         App.views = {};
         App.data = {};
 
-        // load up some initial data:
-        var episodes = new EpisodesCollection();
-        episodes.fetch({
-            success: function() {
-                App.data.episodes = episodes;
-                App.core.vent.trigger('app:start');
-            }
-        });
+        App.data.dict = new DictModel();
+        App.data.user = new UserModel();
 
-        App.data.dictModel = new dictModel();
-        App.data.dictModel.fetch();
+        App.data.user.fetch()
+            .then(function() {
+                App.core.vent.trigger('app:start');
+            });
 
     });
 
@@ -41,26 +33,14 @@ App.prototype.start = function() {
         if (Backbone.history) {
             App.controller = new Controller();
             App.router = new Router({ controller: App.controller });
-            new AuthView().render();
 
             App.core.vent.trigger('app:log', 'App: Backbone.history starting');
         }
 
-        var user = new UserModel();
-        user.fetch({
-            success: function() {
-                App.data.user = user;
-                App.core.vent.trigger('user:init');
-            }
-        });
+        Backbone.history.start();
 
         //new up and views and render for base app here...
         App.core.vent.trigger('app:log', 'App: Done starting and running!');
-    });
-
-    App.core.vent.bind('user:init', function(options) {
-        App.core.vent.trigger('app:log', 'User: Initializing');
-        Backbone.history.start();
     });
 
     App.core.vent.bind('app:log', function(msg) {
