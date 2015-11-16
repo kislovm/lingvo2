@@ -49,8 +49,12 @@ module.exports = function(grunt) {
                     src: 'client/images/*',
                     dest: 'public/images/'
                 }, {
-                    src: 'client/styles/*.css',
-                    dest: 'build/<%= pkg.name %>.css'
+                    src: 'client/styles/style.css',
+                    dest: 'public/css/myapp.css'
+                },
+                {
+                	src: 'client/styles/media-queries.css',
+                    dest: 'public/css/media-queries.css'
                 }]
             },
             prod: {
@@ -62,12 +66,15 @@ module.exports = function(grunt) {
         },
 
         // CSS minification.
-        cssmin: {
+        /*cssmin: {
             minify: {
                 src: ['build/<%= pkg.name %>.css'],
                 dest: 'public/css/<%= pkg.name %>.css'
+
+                
+
             }
-        },
+        },*/
 
         // Javascript minification.
         uglify: {
@@ -87,11 +94,12 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js', 'client/styles/*.css'],
-                tasks: ['clean:dev', 'browserify:app', 'concat','cssmin', 'copy:dev']
+                tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
 
             },
             options: {
-                interval: 100
+                interval: 100,
+                livereload: true
             }
         },
 
@@ -132,6 +140,9 @@ module.exports = function(grunt) {
         jshint: {
             all: ['Gruntfile.js', 'client/src/**/*.js'],
             dev: ['client/src/**/*.js']
+        },
+        livereload: {
+
         }
     });
 
@@ -139,11 +150,13 @@ module.exports = function(grunt) {
 
     grunt.registerTask('init:dev', ['clean', 'browserify:vendor']);
 
-    grunt.registerTask('build:dev', ['clean:dev', 'browserify:vendor', 'browserify:app', 'jshint:dev', 'concat', 'copy:dev', 'cssmin']);
-    grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'concat', 'cssmin', 'uglify', 'copy:prod']);
+    grunt.registerTask('build:dev', ['clean:dev', 'browserify:vendor', 'browserify:app', 'jshint:dev', 'concat', 'copy:dev']);
+    grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'concat', 'uglify', 'copy:prod']);
 
     grunt.registerTask('heroku', ['init:dev', 'build:dev']);
 
     grunt.registerTask('server', ['build:dev', 'concurrent:dev']);
+
+    grunt.loadNpmTasks('grunt-livereload');
 
 };
