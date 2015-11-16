@@ -625,6 +625,10 @@ p{
 	display: none;
 
 }
+.showsettings:after {
+	position: relative;
+
+}
 .dict-title:after{
 	content: "";
 	top: 42px;

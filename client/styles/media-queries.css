@@ -200,16 +200,32 @@
   }
   .showsettings {
   display: block;
-  width: 300px;
+  width: 375px;
   background: #7c1216;
   position: fixed;
   bottom: 0%;
-  left: 35px;
+  right: 0%;
   z-index: 1000;
   padding-top: 5px;
   padding-bottom: 5px;
 
 }
+.showsettings:after {
+  content: '';
+  position: fixed;
+  bottom: 0%;
+  left: 336px;
+  z-index: 1001;
+  width: 40px;
+  height: 24px;
+  background: #a8191d url('../img/gear.png') no-repeat;
+  background-position: 45% 45%;
+
+
+}
+ .showspan {
+    font: 13px 'Helvetica-Med', sans-serif;
+  }
 
 
 
@@ -263,9 +279,18 @@
     width: 320px;
   }
   .bottom-section .menu li {
-      font-size: 16px;  
-      margin: 0;
-      padding: 0;
+    margin: 0;
+    margin-top: 5px;
+  }
+  .bottom-section .menu li:first-child {
+    margin-left: 10px;
+  }
+  .bottom-section .menu li a{
+    margin: 0;
+      font-size: 15px;  
+     border-right: 1px solid #d5d1d1;
+     padding-right: 5px;
+     padding-left: 5px;
 
   }
   .top-section {
@@ -292,9 +317,11 @@
       display: none;
     }
   .menu li:first-child {
-    margin-left: 6px;
     border-left: none;
   } 
+  .menu li {
+    margin: 0;
+  }
   .menu li a{
     border-right: 1px solid #d5d1d1;
     padding-right: 9px;
@@ -304,6 +331,7 @@
   .menu li:nth-child(4) > a {
     border-right: none;
   }
+
   .bottom-section {
     margin: 0 auto;
   }
@@ -327,6 +355,46 @@
       height: auto;
 
   }
-  select
+  .name-news {
+    font: 14px 'Helvetica-Bold', sans-serif;
+  }
+  .allocation {
+    width: 320px;
+    margin: 0;
+    position: relative;
+    left: 0;
+    top: 0;
+
+  }
+  .allocation p {
+    padding-left: 40px;
+  }
+
+  .showsettings {
+    width: 320px;
+    position: fixed;
+    left: 0px;
+    
+  }
+  .showsettings:after {
+  content: '';
+  position: fixed;
+  bottom: 0%;
+  left: 282px;
+  z-index: 1001;
+  width: 40px;
+  height: 24px;
+  background: #a8191d url('../img/gear.png') no-repeat;
+  background-position: 45% 45%;
+
+
+}
+  .novelty {
+    width: 300px;
+    margin: 0 auto;
+  }
+  .showspan {
+    font: 13px 'Helvetica-Med', sans-serif;
+  }
 
 }
