@@ -616,7 +616,7 @@ p{
 	background: #F7F7F7;
 	margin-right: 10px;
 	margin-top: 20px;
-    z-index: -1;
+    z-index: 141212;
 }
 .dict-title h3{
 	font: 26px/31px 'Condensed-Bold', sans-serif;
@@ -727,7 +727,6 @@ p{
 	width: 50px;
 	height: 15px;
 	background: #E5E5E5;
-	margin-bottom: 14px;
 	margin-right: 0;
 
 
@@ -825,7 +824,6 @@ p{
 	width: 50px;
 	height: 15px;
 	background: #E5E5E5;
-	margin-bottom: 14px;
 
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
@@ -1116,7 +1114,9 @@ p{
 	width: 266px;
 	height: 156px;
 	background: white;
-	position: relative;
+	position: fixed;
+	left: 43%;
+	z-index: 11111;
 }
 .translate-window-title {
 	text-align: center;
@@ -1143,7 +1143,7 @@ p{
 	bottom: 0px;
 	left: 0px;
 	width: 133px;
-	border: 1px solid black;
+	border: 1px solid #dddddd;
 }
 .translate-window-close {
 	display: inline-block;
@@ -1151,7 +1151,7 @@ p{
 	bottom: 0px;
 	right: 0px;
 	width: 133px;
-	border: 1px solid black;
+	border: 1px solid #dddddd;
 	border-left: none;
 }
 .save-span {
@@ -1168,4 +1168,19 @@ p{
 	font: 14px 'Helvetica-Bold', sans-serif;
 	color: black;
 }
+.right-col-func select{
+	margin-bottom: 12px;
+	border: none;
+	background: transparent;
+	padding-right: 5px;
+	color: #B2B2B2;
+}
+.right-col-func-select-2 {
+	margin-top: 20px;
+
+}
+}
+	
+
+
 
