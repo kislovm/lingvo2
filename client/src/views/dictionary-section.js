@@ -1,4 +1,4 @@
-var Marionette = require('backbone.marionette');
+﻿var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.LayoutView.extend({
 
@@ -7,14 +7,10 @@ module.exports = Marionette.LayoutView.extend({
     events: function() {
         if(!App.data.user.get('registred')) {
             return {
-                'click input': 'notRegistred',
-                'click select': 'notRegistred'
-            }
+                'click input': 'notRegistred', 'click select': 'notRegistred'}
         } else {
             return {
-                'change .autosave-slider': 'autosaveChange',
-                'change .highlight-slider': 'highlightSlider'
-            }
+                'change .autosave-slider': 'autosaveChange', 'change .highlight-slider': 'highlightSlider'}
         }
     },
 
