@@ -30,6 +30,10 @@
     font-family: 'Roboto-Regular'; /* Гарнитура шрифта */
     src: url(../fonts/RobotoRegular.ttf); /* Путь к файлу со шрифтом */
    }
+   @font-face {
+    font-family: 'Helvetica-Neu'; /* Гарнитура шрифта */
+    src: url(../fonts/HelveticaNeueCyr-Medium.otf); /* Путь к файлу со шрифтом */
+   }
 
 
 body{
@@ -1117,6 +1121,7 @@ p{
 	position: fixed;
 	left: 43%;
 	z-index: 11111;
+	display: none;
 }
 .translate-window-title {
 	text-align: center;
@@ -1133,7 +1138,7 @@ p{
 .translate-window-translate {
 	font: 14px 'Helvetica', sans-serif;
 	color: #2d2d2d;
-	display: block;
+	display: none;
 	margin-top: 10px;
 	text-align: center;
 }
@@ -1189,7 +1194,147 @@ p{
 .sorting-block-title {
 	margin-top: 0;
 }
+.sign {
+	position: fixed;
+	width: 264px;
+	background: white;
+	left: 37%;
+	font: 14px 'Helvetica', sans-serif;
+
 }
+.sign-in {
+	float: left;
+	height: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 132px;
+	color: black;
+	font: 18px 'Helvetica-Bold', sans-serif;
+
+}
+.sign-up {
+	float: right;
+	height: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 132px;
+	background: #a8191d;
+	color: white;
+	font: 18px 'Helvetica-Bold', sans-serif;
+}
+.sign-btn {
+	width: 188px;
+	border: none;
+	border-radius: 2px;
+	padding: 0;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	display: block;
+	color: white;
+	font-family: 'Helvetica-Neu';
+	margin-left: 40px;
+	position: relative;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: block;
+
+}
+.sign-btn:after {
+	content: '';
+	width: 188px;
+	height: 5px;
+	border-bottom: 1px solid black;
+	border-radius: 2px;
+	position: absolute;
+	top: 27px;
+	right: -1px;
+
+}
+.fb-btn {
+	background: #446098;
+	color: white;
+	border: 1px solid #13306b;
+	margin-top: 50px;
+	
+
+}
+.fb-btn:before {
+	content: '';
+	width: 30px;
+	height: 35px;
+	background: url('../img/fb-icon.png') no-repeat;
+	background-color: transparent;
+	position: absolute;
+	border-right: 1px solid #127fae;
+	background-position: -5px -4px;
+	bottom: 0px;
+	left: 2px;
+}
+.tw-btn {
+	background: #39abdc;
+	color: white;
+	border: 1px solid #0879a9;
+	
+
+}
+.tw-btn:before {
+	content: '';
+	width: 30px;
+	height: 35px;
+	background: transparent  url('../img/tw-icon.png') no-repeat;
+	position: absolute;
+	border-right: 1px solid #127fae;
+	background-position: -7px -4px;
+	bottom: 0px;
+	left: 3px;
+}
+.gg-btn {
+	background: #de4b33;
+	color: white;
+	border: 1px solid #b10c00;
+	
+
+}
+.gg-btn:before {
+	content: '';
+	width: 30px;
+	height: 35px;
+	background: transparent  url('../img/gg-icon.png') no-repeat;
+	position: absolute;
+	border-right: 1px solid #b31d05;
+	background-position: -7px -4px;
+	bottom: 0px;
+	left: 3px;
+}
+.ggw-btn {
+	background: #fafafa;
+	color: #898989;
+	border: 1px solid #d2d2d2;
+	
+
+}
+.ggw-btn:before {
+	content: '';
+	width: 30px;
+	height: 35px;
+	background: transparent url('../img/ggw-icon.png') no-repeat;
+	background-position: -5px -4px;
+	position: absolute;
+	bottom: 0px;
+	left: 3px;
+	border-right: 1px solid #d2d2d2;
+}
+.btn-text-first {
+	margin-left: 28px;
+	padding-bottom: 2px;
+	
+}
+.btn-text {
+	margin-left: 10px;
+	padding-bottom: 2px;
+}
+
+
 	
 
 

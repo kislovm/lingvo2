@@ -481,6 +481,11 @@
     overflow-y: hidden;
     overflow-x: hidden;
 }    
+.sign {
+  left: 10%;
+  background: #4a4a4a;
+  z-index: 12512341;
+}
 
 
 
