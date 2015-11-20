@@ -42,7 +42,6 @@ body{
 	font-family: 'Myriad Pro';
 	font-size: 12px;
 	line-height: 14px;
-	color: #5D5D5D;
 
 }
 a{
@@ -221,6 +220,7 @@ p{
 	width: 1000px;
 	margin: 0 auto;
 	margin-top: 10px;
+	background: white;
 }
 .top-line{
 	width: 100%;
@@ -372,7 +372,7 @@ p{
 .settings-slide {
     background: #F7F7F7;
     position: absolute;
-    z-index: 999;
+    z-index: 5;
 }
 .checkbox-settings{
 	display: none;
@@ -620,7 +620,7 @@ p{
 	background: #F7F7F7;
 	margin-right: 10px;
 	margin-top: 20px;
-    z-index: 141212;
+    z-index: 4;
 }
 .dict-title h3{
 	font: 26px/31px 'Condensed-Bold', sans-serif;
@@ -1120,7 +1120,7 @@ p{
 	background: white;
 	position: fixed;
 	left: 43%;
-	z-index: 11111;
+	z-index: 8;
 	display: none;
 }
 .translate-window-title {
@@ -1200,6 +1200,7 @@ p{
 	background: white;
 	left: 37%;
 	font: 14px 'Helvetica', sans-serif;
+	z-index: 1000;
 
 }
 .sign-in {
@@ -1253,7 +1254,7 @@ p{
 .fb-btn {
 	background: #446098;
 	color: white;
-	border: 1px solid #13306b;
+	border: 1px solid #355187;
 	margin-top: 50px;
 	
 
@@ -1261,68 +1262,80 @@ p{
 .fb-btn:before {
 	content: '';
 	width: 30px;
-	height: 35px;
+	height: 33px;
 	background: url('../img/fb-icon.png') no-repeat;
 	background-color: transparent;
 	position: absolute;
-	border-right: 1px solid #127fae;
+	border-right: 1px solid #355187;
 	background-position: -5px -4px;
-	bottom: 0px;
+	bottom: 2px;
 	left: 2px;
+}
+.fb-btn:after {
+	border-bottom: 1px solid #355187;
 }
 .tw-btn {
 	background: #39abdc;
 	color: white;
-	border: 1px solid #0879a9;
+	border: 1px solid #1380ae;
 	
 
 }
 .tw-btn:before {
 	content: '';
 	width: 30px;
-	height: 35px;
+	height: 33px;
 	background: transparent  url('../img/tw-icon.png') no-repeat;
 	position: absolute;
-	border-right: 1px solid #127fae;
-	background-position: -7px -4px;
-	bottom: 0px;
+	border-right: 1px solid #1380ae;
+	background-position: -6px -2px;
+	bottom: 2px;
 	left: 3px;
+}
+.tw-btn:after {
+	border-bottom: 1px solid #1380ae;
 }
 .gg-btn {
 	background: #de4b33;
 	color: white;
-	border: 1px solid #b10c00;
+	border: 1px solid #cd3b24;
 	
 
 }
 .gg-btn:before {
 	content: '';
 	width: 30px;
-	height: 35px;
+	height: 33px;
 	background: transparent  url('../img/gg-icon.png') no-repeat;
 	position: absolute;
-	border-right: 1px solid #b31d05;
+	border-right: 1px solid #cd3b24;
 	background-position: -7px -4px;
-	bottom: 0px;
+	bottom: 2px;
 	left: 3px;
+}
+.gg-btn:after {
+	border-bottom: 1px solid #cd3b24;
 }
 .ggw-btn {
 	background: #fafafa;
 	color: #898989;
-	border: 1px solid #d2d2d2;
+	border: 1px solid #c2c2c2;
 	
 
 }
 .ggw-btn:before {
 	content: '';
 	width: 30px;
-	height: 35px;
+	height: 33px;
 	background: transparent url('../img/ggw-icon.png') no-repeat;
 	background-position: -5px -4px;
 	position: absolute;
-	bottom: 0px;
+	bottom: 2px;
 	left: 3px;
-	border-right: 1px solid #d2d2d2;
+	border-right: 1px solid #c2c2c2;
+}
+.ggw-btn:after {
+	border-bottom: 1px solid #c2c2c2;
 }
 .btn-text-first {
 	margin-left: 28px;
@@ -1332,6 +1345,91 @@ p{
 .btn-text {
 	margin-left: 10px;
 	padding-bottom: 2px;
+}
+.or-icon {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: white;
+	border: 1px solid #dddddd;
+	margin: 0 auto;
+	position: relative;
+	top: 13px;
+}
+.or-icon span {
+	position: relative;
+	top: 3px;
+
+}
+.login-m-form {
+	background: #dddddd;
+}
+.login-m-form input {
+	border: none;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 2px;
+	background: #f6f6f6;
+	font: 14px 'Helvetica-Neu', sans-serif;
+	color: #808080;
+	vertical-align: 20px;
+}
+.login-m-form input[type=text] {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.login-m-form input[type=password] {
+	margin-bottom: 0;
+}
+.login-m-form-restore {
+	display: block;
+	font: 14px 'Helvetica', sans-serif;
+	vertical-align: 25px;
+	color: #a8191d;
+	padding-bottom: 13px;
+}
+.sign-login {
+	float: left;
+	width: 132px;
+	background: white;
+	color: black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font: 14px/20px 'Helvetica-Bold', sans-serif;
+	position: relative;
+	cursor: pointer;
+}
+.sign-login:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 1px;
+	height: 36px;
+	width: 1px;
+	background: #dddddd;
+
+}
+.sign-close {
+	float: right;
+	width: 132px;
+	background: white;
+	color: black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font: 14px/20px 'Helvetica-Bold', sans-serif;
+	cursor: pointer;
+}
+.bg-container {
+	background: black;
+	opacity: 0.7;
+	z-index: 98;
+	position: absolute;	
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow-y: hidden;
 }
 
 

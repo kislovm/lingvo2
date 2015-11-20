@@ -17,8 +17,7 @@
   }
     .middle-section .center-content {
     width: 380px;
-    margin: 0 auto;
-  }
+      }
   .middle-section {
     width: 320px;
   }
@@ -33,6 +32,7 @@
   .center-content {
     margin: 0;
     width: 320px;
+    padding-left: 20px;
   }
   .middle-section {
     min-width: 400px;
@@ -212,7 +212,7 @@
   position: fixed;
   bottom: 0%;
   right: 0%;
-  z-index: 1000;
+  z-index: 10;
   padding-top: 5px;
   padding-bottom: 5px;
 
@@ -222,7 +222,7 @@
   position: fixed;
   bottom: 0%;
   left: 336px;
-  z-index: 1001;
+  z-index: 11;
   width: 40px;
   height: 25px;
   background: #a8191d url('../img/gear.png') no-repeat;
@@ -238,13 +238,13 @@
   height: 156px;
   background: white;
   position: fixed;
-  z-index: 1004;
+  z-index: 14;
   left: 54px;
   display: none;
  }
  .dictionaries-section {
   position: fixed;
-  z-index: 1500;
+  z-index: 15;
   left: 0%;
   width: 414px;
   height: 100%;
@@ -482,9 +482,24 @@
     overflow-x: hidden;
 }    
 .sign {
-  left: 10%;
-  background: #4a4a4a;
-  z-index: 12512341;
+  left: 18%;
+  background: white;
+  z-index: 99;
+  opacity: 1;
+}
+.bg-container {
+  background: black;
+  opacity: 0.7;
+  z-index: 98;
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+}
+.or-icon {
+  color: black;
 }
 
 
@@ -540,6 +555,7 @@
   .center-content {
     margin: 0;
     width: 320px;
+    padding-left: 0;
   }
   .middle-section {
     min-width: 320px;
@@ -633,6 +649,7 @@
     padding-top: 5px;
     padding-bottom: 5px;
     position: relative;
+    width: 310px;
   }
   .allocation p:after {
     content: '';
@@ -716,7 +733,7 @@
   position: fixed;
   bottom: 0%;
   right: 0%;
-  z-index: 1000;
+  z-index: 10;
   padding-top: 5px;
   padding-bottom: 5px;
 
@@ -726,7 +743,7 @@
   position: fixed;
   bottom: 0%;
   left: 336px;
-  z-index: 1001;
+  z-index: 9;
   width: 40px;
   height: 25px;
   background: #a8191d url('../img/gear.png') no-repeat;
@@ -742,13 +759,13 @@
   height: 156px;
   background: white;
   position: fixed;
-  z-index: 1004;
+  z-index: 14;
   left: 54px;
   display: none;
  }
  .dictionaries-section {
   position: fixed;
-  z-index: 1500;
+  z-index: 15;
   left: 0%;
   width: 375px;
   height: 100%;
@@ -979,6 +996,13 @@
 .time {
   right: 60px;
 }
+.sign {
+  left: 13%;
+  background: white;
+  z-index: 99;
+  opacity: 1;
+  bottom: 14%;
+}
 
 
 
@@ -1032,7 +1056,8 @@
 
   .center-content {
     margin: 0;
-    width: 320px;
+    width: 305px;
+    padding-left: 10px;
   }
   .main-header .logo {
     font-size: 18px;
@@ -1165,20 +1190,22 @@
   }
   .allocation p {
     padding-left: 40px;
+    width: 280px;
   }
 
   .showsettings {
     width: 320px;
     position: fixed;
     left: 0px;
+    bottom: 15px;
     
   }
   .showsettings:after {
   content: '';
   position: fixed;
-  bottom: 0%;
+  bottom: 15px;
   left: 282px;
-  z-index: 1001;
+  z-index: 11;
   width: 40px;
   height: 25px;
   background: #a8191d url('../img/gear.png') no-repeat;
@@ -1198,12 +1225,12 @@
   height: 156px;
   background: white;
   position: fixed;
-  z-index: 1004;
+  z-index: 4;
   left: 27px;
  }
  .dictionaries-section {
   position: fixed;
-  z-index: 1500;
+  z-index: 15;
   left: 0%;
   width: 320px;
   height: 100%;
@@ -1436,6 +1463,13 @@
 }
 .time {
   right: 60px;
+}
+.sign {
+  left: 8%;
+  bottom: 9%;
+  background: white;
+  z-index: 99;
+  opacity: 1;
 }
 
 
