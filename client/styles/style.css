@@ -1201,6 +1201,7 @@ p{
 	left: 37%;
 	font: 14px 'Helvetica', sans-serif;
 	z-index: 1000;
+	display: none;
 
 }
 .sign-in {
@@ -1430,6 +1431,8 @@ p{
 	width: 100%;
 	height: 100%;
 	overflow-y: hidden;
+	display: none;
+
 }
 
 
