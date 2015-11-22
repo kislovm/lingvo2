@@ -24,7 +24,7 @@
   .header .top-section {
     margin-top: 0;
     padding-top: 16px;
-    background: #7c1216;
+    background: #394778;
     color: white;
     width: 316px;
      font: 14px 'Helvetica', sans-serif;
@@ -40,7 +40,7 @@
   }
   .main-header .logo {
     font-size: 18px;
-    background: #a8191d;
+    background: #4e6ba5;
     padding: 0;
     padding-right: 15px;
     width: auto;
@@ -61,11 +61,10 @@
       font: 14px 'Helvetica-Med', sans-serif;
       text-transform: none;
       margin-top: 10px;
-      margin-left: 10px;
       float: left;
   }
   .bottom-section .menu li:first-child {
-    margin-left: 20px;
+    margin-left: 45px;
   }
   .bottom-section>.menu {
     width: 414px;
@@ -93,7 +92,7 @@
     float: right;
     height: 51px;
     width: 51px;
-    background: #a8191d url('../img/enter-icon.png') no-repeat;
+    background: #4e6ba5 url('../img/enter-icon.png') no-repeat;
     background-position: 10px 10px;
     position: relative;
     bottom: 16px;
@@ -182,7 +181,7 @@
   .newsinform {
     width: 180px;
     position: relative;
-    top: 139px;
+    top: 133.8px;
     left: 70px;
     color: grey;
     display: block;
@@ -191,7 +190,7 @@
   }
 
   .switch-lang {
-    background: #7c1216;
+    background: #394778;
     border: none;
     padding-right: 6px;
     position: relative;
@@ -202,11 +201,16 @@
 
   }
   .news {
-    font: 13px 'Helvetica-Med', sans-serif;
-    height: 105px;
+    font: 13px 'Goodosf', sans-serif;
+    letter-spacing: 0px;
+    
+  }
+  .word {
+    line-height: 20px;
   }
   .name-news {
-    font: 17px 'Helvetica-Bold', sans-serif;
+    font: 17px 'Goodosf-Black', sans-serif;
+    font-weight: bold;
   }
   .showsettings {
   display: block;
@@ -822,7 +826,7 @@ input[type=range]::-webkit-slider-runnable-track {
   .newsinform {
     width: 180px;
     position: relative;
-    top: 139px;
+    top: 143px;
     left: 70px;
     color: grey;
     display: block;
