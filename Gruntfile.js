@@ -98,8 +98,8 @@ module.exports = function(grunt) {
 
             },
             options: {
-                interval: 100,
-                livereload: true
+                interval: 10,
+                spawn: false
             }
         },
 
@@ -140,9 +140,6 @@ module.exports = function(grunt) {
         jshint: {
             all: ['Gruntfile.js', 'client/src/**/*.js'],
             dev: ['client/src/**/*.js']
-        },
-        livereload: {
-
         }
     });
 
