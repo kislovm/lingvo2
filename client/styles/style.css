@@ -34,7 +34,10 @@
     font-family: 'Helvetica-Neu'; /* Гарнитура шрифта */
     src: url(../fonts/HelveticaNeueCyr-Medium.otf); /* Путь к файлу со шрифтом */
    }
-
+	   @font-face {
+    font-family: 'Intro'; /* Гарнитура шрифта */
+    src: url(../fonts/IntroRegular.ttf); /* Путь к файлу со шрифтом */
+   }
 
 body{
 	margin: 0;
@@ -42,14 +45,13 @@ body{
 	font-family: 'Myriad Pro';
 	font-size: 12px;
 	line-height: 14px;
+	background: #e2e2e2;
 
 }
 a{
 	color: #999999;
 	text-decoration: none;
 }
-.background{
-	}
 a.register{
 	color: #5D5D5D;
 }
@@ -59,37 +61,98 @@ ul{
 	padding: 0;
 }
 .clearfix:after {
-	content: "";
-	display: table;
-	clear: both;
-	
+    content: ""; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+    overflow:hidden;
+}
+
+.clearfix {
+    display: block;
 }
 .logo{
-	font-family: 'Intro-Inline';
-	color: #323232;
-	font-size: 42px;
-	line-height: 51px;
-	padding: 40px 20px;
-	float: left;
-	width: 165px;
+	font-size: 35px;
+	width: 35%;
+	background: #4e6ba5;
+	padding-bottom: 2px;
+    float: left;
+	margin-top: 0;
+	height: 58px;
+
 }
-.logo a,
-.menu a{
-	color: #323232;
+.lang-select {
+	float: left;
+	width: 30%;
+	background: #394778;
+	padding-top: 20px;
+    padding-bottom: 19px;
+    font-family: 'Helvetica', sans-serif;
+	font-size: 17px;
+	color: white;
+}
+.lang-select span {
+	padding-left: 35%;
+}
+.switch-lang {
+	background: #394778;
+	 font-family: 'Helvetica', sans-serif;
+	font-size: 17px;
+	color: white;
+	-webkit-appearance: none;
+	border: none;
+
+
+}
+.enter-block {
+	padding-top: 23px;
+    padding-bottom: 23px;
+    font-family: 'Helvetica', sans-serif;
+	font-size: 17px;
+	color: white;
+
+}
+.enter-block {
+float: right;
+	width: 35%;
+	background: #4e6ba5;
+	text-align: center;
+}
+.login-m {
+	color: white;
+	width: 200px;
+}
+.menu a {
+	color: #2d2d2d;
+	width: 200px;
+}
+.logo a {
+	color: white;
+	margin-left: 40px;
+	font-family: 'Intro';
+	display: block;
+	margin-top: 25px;
 }
 .logo-p{
-	padding: 0;
-	margin: 0;
-	font-family: 'Intro-Inline';
-	font-size: 8px;
-	line-height: 9px;
+	font-family: 'Helvetica-Neu';
+	font-size: 17px;
+	position: relative;
+	left: 180px;
+	bottom: 26px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 20px;
+	border-left: 1px solid white;
+	color: white;
+	font-size: 12px;
+	width: 60%;
 }
 p{
 	margin: 0;
 	padding: 0;
 }
 .header{
-	float: left;
 	margin-left: 40px;
 }
 .form-p{
@@ -187,32 +250,38 @@ p{
 	text-decoration: underline;
 }
 .menu li{
-	display: inline-block;
-	margin-left: 40px;
-	padding: 15px 0;
-	
+	float: left;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	width: 13%;
+	margin: 0 0 0 1%;
+	border: 1px solid red;
 
 }
 .menu li:first-child{
 	margin-left: 0;
+	padding-left: 0;
 }
 .menu{
 	text-align: center;
-	font-family: 'Condensed-Bold', sans-serif;
-	font-size: 26px;
-	line-height: 32px;
-	color: black;
-	text-transform: uppercase;
-	float: left;
-	min-width: 100%;
+	font-family: 'Helvetica-Neu', sans-serif;
+	font-size: 15px;
+	color: #2d2d2d;
+	width: 63%;
+	text-align: left;
+	background: #f6f6f6;
+	margin-left: 2%;
+
 
 	
 }
-.main-header{
-	border-bottom: 5px solid #E74A42;
-	min-width: 1000px;
-    width: 100%;
+.menu li a span {
+	width: 100%;
 	margin: 0 auto;
+}
+.main-header{
+	min-width: 500px;
+    width: 100%;
 	background: #F9F9F9;
 
 }	
