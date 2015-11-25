@@ -49,7 +49,6 @@ body{
 
 }
 a{
-	color: #999999;
 	text-decoration: none;
 }
 a.register{
@@ -80,11 +79,14 @@ ul{
     float: left;
 	margin-top: 0;
 	height: 58px;
+	position: relative;
+	min-width: 300px;
+
 
 }
 .lang-select {
 	float: left;
-	width: 30%;
+	width: 250px;
 	background: #394778;
 	padding-top: 20px;
     padding-bottom: 19px;
@@ -93,7 +95,8 @@ ul{
 	color: white;
 }
 .lang-select span {
-	padding-left: 35%;
+	text-align: center;
+	margin-left: 40px;
 }
 .switch-lang {
 	background: #394778;
@@ -111,11 +114,8 @@ ul{
     font-family: 'Helvetica', sans-serif;
 	font-size: 17px;
 	color: white;
-
-}
-.enter-block {
-float: right;
-	width: 35%;
+	float: right;
+	width: 320px;
 	background: #4e6ba5;
 	text-align: center;
 }
@@ -125,11 +125,10 @@ float: right;
 }
 .menu a {
 	color: #2d2d2d;
-	width: 200px;
 }
 .logo a {
 	color: white;
-	margin-left: 40px;
+	margin-left: 10px;
 	font-family: 'Intro';
 	display: block;
 	margin-top: 25px;
@@ -137,16 +136,16 @@ float: right;
 .logo-p{
 	font-family: 'Helvetica-Neu';
 	font-size: 17px;
-	position: relative;
-	left: 180px;
-	bottom: 26px;
 	padding-top: 3px;
 	padding-bottom: 3px;
 	padding-left: 20px;
 	border-left: 1px solid white;
 	color: white;
 	font-size: 12px;
-	width: 60%;
+	position: absolute;
+	left: 190px;
+	bottom: 15px;
+	width: 120px;
 }
 p{
 	margin: 0;
@@ -251,50 +250,72 @@ p{
 }
 .menu li{
 	float: left;
-	padding-top: 12px;
-	padding-bottom: 12px;
-	width: 13%;
-	margin: 0 0 0 1%;
-	border: 1px solid red;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	
 
+}
+.menu li a {
+	border-left: 1px solid #d5d1d1;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 3px;
+	padding-bottom: 3px;
 }
 .menu li:first-child{
 	margin-left: 0;
-	padding-left: 0;
+	padding-left: 50px;
+
+}
+.menu li:first-child a {
+	border-left: none;
 }
 .menu{
 	text-align: center;
 	font-family: 'Helvetica-Neu', sans-serif;
-	font-size: 15px;
+	font-size: 14px;
 	color: #2d2d2d;
-	width: 63%;
 	text-align: left;
 	background: #f6f6f6;
-	margin-left: 2%;
+	margin-top: 60px;
+	width: 640px;
 
 
 	
 }
-.menu li a span {
-	width: 100%;
+#blue-header {
+	width: 3000px;
+	overflow: hidden;
+	height: 60px;
+	position: fixed;
+	background: #4e6ba5;
+	top: 0;
+	z-index: 1;
+}
+#pc-container {
+	width: 960px;
 	margin: 0 auto;
 }
+.menu li {
+	text-align: center;
+}
 .main-header{
-	min-width: 500px;
-    width: 100%;
-	background: #F9F9F9;
+	width: 960px;
+	background: #4E6BA5;
+	position: fixed;
+	top: 0;
+	margin: 0 auto;
+	z-index: 2;
 
 }	
 .middle-section{
-	width: 1000px;
-	margin: 0 auto;
+	width: 910px;
 	margin-top: 10px;
 	background: white;
 }
 .top-line{
-	width: 100%;
-	margin: 0 auto;
-	background: #FFFF6D url("../img/top-line-bg.png") no-repeat;
+	width: 640px;
+	background: #fbfeae;
 }
 .title-line{
 	padding-left: 30px;
@@ -315,7 +336,18 @@ p{
 }
 .allocation p{
 	padding: 12px 0;
-	font: 16px 'Myriad', sans-serif;
+	font: 13px 'Helvetica-Neu', sans-serif;
+	color: #646464;
+	position: relative;
+}
+.allocation p:after {
+	content: '';
+	width: 20px;
+	height: 20px;
+	background: url('../img/show-cross.png') no-repeat;
+	background-size: 80%;
+	left: 360px;
+	position: absolute;
 }
 .showbtn{
 	float: right;
@@ -745,20 +777,17 @@ p{
 }
 .center-content{
 	float: left;
-    margin: 0 55px;
-    width: 420px;
+	margin-left: 10px;
+    width: 620px;
     color: #2A81B4;
     padding-top: 20px;
-}
-.center-content a{
-	color: #2A81B4;
 }
  .name-news{
  	display: inline-block;
  	margin-bottom: 10px;
 	text-align: left;
-	font: 25px 'Condensed-Bold', sans-serif;
-	color: #2A81B4;
+	font: 17px 'Helvetica-Bold', sans-serif;
+	color: #2d2d2d;
 }
 .newsinform{
 	color: #2A81B4;
@@ -772,9 +801,6 @@ p{
 	height: 100px;
 	overflow: hidden;
 	position: relative;	
-	background: -webkit-gradient(linear, left top,left bottom,color-stop(0.3, #000),color-stop(1, #FFF));, black;
-	-webkit-background-clip: text;
-	color: transparent;
 }
 .news:after {
 	content: '';
@@ -1183,6 +1209,10 @@ p{
 #wrapper{
 	display: none;
 }
+#content-wrapper {
+	width: 910px;
+	margin: 0 auto;
+}
 .translate-window {
 	width: 266px;
 	height: 156px;
@@ -1499,11 +1529,132 @@ p{
 	left: 0;
 	width: 100%;
 	height: 100%;
-	overflow-y: hidden;
 	display: none;
 
 }
+.functions-language {
+	width: 266px;
+	float: right;
+}
+.functions-language {
+  color: black;
+  position: fixed;
+  top: 447px;
+  width: 266px;
+  right: 250px;
+  z-index: 101;
+  background: #ffffff;
+}
+.functions-language h3 {
+  background: #eeeeee;
+  width: 266px;
+  font: 14px/25px 'Helvetica-Bold', sans-serif;
+  padding-left: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-top: 0;
+  position: relative;
+}
+.functions-language h3:after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  top: 6px;
+  left: 90%;
+  background: url('../img/close.png') no-repeat;
+  position: absolute;
+}
+.functions-language-slider span {
+  display: inline-block;
+  font: 15px/25px 'Helvetica', sans-serif;
+  color: black;
+  margin-left: 20px;
+  margin-bottom: 5px;
 
+}
+input[type=range] {
+  display: block;
+  width: 90%;
+ position: relative;
+ top: 8px;
+ left: 15px;
+  -webkit-appearance: none;
+
+}
+input[type=range]::-webkit-slider-thumb {
+  
+  -webkit-appearance: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #a8191d;
+  cursor: pointer;
+  margin-top: -4px;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 96%;
+  height: 8px;
+  cursor: pointer;
+  background: #dddddd;
+  border-radius: 5px;
+  outline: none;
+}
+.functions-checkbox-settings {
+  display: none;
+}
+
+.functions-checkbox-settings + label{
+  position: relative;
+  
+  cursor: pointer;
+}
+.functions-checkbox-settings + label::before{
+  content: "";
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: -25px;
+  bottom: -2px;
+  border: 1px solid #808080;
+  background: white;
+}
+
+.functions-checkbox-settings:checked + label::before{
+  background: white url("../img/checkbox.png") no-repeat;
+  background-position: 1px 3px;
+}
+.functions-news-title {
+  margin-top: 12px;
+  margin-left: 20px;
+  font: 14px/25px 'Helvetica-Bold', sans-serif;
+  margin-bottom: 2px;
+
+}
+.functions-box {
+
+  margin-left: 18px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+.functions-box label {
+  margin-left: 28px;
+}
+
+.translate-window-translate {
+  display: block;
+  font-family: 'HelveticaNeu', sans-serif
+
+}
+.translate-window-transcription {
+  font-family: 'HelveticaNeu', sans-serif;
+}
 
 	
 
