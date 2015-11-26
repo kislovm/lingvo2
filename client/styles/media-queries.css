@@ -1598,8 +1598,9 @@ input[type=range]::-webkit-slider-runnable-track {
   background: #eeeeee;
   border: none;
   margin-left: 30px;
-  width: 40px;
+  width: 70px;
   margin-top: 8px;
+  padding-right: 20px;
 
 }
 .dictionaries-section:after {
