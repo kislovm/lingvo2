@@ -73,16 +73,13 @@ ul{
 }
 .logo{
 	font-size: 35px;
-	width: 35%;
 	background: #4e6ba5;
 	padding-bottom: 2px;
     float: left;
 	margin-top: 0;
 	height: 58px;
 	position: relative;
-	min-width: 300px;
-
-
+	width: 300px;
 }
 .lang-select {
 	float: left;

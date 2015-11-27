@@ -1,13 +1,99 @@
+@media screen and (max-width: 600px) {
+
+.lang-select {
+  float: left;
+  width: 182px;
+  background: #394778;
+  padding-top: 18px;
+    padding-bottom: 18px;
+    font-family: 'Helvetica', sans-serif;
+  font-size: 17px;
+  color: white;
+}
+  .enter-block {
+  padding-top: 23px;
+    padding-bottom: 23px;
+    font-family: 'Helvetica', sans-serif;
+  font-size: 17px;
+  color: white;
+  float: right;
+  width: 120px;
+  background: #4e6ba5;
+  text-align: center;
+  display: none;
+}
+#blue-header {
+  display: none;
+}
+.main-header {
+    width: 320px;
+    border-bottom: none;
+  }
+
+
+#content-wrapper {
+  width: 520px;
+}
+.lang-select span {
+    text-align: center;
+    margin-left: 10px;
+}
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
 @media screen and (max-width: 500px) {
  #wrapper {
     width: 320px;
      margin: 0 auto;
   }
+  #blue-header {
+  display: none;
+}
+#content-wrapper {
+  width: 414px;
+}
 
   .main-header {
-    min-width: 320px;
+    width: 320px;
     border-bottom: none;
   }
+  .lang-select {
+  float: left;
+  width: 172px;
+  background: #394778;
+  padding-top: 18px;
+    padding-bottom: 18px;
+    font-family: 'Helvetica', sans-serif;
+  font-size: 17px;
+  color: white;
+}
+.enter-block {
+  padding-top: 23px;
+    padding-bottom: 23px;
+    font-family: 'Helvetica', sans-serif;
+  font-size: 17px;
+  color: white;
+  float: right;
+  width: 120px;
+  background: #4e6ba5;
+  text-align: center;
+  display: none;
+}
+.lang-select span {
+    text-align: center;
+    margin-left: 10px;
+}
   .settings-section, .soc-ic, .soc-p{
     display: none !important;
   }
@@ -17,6 +103,7 @@
   }
     .middle-section .center-content {
     width: 380px;
+    background: white;
       }
   .middle-section {
     width: 320px;
@@ -43,11 +130,16 @@
     background: #4e6ba5;
     padding: 0;
     padding-right: 15px;
-    width: auto;
+    width: 78px;
+    height: 54px;
+  }
+  .main-hedaer {
+    width: 414px;
   }
   .main-header .logo a {
     color: white;
     padding-left: 16px;
+    margin-top: 20px;
   }
   .main-header .header {
     margin-left: 0;
@@ -90,12 +182,13 @@
   .enter {
     display: block;
     float: right;
-    height: 51px;
-    width: 51px;
+    height: 54px;
+    width: 53px;
     background: #4e6ba5 url('../img/enter-icon.png') no-repeat;
     background-position: 10px 10px;
-    position: relative;
-    bottom: 16px;
+    background-size: 50%;
+    top: -54px;
+    position: absolute;
   }
   .menu li:nth-child(5),
     .menu li:nth-child(6) {
@@ -136,7 +229,7 @@
     content: '';
     position: absolute;
     top: -8px;
-    right: 20px;
+    left: 100px;
     width: 40px;
     height: 40px;
     float: right;
@@ -240,6 +333,8 @@
 }
  .showspan {
     font: 13px 'Helvetica-Med', sans-serif;
+    text-align: center;
+    color: white;
   }
   .translate-window {
   width: 266px;
@@ -653,9 +748,18 @@ input[type=range]::-webkit-slider-runnable-track {
     width: 320px;
      margin: 0 auto;
   }
-
+  #blue-header {
+  display: none;
+}
+#content-wrapper {
+  width: 370px;
+}
+.lang-select span {
+    text-align: center;
+    margin-left: 10px;
+}
   .main-header {
-    min-width: 320px;
+    width: 320px;
     border-bottom: none;
   }
   .settings-section, .soc-ic, .soc-p{
@@ -667,10 +771,33 @@ input[type=range]::-webkit-slider-runnable-track {
   }
     .middle-section .center-content {
     width: 310px;
+    background: white;
   }
   .middle-section {
     width: 320px;
   }
+  .enter-block {
+  padding-top: 23px;
+    padding-bottom: 23px;
+    font-family: 'Helvetica', sans-serif;
+  font-size: 17px;
+  color: white;
+  float: right;
+  width: 120px;
+  background: #4e6ba5;
+  text-align: center;
+  display: none;
+}
+  .lang-select {
+  float: left;
+  width: 172px;
+  background: #394778;
+  padding-top: 18px;
+    padding-bottom: 18px;
+    font-family: 'Helvetica', sans-serif;
+  font-size: 17px;
+  color: white;
+}
   .header .top-section {
     margin-top: 0;
     padding-top: 16px;
@@ -689,14 +816,16 @@ input[type=range]::-webkit-slider-runnable-track {
   }
   .main-header .logo {
     font-size: 18px;
-    background: #a8191d;
+    background: #4e6ba5;
     padding: 0;
     padding-right: 15px;
-    width: auto;
+    width: 78px;
+    height: 54px;
   }
   .main-header .logo a {
     color: white;
     padding-left: 16px;
+   margin-top: 20px;
   }
   .main-header .header {
     margin-left: 0;
@@ -736,12 +865,13 @@ input[type=range]::-webkit-slider-runnable-track {
   .enter {
     display: block;
     float: right;
-    height: 51px;
-    width: 51px;
-    background: #a8191d url('../img/enter-icon.png') no-repeat;
+    height: 54px;
+    width: 53px;
+    background: #4e6ba5 url('../img/enter-icon.png') no-repeat;
     background-position: 10px 10px;
     position: relative;
-    bottom: 16px;
+    background-size: 50%;
+    bottom: 17px;
   }
   .menu li:nth-child(5),
     .menu li:nth-child(6) {
@@ -782,7 +912,7 @@ input[type=range]::-webkit-slider-runnable-track {
     content: '';
     position: absolute;
     top: -7px;
-    right: 5px;
+    left: 100px;
     width: 40px;
     height: 40px;
     float: right;
@@ -809,6 +939,7 @@ input[type=range]::-webkit-slider-runnable-track {
   }
   .center-content {
     padding-top: 0;
+
   }
   .name-news {
     margin-top: 10px;
@@ -880,6 +1011,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
  .showspan {
     font: 13px 'Helvetica-Med', sans-serif;
+    text-align: center;
   }
   .translate-window {
   width: 266px;
@@ -1232,12 +1364,44 @@ input[type=range]::-webkit-slider-runnable-track {
   .middle-section {
     width: 320px;
   }
-  .background>.main-header {
-    min-width: 320px;
+  #blue-header {
+  display: none;
+}
+#content-wrapper {
+  width: 320px;
+}
+  .main-header {
+    width: 320px;
     margin: 0;
     height: 51px;
     border: none;
   }
+  .lang-select span {
+    text-align: center;
+    margin-left: 10px;
+}
+  .lang-select {
+  float: left;
+  width: 176px;
+  background: #394778;
+  padding-top: 18px;
+    padding-bottom: 18px;
+    font-family: 'Helvetica', sans-serif;
+  font-size: 17px;
+  color: white;
+}
+.enter-block {
+  padding-top: 23px;
+    padding-bottom: 23px;
+    font-family: 'Helvetica', sans-serif;
+  font-size: 17px;
+  color: white;
+  float: right;
+  width: 120px;
+  background: #4e6ba5;
+  text-align: center;
+  display: none;
+}
   .settings-section, .logo-p{
     display: none;
   }
@@ -1256,14 +1420,17 @@ input[type=range]::-webkit-slider-runnable-track {
   }
   .main-header .logo {
     font-size: 18px;
-    background: #a8191d;
+    background: #4e6ba5;
     padding: 0;
     padding-right: 15px;
+    width: 78px;
+    height: 54px;
   }
   .main-header .logo a {
     color: white;
     padding-left: 5px;
     padding-right: 5px;
+    margin-top: 20px;
   }
   .main-header .header {
     margin-left: 0;
@@ -1334,12 +1501,13 @@ input[type=range]::-webkit-slider-runnable-track {
   .enter {
     display: block;
     float: right;
-    height: 51px;
-    width: 51px;
-    background: #a8191d url('../img/enter-icon.png') no-repeat;
-    background-position: 10px 10px;
+    height: 54px;
+    width: 53px;
+    background: #4e6ba5 url('../img/enter-icon.png') no-repeat;
+    background-position: 10px 14px;
     position: relative;
-    bottom: 16px;
+    bottom: -1px;
+    background-size: 50%;
   }
   .switch-lang {
      
@@ -1386,6 +1554,7 @@ input[type=range]::-webkit-slider-runnable-track {
   .allocation p {
     padding-left: 40px;
     width: 280px;
+    position: relative;
   }
 
   .showsettings {
@@ -1414,6 +1583,8 @@ input[type=range]::-webkit-slider-runnable-track {
   }
   .showspan {
     font: 13px 'Helvetica-Med', sans-serif;
+    text-align: center;
+    padding-left: 80px;
   }
    .translate-window {
   width: 266px;
@@ -1598,9 +1769,8 @@ input[type=range]::-webkit-slider-runnable-track {
   background: #eeeeee;
   border: none;
   margin-left: 30px;
-  width: 70px;
+  width: 40px;
   margin-top: 8px;
-  padding-right: 20px;
 
 }
 .dictionaries-section:after {
@@ -1728,7 +1898,31 @@ input[type=range]::-webkit-slider-runnable-track {
   background: url('../img/close.png') no-repeat;
   position: absolute;
 }
-
+ .allocation p:after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 280px;
+    width: 40px;
+    height: 40px;
+    font-size: 0;
+    cursor: pointer;
+    background: url("../img/show-cross.png") no-repeat center;
+    background-size: 30%;
+    cursor: pointer;
+   
+  }
+  body {
+    background: white;
+  }
+  .top-line {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    background: none;
+    height: 30px;
+    display: block;
+}
 
 
 }
