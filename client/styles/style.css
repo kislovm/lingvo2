@@ -107,14 +107,11 @@ ul{
 }
 .enter-block {
 	padding-top: 23px;
-    padding-bottom: 23px;
     font-family: 'Helvetica', sans-serif;
 	font-size: 17px;
 	color: white;
 	float: right;
-	width: 320px;
 	background: #4e6ba5;
-	text-align: center;
 }
 .login-m {
 	color: white;
@@ -1692,6 +1689,7 @@ input[type=range]::-webkit-slider-runnable-track {
   position: absolute;
   top: 8px;
   left: 90%;
+  display: none;
 }
 .dict-title:after {
   display: none;
