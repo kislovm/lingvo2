@@ -557,7 +557,7 @@ p{
 	font: 15px 'Helvetica', sans-serif;
 }
 .range-filter{
-	width: 174px;
+	width: 100%;
 	
 }
 .range-controls{
@@ -565,26 +565,20 @@ p{
 	padding-top: 8px;
 		
 		padding-bottom: 20px;
-		margin-left: 25px;
+		margin-left: 10px;
 }
 .range-controls .scale{
 	
-	height: 1px;
-	background: #999999;
-}
-.range-controls .circle{
-	position: absolute;
-	top: 2px;
-	background: #F7F7F7;
-	width: 12px;
-	height: 12px;
-	border:1px solid #999999;
-	border-radius: 50%;
+	height: 9px;
+	background: #dddddd;
+	border-radius: 4%;
+	z-index: 500;
+	position: relative;
+	width: 294px;
 }
 .circle1{
 	position: absolute;
 	top: 2px;
-	background: #F7F7F7;
 	width: 12px;
 	height: 12px;
 	border-radius: 50%;
@@ -596,17 +590,20 @@ p{
 	transition: all .4s ease;
 	display: inline-block;
 	left: 0;
+	z-index: 1000;
+	
 }
 .circle2{
 	cursor: pointer;
-	
+	z-index: 1000;
 }
 
 .range-controls .circle2{
-	left: 70px;
+	left: 110px;
 }
 .range-controls .circle3{
-	left: 135px;
+	left: 195px;
+	z-index: 502;
 	
 }
 .settings-lang-dif{
@@ -619,44 +616,16 @@ p{
 	font: 15px 'Helvetica', sans-serif;
 	color: #999999;
 }
- .circle3{
-	position: relative;
-	top: 2px;
-	background: #F7F7F7;
-	width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	cursor: pointer;
-	display: inline-block;
-	
-}
-.circle3:after{
-	content: "";
-	position: absolute;
-	top: 2px;
-	left: 2px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: #2A81B4;
-	cursor: pointer;
-	-webkit-transition: all .4s ease;
-	-moz-transition: all .4s ease;
-	-o-transition: all .4s ease;
-	-ms-transition: all .4s ease;
-	transition: all .4s ease;
-	display: inline-block;
-
-}
 .max-toggle input[type=radio]:checked + .circle3:after{
-	left: 2px;
+	left: 0px;
 }
 #slidedifficult2:checked ~ .circle3:after{
-	left: -63px;
+	left: -60px;
+
 }
 
 #slidedifficult1:checked ~ .circle3:after{
-	left: -133px;
+	left: -176px;
 }
 
 .range-controls-hard{
@@ -674,6 +643,43 @@ p{
 	padding-left: 25px;
 	font: 15px 'Helvetica', sans-serif;
 	color: #999999;
+}
+.range-controls .circle{
+	position: absolute;
+	top: 2px;
+	width: 33%;
+	border-radius: 0;
+	height: 20px;
+}
+ .circle3{
+	position: relative;
+	top: 2px;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	cursor: pointer;
+	display: inline-block;
+	z-index: 1000;
+	
+}
+.circle3:after{
+	content: "";
+	position: absolute;
+	top: 0px;
+	left: -62px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #cc0f15;
+	cursor: pointer;
+	-webkit-transition: all .4s ease;
+	-moz-transition: all .4s ease;
+	-o-transition: all .4s ease;
+	-ms-transition: all .4s ease;
+	transition: all .4s ease;
+	display: inline-block;
+	z-index: 1000;
+
 }
 .settings-lang-link {
 	position: relative;
@@ -780,6 +786,7 @@ p{
 	color: #2A81B4;
 	font: 12px 'Helvetica', sans-serif;
 	margin-left: 0;
+	display: none;
 
 }
 .news{
@@ -1536,7 +1543,7 @@ p{
   color: black;
   position: fixed;
   top: 457px;
-  right: 280px;
+  margin-left: 663px;
   z-index: 101;
   background: #ffffff;
 }
@@ -1654,7 +1661,7 @@ input[type=range]::-webkit-slider-runnable-track {
 .dictionaries-section {
   position: fixed;
   z-index: 15;
-  right: 280px;
+ margin-left: 663px;
   height: 340px;
   top: 70px;
   width: 310px;
@@ -1936,7 +1943,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	z-index: 1499;
 	position: fixed;
 	top: 390px;
-	right: 280px;
+	margin-left: 155px;
 	text-align: center;
 	vertical-align: center;
 	padding-top: 10px;
@@ -1949,11 +1956,15 @@ input[type=range]::-webkit-slider-runnable-track {
 	z-index: 1500;
 	position: fixed;
 	top: 390px;
-	right: 435px;
+	margin-left: 0px;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	color: white;
+}
+#center-block {
+	width: 1000px;
+	margin: 0 auto;
 }
 
 	
