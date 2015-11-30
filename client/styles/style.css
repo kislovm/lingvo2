@@ -625,7 +625,10 @@ p{
 }
 
 #slidedifficult1:checked ~ .circle3:after{
-	left: -176px;
+	left: -166px;
+}
+#slidedifficult3:checked ~ .circle3:after {
+	left: 40px;
 }
 
 .range-controls-hard{
