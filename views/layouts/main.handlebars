@@ -37,9 +37,7 @@
 			</div>
 			<div class="enter-block">
 			{{#if user}}
-				<a href = "/account/" class="login-m">{{{ user.name }}}</a>/
-				<a href = "/logout/" class="login-m">Sign out</a>
-                <a class="fake-link dictionary-popup" class="dictionaries-popup">Dictionaries</a>
+				<a href = "/account/" class="login-m">{{{ user.name }}}</a>&nbsp;/&nbsp;<a href = "/logout/" class="login-m">Sign out</a>
             {{else}}
                 Login&nbsp;via
                 <a href="/auth/facebook" class="login-m">Facebook</a>
