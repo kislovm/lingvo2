@@ -1991,4 +1991,92 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 90%;
   padding-left: 10%;
 }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (device-width: 768px) {
+  #blue-header {
+    width: 768px;
+  }
+  #center-block {
+    width: 768px;
+  }
+  .main-header {
+    width: 768px;
+  }
+  #content-wrapper {
+    width: 768px;
+  }
+  #pc-container {
+    width: 768px;
+  }
+  .enter-block {
+    width: 164px;
+    font-size: 14px;
+  }
+  .center-content {
+    width: 400px;
+  }
+  .bottom-section {
+    width: 768px;
+  }
+  .background {
+    width: 768px;
+  }
+  .middle-section {
+    width: 768px;
+  }
+  .top-line {
+    width: 420px;
+  }
+  .menu {
+    width: 420px;
+  }
+  .menu li a {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .allocation p:after {
+    left: 260px;
+  }
+  .allocation {
+    margin-left: 70px;
+  }
+  .dictionaries-section {
+    margin-top: 40px;
+    margin-left: 430px;
+    width: 320px;
+    height: 310px;
+  }
+  .lang-select span {
+    margin-left: 70px;
+  }
+  .functions-language {
+    margin-left: 430px;
+    width: 320px;
+  }
+  .slider-check, .slider-check2 {
+    position: relative;
+    top: 20px;
+  }
+  .login-m {
+    margin-left: 5px;
+  }
+
+
 }
