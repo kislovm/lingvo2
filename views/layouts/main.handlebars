@@ -36,7 +36,16 @@
 				</select>
 			</div>
 			<div class="enter-block">
-				<a href = '#'class="login-m">Eduard Voinich /   Sign out</a>
+			{{#if user}}
+				<a href = "/account/" class="login-m">{{{ user.name }}}</a>/
+				<a href = "/logout/" class="login-m">Sign out</a>
+                <a class="fake-link dictionary-popup" class="dictionaries-popup">Dictionaries</a>
+            {{else}}
+                Login&nbsp;via
+                <a href="/auth/facebook" class="login-m">Facebook</a>
+                |
+                <a href="/auth/twitter" class="login-m">Twitter</a>
+            {{/if}}
 			</div>
 					<div class="sign-bg">
 					<div class="sign">
@@ -74,12 +83,14 @@
 
 			<div class="bottom-section">
 				<ul class="menu clearfix">
-					<li><a href="#"><span>World</span></a></li>
-					<li><a href="#"><span> Sport</span></a></li>
-					<li><a href="#"><span> Technology</span></a></li>
-					<li><a href="#"><span> Entertainment</span></a></li>
-					<li><a href="#"><span>Style</span></a></li>
-					<li><a href="#"><span>Travel</span></a></li>
+					<li><a href="#category/politics"><span>Politics</span></a></li>
+					<li><a href="#category/social"><span>Social</span></a></li>
+					<li><a href="#category/economics"><span>Economics</span></a></li>
+					<li><a href="#category/sport"><span>Sport</span></a></li>
+					<li><a href="#category/science"><span>Science</span></a></li>
+					<li><a href="#category/tech"><span>Technology</span></a></li>
+					<li><a href="#category/culture"><span>Culture</span></a></li>
+					<li><a href="#category/world"><span>World</span></a></li>
 				</ul>
 			</div>	
 		<div class="middle-section">
