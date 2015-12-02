@@ -94,7 +94,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['client/templates/*.hbs', 'client/src/**/*.js', 'client/styles/*.css'],
-                tasks: ['clean:dev', 'browserify:app', 'copy:dev']
+                tasks: ['clean:dev', 'browserify:vendor', 'browserify:app', 'concat', 'copy:dev']
 
             },
             options: {
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('init:dev', ['clean', 'browserify:vendor']);
 
-    grunt.registerTask('build:dev', ['clean:dev', 'browserify:vendor', 'browserify:app', 'jshint:dev', 'concat', 'copy:dev']);
+    grunt.registerTask('build:dev', ['clean:dev', 'browserify:vendor', 'browserify:app', 'concat', 'copy:dev']);
     grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'concat', 'uglify', 'copy:prod']);
 
     grunt.registerTask('heroku', ['init:dev', 'build:dev']);

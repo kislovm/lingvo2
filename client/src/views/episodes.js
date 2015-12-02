@@ -4,16 +4,8 @@ var itemView = require('./episode');
 
 module.exports = CollectionView = Marionette.CollectionView.extend({
     initialize: function() {
-        var _this = this;
         this.$el.prepend('<div class="loading-spinner">');
 
-        //Здесь этому не место. Нужно вынести в глобал и тригерить эвент или сделать вью для ленты.
-        $(window).scroll(function() {
-            if ($(window).scrollTop() + $(window).height() > ($('body').height() - 100))
-                //if(!App.data.user.get('random'))
-                //    _this.collection.increment();
-            counter.reachGoal('scroll-down');
-        });
         this.listenTo(this.collection, 'change', this.render);
         this.listenTo(App.data.user, 'sync', this._onDifficultyChange);
     },

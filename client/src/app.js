@@ -1,8 +1,7 @@
-var $ = require('jquery'),
-    Backbone = require('backbone'),
-    Marionette = require('backbone.marionette'),
-    Controller = require('./controller'),
-    Router = require('./router');
+var Backbone = require('backbone');
+var Marionette = require('backbone.marionette');
+var Controller = require('./controller');
+var Router = require('./router');
 
 var DictModel = require('./models/dictionary-popup-model');
 var UserModel = require('./models/user');

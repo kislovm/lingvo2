@@ -1,8 +1,13 @@
 ﻿var Marionette = require('backbone.marionette');
+var DictionaryView = require('./dictionary');
 
-module.exports = Marionette.LayoutView.extend({
+module.exports = Marionette.ItemView.extend({
 
     template: require('../../templates/dictionary-section.hbs'),
+
+    initialize: function() {
+        this.model = App.data.user;
+    },
 
     events: function() {
         if(!App.data.user.get('registred')) {
@@ -36,7 +41,10 @@ module.exports = Marionette.LayoutView.extend({
         this.model.save();
     },
 
-    initialize: function() {
-        this.model = App.data.user;
+    onRender: function()
+    {
+        new DictionaryView({
+            el: this.$el.find('.dictionary')
+        });
     }
 });

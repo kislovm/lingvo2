@@ -4,7 +4,7 @@ var $ = require('jquery'),
     DictionaryView = require('./dictionary.js'),
     UserModel = require('../models/user');
 
-module.exports = DifficultyView = Marionette.ItemView.extend({
+module.exports = Marionette.ItemView.extend({
 
     model: UserModel,
 

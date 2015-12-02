@@ -1,8 +1,8 @@
-var Marionette = require('backbone.marionette'),
-    DictionarySection = require('./views/dictionary-section'),
-    AppLayoutView = require('./views/layouts/app-layout'),
-    EpisodesView = require('./views/episodes'),
-    EpisodesCollection = require('./collections/episodes');
+var Marionette = require('backbone.marionette');
+var DictionarySection = require('./views/dictionary-section');
+var AppLayoutView = require('./views/layouts/app-layout');
+var EpisodesView = require('./views/episodes');
+var EpisodesCollection = require('./collections/episodes');
 
 module.exports = Controller = Marionette.Controller.extend({
     initialize: function() {

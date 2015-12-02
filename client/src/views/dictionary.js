@@ -1,15 +1,13 @@
-var $ = require('jquery');
 var Marionette = require('backbone.marionette');
 var UserModel = require('../models/user');
 var DictionaryCollection = require('../collections/dictionary');
 
-module.exports = DictionaryView = Marionette.ItemView.extend({
-
-    model: UserModel,
+module.exports = Marionette.ItemView.extend({
 
     collection: new DictionaryCollection(),
 
     template: require('../../templates/dictionary.hbs'),
+    wordTemplate: require('../../templates/dictionary-word.hbs'),
 
     events: {
         'click .show-next': 'showNext'
@@ -23,6 +21,7 @@ module.exports = DictionaryView = Marionette.ItemView.extend({
     initialize: function() {
         this.listenTo(this.model, 'sync', this.fetchData);
         this.listenTo(this.collection, 'reset', this.render);
+        this.model = App.data.user;
         this.fetchData();
     },
 
@@ -31,11 +30,9 @@ module.exports = DictionaryView = Marionette.ItemView.extend({
     },
 
     onRender: function() {
-        this.$el.find('.message').html(this.collection.toJSON().map(function(word) {
-            if (word.original) word = word.original + ' [' + word.transcription + '] ' + ' — ' + word.translation;
-
-            return $('<li>'+ word +'</li>');
-        }));
+        this.$el.prepend(this.collection.toJSON().map(function(word) {
+            return this.wordTemplate(word);
+        }, this));
 
         this.$el.find('.show-next').toggleClass('show', !!this.model.get('random'));
     }
