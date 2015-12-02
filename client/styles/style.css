@@ -83,7 +83,7 @@ ul{
 }
 .lang-select {
 	float: left;
-	width: 302px;
+	width: 339px;
 	background: #394778;
 	padding-top: 20px;
     padding-bottom: 19px;
@@ -112,6 +112,8 @@ ul{
 	color: white;
 	float: right;
 	background: #4e6ba5;
+	position: relative;
+	right: 60px;
 }
 .login-m {
 	color: white;
@@ -1164,7 +1166,7 @@ p{
 	font-weight: bold;
 	opacity: 0.7;
 	margin-left: 20px;
-	display: inline-block;
+	display: block;
 	margin-top: 15px;
 }
 .transcription-f span {
@@ -1945,7 +1947,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	 background: #4e6ba5;
 	z-index: 1499;
 	position: fixed;
-	top: 590px;
+	top: 594px;
 	margin-left: 155px;
 	text-align: center;
 	vertical-align: center;
@@ -1958,7 +1960,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	 background: #394778;
 	z-index: 1500;
 	position: fixed;
-	top: 590px;
+	top: 594px;
 	margin-left: 0px;
 	text-align: center;
 	padding-top: 10px;
@@ -1983,10 +1985,15 @@ input[type=range]::-webkit-slider-runnable-track {
   }
   .dictionary {
     padding-right: 20px;
-    height: 250px;
-    overflow-y: hidden;
+    height: 380px;
+    overflow-y: scroll;
     overflow-x: hidden;
+    background: white;
 }  
+.functions-language {
+	margin-top: 13%;
+}
+}
 	
 
 

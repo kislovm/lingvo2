@@ -2269,7 +2269,7 @@ input[type=range]::-webkit-slider-runnable-track {
   }
   .left-title-word {
    
-    left: 40px;
+    left: 33px;
   }
   .functions-language h3 {
     background: #4e6ba5;
@@ -2293,7 +2293,7 @@ input[type=range]::-webkit-slider-runnable-track {
   .dictionary {
     padding-right: 20px;
     height: 250px;
-    overflow-y: hidden;
+    overflow-y: scroll;
     overflow-x: hidden;
 }    
 
