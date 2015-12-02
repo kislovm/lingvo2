@@ -1516,12 +1516,13 @@ input[type=range]::-webkit-slider-runnable-track {
     }
   .menu li:first-child {
     border-left: none;
+    margin-left: 20px;
   } 
   .menu li {
     margin: 0;
   }
-  .menu li a{
-    padding-right: 9px;
+  .bottom-section .menu li a{
+    padding-right: 10px;
     padding-left: 10px;
     
   } 
@@ -1992,7 +1993,7 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
 }
 .bottom-section .menu li:first-child {
-  margin-left: 2%;
+  margin-left: 6px;
 }
 .allocation p {
   width: 90%;
@@ -2014,9 +2015,8 @@ input[type=range]::-webkit-slider-runnable-track {
 
 
 
-.allocation p
 
-@media screen and (min-width: 700px) and (max-width: 1100px) { 
+@media screen and (min-width: 800px) and (max-width: 1100px) { 
   .menu {
     width: 520px;
 
@@ -2025,8 +2025,8 @@ input[type=range]::-webkit-slider-runnable-track {
     width: 520px;
   }
   .menu li a {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
 
   }
   .center-content {
@@ -2049,13 +2049,7 @@ input[type=range]::-webkit-slider-runnable-track {
   .left-col-func {
     padding-left: 5px;
   }
-.text-block {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding-right: 15px;
-    width: 235px;
-    height: 77px;
-  }
+
   .functions {
     height: 50px;
   }
@@ -2066,11 +2060,23 @@ input[type=range]::-webkit-slider-runnable-track {
     width: 240px;
      padding-right: 20px;
   }
+  .dictionaries-section-big {
+    height: 60%;
+  }
+  .functions-language-mini {
+    height: 30px;
+    z-index: 1200;
+    overflow: hidden;
+    margin-top: 36%;
+  }
   .main-header {
     width: 800px;
   }
   .lang-select {
-    width: 250px;
+    width: 220px;
+  }
+  .lang-select span {
+    margin-left: 30px;
   }
   .left-title-word {
     left: 50px;
@@ -2099,9 +2105,14 @@ input[type=range]::-webkit-slider-runnable-track {
   .word-cancel, .word-delete {
     top: 300px;
     width: 130px;
+    background: #394778;
   }
   .word-delete {
     margin-left: 130px;
+    background: #4E6BA5;
+  }
+  .functions-language h3 {
+    background: #4E6BA5;
   }
   .sorting-block select {
     position: relative;
@@ -2133,6 +2144,9 @@ input[type=range]::-webkit-slider-runnable-track {
   .menu li a:hover {
   color: #cc0f15;
 }
+.bottom-button {
+    top: 620px;
+  }
 
 
 
@@ -2147,9 +2161,11 @@ input[type=range]::-webkit-slider-runnable-track {
     width: 500px;
   }
   .menu li a {
-    padding-left: 13px;
-    padding-right: 13px;
-
+    padding-left: 23px;
+    padding-right: 23px;
+  }
+  .menu li:first-child {
+    padding-left: 4px;
   }
   .center-content {
     width: 490px;
@@ -2185,6 +2201,9 @@ input[type=range]::-webkit-slider-runnable-track {
     width: 250px; 
 
   }
+  .allocation {
+    margin-left: 100px;
+  }
   .allocation p:after {
     left: 320px;
   }
@@ -2193,7 +2212,7 @@ input[type=range]::-webkit-slider-runnable-track {
     right: 24px;
   }
    .word-cancel, .word-delete {
-    top: 320px;
+    top: 590px;
     width: 127px;
   }
   .word-cancel {
@@ -2239,12 +2258,6 @@ input[type=range]::-webkit-slider-runnable-track {
     width: 20px;
     height: 20px;
   }
-  .text-block {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 97px;
-    width: 260px;
-  }
   .menu li a:hover {
   color: #cc0f15;
 }
@@ -2269,9 +2282,32 @@ input[type=range]::-webkit-slider-runnable-track {
     background: #394778;
   }
   .enter-block {
-    right: 230px;
+    right: 220px;
   }
+  .range-controls .scale {
+    width: 236px;
+  }
+  .functions-language h3:after {
+    left: 230px;
+  }
+  .dictionary {
+    padding-right: 20px;
+    height: 250px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}    
 
+
+
+.functions-language-mini {
+    height: 30px;
+    z-index: 1200;
+    overflow: hidden;
+    margin-top: 36%;
+  }
+  .dictionaries-section-big {
+    height: 56%;
+  }
 }
 
 

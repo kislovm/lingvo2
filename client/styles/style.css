@@ -1551,7 +1551,7 @@ p{
   background: #ffffff;
 }
 .functions-language h3 {
-  background: #a8191d;
+  background: #4E6BA5;
   width: 290px;
   font: 14px/25px 'Helvetica-Bold', sans-serif;
   padding-top: 4px;
@@ -1942,10 +1942,10 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .word-delete {
 	width: 155px;
-	background: #a8191d;
+	 background: #4e6ba5;
 	z-index: 1499;
 	position: fixed;
-	top: 390px;
+	top: 590px;
 	margin-left: 155px;
 	text-align: center;
 	vertical-align: center;
@@ -1955,10 +1955,10 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .word-cancel {
 	width: 155px;
-	background: #828282;
+	 background: #394778;
 	z-index: 1500;
 	position: fixed;
-	top: 390px;
+	top: 590px;
 	margin-left: 0px;
 	text-align: center;
 	padding-top: 10px;
@@ -1972,7 +1972,21 @@ input[type=range]::-webkit-slider-runnable-track {
 .menu li a:hover {
 	color: #cc0f15;
 }
-
+.functions-language-mini {
+    height: 30px;
+    z-index: 1200;
+    overflow: hidden;
+    margin-top: 16%;
+  }
+  .dictionaries-section-big {
+    height: 56%;
+  }
+  .dictionary {
+    padding-right: 20px;
+    height: 250px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}  
 	
 
 
