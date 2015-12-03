@@ -132,6 +132,8 @@
     margin-left: 8px;
     margin-top: 15px;
     margin: 0 auto;
+    margin-left: 12px;
+
   }
 
 
@@ -177,11 +179,11 @@
       padding: 0;
       font: 14px 'Helvetica-Med', sans-serif;
       text-transform: none;
-      margin-top: 10px;
+      margin-top: 8px;
       float: left;
   }
   .bottom-section .menu li:first-child {
-    margin-left: 25px;
+    margin-left: 37px;
     border-right: none;
   }
   .bottom-section>.menu {
@@ -215,7 +217,7 @@
     height: 54px;
     width: 53px;
     background: #4e6ba5 url('../img/enter-icon.png') no-repeat;
-    background-position: 14px 14px;
+    background-position: 10px 14px;
     background-size: 50%;
    right: 4px;
     position: absolute;
@@ -254,7 +256,6 @@
     top: 30px;
     padding-left: 20%;
     width: 81.3%;
-    margin-bottom: 30px;
     z-index: 1;
   }
   .allocation p:after {
@@ -324,18 +325,17 @@
 
   }
   .news {
-    font: 13px 'Goodosf', sans-serif;
+    font: 14px 'Helvetica-Med', sans-serif;
     letter-spacing: 0px;
-    height: 115px;
+    height: 120px;
     
   }
   .word {
     line-height: 20px;
   }
   .name-news {
-    font: 17px 'Goodosf-Black', sans-serif;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 23px;
   }
   .showsettings {
   display: block;

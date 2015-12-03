@@ -300,7 +300,7 @@ p{
 	position: fixed;
 	top: 0;
 	margin: 0 auto;
-	z-index: 2;
+	z-index: 1002;
 
 }	
 .middle-section{
@@ -1947,7 +1947,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	 background: #4e6ba5;
 	z-index: 1499;
 	position: fixed;
-	top: 594px;
+	top: 596px;
 	margin-left: 155px;
 	text-align: center;
 	vertical-align: center;
@@ -1960,7 +1960,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	 background: #394778;
 	z-index: 1500;
 	position: fixed;
-	top: 594px;
+	top: 596px;
 	margin-left: 0px;
 	text-align: center;
 	padding-top: 10px;
@@ -1991,7 +1991,7 @@ input[type=range]::-webkit-slider-runnable-track {
     background: white;
 }  
 .functions-language {
-	margin-top: 13%;
+	margin-top: 200px;
 }
 }
 	
