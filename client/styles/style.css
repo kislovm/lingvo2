@@ -779,7 +779,8 @@ p{
 .center-content{
 	float: left;
 	padding-left: 20px;
-    width: 620px;
+	padding-right: 20px;
+    width: 600px;
     color: #2A81B4;
     padding-top: 20px;
     background: #f6f6f6;
@@ -1673,7 +1674,7 @@ input[type=range]::-webkit-slider-runnable-track {
   position: fixed;
   z-index: 15;
  margin-left: 663px;
-  height: 340px;
+  height: 56%;
   top: 70px;
   width: 310px;
   bottom: 0%;
@@ -1988,12 +1989,12 @@ input[type=range]::-webkit-slider-runnable-track {
     overflow: hidden;
     margin-top: 16%;
   }
-  .dictionaries-section-big {
-    height: 56%;
+  .dictionaries-section-minify {
+    height: 30%;
   }
-  .dictionary {
+  .dictionary-minify {
     padding-right: 20px;
-    height: 380px;
+    height: 166px;
     overflow-y: scroll;
     overflow-x: hidden;
     background: white;
@@ -2004,8 +2005,12 @@ input[type=range]::-webkit-slider-runnable-track {
 .active {
 	color: #cc0f15;
 }
+.top-button {
+	position: fixed;
+	top: 396px;
+}
 
-	
+
 
 
 

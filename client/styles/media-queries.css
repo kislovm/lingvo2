@@ -38,6 +38,7 @@
 .center-content {
   width: 96%;
   margin: 0 auto;
+  padding-right: 0px;
 }
 
 .main-header {
@@ -286,8 +287,9 @@
   .title-line {
     display: none;
   }
-  .center-content {
+  .middle-section .center-content {
     padding-top: 0;
+    margin-top: 112px;
   }
   .name-news {
     margin-top: 10px;
@@ -447,6 +449,7 @@
   border: 1px solid #808080;
   box-shadow: none;
   bottom: 1px;
+  top: 20px;
 }
 .slider-check2 {
   display: inline-block;
@@ -458,6 +461,8 @@
    left: 50px;
    bottom: 1px;
    margin-top: 0;
+   top: 20px;
+   right: 10px;
 }
 .sorting-block-title, .sortby, .time {
   color: black;
@@ -926,12 +931,11 @@ input[type=range]::-webkit-slider-runnable-track {
   .top-line {
     width: 100%;
     margin: 0 auto;
-    height: 30px;
     display: block;
     background: white;
     position: fixed;
     left: 20px;
-    top: 54px;
+    top: 82px;
   }
   .allocation p {
     font: 13px 'Helvetica', sans-serif;
@@ -2151,9 +2155,10 @@ input[type=range]::-webkit-slider-runnable-track {
     padding-left: 4px;
   }
   .center-content {
-    width: 490px;
+    width: 480px;
     padding-left: 10px;
     padding-top: 5px;
+    padding-right: 10px;
   }
   .dictionaries-section {
     margin-left: 490px;
@@ -2163,6 +2168,9 @@ input[type=range]::-webkit-slider-runnable-track {
   }
    #pc-container {
     width: 768px;
+  }
+  .center-content {
+    margin-top: 110px;
   }
   #content-wrapper {
     width: 768px;
@@ -2275,7 +2283,7 @@ input[type=range]::-webkit-slider-runnable-track {
   }
   .dictionary {
     padding-right: 20px;
-    height: 250px;
+    height: 350px;
     overflow-y: scroll;
     overflow-x: hidden;
 }    
@@ -2291,7 +2299,15 @@ input[type=range]::-webkit-slider-runnable-track {
   .dictionaries-section-big {
     height: 56%;
   }
+  .slider-check input[type=checkbox]:checked + label {
+  left: 14px;
+}
+.slider-check2 input[type=checkbox]:checked + label {
+  left: 14px;
+}
 }
 
+
+@media only screen and (max-width: 600px) {
 
 
