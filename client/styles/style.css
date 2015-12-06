@@ -679,7 +679,7 @@ p{
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
-	background: #cc0f15;
+	background: #4E6BA5;
 	cursor: pointer;
 	-webkit-transition: all .4s ease;
 	-moz-transition: all .4s ease;
@@ -1027,6 +1027,7 @@ p{
 	width: 30%;
 	float: right;
 	position: relative;
+	height: 0px;
 }
 .choice{
 
@@ -1083,13 +1084,10 @@ p{
 .left-title-save{
 	font: 11px 'Helvetica', sans-serif;
 	font-weight: bold;
-	margin-top: 4px;
-	margin-bottom: 18px;
 }
 .left-title-show{
 	font: 11px 'Helvetica', sans-serif;
 	font-weight: bold;
-	margin-bottom: 18px;
 }
 .sorting-block{
 	margin-left: 20px;
@@ -1144,7 +1142,7 @@ p{
 }
 .dictionary{
 	padding-right: 10px;	
-	height: 140px;
+	height: 254px;
     overflow-x: hidden;
     margin-left: 0;
 
@@ -1173,7 +1171,7 @@ p{
 	opacity: 0.7;
 	margin-left: 20px;
 	display: block;
-	margin-top: 15px;
+	margin-top: 9px;
 }
 .transcription-f span {
 	font: 14px 'Helvetica-Neu', sans-serif;
@@ -1553,7 +1551,7 @@ p{
 	float: right;
   color: black;
   position: fixed;
-  top: 457px;
+  top: 317px;
   margin-left: 663px;
   z-index: 101;
   background: #ffffff;
@@ -1569,6 +1567,7 @@ p{
   color: white;
   position: relative;
   cursor: pointer;
+  margin-bottom: 0px;
 }
 .functions-language h3:after {
   content: '';
@@ -1646,15 +1645,15 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .functions-news-title {
   margin-top: 12px;
-  margin-left: 20px;
+  margin-left: 10px;
   font: 14px/25px 'Helvetica-Bold', sans-serif;
   margin-bottom: 2px;
 
 }
 .functions-box {
 
-  margin-left: 18px;
-  margin-bottom: 15px;
+  margin-left: 4px;
+  margin-bottom: 12px;
   margin-top: 5px;
 }
 
@@ -1674,8 +1673,8 @@ input[type=range]::-webkit-slider-runnable-track {
   position: fixed;
   z-index: 15;
  margin-left: 663px;
-  height: 56%;
-  top: 70px;
+  height: 400px;
+  top: 80px;
   width: 310px;
   bottom: 0%;
   background: white;
@@ -1724,7 +1723,8 @@ input[type=range]::-webkit-slider-runnable-track {
 .left-title-auto {
   display: inline-block;
   margin: 0;
-  margin-top: 20px;
+  margin-top: 6px;
+  margin-bottom: 6px;
   font: 14px 'Helvetica', sans-serif;
   color: black;
 }
@@ -1740,7 +1740,7 @@ input[type=range]::-webkit-slider-runnable-track {
   display: inline-block;
   position: relative;
   right: 90px;
-  bottom: 22px;
+  bottom: 24px;
   width: 40px;
   height: 18px;
   background: white;
@@ -1755,7 +1755,7 @@ input[type=range]::-webkit-slider-runnable-track {
    border: 1px solid #808080;
    box-shadow: none;
    right: 20px;
-   bottom: 22px;
+   bottom: 24px;
    margin-top: 0;
 }
 .sorting-block-title, .sortby, .time {
@@ -1816,12 +1816,10 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .left-col-func {
   width: 160px;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 .right-col-func {
   margin-right: 40px;
- margin-bottom: 2px;
- margin-top: 5px;
 }
 .functions {
   margin-top: 1px;
@@ -1941,7 +1939,7 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 17px;
   left: -25px;
   bottom: -2px;
-  border: 1px solid #808080;
+  border: 1px solid #a8191d;
   background: white;
 }
 
@@ -1954,7 +1952,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	 background: #4e6ba5;
 	z-index: 1499;
 	position: fixed;
-	top: 596px;
+	top: 481px;
 	margin-left: 155px;
 	text-align: center;
 	vertical-align: center;
@@ -1968,7 +1966,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	 background: #394778;
 	z-index: 1500;
 	position: fixed;
-	top: 596px;
+	top: 481px;
 	margin-left: 0px;
 	text-align: center;
 	padding-top: 10px;
@@ -1984,7 +1982,6 @@ input[type=range]::-webkit-slider-runnable-track {
 	color: #cc0f15;
 }
 .functions-language-mini {
-    height: 30px;
     z-index: 1200;
     overflow: hidden;
     margin-top: 16%;
@@ -1992,13 +1989,13 @@ input[type=range]::-webkit-slider-runnable-track {
   .dictionaries-section-minify {
     height: 30%;
   }
-  .dictionary-minify {
+  /*.dictionary-minify {
     padding-right: 20px;
     height: 166px;
     overflow-y: scroll;
     overflow-x: hidden;
     background: white;
-}  
+}  */
 .functions-language {
 	margin-top: 200px;
 }
@@ -2009,7 +2006,10 @@ input[type=range]::-webkit-slider-runnable-track {
 	position: fixed;
 	top: 396px;
 }
-
+.functions-settings-news {
+	position: relative;
+	bottom: 30px;
+}
 
 
 
