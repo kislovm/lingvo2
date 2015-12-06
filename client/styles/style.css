@@ -347,7 +347,8 @@ p{
 	background-size: 80%;
 	float: right;
 	position: relative;
-	left: 80px;
+	left: 90px;
+	cursor: pointer;
 }
 .showbtn{
 	float: right;
