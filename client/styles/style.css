@@ -102,6 +102,7 @@ ul{
 	color: white;
 	-webkit-appearance: none;
 	border: none;
+	  height: 21px;
 
 
 }
@@ -1845,6 +1846,7 @@ input[type=range]::-webkit-slider-runnable-track {
   margin-left: 30px;
   width: 40px;
   margin-top: 8px;
+  height: 21px;
 
 }
 .dictionaries-section:after {
@@ -1890,8 +1892,6 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .transcription-word:after {
   content: '';
-  height: 1px;
-  width: 8px;
   position: absolute;
   background: black;
   top: 9px;
