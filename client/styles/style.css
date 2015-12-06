@@ -340,14 +340,14 @@ p{
 	color: #646464;
 	position: relative;
 }
-.allocation p:after {
-	content: '';
+.close-cross {
 	width: 20px;
 	height: 20px;
 	background: url('../img/show-cross.png') no-repeat;
 	background-size: 80%;
-	left: 360px;
-	position: absolute;
+	float: right;
+	position: relative;
+	left: 80px;
 }
 .showbtn{
 	float: right;

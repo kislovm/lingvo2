@@ -259,21 +259,18 @@
     width: 81.3%;
     z-index: 1;
   }
-  .allocation p:after {
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    float: right;
-    font-size: 0;
-    cursor: pointer;
-    background: url("../img/show-cross.png") no-repeat center;
-    background-size: 30%;
-    cursor: pointer;
-   
-  }
+.close-cross {
+  width: 20px;
+  height: 20px;
+  background: url('../img/show-cross.png') no-repeat;
+  background-size: 80%;
+  float: right;
+  position: relative;
+  left: -32px;
+  cursor: pointer;
+  z-index: 5000;
+  display: block;
+}
   .allocation {
     width: 414px;
     margin: 0;
@@ -940,21 +937,16 @@ input[type=range]::-webkit-slider-runnable-track {
     padding-top: 5px;
     padding-bottom: 5px;
   }
-  .allocation p:after {
-    content: '';
-    position: absolute;
-    top: -7px;
-    left: 330px;
-    width: 40px;
-    height: 40px;
-    float: right;
-    font-size: 0;
-    cursor: pointer;
-    background: url("../img/show-cross.png") no-repeat center;
-    background-size: 30%;
-    cursor: pointer;
-   
-  }
+  .close-cross {
+  width: 20px;
+  height: 20px;
+  background: url('../img/show-cross.png') no-repeat;
+  background-size: 80%;
+  float: right;
+  position: relative;
+  left: -30px;
+  cursor: pointer;
+}
   .allocation {
     width: 375px;
     margin: 0;
@@ -1926,20 +1918,17 @@ input[type=range]::-webkit-slider-runnable-track {
   background: url('../img/close.png') no-repeat;
   position: absolute;
 }
- .allocation p:after {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 280px;
-    width: 40px;
-    height: 40px;
-    font-size: 0;
-    cursor: pointer;
-    background: url("../img/show-cross.png") no-repeat center;
-    background-size: 30%;
-    cursor: pointer;
-   
-  }
+.close-cross {
+  width: 20px;
+  height: 20px;
+  background: url('../img/show-cross.png') no-repeat;
+  background-size: 80%;
+  float: right;
+  position: relative;
+  left: -60px;
+  cursor: pointer;
+  z-index: 5000;
+}
   body {
     background: white;
   }
@@ -2080,9 +2069,6 @@ input[type=range]::-webkit-slider-runnable-track {
   .login-m {
     padding-right: 20px;
   }
-   .allocation p:after {
-    left: 290px;
-  }
   .allocation p {
     right: 100px;
   }
@@ -2191,9 +2177,6 @@ input[type=range]::-webkit-slider-runnable-track {
   }
   .allocation {
     margin-left: 100px;
-  }
-  .allocation p:after {
-    left: 320px;
   }
   .enter-block {
     position: relative;
@@ -2305,7 +2288,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 
-@media only screen and (max-width: 736px) {
+@media only screen and (max-width: 736px) and (min-width: 735px) {
   #wrapper {
     width: 320px;
      margin: 0 auto;
@@ -2486,21 +2469,16 @@ input[type=range]::-webkit-slider-runnable-track {
     margin: 0 auto;
     z-index: 1;
   }
-  .allocation p:after {
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    float: right;
-    font-size: 0;
-    cursor: pointer;
-    background: url("../img/show-cross.png") no-repeat center;
-    background-size: 30%;
-    cursor: pointer;
-   
-  }
+.close-cross {
+  width: 20px;
+  height: 20px;
+  background: url('../img/show-cross.png') no-repeat;
+  background-size: 80%;
+  float: right;
+  position: relative;
+  left: 2px;
+  cursor: pointer;
+}
   .allocation {
     width: 414px;
     margin: 0 auto;
