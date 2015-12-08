@@ -1646,10 +1646,10 @@ input[type=range]::-webkit-slider-runnable-track {
   background-position: 1px 3px;
 }
 .functions-news-title {
-  margin-top: 12px;
+  position: relative;
+  bottom: 30px;
   margin-left: 10px;
   font: 14px/25px 'Helvetica-Bold', sans-serif;
-  margin-bottom: 2px;
 
 }
 .functions-box {
@@ -2010,6 +2010,9 @@ input[type=range]::-webkit-slider-runnable-track {
 .functions-settings-news {
 	position: relative;
 	bottom: 30px;
+  height: 160px;
+  overflow-x: hidden;
+}
 }
 
 
