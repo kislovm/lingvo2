@@ -2030,6 +2030,8 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 160px;
   overflow-x: hidden;
 }
+.original-article-link {
+	display: block;
 }
 
 
