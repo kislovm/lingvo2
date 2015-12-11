@@ -375,14 +375,14 @@
   width: 414px;
   background: #4e6ba5;
   position: fixed;
-  bottom: 3%;
+  bottom: 0%;
   padding-top: 7px;
   padding-bottom: 7px;
 }
 .showsettings:after {
   content: '';
   position: fixed;
-  bottom: 3%;
+  bottom: 0%;
   right: 0;
   z-index: 11;
   width: 40px;
@@ -2844,6 +2844,10 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 49px;
 }
 }
+
+
+
+
 
 
 
