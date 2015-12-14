@@ -1,6 +1,38 @@
 @media only screen and (max-device-width: 480px) {
     body {
         overflow: visible;
+        line-height: 1em;
+    }
+
+    .enter-block {
+        display: none;
+    }
+
+    .logo a {
+        margin: 0;
+    }
+
+    .logo {
+        width: auto;
+        padding-right: 2%;
+        padding-left: 2%;
+        float: none;
+        display: inline-block;
+        height: auto;
+        vertical-align: middle;
+        font-size: 4.2vh;
+    }
+
+    .sign-bg {
+        display: none;
+    }
+
+    .enter {
+        display: inline-block;
+        background: url(/img/enter-icon.png) no-repeat;
+        background-size: 100%;
+        width: 4vh;
+        height: 4vh;
     }
 
     .main-header {
@@ -8,16 +40,34 @@
         width: 100%
     }
 
-    .logo {
+    #pc-container {
+        height: 93vh;
+    }
+
+    #content-wrapper {
         width: auto;
-        padding-right: 2%;
+    }
+
+    .middle-section {
+        width: auto;
     }
 
     .lang-select {
         display: inline-block;
-        padding: 20px 10px 19px 10px;
+        padding: 1em .5em 1em .5em;
         float: none;
         width: auto;
+        font-size: 1.3em;
+    }
+
+    .switch-lang {
+        height: 1.3em;
+        font-size: 1.1em;
+    }
+
+    .allocation p {
+        font-size: 1em;
+        padding: 1em;
     }
 
     .lang-select span {
@@ -30,23 +80,23 @@
 
     .center-block {
         width: 100vw;
-        height: 100vh;
     }
 
     .showsettings {
         display: block;
         bottom: 0;
         line-height: 2em;
-        font-size: 30px;
+        font-size: 4vh;
         background: #4E6BA5;
         width: 100%;
         color: white;
+        height: 7vh;
     }
 
     .center-content {
-        height: 187vh;
         overflow: scroll;
         width: auto;
+        height: 72vh;
     }
 
     .dictionaries-section,
@@ -67,10 +117,23 @@
     .top-line {
         position: relative;
         top: 0;
+        width: auto;
     }
 
     .center-content {
         float: none;
         margin-top: 0;
+        padding-top: 1vh;
+        padding-left: 4vw;
+        padding-right: 4vw;
+    }
+
+    .close-cross {
+        float: none;
+    }
+
+    .allocation {
+        margin: 0;
+        float: none;
     }
 }
