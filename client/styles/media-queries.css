@@ -2,6 +2,7 @@
     body {
         overflow: visible;
         line-height: 1em;
+        font-size: 1.7vh;
     }
 
     .enter-block {
@@ -14,6 +15,7 @@
 
     .logo {
         width: auto;
+        padding-bottom: 0;
         padding-right: 2%;
         padding-left: 2%;
         float: none;
@@ -38,10 +40,6 @@
     .main-header {
         position: relative;
         width: 100%
-    }
-
-    #pc-container {
-        height: 93vh;
     }
 
     #content-wrapper {
@@ -96,7 +94,7 @@
     .center-content {
         overflow: scroll;
         width: auto;
-        height: 72vh;
+        height: 74vh;
     }
 
     .dictionaries-section,
@@ -108,6 +106,20 @@
         margin-top: 0;
         position: relative;
         width: auto;
+        height: auto;
+        font-size: 1.1em;
+    }
+
+    .menu li {
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+    }
+
+    .menu li a {
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-top: 0.1em;
+        padding-bottom: 0.1em;
     }
 
     .middle-section {
