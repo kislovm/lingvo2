@@ -5,6 +5,10 @@
         font-size: 1.7vh;
     }
 
+    #pc-container {
+        margin-bottom: 7vh;
+    }
+
     .enter-block {
         display: none;
     }
