@@ -81,6 +81,7 @@
     }
 
     .showsettings {
+        position: fixed;
         display: block;
         bottom: 0;
         line-height: 2em;
