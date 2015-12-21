@@ -18,7 +18,8 @@
     }
 
     .logo {
-        width: auto;
+        width: 30%;
+        text-align: center;
         padding-bottom: 0;
         padding-right: 2%;
         padding-left: 2%;
@@ -39,6 +40,8 @@
         background-size: 100%;
         width: 4vh;
         height: 4vh;
+        vertical-align: middle;
+        margin-left: 1em;
     }
 
     .main-header {
@@ -55,10 +58,11 @@
     }
 
     .lang-select {
+        width: 50%;
+        text-align: center;
         display: inline-block;
-        padding: 1em .5em 1em .5em;
+        padding: 1em 0 1em 0;
         float: none;
-        width: auto;
         font-size: 1.3em;
     }
 
@@ -89,17 +93,19 @@
         display: block;
         bottom: 0;
         line-height: 2em;
-        font-size: 4vh;
+        font-size: 1.6em;
         background: #4E6BA5;
         width: 100%;
         color: white;
-        height: 7vh;
+        height: 5%;
+        text-align: center;
+        font-family: 'Helvetica-Neu', sans-serif;
     }
 
     .center-content {
         overflow: scroll;
         width: auto;
-        height: 74vh;
+        height: 76vh;
     }
 
     .dictionaries-section,
