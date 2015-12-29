@@ -8,6 +8,11 @@ module.exports = Controller = Marionette.Controller.extend({
     initialize: function() {
         App.core.vent.trigger('app:log', 'Controller: Initializing');
         App.layoutView = new AppLayoutView();
+		//
+        //$('.close-cross').click(function() {
+        //    $(this).parent('.top-line').remove();
+        //});
+		//
 
         App.layoutView.showChildView('dictionaries', new DictionarySection());
     },

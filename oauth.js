@@ -43,7 +43,7 @@ module.exports = {
     twitter: new TwitterStrategy({
         consumerKey: 'N9B2OdY4aSrY4TIJYEs6E6DtF',
         consumerSecret: 'NMgjGYqcXEBeC8nI3VobnYfrHfLDNfTcq7Wl1tDmwqDgP5H06U',
-        callbackURL: 'http://upvoc.com/auth/twitter/callback'
+        callbackURL: '/auth/twitter/callback'
     },
     function(accessToken, refreshToken, profile, done) {
         User.findOne({ oauthID: profile.id }).exec()

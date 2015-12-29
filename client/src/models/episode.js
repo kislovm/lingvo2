@@ -22,8 +22,6 @@ module.exports = EpisodeModel = Backbone.Model.extend({
             data.body = '';
         }
 
-
-
         return data;
     },
 

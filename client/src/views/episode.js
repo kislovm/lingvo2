@@ -8,7 +8,7 @@ module.exports = Marionette.ItemView.extend({
     template: require('../../templates/episode.hbs'),
 
     events: {
-        'click .show-more': 'showMore',
+        'click .episode-more': 'showMore',
         'click .illustration': 'showMore',
         'click .word': 'openPopup'
     },
@@ -33,9 +33,8 @@ module.exports = Marionette.ItemView.extend({
     showMore: function() {
         var opened = this.opened;
 
-        this.content.toggleClass('hideContent', opened);
-        this.switcher.text(opened ? 'Show more' : 'Show less');
-
+        this.$el.find('.episode-body').removeClass('hidden');
+        this.$el.find('.episode-more').addClass('hidden');
         if (opened) counter.reachGoal('show-more');
 
         this.opened = !opened;

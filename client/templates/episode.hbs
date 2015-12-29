@@ -2,8 +2,16 @@
     <h2 class="name-news"><a>{{{ processedTitle }}}</a></h2>
     <span class="original-article-link">Original&nbsp;article:&nbsp;<a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a></span>
     <a href="#"><blockquote class="newsinform">{{ name }} – {{ formattedDate }}</blockquote></a>
-    <p class="news"><span></span>{{{ body }}}</p>
-    <p>
-
+    {{#if image}}
+        <a class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
+    -{{/if}}
+    <p class="news">
+        {{{ description }}}
+        {{#if body}}
+            <a class="episode-more">More...</a>
+        {{/if}}
+    </p>
+    <p class="news episode-body hidden">
+        {{{body}}}
     </p>
 </div>

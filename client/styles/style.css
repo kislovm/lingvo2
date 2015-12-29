@@ -120,9 +120,18 @@ ul{
 	color: white;
 	width: 200px;
 }
-.menu a {
-	color: #2d2d2d;
+
+.episode-more:hover {
+	 color: #cc0f15;
+	 cursor: pointer;
+ }
+
+.menu a, .episode-more {
+	color: #cc6565;
+	cursor: pointer;
 }
+
+
 .logo a {
 	color: white;
 	margin-left: 10px;
@@ -802,20 +811,30 @@ p{
 	display: none;
 
 }
+.illustration {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	display: block;
+	width: 100%;
+	height: 0;
+	margin-bottom: 1.3em;
+	padding-top: 50%;
+}
+
+.original-article-link {
+	display: block;
+	margin: -5px 0 5px 0;
+}
+
 .news{
 	font: 15px 'Helvetica', sans-serif;
 	color: #000;
-	height: 100px;
+	margin-bottom: 15px;
 	overflow: hidden;
 	position: relative;	
 }
-.news:after {
-	content: '';
-	position: absolute; top: 0; left: 0;
-  width: 100%;
-  height: 100%;
 
-}
 .more-news{
 	display: inline-block;
 	margin-top: 20px;
@@ -2012,6 +2031,6 @@ input[type=range]::-webkit-slider-runnable-track {
 	bottom: 30px;
 }
 
-
-
-
+.hidden {
+	display: none;
+}

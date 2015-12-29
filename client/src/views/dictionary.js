@@ -1,5 +1,4 @@
 var Marionette = require('backbone.marionette');
-var UserModel = require('../models/user');
 var DictionaryCollection = require('../collections/dictionary');
 
 module.exports = Marionette.ItemView.extend({
@@ -8,10 +7,6 @@ module.exports = Marionette.ItemView.extend({
 
     template: require('../../templates/dictionary.hbs'),
     wordTemplate: require('../../templates/dictionary-word.hbs'),
-
-    events: {
-        'click .show-next': 'showNext'
-    },
 
     showNext: function(e) {
         e.preventDefault();
@@ -33,8 +28,6 @@ module.exports = Marionette.ItemView.extend({
         this.$el.prepend(this.collection.toJSON().map(function(word) {
             return this.wordTemplate(word);
         }, this));
-
-        this.$el.find('.show-next').toggleClass('show', !!this.model.get('random'));
     }
 
 });

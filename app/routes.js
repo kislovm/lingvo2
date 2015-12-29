@@ -27,6 +27,8 @@ module.exports.initialize = function(app) {
 
     app.get('/account', ensureAuthenticated, addUser, account.index);
     app.get('/account/edit', ensureAuthenticated, addUser, account.edit);
+
+    app.get('/dictionary', dictionary.get);
     app.get('/dictionary/add', ensureAuthenticated, addUser, account.add);
     app.get('/dictionary/list', ensureAuthenticated, addUser, account.listDictionary);
     app.post('/dictionary/list', ensureAuthenticated, addUser, account.setDictionary);
@@ -37,8 +39,6 @@ module.exports.initialize = function(app) {
     app.get('/translate/:word', translation.translate);
 
     app.get('/word/:id/delete', ensureAuthenticated, addUser, account.deleteWord);
-
-    app.get('/dictionary', dictionary.get);
 
     app.get('/auth/facebook', passport.authenticate('facebook'), function(req, res){ });
     app.get('/auth/facebook/callback',
