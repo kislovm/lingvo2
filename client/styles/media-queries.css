@@ -3,6 +3,7 @@
         overflow: visible;
         line-height: 1em;
         font-size: 1.7vh;
+        background-color: rgb(246,246,246);
     }
 
     #pc-container {
