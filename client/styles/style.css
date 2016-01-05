@@ -50,6 +50,7 @@ body{
 }
 a{
 	text-decoration: none;
+	cursor: pointer;
 }
 a.register{
 	color: #5D5D5D;
