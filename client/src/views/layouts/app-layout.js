@@ -6,7 +6,8 @@ module.exports = Marionette.LayoutView.extend({
 
     regions: {
         content: '.center-content',
-        dictionaries: '.dictionaries-section'
+        dictionaries: '.dictionaries-section',
+        tipOfTheDay: '.tip-of-the-day'
     }
 });
 

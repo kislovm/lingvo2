@@ -154,6 +154,13 @@
 
     .close-cross {
         float: none;
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        right: 5%;
+        top: 25%;
+        left: auto;
     }
 
     .allocation {

@@ -3,6 +3,7 @@ var DictionarySection = require('./views/dictionary-section');
 var AppLayoutView = require('./views/layouts/app-layout');
 var EpisodesView = require('./views/episodes');
 var EpisodesCollection = require('./collections/episodes');
+var TipOfTheDayView = require('./views/tip-of-the-day');
 var $ = require('jquery');
 
 module.exports = Controller = Marionette.Controller.extend({
@@ -21,6 +22,7 @@ module.exports = Controller = Marionette.Controller.extend({
         });
 
         App.layoutView.showChildView('dictionaries', new DictionarySection());
+        App.tipOfTheDay = new TipOfTheDayView({ el: $('.tip-of-the-day') });
     },
 
     home: function() {
