@@ -8,6 +8,15 @@ module.exports = Marionette.ItemView.extend({
     template: require('../../templates/dictionary.hbs'),
     wordTemplate: require('../../templates/dictionary-word.hbs'),
 
+    events: {
+        'click .word-cancel': 'cancel',
+        'click .word-delete': 'delete'
+    },
+
+    cancel: function() {
+        this.$el.find(':checkbox').prop('checked', false);
+    },
+
     showNext: function(e) {
         e.preventDefault();
         this.onRender();

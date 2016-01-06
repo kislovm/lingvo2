@@ -1144,9 +1144,7 @@ p{
 	
 }
 .translating {
-	display: inline;
-	position: relative;
-	right: 10px;
+	display: inline-block;
 }
 .tr-words {
 	display: inline-block;
@@ -1895,13 +1893,14 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .dict-checkbox + label::before{
   content: "";
-  position: absolute;
   width: 17px;
   height: 17px;
-  left: -25px;
-  bottom: -2px;
   border: 1px solid #a8191d;
   background: white;
+  display: inline-block;
+    left: -25px;
+    top: -5px;
+    position: absolute;
 }
 
 .dict-checkbox:checked + label::before{

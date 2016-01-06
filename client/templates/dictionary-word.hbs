@@ -1,10 +1,14 @@
 <div class="transcription-f">
-     <input type="checkbox" class="dict-checkbox" id="1">
-     <label for="1">
+     <input type="checkbox" class="dict-checkbox" id="{{id}}" value="{{phrase}}">
+     <label for="{{id}}">
          <div class="tr-words">
-             <span class="transition-word">{{original}}</span>
+             <span class="transition-word">{{phrase}}</span>
              <span class="transcription-word">[{{transcription}}]</span>
          </div>
-         <h5 class="translating">{{translation}}</h5>
+         <div class="translating">
+             {{#each translations}}
+                 {{this.text}}&nbsp;
+             {{/each}}
+         </div>
      </label>
 </div>
