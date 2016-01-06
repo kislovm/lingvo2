@@ -772,26 +772,6 @@ p{
 .dict-title{
 	position: relative;
 }
-.dict-title h3:after{
-	cursor: pointer;
-	top: 28px;
-	left: 1px;
-	content: "";
-	width: 142px;
-	height: 2px;
-	position: absolute;
-	background: url("../img/under-line.png") repeat center;
-}
-.dict-title h3:before{
-	cursor: pointer;
-	width: 15px;
-	height: 8px;
-	content: "";
-	position: absolute;
-	background: url("../img/close-icon.png") no-repeat center;
-	left: 155px;
-	top: 12px;
-}
 .center-content{
 	float: left;
 	padding-left: 20px;
@@ -1337,11 +1317,11 @@ p{
 
 }
 .sorting-block select {
-	background: #eeeeee;
+background: #eeeeee;
   border: none;
   margin-left: 30px;
   width: 50px;
-  margin-top: 8px;
+  margin-top: 7px;
 }
 .sorting-block-title {
 	margin-top: 0;
@@ -1706,13 +1686,7 @@ input[type=range]::-webkit-slider-runnable-track {
   bottom: 0%;
   background: white;
 }
-.dict-title h3:before {
-  display: none;
-}
-.dict-title h3:after {
-  display: none;
-}
-.dict-title h3 a {
+.dict-title h3 {
   font: 14px 'Helvetica-Bold', sans-serif;
   text-transform: none;
   text-decoration: none;
@@ -1720,22 +1694,11 @@ input[type=range]::-webkit-slider-runnable-track {
   padding-left: 20px;
 }
 .dict-title h3 {
-  background: white;
   width: 100%;
   margin: 0;
-  position: relative;
+  line-height: 2em;
 }
-.dict-title h3 a:after {
-  content: '';
-  width: 20px;
-  height: 20px;
 
-  background: url('../img/close.png') no-repeat;
-  position: absolute;
-  top: 8px;
-  left: 90%;
-  display: none;
-}
 .dict-title:after {
   display: none;
 }
@@ -1865,15 +1828,7 @@ input[type=range]::-webkit-slider-runnable-track {
   padding-top: 0;
   margin-top: 8px;
 }
-.sorting-block select {
-  background: #eeeeee;
-  border: none;
-  margin-left: 30px;
-  width: 40px;
-  margin-top: 8px;
-  height: 21px;
 
-}
 .dictionaries-section:after {
   content: 'Edit list';
   width: 100%;
@@ -1940,14 +1895,6 @@ input[type=range]::-webkit-slider-runnable-track {
   z-index: 99;
   opacity: 1;
   bottom: 14%;
-}
-.sorting-block select {
-  background: #eeeeee;
-  border: none;
-  margin-left: 30px;
-  width: 45px;
-  margin-top: 8px;
-
 }
 .dict-checkbox {
   display: none;
