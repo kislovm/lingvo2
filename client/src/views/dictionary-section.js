@@ -44,7 +44,8 @@ module.exports = Marionette.ItemView.extend({
     onRender: function()
     {
         new DictionaryView({
-            el: this.$el.find('.dictionary')
+            el: this.$el.find('.dictionary'),
+            model: App.data.user
         });
     }
 });

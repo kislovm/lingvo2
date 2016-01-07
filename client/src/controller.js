@@ -5,12 +5,17 @@ var AppLayoutView = require('./views/layouts/app-layout');
 var EpisodesView = require('./views/episodes');
 var EpisodesCollection = require('./collections/episodes');
 var TipOfTheDayView = require('./views/tip-of-the-day');
+var MenuView = require('./views/menu');
 var $ = require('jquery');
 
-module.exports = Controller = Marionette.Controller.extend({
+module.exports = Marionette.Controller.extend({
     initialize: function() {
         App.core.vent.trigger('app:log', 'Controller: Initializing');
         App.layoutView = new AppLayoutView();
+
+        App.core.vent.bind('router:inited', function() {
+            App.menuView = new MenuView({ el: $('.menu' )});
+        }, this);
 
         $('.center-content').scroll(function() {
             var el = $(this);

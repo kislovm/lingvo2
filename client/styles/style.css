@@ -131,6 +131,10 @@ ul{
 	cursor: pointer;
 }
 
+.menu a.active {
+    color: #cc0f15;
+}
+
 
 .logo a {
 	color: white;

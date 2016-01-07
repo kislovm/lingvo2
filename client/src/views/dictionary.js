@@ -13,6 +13,13 @@ module.exports = Marionette.ItemView.extend({
         'click .word-delete': 'delete'
     },
 
+    initialize: function() {
+        this.listenTo(this.model, 'sync', this.fetchData);
+        this.listenTo(this.collection, 'reset', this.render);
+        this.listenTo(App.core.vent, 'dict:update', this.fetchData);
+        this.fetchData();
+    },
+
     cancel: function() {
         this.$el.find(':checkbox').prop('checked', false);
     },
@@ -20,13 +27,6 @@ module.exports = Marionette.ItemView.extend({
     showNext: function(e) {
         e.preventDefault();
         this.onRender();
-    },
-
-    initialize: function() {
-        this.listenTo(this.model, 'sync', this.fetchData);
-        this.listenTo(this.collection, 'reset', this.render);
-        this.model = App.data.user;
-        this.fetchData();
     },
 
     fetchData: function() {

@@ -4,7 +4,7 @@ var itemView = require('./episode');
 module.exports = Marionette.CollectionView.extend({
     initialize: function() {
         this.listenTo(this.collection, 'change', this.render);
-        this.listenTo(App.data.user, 'sync', this._onDifficultyChange);
+        this.listenTo(App.data.user, 'change:language', this._onDifficultyChange);
     },
 
     increment: function() {

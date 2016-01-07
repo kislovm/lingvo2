@@ -11,16 +11,17 @@ module.exports = Marionette.ItemView.extend({
 
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
-        if (App.data.dictModel.get('autosave')) {
+        if (App.data.user.get('autosave')) {
             this._save();
         }
     },
 
     _save: function() {
-        if(App.data.dictModel.get('selected')) {
+        if(App.data.user.get('registred')) {
             $.post('/dictionary/add/word', this.model.toJSON(), 'json')
                 .success(function () {
-                    alert('Word saved to dictionary ' + App.data.dictModel.get('selected'));
+                    alert('Word saved to dictionary');
+                    App.core.vent.trigger('dict:update');
                 });
         } else {
             alert('Please login to save all your words to personal dictionary');
