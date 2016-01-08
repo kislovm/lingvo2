@@ -2,39 +2,31 @@
     <h3>My dictionaries</h3>
 </div>
 <div class="functions">
-<div class="left-col-func">
-    <h5 class="left-title-save">Save words to</h5>
-    <h5 class="left-title-auto">Autosave</h5>
-    <h5 class="left-title-show">Show dictionary</h5>
-    <h5 class="left-title-word">Highlight words</h5>
-</div>
-<div class="right-col-func">
-    <select class='right-col-func-select-1'>
-        <option>Main</option>
-    </select>
-    <div class="slider-check">
-        <input type="checkbox" {{#if autosave}}checked="checked"{{/if}} value="autosave" id="slideTwo" name="autosave" class="autosave-slider checkbox-cust" />
-        <label for="slideTwo"></label>
+    <div class="dict__setting">
+        <a class="left-title">My settings</a>
     </div>
-    <select class='right-col-func-select-2'>
-        <option>Main</option>
-    </select>
-    <div class="slider-check2">
-        <input type="checkbox" {{#if highliht}}checked="checked"{{/if}} value="highlight" id="checkbox2" name="highlight" class="highlight-slider checkbox-cust" />
-        <label for="checkbox2"></label>
-    </div>
-
-
 </div>
-
-<div class="clearfix"></div>
+<div class="functions">
+    <div class="dict__setting">
+        <h5 class="left-title">Autosave</h5>
+        <div class="slider-check">
+            <input type="checkbox" {{#if autosave}}checked="checked"{{/if}} value="autosave" id="autosave" name="autosave" class="autosave-slider checkbox-cust" />
+            <label for="autosave"></label>
+        </div>
+    </div>
+    <div class="dict__setting">
+        <h5 class="left-title">Highlight words</h5>
+        <div class="slider-check">
+            <input type="checkbox" {{#if highliht}}checked="checked"{{/if}} value="highlight" id="highlight" name="highlight" class="highlight-slider checkbox-cust" />
+            <label for="highlight"></label>
+        </div>
+    </div>
 </div>
 <div class="sorting-block">
     <h3 class="sorting-block-title">Sort by:</h3>
-    <select>
-    <option><p class="sortby">A-Z</p></option>
-
-    <option><p class="time">Time added</p></option>
+    <select class="sorting-block-select">
+        <option>A-Z</option>
+        <option>Time added</option>
     </select>
 </div>
 <div class="clearfix"></div>
@@ -43,6 +35,6 @@
     </div>
    
       <div class="word-delete top">Delete selected</div>
-            <div class="word-cancel top">Cancel</div>
+        <div class="word-cancel top">Cancel</div>
          
 </div>
