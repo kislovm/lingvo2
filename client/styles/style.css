@@ -48,6 +48,16 @@ body{
 	background: #e2e2e2;
 
 }
+
+body.popup {
+    overflow: hidden;
+}
+body.popup .popup-wrapper {
+    display: block;
+}
+.popup-wrapper {
+    display: none;
+}
 a{
 	text-decoration: none;
 	cursor: pointer;
@@ -357,15 +367,16 @@ p{
 	font: 13px 'Helvetica-Neu', sans-serif;
 	color: #646464;
 	position: relative;
+    width: 400px;
 }
 .close-cross {
 	width: 20px;
 	height: 20px;
 	background: url('../img/show-cross.png') no-repeat;
 	background-size: 80%;
-	float: right;
-	position: relative;
-	left: 90px;
+    position: absolute;
+    right: 0.5em;
+    top: 0.6em;
 	cursor: pointer;
 }
 .showbtn{
@@ -1022,14 +1033,11 @@ p{
 	top: 13px;
 	background: url('../img/filter-arrow.png');
 }
-.dictionary{
-	padding-right: 10px;	
+.dictionary {
+	padding-right: 35px;
 	height: 254px;
     overflow-x: hidden;
     margin-left: 0;
-
-
-	
 }
 .translating {
 	display: inline-block;
@@ -1045,16 +1053,11 @@ p{
 	border-top: 1px dashed #5D5D5D;
 }
 .transcription-f{
-	
-	font: 13px 'Helvetica', sans-serif;
-	font-weight: bold;
+	font: 14px 'Helvetica', sans-serif;
+    color: black;
 	opacity: 0.7;
-	margin-left: 20px;
 	display: block;
 	margin-top: 9px;
-}
-.transcription-f span {
-	font: 14px 'Helvetica-Neu', sans-serif;
 }
 
 .dictionary:first-child{
@@ -1417,6 +1420,15 @@ background: #eeeeee;
 	background: #dddddd;
 
 }
+.popup-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(100,100,100,0.6);
+    z-index: 10000;
+}
 .sign-close {
 	float: right;
 	width: 132px;
@@ -1428,16 +1440,16 @@ background: #eeeeee;
 	cursor: pointer;
 }
 .functions-language {
-	width: 310px;
-	float: right;
+  width: 310px;
   color: black;
   position: fixed;
-  top: 317px;
-  margin-left: 663px;
-  z-index: 101;
+  top: 25%;
+  left: 50%;
+  margin-left: -155px;
+  z-index: 100000;
   background: #ffffff;
 }
-.functions-language h3 {
+.settings-header {
   background: #4E6BA5;
   width: 290px;
   font: 14px/25px 'Helvetica-Bold', sans-serif;
@@ -1449,15 +1461,6 @@ background: #eeeeee;
   position: relative;
   cursor: pointer;
   margin-bottom: 0px;
-}
-.functions-language h3:after {
-  content: '';
-  width: 20px;
-  height: 20px;
-  top: 16px;
-  left: 90%;
-  background: url('../img/settings-arrow.png') no-repeat;
-  position: absolute;
 }
 .functions-language-slider span {
   display: inline-block;
@@ -1661,11 +1664,6 @@ input[type=range]::-webkit-slider-runnable-track {
   font-size: 14px;
   margin: 0;
 }
-.transcription-f {
-  margin-left: 0;
-  color: black;
-  font: 14px 'Helvetica', sans-serif;
-}
 .transcription-f label {
 	position: relative;
 	left: 30px;
@@ -1767,24 +1765,6 @@ input[type=range]::-webkit-slider-runnable-track {
 .menu li a:hover {
 	color: #cc0f15;
 }
-.functions-language-mini {
-    z-index: 1200;
-    overflow: hidden;
-    margin-top: 16%;
-  }
-  .dictionaries-section-minify {
-    height: 30%;
-  }
-  /*.dictionary-minify {
-    padding-right: 20px;
-    height: 166px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    background: white;
-}  */
-.functions-language {
-	margin-top: 200px;
-}
 .active {
 	color: #cc0f15;
 }
@@ -1795,8 +1775,6 @@ input[type=range]::-webkit-slider-runnable-track {
 .functions-settings-news {
 	position: relative;
 	bottom: 30px;
-  height: 160px;
-  overflow-x: hidden;
 }
 .original-article-link {
 	display: block;

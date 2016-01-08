@@ -1,5 +1,6 @@
 ﻿var Marionette = require('backbone.marionette');
 var DictionaryView = require('./dictionary');
+var $ = require('jquery');
 
 module.exports = Marionette.ItemView.extend({
 
@@ -13,14 +14,21 @@ module.exports = Marionette.ItemView.extend({
         if(!App.data.user.get('registred')) {
             return {
                 'click input': 'notRegistred',
-                'click select': 'notRegistred'
+                'click select': 'notRegistred',
+                'click .settings-link': 'notRegistred'
             };
         } else {
             return {
                 'change .autosave-slider': 'autosaveChange',
-                'change .highlight-slider': 'highlightSlider'
+                'change .highlight-slider': 'highlightChange',
+                'click .settings-link': 'openSettings'
             };
         }
+    },
+
+    openSettings: function()
+    {
+        $('body').addClass('popup');
     },
 
     notRegistred: function(e)
