@@ -19,8 +19,8 @@ module.exports = {
             query.category = req.params.category;
         }
 
-        if (req.session.source) {
-            query.originalArticleLink = req.session.source;
+        if (req.session.source && req.session.source.length) {
+            query.originalArticleLink = { $in: req.session.source };
         }
 
         if (req.session.random && req.session.customDictionary) {

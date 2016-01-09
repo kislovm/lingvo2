@@ -5,6 +5,7 @@ module.exports = Marionette.CollectionView.extend({
     initialize: function() {
         this.listenTo(this.collection, 'change', this.render);
         this.listenTo(App.data.user, 'change:language', this._onDifficultyChange);
+        this.listenTo(App.data.user, 'change:source', this._onDifficultyChange);
     },
 
     increment: function() {

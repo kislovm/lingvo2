@@ -28,7 +28,7 @@ module.exports = {
             autosave: req.session.autosave,
             difficulty: difficulties[req.session.difficulty],
             language: (req.user ? req.user.language : req.session.language) || 'chinese',
-            source: !!req.session.source,
+            source: req.session.source || [],
             highlightDict: !!req.session.highlightDict
         });
     },
@@ -48,7 +48,7 @@ module.exports = {
             autosave: req.session.autosave,
             difficulty: difficulties[req.session.difficulty],
             language: (req.user ? req.user.language : req.session.language) || 'chinese',
-            source: !!req.session.source,
+            source: req.session.source || [],
             highlightDict: !!req.session.highlightDict
         });
 
