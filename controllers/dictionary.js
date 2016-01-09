@@ -20,5 +20,22 @@ module.exports = {
                     return word;
                 }));
             });
+    },
+
+    delete: function(req, res) {
+        Dictionary.findOne({ user: req.user._id })
+            .populate('words')
+            .then(function(dictionary) {
+                var wordsToDelete = dictionary.words.filter(function(word) {
+                    return req.body.words.indexOf(word.text) !== -1;
+                });
+
+                return Promise.all(wordsToDelete.map(function(word) {
+                    return word.remove();
+                }));
+            })
+            .then(function() {
+                res.json({ success: true });
+            });
     }
 };

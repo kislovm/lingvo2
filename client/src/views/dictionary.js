@@ -1,5 +1,6 @@
 var Marionette = require('backbone.marionette');
 var DictionaryCollection = require('../collections/dictionary');
+var $ = require('jquery');
 
 module.exports = Marionette.ItemView.extend({
 
@@ -22,6 +23,19 @@ module.exports = Marionette.ItemView.extend({
 
     cancel: function() {
         this.$el.find(':checkbox').prop('checked', false);
+    },
+
+    delete: function() {
+        var value = {
+            words: Array.prototype.map.call(this.$el.find(':checkbox:checked'),
+                function(el) {
+                    return el.value;
+                })
+        };
+
+        $.post('/dictionary/word/delete', value, function () {
+            App.core.vent.trigger('dict:update');
+        }, 'json');
     },
 
     showNext: function(e) {

@@ -45,7 +45,7 @@ var Word = new Schema({
 
 Word.pre('remove', function(next){
     this.model('Dictionary').update(
-        {words: {$in: this._id}},
+        {words: {$in: [this._id]}},
         {$pull: {words: this._id}},
         {multi: true},
         next

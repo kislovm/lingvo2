@@ -28,7 +28,8 @@ module.exports.initialize = function(app) {
     app.get('/account', ensureAuthenticated, addUser, account.index);
     app.get('/account/edit', ensureAuthenticated, addUser, account.edit);
 
-    app.get('/dictionary', dictionary.get);
+    app.get('/dictionary', ensureAuthenticated, addUser, dictionary.get);
+    app.post('/dictionary/word/delete', ensureAuthenticated, addUser, dictionary.delete);
     app.get('/dictionary/add', ensureAuthenticated, addUser, account.add);
     app.get('/dictionary/list', ensureAuthenticated, addUser, account.listDictionary);
     app.post('/dictionary/list', ensureAuthenticated, addUser, account.setDictionary);
