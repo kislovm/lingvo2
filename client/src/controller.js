@@ -6,6 +6,7 @@ var EpisodesView = require('./views/episodes');
 var EpisodesCollection = require('./collections/episodes');
 var TipOfTheDayView = require('./views/tip-of-the-day');
 var MenuView = require('./views/menu');
+var LanguageView = require('./views/language');
 var $ = require('jquery');
 
 module.exports = Marionette.Controller.extend({
@@ -26,6 +27,8 @@ module.exports = Marionette.Controller.extend({
                 }
             }, 50));
         });
+
+        App.languageView = new LanguageView({ el: $('.lang-select'), model: App.data.user });
 
         App.layoutView.showChildView('dictionaries', new DictionarySection());
         App.layoutView.showChildView('settings', new Settings());

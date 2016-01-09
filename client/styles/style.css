@@ -113,8 +113,9 @@ ul{
 	color: white;
 	-webkit-appearance: none;
 	border: none;
-	  height: 21px;
+    height: 21px;
     line-height: 1em;
+    outline: none;
 }
 .enter-block {
 	padding-top: 23px;
