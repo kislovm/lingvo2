@@ -815,12 +815,15 @@ p{
 	margin: -5px 0 5px 0;
 }
 
-.news{
+.news {
 	font: 15px 'Helvetica', sans-serif;
 	color: #000;
-	margin-bottom: 15px;
 	overflow: hidden;
 	position: relative;	
+}
+
+.news:last-child {
+    margin-bottom: 15px;
 }
 
 .more-news{
@@ -1782,4 +1785,20 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .hidden {
 	display: none;
+}
+
+.word {
+    cursor: pointer;
+}
+
+.word:hover {
+    color: #cc0f15;
+}
+
+.fake-link {
+    color: #2980b9;
+    text-decoration: none;
+    outline: none;
+    border-bottom: solid 1px transparent;
+    cursor: pointer;
 }

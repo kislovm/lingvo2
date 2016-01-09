@@ -37,7 +37,8 @@ module.exports = function(grunt) {
         },
 
         concat: {
-            'build/<%= pkg.name %>.js': ['build/vendor.js', 'build/app.js']
+            'build/<%= pkg.name %>.js': ['build/vendor.js', 'build/app.js'],
+            'build/<%= pkg.name %>.css': ['client/styles/*.css']
         },
 
         copy: {
@@ -49,12 +50,8 @@ module.exports = function(grunt) {
                     src: 'client/images/*',
                     dest: 'public/images/'
                 }, {
-                    src: 'client/styles/style.css',
-                    dest: 'public/css/myapp.css'
-                },
-                {
-                	src: 'client/styles/media-queries.css',
-                    dest: 'public/css/media-queries.css'
+                    src: 'build/<%= pkg.name %>.css',
+                    dest: 'public/css/<%= pkg.name %>.css'
                 }]
             },
             prod: {
