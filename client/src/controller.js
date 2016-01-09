@@ -28,6 +28,16 @@ module.exports = Marionette.Controller.extend({
             }, 50));
         });
 
+        $(window).scroll(function() {
+            var el = $('body');
+            clearTimeout($.data(this, 'scrollTimer'));
+            $.data(this, 'scrollTimer', setTimeout(function() {
+                if(el.scrollTop() >= el.prop('scrollHeight') - el.height()) {
+                    App.layoutView.content.currentView.increment()
+                }
+            }, 50));
+        });
+
         App.languageView = new LanguageView({ el: $('.lang-select'), model: App.data.user });
 
         App.layoutView.showChildView('dictionaries', new DictionarySection());
