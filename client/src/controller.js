@@ -18,16 +18,6 @@ module.exports = Marionette.Controller.extend({
             App.menuView = new MenuView({ el: $('.menu' )});
         }, this);
 
-        $('.center-content').scroll(function() {
-            var el = $(this);
-            clearTimeout($.data(this, 'scrollTimer'));
-            $.data(this, 'scrollTimer', setTimeout(function() {
-                if(el.scrollTop() + 200 >= el.prop('scrollHeight') - el.height()) {
-                    App.layoutView.content.currentView.increment()
-                }
-            }, 50));
-        });
-
         $(window).scroll(function() {
             var el = $('body');
             clearTimeout($.data(this, 'scrollTimer'));
