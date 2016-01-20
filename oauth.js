@@ -8,7 +8,7 @@ module.exports = {
     facebook: new FacebookStrategy({
         clientID: '109742002694234',
         clientSecret: 'c32d39b4bc019785d4eba3a458a248cc',
-        callbackURL: 'http://upvoc.com/auth/facebook/callback'
+        callbackURL: '/auth/facebook/callback'
     },
     function(accessToken, refreshToken, profile, done) {
         var u;

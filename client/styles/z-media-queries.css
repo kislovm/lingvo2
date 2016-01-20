@@ -19,6 +19,7 @@
     }
 
     .logo {
+        line-height: 1em;
         width: 30%;
         text-align: center;
         padding-bottom: 0;
@@ -103,9 +104,23 @@
         font-family: 'Helvetica-Neu', sans-serif;
     }
 
-    .dictionaries-section,
-    .functions-language {
+    .dictionaries-section {
         display: none;
+    }
+
+    .functions-language {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        margin: 0;
+    }
+
+    .settings-header {
+        line-height: 2em;
+        font-size: 1.5em;
+        padding: 0 0 0 20px;
     }
 
     .menu {
@@ -150,8 +165,8 @@
     .close-cross {
         float: none;
         display: inline-block;
-        width: 2em;
-        height: 2em;
+        width: 1.5em;
+        height: 1.5em;
         position: absolute;
         right: 5%;
         top: 25%;
@@ -161,5 +176,21 @@
     .allocation {
         margin: 0;
         float: none;
+    }
+
+    .functions-language-slider:after {
+        display: block;
+        width: 100%;
+        0.11em solid rgba(200,200,200,.4)
+    }
+
+    .functions-news-title,
+    .functions-settings-news {
+        bottom: auto;
+    }
+
+    .range-filter {
+        width: 315px;
+        margin: 0 auto;
     }
 }
