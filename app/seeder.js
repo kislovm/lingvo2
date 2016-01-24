@@ -12,6 +12,15 @@ var models = require('./models'),
           return text
       }).get().join('</br>');
     },
+    parseTechcrunch = function($, desc)
+    {
+      var paragraphs = $('.article-entry.text p')
+      .map(function(i, e) {
+        return $(e).text();
+      }).get()
+
+      return paragraphs.join('</br>');
+    },
     parseBbcCoUk = function ($, desc) {
       var paragraphs = $('div[class~=\'story-body\']')
       .find('p:not([class])')
@@ -47,16 +56,13 @@ var models = require('./models'),
       return paragraphs.join('</br>');
     },
     parseWwwForbesComParse = function($, desc) {
-      var paragraphs = $('div[class~=\'body_inner\']')
-      .find('p:not([class])')
-      .map(function(i, e) {
-        return $(e).text();
-      }).get();
-
-      if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-        return paragraphs.slice(1).join('</br>');
+      var fbs_settings = {};
+      eval($('script').eq(1).html());
+      if(!fbs_settings.content) {
+        console.log($.html());
+      } else {
+        return $(fbs_settings.content.body).text();
       }
-      return paragraphs.join('</br>');
     },
     parseTelegraphFeedsportalCom = function($) {
       return $('div[id~=\'mainBodyArea\']')

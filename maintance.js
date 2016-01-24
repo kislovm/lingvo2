@@ -18,16 +18,13 @@ mongoose.connection.on('open', function() {
                 var count = episodes && episodes.length;
 
                 if(count) {
-                    difficulty.processMany(episodes, id);
-                }
-                return count
-            })
-            .then(function(result) {
-                if (result) {
-                    doStuff();
+                    return difficulty.processMany(episodes, id);
                 } else {
                     setTimeout(doStuff, 5000);
                 }
+            })
+            .then(function() {
+                doStuff();
             });
     }
 

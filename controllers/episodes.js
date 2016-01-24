@@ -1,7 +1,7 @@
-var models = require('../app/models'),
-    Natural = require('natural'),
-    sanitizeHtml = require('sanitize-html'),
-    parser = require('../parser/parser');
+var models = require('../app/models');
+var Natural = require('natural');
+var sanitizeHtml = require('sanitize-html');
+var parser = require('../parser/parser');
 
 module.exports = {
     index: function(req, res) {
@@ -10,12 +10,9 @@ module.exports = {
 
     category: function(req, res) {
         var skip = 10 * (req.params.page || 0),
-            difficulty = req.session.difficulty || 'general',
-            query = {
-                //lexica: difficulty
-            };
+            query = {};
 
-        if (req.params.category && req.params.category != 'all') {
+        if (req.params.category && req.params.category !== 'all') {
             query.category = req.params.category;
         }
 
@@ -23,56 +20,17 @@ module.exports = {
             query.originalArticleLink = { $in: req.session.source };
         }
 
-        if (req.session.random && req.session.customDictionary) {
-            var customDictionary = parser._preprocessDict(req.session.customDictionary);
-
-            //delete query.lexica;
-            //query.tokens = { $in: customDictionary };
-        }
-
-        if (req.session.highlightDict && req.user) {
-            customDictionary = parser._preprocessDict(req.session.selectedDictionaryWords || []);
-            console.log(customDictionary)
-        }
-
         models.Episode
             .find(query)
-            .select('title link name publicationDate image description processedDescription body processedBody originalArticleLink')
+            .select('title link name publicationDate image processedDescription processedBody originalArticleLink')
             .sort('-publicationDate')
             .skip(skip)
             .limit(10)
-            .exec(function(err, episodes) {
-                if (err) {
-                    res.json({error: 'Episodes not found.'});
+            .exec(function(error, episodes) {
+                if (error) {
+                    res.json({ error: 'Episodes not found.' });
                 } else {
-                    if(customDictionary && !episodes.length) {
-                        res.json([{ description: 'No articles found' }]);
-                        return;
-                    }
-
-                    res.json(episodes.map(function(episode) {
-                        episode = episode.toJSON();
-
-                        if (customDictionary) {
-                            episode.description = parser.highlight(episode.description, customDictionary);
-                            episode.body && (episode.body = parser.highlight(episode.body, customDictionary));
-
-                            delete episode.processedDescription;
-                            delete episode.processedBody;
-
-                            return episode;
-                        }
-
-                        if(!episode.processedDescription || !episode.processedBody) return;
-
-                        episode.description = episode.processedDescription[difficulty];
-                        episode.body && episode.processedBody && (episode.body = episode.processedBody[difficulty]);
-
-                        delete episode.processedDescription;
-                        delete episode.processedBody;
-
-                        return episode;
-                    }));
+                    return res.json(episodes);
                 }
         });
     },

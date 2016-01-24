@@ -56,8 +56,8 @@ module.exports = {
     parse: function(dicts, episode) {
         this._preprocessDicts(dicts);
 
-        var processedDescription = {},
-            processedBody = {},
+        var processedDescription,
+            processedBody,
             descriptionTokens = this._tokenize(episode.description),
             bodyTokens = episode.body ? this._tokenize(episode.body) : [],
             tokens = descriptionTokens.concat(bodyTokens),
@@ -92,8 +92,8 @@ module.exports = {
 
             });
 
-            processedDescription[dict.name] = this.highlight(episode.description, truncatedWords);
-            processedBody[dict.name] = episode.body && this.highlight(episode.body, truncatedWords);
+            processedDescription = this.highlight(episode.description, truncatedWords);
+            processedBody = episode.body && this.highlight(episode.body, truncatedWords);
             matches = matches.concat(used);
 
         }, this);

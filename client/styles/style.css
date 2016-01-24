@@ -71,10 +71,10 @@ ul{
 	padding: 0;
 }
 .clearfix:after {
-    content: ""; 
-    display: block; 
-    height: 0; 
-    clear: both; 
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
     visibility: hidden;
     overflow:hidden;
 }
@@ -84,23 +84,22 @@ ul{
 }
 .logo{
 	font-size: 35px;
-	background: #4e6ba5;
 	padding-bottom: 2px;
-    float: left;
+	display: inline-block;
 	margin-top: 0;
-	height: 58px;
+	height: 100%;
 	position: relative;
 	width: 300px;
 }
 .lang-select {
-	float: left;
-	width: 339px;
-	background: #394778;
-	padding-top: 20px;
-    padding-bottom: 19px;
+    display: inline-block;
+    width: 339px;
+    background: #394778;
+    line-height: 60px;
     font-family: 'Helvetica', sans-serif;
-	font-size: 17px;
-	color: white;
+    font-size: 17px;
+    color: white;
+    vertical-align: top;
 }
 .lang-select span {
 	text-align: center;
@@ -118,14 +117,14 @@ ul{
     outline: none;
 }
 .enter-block {
-	padding-top: 23px;
     font-family: 'Helvetica', sans-serif;
-	font-size: 17px;
-	color: white;
-	float: right;
-	background: #4e6ba5;
-	position: relative;
-	right: 60px;
+    font-size: 17px;
+    color: white;
+    display: inline-block;
+	margin-left: 60px;
+    position: relative;
+    line-height: 3.5em;
+    vertical-align: super;
 }
 .login-m {
 	color: white;
@@ -143,7 +142,7 @@ ul{
 }
 
 .menu a.active {
-    color: #cc0f15;
+    color: #f00;
 }
 
 
@@ -165,7 +164,7 @@ ul{
 	font-size: 12px;
 	position: absolute;
 	left: 160px;
-	bottom: 12px;
+	top: 10px;
 	width: 120px;
 }
 p{
@@ -185,7 +184,7 @@ p{
 }
 .content{
 	text-align: center;
-}	
+}
 .login-form{
 	margin-left: 30px;
 	display: inline-block;
@@ -196,7 +195,7 @@ p{
 }
 .password{
 	background: #fff;
-	
+
 }
 .log-in{
 	position: relative;
@@ -242,18 +241,18 @@ p{
 }
 .soc-ic a{
 	display: inline-block;
-	
+
 }
 .vk-ic{
-	
+
 	background-position: 0 0;
 }
 .vk-fb{
-	
+
 	background-position: -36px 0;
 }
 .vk-tw{
-	
+
 	background-position: -72px 0;
 }
 .vk-ok{
@@ -273,7 +272,7 @@ p{
 	display: inline-block;
 	padding-top: 9px;
 	padding-bottom: 9px;
-	
+
 
 }
 .menu li a {
@@ -307,7 +306,7 @@ p{
 	overflow: hidden;
 	    overflow-x: scroll;
   white-space:nowrap;
-	
+
 }
 #blue-header {
 	width: 100%;
@@ -325,17 +324,15 @@ p{
 	text-align: center;
 }
 .main-header{
-	width: 960px;
+	width: 85%;
 	background: #4E6BA5;
 	position: fixed;
 	top: 0;
 	margin: 0 auto;
 	z-index: 1002;
 
-}	
+}
 .middle-section{
-	width: 910px;
-	margin: 0 auto;
 	margin-top: 10px;
 	background: #e2e2e2;
 }
@@ -445,18 +442,18 @@ p{
 	font: 12px/13px 'Helvetica', sans-serif;
 	font-weight: bold;
 	position: relative;
-	
+
 }
 .function-underline{
 	border-bottom: 2px dotted #5d5d5d;
 }
 .translate-functions p{
 	display: inline-block;
-}	
+}
 .left-inter{
 	margin-left: 15px;
 	position: relative;
-	
+
 }
 .right-inter{
 	margin-left: 20px;
@@ -511,7 +508,7 @@ p{
 }
 .checkbox-settings + label{
 	position: relative;
-	
+
 	cursor: pointer;
 }
 .checkbox-settings + label::before{
@@ -539,7 +536,7 @@ p{
 	color: #999999;
 }
 .settings-title h3{
-	
+
 	font: 26px/31px 'Condensed-Bold', sans-serif;
 	text-transform: uppercase;
 	font-weight: bold;
@@ -595,17 +592,17 @@ p{
 }
 .range-filter{
 	width: 100%;
-	
+
 }
 .range-controls{
 	position: relative;
 	padding-top: 8px;
-		
+
 		padding-bottom: 20px;
 		margin-left: 10px;
 }
 .range-controls .scale{
-	
+
 	height: 9px;
 	background: #dddddd;
 	border-radius: 4%;
@@ -628,7 +625,7 @@ p{
 	display: inline-block;
 	left: 0;
 	z-index: 1000;
-	
+
 }
 .circle2{
 	cursor: pointer;
@@ -641,7 +638,7 @@ p{
 .range-controls .circle3{
 	left: 195px;
 	z-index: 502;
-	
+
 }
 .settings-lang-dif{
     float: left;
@@ -700,7 +697,7 @@ p{
 	cursor: pointer;
 	display: inline-block;
 	z-index: 1000;
-	
+
 }
 .circle3:after{
 	content: "";
@@ -819,7 +816,7 @@ p{
 	font: 15px 'Helvetica', sans-serif;
 	color: #000;
 	overflow: hidden;
-	position: relative;	
+	position: relative;
 }
 
 .news:last-child {
@@ -1093,12 +1090,12 @@ p{
 }
 /* Track */
 ::-webkit-scrollbar-track:horizontal {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
 ::-webkit-scrollbar-track:vertical {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
@@ -1106,25 +1103,21 @@ p{
 ::-webkit-scrollbar-thumb:horizontal {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: #dbdbdb; 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    background: #dbdbdb;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:vertical {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: #dbdbdb; 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    background: #dbdbdb;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(255,0,0,0.4); 
+	background: rgba(255,0,0,0.4);
 }
 
 #wrapper{
 	display: none;
-}
-#content-wrapper {
-	margin: 0 auto;
-	width: 910px;
 }
 .translate-window {
 	width: 266px;
@@ -1269,7 +1262,7 @@ background: #eeeeee;
 	color: white;
 	border: 1px solid #355187;
 	margin-top: 50px;
-	
+
 
 }
 .fb-btn:before {
@@ -1291,7 +1284,7 @@ background: #eeeeee;
 	background: #39abdc;
 	color: white;
 	border: 1px solid #1380ae;
-	
+
 
 }
 .tw-btn:before {
@@ -1312,7 +1305,7 @@ background: #eeeeee;
 	background: #de4b33;
 	color: white;
 	border: 1px solid #cd3b24;
-	
+
 
 }
 .gg-btn:before {
@@ -1333,7 +1326,7 @@ background: #eeeeee;
 	background: #fafafa;
 	color: #898989;
 	border: 1px solid #c2c2c2;
-	
+
 
 }
 .ggw-btn:before {
@@ -1353,7 +1346,7 @@ background: #eeeeee;
 .btn-text-first {
 	margin-left: 28px;
 	padding-bottom: 2px;
-	
+
 }
 .btn-text {
 	margin-left: 10px;
@@ -1482,7 +1475,7 @@ input[type=range] {
 
 }
 input[type=range]::-webkit-slider-thumb {
-  
+
   -webkit-appearance: none;
   }
   input[type=range]::-webkit-slider-thumb {
@@ -1511,7 +1504,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .functions-checkbox-settings + label{
   position: relative;
-  
+
   cursor: pointer;
 }
 .functions-checkbox-settings + label::before{
@@ -1761,7 +1754,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	cursor: pointer;
 }
 .center-block {
-	width: 1000px;
+	width: 85vw;
 	margin: 0 auto;
 }
 .menu li a:hover {
