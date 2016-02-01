@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 
-var Episode = {
+var Episode = new Schema({
     name: { type: String },
     title: { type: String, unique: true, dropDups: true },
     image: { type: String },
@@ -18,7 +18,9 @@ var Episode = {
     link: { type: String },
     body: { type: String },
     originalArticleLink: { type: String }
-};
+});
+
+Episode.index({ publicationDate: -1, category: 1 });
 
 var User = {
     oauthID: Number,
