@@ -1,15 +1,10 @@
-var Natural = require('natural'),
-    sanitizeHtml = require('sanitize-html');
+var Natural = require('natural');
+var sanitizeHtml = require('sanitize-html');
 
 
 Natural.PorterStemmer.attach();
 
 module.exports = {
-
-    defaultClassificator: function(hits, count) {
-        return hits / count > 0.3;
-    },
-
     _dicts: {},
 
     _preprocessDicts: function(dicts) {
@@ -39,8 +34,14 @@ module.exports = {
         return text.split(/(\s|<br>|<\/br>)/g).map(function(token) {
             var words = token.match(/\w+('|.|,)?(\w+)?/g) || [];
 
-            return words.map(function(word) {
-                if (word == 'br' || word == 'br>') return '</br>';
+            return words.map(function(word, index) {
+                if (word == 'br' || word == 'br>') {
+                    if(index === 0) {
+                        return '';
+                    } else {
+                        return '</br>';
+                    }
+                }
 
                 if (truncatedWords.indexOf(word.stem()) != -1) {
                     return '<span title="Перевод" class="word highlight">' + word + '</span>';
@@ -56,52 +57,18 @@ module.exports = {
     parse: function(dicts, episode) {
         this._preprocessDicts(dicts);
 
-        var processedDescription,
-            processedBody,
-            descriptionTokens = this._tokenize(episode.description),
-            bodyTokens = episode.body ? this._tokenize(episode.body) : [],
-            tokens = descriptionTokens.concat(bodyTokens),
-            matches = [];
+        var dict = dicts[0];
 
-        dicts.forEach(function(dict) {
+        var processedDescription;
+        var processedBody;
+        var truncatedWords = this._dicts[dict.name];
 
-            var count = 0,
-                classificator = dict.classificator || this.defaultClassificator,
-                hits = 0,
-                used = [],
-                truncatedWords = this._dicts[dict.name];
-
-            tokens.forEach(function(token) {
-
-                var truncatedToken = token.stem();
-                var matchedToken = truncatedToken.match(/\w+/) || [];
-
-                if (used.indexOf(truncatedToken) == -1) {
-                    count++;
-                    if (truncatedWords.indexOf(matchedToken[0]) != -1) {
-                        hits++;
-                    }
-                    used.push(matchedToken[0]);
-                }
-
-                if (classificator(hits, count) && episode.lexica.indexOf(dict.name) == -1) {
-                    (episode.lexica && episode.lexica instanceof
-                    Array ? episode.lexica.push(dict.name) : episode.category = [dict.name]);
-
-                }
-
-            });
-
-            processedDescription = this.highlight(episode.description, truncatedWords);
-            processedBody = episode.body && this.highlight(episode.body, truncatedWords);
-            matches = matches.concat(used);
-
-        }, this);
+        processedDescription = this.highlight(episode.description, truncatedWords);
+        processedBody = episode.body && this.highlight(episode.body, truncatedWords);
 
         return {
             processedDescription: processedDescription,
-            processedBody: processedBody,
-            tokens: matches
+            processedBody: processedBody
         };
 
     }

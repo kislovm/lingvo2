@@ -1,6 +1,6 @@
-var mongoose = require('mongoose'),
-    seeder = require('./app/seeder'),
-    difficulty = require('./app/difficulty');
+var mongoose = require('mongoose');
+var seeder = require('./app/seeder');
+var difficulty = require('./app/difficulty');
 
 
 mongoose.connect('mongodb://localhost/MyApp');
@@ -8,8 +8,6 @@ mongoose.connection.on('open', function() {
     console.log("Connected to Mongoose...");
 
     var id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 20);
-
-    // check if the db is empty, if so seed it with some contacts:
 
     function doStuff() {
         difficulty
@@ -21,6 +19,7 @@ mongoose.connection.on('open', function() {
                     return difficulty.processMany(episodes, id);
                 } else {
                     setTimeout(doStuff, 5000);
+                    return Promise.reject();
                 }
             })
             .then(function() {

@@ -30,15 +30,14 @@ module.exports = {
 
         episode.processedDescription = result.processedDescription;
         episode.processedBody = result.processedBody;
-        episode.tokens = result.tokens;
         episode.processed = id;
         return episode.save()
             .then(function() {
                 console.log('Saved episode: ' + counter)
             }.bind(this),
-                function () {
-                    console.log('Failed to save episode: ' + this.counter)
-                });
+            function () {
+                console.log('Failed to save episode: ' + this.counter)
+            }.bind(this));
     }
 
 };
