@@ -22,7 +22,7 @@ module.exports = Marionette.Controller.extend({
             var el = $('body');
             clearTimeout($.data(this, 'scrollTimer'));
             $.data(this, 'scrollTimer', setTimeout(function() {
-                if(el.scrollTop() >= el.prop('scrollHeight') - 800) {
+                if($(window).scrollTop() == $(document).height() - $(window).height()) {
                     App.layoutView.content.currentView.increment()
                 }
             }, 50));
