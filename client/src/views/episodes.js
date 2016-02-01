@@ -1,9 +1,8 @@
 var Marionette = require('backbone.marionette');
-var itemView = require('./episode');
+var ItemView = require('./episode');
 
 module.exports = Marionette.CollectionView.extend({
     initialize: function() {
-        this.listenTo(this.collection, 'change', this.render);
         this.listenTo(App.data.user, 'change:source', this._onDifficultyChange);
     },
 
@@ -33,5 +32,5 @@ module.exports = Marionette.CollectionView.extend({
             .fetch();
     },
 
-    childView: itemView
+    childView: ItemView
 });

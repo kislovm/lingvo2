@@ -29,8 +29,10 @@ module.exports = {
             .exec(function(error, episodes) {
                 if (error) {
                     res.json({ error: 'Episodes not found.' });
+                    return;
                 } else {
-                    return res.json(episodes);
+                    res.json(episodes);
+                    return;
                 }
         });
     },

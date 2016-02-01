@@ -8,14 +8,13 @@ module.exports = EpisodeModel = Backbone.Model.extend({
         if(!data || !data.title) return;
 
         var pubDate = data.publicationDate;
+        if (!!pubDate) data.formattedDate = this._formatDate(pubDate);
 
         if(!data.processedTitle) {
             data.processedTitle = data.title.split(' ').map(function(word) {
                 return '<span class="word">' + word + '</span>';
             }).join(' ');
         }
-
-        if (!!pubDate) data.formattedDate = this._formatDate(pubDate);
 
         if (!$(data.description).text().match(/\w/)) {
             data.description = data.body;
