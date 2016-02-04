@@ -19,10 +19,20 @@ module.exports = Marionette.Controller.extend({
         }, this);
 
         $(window).scroll(function() {
-            var el = $('body');
             clearTimeout($.data(this, 'scrollTimer'));
             $.data(this, 'scrollTimer', setTimeout(function() {
                 if($(window).scrollTop() >= $(document).height() - ($(window).height() * 2)) {
+                    App.layoutView.content.currentView.increment()
+                }
+            }, 50));
+        });
+
+        var centerBlock = $('.center-block');
+
+        centerBlock.scroll(function() {
+            clearTimeout($.data(this, 'scrollTimer'));
+            $.data(this, 'scrollTimer', setTimeout(function() {
+                if(centerBlock.scrollTop() >= $(document).height() - (centerBlock.height() * 2)) {
                     App.layoutView.content.currentView.increment()
                 }
             }, 50));

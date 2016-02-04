@@ -46,7 +46,11 @@ body{
 	font-size: 12px;
 	line-height: 14px;
 	background: #e2e2e2;
+	min-width: 1000px;
+}
 
+.body_fixed {
+	overflow: hidden;
 }
 
 body.popup {
@@ -89,13 +93,13 @@ ul{
 	margin-top: 0;
 	height: 100%;
 	position: relative;
-	width: 300px;
+	width: 30%;
 }
 .lang-select {
     display: inline-block;
-    width: 339px;
+    width: 30%;
     background: #394778;
-    line-height: 60px;
+    line-height: 3.5em;
     font-family: 'Helvetica', sans-serif;
     font-size: 17px;
     color: white;
@@ -121,7 +125,7 @@ ul{
     font-size: 17px;
     color: white;
     display: inline-block;
-	margin-left: 60px;
+	margin-left: 10%;
     position: relative;
     line-height: 3.5em;
     vertical-align: super;
@@ -317,23 +321,21 @@ p{
 	left: 0;
 	z-index: 1;
 }
-#pc-container {
-	margin: 0 auto;
-}
 .menu li {
 	text-align: center;
 }
 .main-header{
-	width: 85%;
+	width: 1000px;
+	height: 5em;
 	background: #4E6BA5;
 	position: fixed;
 	top: 0;
-	margin: 0 auto;
+	left: 50%;
+	margin-left: -500px;
 	z-index: 1002;
 
 }
 .middle-section{
-	margin-top: 10px;
 	background: #e2e2e2;
 }
 .top-line{
@@ -779,7 +781,6 @@ p{
     width: 600px;
     padding-top: 20px;
     background: #f6f6f6;
-    margin-top: 100px;
 }
  .name-news{
  	display: inline-block;
@@ -1754,8 +1755,14 @@ input[type=range]::-webkit-slider-runnable-track {
 	cursor: pointer;
 }
 .center-block {
-	width: 85vw;
-	margin: 0 auto;
+	width: 1000px;
+    position: absolute;
+	left: 50%;
+    margin-left: -500px;
+    top: 100px;
+    bottom: 1px;
+    -webkit-overflow-scrolling: touch;
+	z-index: 10;
 }
 .menu li a:hover {
 	color: #cc0f15;

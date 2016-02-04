@@ -1,73 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=.7, maximum-scale=.7" />
-	<title>Upvoc</title>
-	<link href="/css/myapp.css" rel="stylesheet">
-	<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:700&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Lora&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
-</head>
-<body>
-	<div class="popup-wrapper">
-		<div class="functions-language">
-		</div>
-	</div>
-
-	 <div class="main-header clearfix">
-		<div class="logo">
-			<a href="/">upvoc</a>
-			<p class="logo-p">improve your <br> english vocabulary</p>
-		</div>
-			<div class="lang-select">
-			<span>My language:</span>
-                <select class='switch-lang'>
-                    <option value="chinese">Chinese</option>
-                    <option value="arabic">Arabic</option>
-                    <option value="portugal">Portugal</option>
-                    <option value="russian">Russian</option>
-                    <option value="spanish">Spanish</option>
-                    <option value="turkish">Turkish</option>
-				</select>
-			</div>
-			<div class="enter-block">
-			{{#if user}}
-				<a href = "/account/" class="login-m">{{{ user.name }}}</a>&nbsp;/&nbsp;<a href = "/logout/" class="login-m">Sign out</a>
-            {{else}}
-                Login&nbsp;via
-                <a href="/auth/facebook" class="login-m">Facebook</a>
-                |
-                <a href="/auth/twitter" class="login-m">Twitter</a>
-            {{/if}}
-			</div>
-					<div class="sign-bg">
-					<div class="sign">
-						<div class="sign-in">Sign In</div>
-						<div class="sign-up">Sign Up</div>
-						<div class="social">
-							<button class="fb-btn sign-btn"><span class="btn-text-first">Sign in with Facebook</span></button>
-							<button class="tw-btn sign-btn"><span class="btn-text">Sign in with Twitter</span></button>
-							<button class="gg-btn sign-btn"><span class="btn-text">Sign in with Google</span></button>
-							<button class="ggw-btn sign-btn"><span class="btn-text">Sign in with Google</span></button>
-						</div>
-						<div class="or-icon"><span>or</span></div>
-						<div class="login-m-form">
-							<form action="/echo" method='post'>
-								<input type="text" class="login-m-form-login" placeholder="Login">
-								<input type="password" class="login-m-form-password" placeholder="Password">
-								<a href="" class="login-m-form-restore">Forgot password?</a>
-							</form>
-						</div>
-						<div class="sign-login">Login</div>
-						<div class="sign-close">Close</div>
-					</div>
-					</div>
-				<div class="enter"></div>
-			</div>
-    <div class="center-block">
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=.7, maximum-scale=.7" />
+        <title>Upvoc</title>
+        <link href="/css/myapp.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:700&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lora&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div class="popup-wrapper">
+            <div class="functions-language">
+            </div>
+        </div>
+         <div class="main-header clearfix">
+            <div class="logo">
+                <a href="/">upvoc</a>
+                <p class="logo-p">improve your <br> english vocabulary</p>
+            </div>
+            <div class="lang-select">
+                <span>My language:</span>
+                    <select class='switch-lang'>
+                        <option value="chinese">Chinese</option>
+                        <option value="arabic">Arabic</option>
+                        <option value="portugal">Portugal</option>
+                        <option value="russian">Russian</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="turkish">Turkish</option>
+                    </select>
+            </div>
+            <div class="enter-block">
+                {{#if user}}
+                    <a href = "/account/" class="login-m">{{{ user.name }}}</a>&nbsp;/&nbsp;<a href = "/logout/" class="login-m">Sign out</a>
+                {{else}}
+                    Login&nbsp;via
+                    <a href="/auth/facebook" class="login-m">Facebook</a>
+                    |
+                    <a href="/auth/twitter" class="login-m">Twitter</a>
+                {{/if}}
+            </div>
+            <div class="sign-bg">
+                <div class="sign">
+                    <div class="sign-in">Sign In</div>
+                    <div class="sign-up">Sign Up</div>
+                    <div class="social">
+                        <button class="fb-btn sign-btn"><span class="btn-text-first">Sign in with Facebook</span></button>
+                        <button class="tw-btn sign-btn"><span class="btn-text">Sign in with Twitter</span></button>
+                        <button class="gg-btn sign-btn"><span class="btn-text">Sign in with Google</span></button>
+                        <button class="ggw-btn sign-btn"><span class="btn-text">Sign in with Google</span></button>
+                    </div>
+                    <div class="or-icon"><span>or</span></div>
+                    <div class="login-m-form">
+                        <form action="/echo" method='post'>
+                            <input type="text" class="login-m-form-login" placeholder="Login">
+                            <input type="password" class="login-m-form-password" placeholder="Password">
+                            <a href="" class="login-m-form-restore">Forgot password?</a>
+                        </form>
+                    </div>
+                    <div class="sign-login">Login</div>
+                    <div class="sign-close">Close</div>
+                </div>
+            </div>
+            <div class="enter"></div>
             <ul class="menu clearfix">
                 <li><a href="#"><span>All</span></a></li>
                 <li><a href="#category/world"><span>World</span></a></li>
@@ -79,51 +75,47 @@
                 <li><a href="#category/tech"><span>Technology</span></a></li>
                 <li><a href="#category/culture"><span>Culture</span></a></li>
             </ul>
-		<div class="middle-section">
-		<div class="top-line clearfix tip-of-the-day">
-				<div class="allocation">
-					<p>Click unknown word to see its translation<span class="close-cross"></span></p>
-				</div>
-		</div>
+            <div class="top-line clearfix tip-of-the-day">
+                <div class="allocation">
+                    <p>Click unknown word to see its translation<span class="close-cross"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="center-block">
+            <div class="center-content clearfix"></div>
+            <div class="dictionaries-section clearfix"></div>
+        </div>
+        <div class="showsettings"><span class="showspan">Show my translations</span></div>
+        <script src="/js/myapp.js"></script>
 
-			<div class="center-content clearfix"></div>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter26600358 = new Ya.Metrika({id:26600358,
+                            webvisor:true,
+                            clickmap:true,
+                            trackLinks:true,
+                            accurateTrackBounce:true});
 
-			<div class="dictionaries-section clearfix">
-			</div>
+                    w.counter = w.yaCounter26600358;
+                } catch(e) { }
+            });
 
-	</div>
-	<div class="showsettings"><span class="showspan">Show my translations</span></div>
-			<script src="/js/myapp.js"/>
-	<!-- Yandex.Metrika counter -->
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 
-<script type="text/javascript">
-(function (d, w, c) {
-    (w[c] = w[c] || []).push(function() {
-        try {
-            w.yaCounter26600358 = new Ya.Metrika({id:26600358,
-                    webvisor:true,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true});
-
-            w.counter = w.yaCounter26600358;
-        } catch(e) { }
-    });
-
-    var n = d.getElementsByTagName("script")[0],
-        s = d.createElement("script"),
-        f = function () { n.parentNode.insertBefore(s, n); };
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-    if (w.opera == "[object Opera]") {
-        d.addEventListener("DOMContentLoaded", f, false);
-    } else { f(); }
-})(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript><div><img src="//mc.yandex.ru/watch/26600358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-
-</body>
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+        </script>
+    <noscript><div><img src="//mc.yandex.ru/watch/26600358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    </body>
 </html>
