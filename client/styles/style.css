@@ -1759,7 +1759,8 @@ input[type=range]::-webkit-slider-runnable-track {
     position: absolute;
 	left: 50%;
     margin-left: -500px;
-    top: 100px;
+	top: 60px;
+    padding-top: 40px;
     bottom: 1px;
     -webkit-overflow-scrolling: touch;
 	z-index: 10;

@@ -38,6 +38,20 @@ module.exports = Marionette.Controller.extend({
             }, 50));
         });
 
+        var onOrientationChange = function() {
+          if(window.matchMedia("(orientation: portrait)").matches) // Portrait
+          {
+            $('head').append('<meta name="viewport" content="width=device-width, initial-scale=.75, maximum-scale=.75" />');
+          } else // Landscape
+          {
+            $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />');
+          }
+        };
+
+        onOrientationChange();
+
+        $(window).on('orientationchange', onOrientationChange);
+
         App.languageView = new LanguageView({ el: $('.lang-select'), model: App.data.user });
 
         App.layoutView.showChildView('dictionaries', new DictionarySection());
