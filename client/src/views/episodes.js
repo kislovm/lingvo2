@@ -32,5 +32,7 @@ module.exports = Marionette.CollectionView.extend({
             .fetch();
     },
 
+    className: 'episodes-holder',
+
     childView: ItemView
 });

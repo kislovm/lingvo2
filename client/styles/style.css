@@ -796,6 +796,11 @@ p{
 	display: none;
 
 }
+
+.episodes-holder {
+	width: 550px;
+}
+
 .illustration {
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -807,6 +812,10 @@ p{
 	padding-top: 50%;
 }
 
+.news-text-holder {
+	width: 100%;
+}
+
 .original-article-link {
 	display: inline-block;
 	margin: -5px 0 5px 0;
@@ -816,7 +825,6 @@ p{
 .news {
 	font: 15px 'Helvetica', sans-serif;
 	color: #000;
-	overflow: hidden;
 	position: relative;
 }
 

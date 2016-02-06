@@ -51,9 +51,9 @@ module.exports = Marionette.ItemView.extend({
 
     opened: false,
 
-    tagName: 'article',
+    tagName: 'div',
 
-    className: 'article',
+    className: 'novelty',
 
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);

@@ -3,6 +3,12 @@
         overflow-x: hidden;
         overflow-y: scroll;
     }
+
+    .main-header {
+        width: 100%;
+        left: 0;
+        margin: 0;
+    }
 }
 
 @media only screen and (max-device-width: 480px) {

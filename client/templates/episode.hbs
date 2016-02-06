@@ -1,10 +1,10 @@
-<div class="novelty">
-    <h2 class="name-news"><a>{{{ processedTitle }}}</a></h2>
-    <span class="original-article-link">Original&nbsp;article:&nbsp;<a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a></span>&nbsp;&mdash;&nbsp;{{ formattedDate }}
-    <a href="#"><blockquote class="newsinform">{{ name }}</blockquote></a>
-    {{#if image}}
-        <a class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
-    -{{/if}}
+<h2 class="name-news"><a>{{{ processedTitle }}}</a></h2>
+<span class="original-article-link">Original&nbsp;article:&nbsp;<a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a></span>&nbsp;&mdash;&nbsp;{{ formattedDate }}
+<a href="#"><blockquote class="newsinform">{{ name }}</blockquote></a>
+{{#if image}}
+    <a class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
+-{{/if}}
+<div class="news-text-holder">
     <p class="news">
         {{{ processedDescription }}}
         {{#if processedBody}}
