@@ -39,17 +39,10 @@ module.exports = Marionette.ItemView.extend({
     },
 
     showMore: function() {
-        var opened = this.opened;
-
         this.$el.find('.episode-body').removeClass('hidden');
-        this.$el.find('.episode-more').addClass('hidden');
-        if (opened) counter.reachGoal('show-more');
-
-        this.opened = !opened;
-
+        this.$el.find('.episode-description').addClass('hidden');
+        counter.reachGoal('show-more');
     },
-
-    opened: false,
 
     tagName: 'div',
 

@@ -62,7 +62,7 @@ module.exports = {
         var processedDescription;
         var processedBody;
         var truncatedWords = this._dicts[dict.name];
-        var description = episode.body.slice(0,15);
+        var description = (episode.body || '').split(' ').slice(0, 30).join(' ');
 
         processedDescription = this.highlight(description, truncatedWords);
         processedBody = episode.body && this.highlight(episode.body, truncatedWords);

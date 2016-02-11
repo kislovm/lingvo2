@@ -12,37 +12,30 @@ var models = require('./models'),
           return text
       }).get().join('</br>');
     },
-    parseTechcrunch = function($, desc)
+    parseTechcrunch = function($)
     {
       var paragraphs = $('.article-entry.text p')
       .map(function(i, e) {
         return $(e).text();
-      }).get()
+      }).get();
 
       return paragraphs.join('</br>');
     },
-    parseBbcCoUk = function ($, desc) {
+    parseBbcCoUk = function ($) {
       var paragraphs = $('div[class~=\'story-body\']')
       .find('p:not([class])')
       .map(function(i, e) {
         return $(e).text();
       }).get();
 
-      if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-        return paragraphs.slice(1).join('</br>');
-      }
       return paragraphs.join('</br>');
     },
-    economistComParse = function($, desc) {
+    economistComParse = function($) {
       var paragraphs = $('div[class~=\'main-content\']')
           .find('p:not([class])')
           .map(function(i, e) {
             return $(e).text();
           }).get();
-
-      if(paragraphs && paragraphs.length && paragraphs[0].indexOf(desc.trim().slice(0, 20)) != -1) {
-        return paragraphs.slice(1).join('</br>');
-      }
       return paragraphs.join('</br>');
     },
     parseRssfeedsUsatodayCom = function($) {
@@ -55,7 +48,7 @@ var models = require('./models'),
       });
       return paragraphs.join('</br>');
     },
-    parseWwwForbesComParse = function($, desc) {
+    parseWwwForbesComParse = function($) {
       var fbs_settings = {};
       eval($('script').eq(1).html());
       if(!fbs_settings.content) {
@@ -77,21 +70,14 @@ var models = require('./models'),
       });
       return str.replace(/&(\w+);/g, '');
     },
-    parseFeedProxyGoogleCom = function($, desc) {
+    parseFeedProxyGoogleCom = function($) {
       var paragraphs = $('div[class~=\'article-entry\']')
       .find('p:not([class])')
       .map(function(i, e) {
         return $(e).text();
       }).get();
 
-      var article = decodeHtmlEntity(paragraphs.join('</br>')).trim();
-      desc = decodeHtmlEntity(desc).trim().slice(-60, -40);
-
-      var desc_begin = article.lastIndexOf(desc);
-      if(desc_begin != -1) {
-        return article.slice(desc_begin + 50);
-      }
-      return article;
+      return decodeHtmlEntity(paragraphs.join('</br>')).trim();
     },
     parseHandlers = {'rss.cnn.com': parseRssCnnCom, 'www.bbc.co.uk': parseBbcCoUk,
                      'www.economist.com': economistComParse, 'rssfeeds.usatoday.com': parseRssfeedsUsatodayCom,
@@ -101,13 +87,13 @@ var models = require('./models'),
       var matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
       return matches && matches[1];
     },
-    extractArticleBody = function(url, $, desc) {
+    extractArticleBody = function(url, $) {
       var domain = getDomain(url);
       if (!(domain in parseHandlers)) {
         console.log('ERROR: unkown domain [' + domain + ']');
         return;
       }
-      return parseHandlers[domain]($, desc);
+      return parseHandlers[domain]($);
     },
     originalArticleLinks = {'rss.cnn.com': 'cnn.com', 'www.bbc.co.uk': 'bbc.com', 'www.economist.com': 'economist.com',
                             'rssfeeds.usatoday.com': 'usatoday.com', 'www.forbes.com': 'forbes.com',
@@ -255,16 +241,16 @@ module.exports = {
             var stream = this, item;
             while (item = stream.read()) {
 
-              var image,
-                  description = (item.summary.length > item.description.length ?
-                      item.summary : item.description) || item.meta.description,
-                  ep = {
-                      name: feed.name,
-                      title: item.title,
-                      link: item.link,
-                      publicationDate: new Date(item.pubDate),
-                      category: _key
-                  };
+              var image;
+              var description = (item.summary.length > item.description.length ?
+                item.summary : item.description) || item.meta.description;
+              var ep = {
+                  name: feed.name,
+                  title: item.title,
+                  link: item.link,
+                  publicationDate: new Date(item.pubDate),
+                  category: _key
+              };
 
                 ep.description = sanitizeHtml(description, {
                   allowedTags: [],
@@ -297,7 +283,7 @@ module.exports = {
                       console.log(err);
                     } else{
                       var $ = cheerio.load(body);
-                      ep.body = extractArticleBody(ep.link, $, ep.description);
+                      ep.body = extractArticleBody(ep.link, $);
                       if(getDomain(ep.link) == 'feedproxy.google.com') {
                         ep.description = ep.description.slice(0, -19);
                       }
