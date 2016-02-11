@@ -140,15 +140,20 @@ ul{
 	 cursor: pointer;
  }
 
-.menu a, .episode-more {
+.menu-item a,
+.episode-more {
 	color: #cc6565;
 	cursor: pointer;
 }
 
-.menu a.active {
+.menu-item a.active {
     color: #f00;
 }
 
+
+.menu-item a.active:hover {
+    color: #f00;
+}
 
 .logo a {
 	color: white;
@@ -1773,12 +1778,11 @@ input[type=range]::-webkit-slider-runnable-track {
     -webkit-overflow-scrolling: touch;
 	z-index: 10;
 }
-.menu li a:hover {
+
+.menu-item a:hover {
 	color: #cc0f15;
 }
-.active {
-	color: #cc0f15;
-}
+
 .top-button {
 	position: fixed;
 	top: 396px;
