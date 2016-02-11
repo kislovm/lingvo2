@@ -62,8 +62,9 @@ module.exports = {
         var processedDescription;
         var processedBody;
         var truncatedWords = this._dicts[dict.name];
+        var description = episode.body.slice(0,15);
 
-        processedDescription = this.highlight(episode.description, truncatedWords);
+        processedDescription = this.highlight(description, truncatedWords);
         processedBody = episode.body && this.highlight(episode.body, truncatedWords);
 
         return {

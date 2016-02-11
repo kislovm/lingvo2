@@ -1798,6 +1798,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .word {
     cursor: pointer;
+	line-height: 1.3em;
 }
 
 .word:hover {
