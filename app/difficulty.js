@@ -28,15 +28,20 @@ module.exports = {
 
         var counter = this.counter;
 
-        episode.processedDescription = result.processedDescription;
-        episode.processedBody = result.processedBody;
+        if(result) {
+            episode.processedDescription = result.processedDescription;
+            episode.processedBody = result.processedBody;
+        } else {
+            episode.processedDescription = '';
+            episode.processedBody = '';
+        }
         episode.processed = id;
         return episode.save()
             .then(function() {
                 console.log('Saved episode: ' + counter)
             }.bind(this),
-            function () {
-                console.log('Failed to save episode: ' + this.counter)
+            function (error) {
+                console.log('Failed to save episode: ' + this.counter + ' error: ' + error)
             }.bind(this));
     }
 

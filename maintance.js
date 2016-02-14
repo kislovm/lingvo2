@@ -22,9 +22,7 @@ mongoose.connection.on('open', function() {
                     return Promise.reject();
                 }
             })
-            .then(function() {
-                doStuff();
-            });
+            .then(doStuff, function(error) { console.log('Error:' + error)});
     }
 
     doStuff();

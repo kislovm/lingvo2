@@ -32,6 +32,9 @@ module.exports = {
 
     highlight: function(text, truncatedWords) {
         return text.split(/(\s|<br>|<\/br>)/g).map(function(token) {
+            if(token === '<br>' || token === '</br>') {
+                return token;
+            }
             var words = token.match(/\w+('|.|,)?(\w+)?/g) || [];
 
             return words.map(function(word, index) {
