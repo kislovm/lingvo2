@@ -783,7 +783,7 @@ p{
 .center-content{
 	padding-left: 20px;
 	padding-right: 20px;
-    width: 600px;
+    width: 588px;
     padding-top: 20px;
     background: #fff;
 }
@@ -1053,6 +1053,7 @@ p{
 	height: 254px;
     overflow-x: hidden;
     margin-left: 0;
+	position: relative;
 }
 .translating {
 	display: inline-block;
@@ -1567,7 +1568,7 @@ input[type=range]::-webkit-slider-runnable-track {
   position: fixed;
   z-index: 15;
  margin-left: 663px;
-  height: 400px;
+  height: 375px;
   top: 80px;
   width: 310px;
   bottom: 0%;
@@ -1745,9 +1746,9 @@ input[type=range]::-webkit-slider-runnable-track {
 	width: 155px;
 	 background: #4e6ba5;
 	z-index: 1499;
-	position: fixed;
-	top: 481px;
-	margin-left: 155px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 	text-align: center;
 	vertical-align: center;
 	padding-top: 10px;
@@ -1759,9 +1760,9 @@ input[type=range]::-webkit-slider-runnable-track {
 	width: 155px;
 	 background: #394778;
 	z-index: 1500;
-	position: fixed;
-	top: 481px;
-	margin-left: 0px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
