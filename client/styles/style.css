@@ -785,7 +785,7 @@ p{
 	padding-right: 20px;
     width: 600px;
     padding-top: 20px;
-    background: #f6f6f6;
+    background: #fff;
 }
  .name-news{
  	display: inline-block;
@@ -803,7 +803,7 @@ p{
 }
 
 .episodes-holder {
-	width: 550px;
+	width: 100%;
 }
 
 .illustration {
@@ -831,6 +831,7 @@ p{
 	font: 15px 'Helvetica', sans-serif;
 	color: #000;
 	position: relative;
+	white-space: pre-line;
 }
 
 .news:last-child:not(.hidden) {

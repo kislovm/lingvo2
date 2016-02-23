@@ -30,29 +30,36 @@ module.exports = {
         return this._tokenizer.tokenize(sanitizeHtml(text), { allowedTags: [] });
     },
 
-    highlight: function(text, truncatedWords) {
-        return text.split(/(\s|<br>|<\/br>)/g).map(function(token) {
-            if(token === '<br>' || token === '</br>') {
-                return token;
-            }
-            var words = token.match(/\w+('|.|,)?(\w+)?/g) || [];
+    highlight: function(text, truncatedWords, isDescription) {
+        var paragraphs = text.split(/(<br>|<\/br>)/g);
+        return paragraphs.map(function(paragraph, index) {
+            var isLast = index+1 === paragraphs.length;
+            var additionalText = isDescription && isLast ?
+                '&hellip;&nbsp;<a class="episode-more">More</a>' :
+                '';
+            return '<p>' + paragraph.split(/\s/g).map(function(token) {
+                if(token === '<br>' || token === '</br>') {
+                    return '';
+                }
+                var words = token.match(/\w+('|.|,)?(\w+)?/g) || [];
 
-            return words.map(function(word, index) {
-                if (word == 'br' || word == 'br>') {
-                    if(index === 0) {
-                        return '';
-                    } else {
-                        return '</br>';
+                return words.map(function(word, index) {
+                    if (word == 'br' || word == 'br>') {
+                        if(index === 0) {
+                            return '';
+                        } else {
+                            return '</br>';
+                        }
                     }
-                }
 
-                if (truncatedWords.indexOf(word.stem()) != -1) {
-                    return '<span title="Перевод" class="word highlight">' + word + '</span>';
-                } else {
-                    return '<span title="Перевод" class="word">' + word + '</span>';
-                }
-            }).join(' ');
-        }).join(' ');
+                    if (truncatedWords.indexOf(word.stem()) != -1) {
+                        return '<span title="Перевод" class="word highlight">' + word + '</span>';
+                    } else {
+                        return '<span title="Перевод" class="word">' + word + '</span>';
+                    }
+                }).join(' ')
+            }).join(' ') + additionalText + '</p>';
+        }).join('');
     },
 
     _tokenizer: new Natural.WordTokenizer(),
@@ -75,7 +82,7 @@ module.exports = {
         var truncatedWords = this._dicts[dict.name];
         var description = episode.body.split(' ').slice(0, 30).join(' ');
 
-        processedDescription = this.highlight(description, truncatedWords);
+        processedDescription = this.highlight(description, truncatedWords, true);
         processedBody = episode.body && this.highlight(episode.body, truncatedWords);
 
         return {
