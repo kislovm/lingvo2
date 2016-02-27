@@ -7,7 +7,7 @@
          </div>
          <div class="translating">
              {{#each translations}}
-                 {{this.text}},
+                 {{this.text}}{{#unless @last}},{{/unless}}
              {{/each}}
          </div>
      </label>

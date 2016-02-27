@@ -48,7 +48,7 @@ module.exports = Marionette.ItemView.extend({
     },
 
     onRender: function() {
-        this.$el.prepend(this.collection.toJSON().map(function(word) {
+        this.$el.find('.dictionary').html(this.collection.toJSON().map(function(word) {
             return this.wordTemplate(word);
         }, this));
     }

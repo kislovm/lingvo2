@@ -1,5 +1,6 @@
 var Dictionary = require('../app/models').Dictionary;
 var Translator = require('../translator/translator');
+var Natural = require('natural');
 
 module.exports = {
 
@@ -11,7 +12,14 @@ module.exports = {
             .populate('words')
             .then(function(dictionary) {
                 return Promise.all(dictionary.words.map(function(word) {
-                    return translator.translate('en', language, word.text);
+                    return translator.translate('en', language, word.text)
+                        .then(function(translation) {
+                            if(translation.translations.length > 0) {
+                                return translation;
+                            } else {
+                                return translator.translate('en', language, Natural.PorterStemmer.stem(word.text));
+                            }
+                        });
                 }));
             })
             .then(function(words) {

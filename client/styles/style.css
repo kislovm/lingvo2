@@ -1747,7 +1747,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	 background: #4e6ba5;
 	z-index: 1499;
 	position: absolute;
-	bottom: 0;
+	bottom: -34px;
 	right: 0;
 	text-align: center;
 	vertical-align: center;
@@ -1761,7 +1761,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	 background: #394778;
 	z-index: 1500;
 	position: absolute;
-	bottom: 0;
+	bottom: -34px;
 	left: 0;
 	text-align: center;
 	padding-top: 10px;
