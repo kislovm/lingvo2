@@ -44,13 +44,17 @@ module.exports = {
                 var words = token.match(/\w+('|.|,)?(\w+)?/g) || [];
 
                 return words.map(function(word, index) {
+                    var lastWasBr = false;
                     if (word == 'br' || word == 'br>') {
-                        if(index === 0) {
+                        if(index === 0 || lastWasBr) {
                             return '';
                         } else {
                             return '</br>';
                         }
+                        lastWasBr = true;
                     }
+
+                    lastWasBr = false;
 
                     if (truncatedWords.indexOf(word.stem()) != -1) {
                         return '<span title="Перевод" class="word highlight">' + word + '</span>';
