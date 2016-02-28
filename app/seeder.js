@@ -1,11 +1,11 @@
 var feedUrls = require('../seeder/feedurls.js');
-var models = require('./models'),
-    Request = require('request'),
-    FeedParser = require('feedparser'),
-    sanitizeHtml = require('sanitize-html'),
-    cheerio = require('cheerio'),
-    jQuery = require('jquery'),
-    parseRssCnnCom = function($) {
+var models = require('./models');
+var Request = require('request');
+var FeedParser = require('feedparser');
+var sanitizeHtml = require('sanitize-html');
+var cheerio = require('cheerio');
+
+var parseRssCnnCom = function($) {
       return $('p').filter('[class~=\'zn-body__paragraph\']')
       .map(function() {
           var text = $(this).text();
@@ -111,10 +111,7 @@ var models = require('./models'),
 module.exports = {
   check: function() {
     try {
-      //        models.Episode.remove().exec();
-
       for (var key in feedUrls) {
-        var feedMeta;
 
         feedUrls[key].forEach(function(feed) {
           var _key = key;
@@ -137,11 +134,6 @@ module.exports = {
             console.log('http error while parsing rss ' + error);
           })
 
-          // Store the feed's metadata
-          .on('meta', function(meta) {
-            feedMeta = meta;
-          })
-
           // Every time a readable chunk arrives, add it to the episodes array
           .on('readable', function() {
             var stream = this, item;
@@ -162,21 +154,18 @@ module.exports = {
                   allowedTags: [],
                   transformTags: {
                     'img': function(tagName, attribs) {
-
-                      if (!image &&
-                        attribs.src.indexOf('jpg') !=
-                        -1 &&
-                        attribs.src.indexOf('videos.usatoday.net') ==
-                        -1)
-                        image = attribs.src;
-
-
+                        if (!image && attribs.src.indexOf('jpg') !== -1 &&
+                          attribs.src.indexOf('videos.usatoday.net') === -1) {
+                            image = attribs.src;
+                        }
                         return {};
                       }
                     }
                   });
 
-                  image && (ep.image = image);
+                if(image) {
+                    ep.image = image
+                }
 
                   if (!description || description.length < 150) continue;
 
