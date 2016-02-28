@@ -1,25 +1,17 @@
 var Dictionary = require('../app/models').Dictionary;
-var Translator = require('../translator/translator');
-var Natural = require('natural');
+var TranslationWrapper = require('../translator/wrapper.js');
 
 module.exports = {
 
     get: function(req, res) {
-        var translator = new Translator();
-        var language = translator.languages()[req.session.language || 'chinese']['shortcut'];
+        var languageName = req.session.language || 'chinese';
+        var translationWrapper = new TranslationWrapper(languageName);
 
         Dictionary.findOne({ user: req.user._id })
             .populate('words')
             .then(function(dictionary) {
                 return Promise.all(dictionary.words.map(function(word) {
-                    return translator.translate('en', language, word.text)
-                        .then(function(translation) {
-                            if(translation.translations.length > 0) {
-                                return translation;
-                            } else {
-                                return translator.translate('en', language, Natural.PorterStemmer.stem(word.text));
-                            }
-                        });
+                    return translationWrapper.translate(word.text);
                 }));
             })
             .then(function(words) {

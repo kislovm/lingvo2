@@ -37,6 +37,10 @@ module.exports = function () {
             }
         } while(word = word.slice(0, -1))
     };
+
+    this.getLanguageShortcut = function(languageName) {
+        return this.languages()[languageName].shortcut;
+    };
  
     this.languages = function() {
         return {
