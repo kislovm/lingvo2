@@ -45,7 +45,7 @@ module.exports = function (languageName) {
             .then(function(translation) {
                 return {
                     phrase: word,
-                    translations: translation.translations,
+                    translations: translation.translations.slice(0,5),
                     transcription: transcription
                 }
             });
