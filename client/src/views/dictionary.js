@@ -21,6 +21,11 @@ module.exports = Marionette.ItemView.extend({
         this.fetchData();
     },
 
+    setSortByTime: function(sortByTime) {
+        this.sortByTime = sortByTime;
+        this.render();
+    },
+
     cancel: function() {
         this.$el.find(':checkbox').prop('checked', false);
     },
@@ -47,7 +52,22 @@ module.exports = Marionette.ItemView.extend({
         this.collection.fetch({ reset: true });
     },
 
+    getComparator: function() {
+        var comparator;
+        if(this.sortByTime) {
+            comparator = function(model) {
+                return -model.get('id');
+            }
+        } else {
+            comparator = function(model) {
+                return model.get('phrase').toLowerCase();
+            }
+        }
+        return comparator;
+    },
+
     onRender: function() {
+        this.collection.set(this.collection.sortBy(this.getComparator(), this));
         this.$el.find('.dictionary').html(this.collection.toJSON().map(function(word) {
             return this.wordTemplate(word);
         }, this));

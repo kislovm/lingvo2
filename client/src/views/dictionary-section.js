@@ -15,15 +15,22 @@ module.exports = Marionette.ItemView.extend({
             return {
                 'click input': 'notRegistred',
                 'click select': 'notRegistred',
-                'click .settings-link': 'notRegistred'
+                'click .settings-link': 'notRegistred',
+                'change .sorting-block-select': 'changeSort'
             };
         } else {
             return {
                 'change .autosave-slider': 'autosaveChange',
                 'change .highlight-slider': 'highlightChange',
-                'click .settings-link': 'openSettings'
+                'click .settings-link': 'openSettings',
+                'change .sorting-block-select': 'changeSort'
             };
         }
+    },
+
+    changeSort: function() {
+        var sortByTime = this.$el.find('.sorting-block-select').val() === 'Time added';
+        this.dictionaryView.setSortByTime(sortByTime);
     },
 
     openSettings: function()
@@ -51,7 +58,7 @@ module.exports = Marionette.ItemView.extend({
 
     onRender: function()
     {
-        new DictionaryView({
+        this.dictionaryView = new DictionaryView({
             el: this.$el.find('.dictionary-wrapper'),
             model: App.data.user
         });
