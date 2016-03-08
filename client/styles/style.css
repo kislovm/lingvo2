@@ -86,20 +86,20 @@ ul{
 .clearfix {
     display: block;
 }
-.logo{
+.logo {
 	font-size: 35px;
 	padding-bottom: 2px;
 	display: inline-block;
 	margin-top: 0;
 	height: 100%;
 	position: relative;
-	width: 30%;
+	width: 300px;
 }
 .lang-select {
     display: inline-block;
-    width: 33.7%;
+    width: 338px;
     background: #394778;
-    line-height: 3.5em;
+    line-height: 3.6em;
     font-family: 'Helvetica', sans-serif;
     font-size: 17px;
     color: white;
@@ -595,7 +595,7 @@ p{
 }
 .news-title{
 	padding-left: 25px;
-	font: 15px 'Helvetica', sans-serif;
+	font: 16.5px 'Helvetica', sans-serif;
 }
 .range-filter{
 	width: 100%;
@@ -783,7 +783,7 @@ p{
 .center-content{
 	padding-left: 20px;
 	padding-right: 20px;
-    width: 588px;
+    width: 600px;
     padding-top: 20px;
     background: #fff;
 }
@@ -828,7 +828,7 @@ p{
 }
 
 .news {
-	font: 15px 'Helvetica', sans-serif;
+	font: 16.5px 'Helvetica', sans-serif;
 	color: #000;
 	position: relative;
 	white-space: pre-line;
@@ -1049,11 +1049,11 @@ p{
 	background: url('../img/filter-arrow.png');
 }
 .dictionary {
-	padding-right: 35px;
-	height: 254px;
-    overflow-x: hidden;
-    margin-left: 0;
-	position: relative;
+    padding-right: 35px;
+    overflow-x: scroll;
+    position: absolute;
+    bottom: 0;
+    top: 114px;
 }
 .translating {
 	display: inline-block;
@@ -1562,14 +1562,15 @@ input[type=range]::-webkit-slider-runnable-track {
   font-family: 'HelveticaNeu', sans-serif;
 }
 .dictionaries-section {
-  position: fixed;
-  z-index: 15;
- margin-left: 663px;
-  height: 375px;
-  top: 80px;
-  width: 310px;
-  bottom: 0%;
-  background: white;
+	position: fixed;
+	z-index: 15;
+	margin-left: 663px;
+	height: 70%;
+	min-height: 300px;
+	top: 80px;
+	width: 310px;
+	bottom: 0;
+	background: white;
 }
 .dict-title h3 {
   font: 14px 'Helvetica-Bold', sans-serif;
