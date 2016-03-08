@@ -9,6 +9,10 @@
         left: 0;
         margin: 0;
     }
+
+    .center-block {
+        margin-left: -512px;
+    }
 }
 
 @media only screen and (max-device-width: 480px) {
