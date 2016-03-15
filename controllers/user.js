@@ -15,6 +15,7 @@ module.exports = {
         req.session.language = req.body.language;
         req.session.source = req.body.source;
         req.session.autosave = req.body.autosave;
+        req.session.hideHint = req.body.hideHint;
         
         if (req.user) {
             req.user.language = req.session.language;
@@ -43,7 +44,8 @@ module.exports = {
             registred: !!req.user,
             autosave: req.session.autosave,
             language: (req.user ? req.user.language : req.session.language) || 'chinese',
-            source: req.session.source || []
+            source: req.session.source || [],
+            hideHint: req.session.hideHint
         });
 
     }

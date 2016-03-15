@@ -7,7 +7,14 @@ module.exports = Marionette.ItemView.extend({
         'click .close-cross': 'close'
     },
 
+    initialize: function() {
+        if(App.data.user.get('hideHint') === true) {
+            this.destroy();
+        }
+    },
+
     close: function() {
+        App.data.user.set('hideHint', true).save();
         this.destroy();
     }
 });
