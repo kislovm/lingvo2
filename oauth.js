@@ -1,8 +1,27 @@
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('./app/models').User;
 var Dictionary = require('./app/models').Dictionary;
+
+var createUser = function(profile, username, password) {
+    var user = {
+        created: Date.now()
+    };
+
+    if(profile) {
+        user.oauthID = profile.id;
+        user.name = profile.displayName;
+    }
+
+    if(username) {
+        user.username = username;
+        user.password = password;
+    }
+
+    return new User(user).save();
+};
 
 module.exports = {
     facebook: new FacebookStrategy({
@@ -19,11 +38,7 @@ module.exports = {
                     done(null, user);
                 }
                 else {
-                    return (new User({
-                        oauthID: profile.id,
-                        name: profile.displayName,
-                        created: Date.now()
-                    })).save();
+                    return createUser(profile);
                 }
             })
             .then(function(user) {
@@ -52,11 +67,7 @@ module.exports = {
                     done(null, user);
                 }
                 else {
-                    return (new User({
-                        oauthID: profile.id,
-                        name: profile.displayName,
-                        created: Date.now()
-                    })).save();
+                    return createUser(profile);
                 }
             })
             .then(function(user) {
@@ -67,5 +78,20 @@ module.exports = {
                     .save()
                     .then(function() { done(null, user) });
             });
-    })
+    }),
+    email: new LocalStrategy(
+        function(username, password, done) {
+            User.findOne({ username: username }).exec()
+                .then(function (user) {
+                    if (!user) { return createUser(null, username, password); }
+                    if (!user.verifyPassword(password)) { return false; }
+                    return user;
+                }, function(error) {
+                    return done(error);
+                })
+                .then(function(user) {
+                    return done(null, user)
+                });
+        }
+    )
 };

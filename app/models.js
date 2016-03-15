@@ -26,6 +26,8 @@ var User = {
     oauthID: Number,
     created: Date,
     name: String,
+    username: String,
+    password: String,
     email: String,
     language: String,
     autosave: { type: Boolean, default: true },

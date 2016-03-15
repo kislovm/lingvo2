@@ -39,6 +39,7 @@ app.use(expressSession({
 
 passport.use(oauth.facebook);
 passport.use(oauth.twitter);
+passport.use(oauth.email);
 
 app.use(passport.initialize());
 app.use(passport.session());

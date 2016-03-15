@@ -41,6 +41,10 @@ module.exports.initialize = function(app) {
 
     app.get('/word/:id/delete', ensureAuthenticated, addUser, account.deleteWord);
 
+    app.get('/auth/email', passport.authenticate('local'), function(req, res) {
+        res.json('123');
+    });
+
     app.get('/auth/facebook', passport.authenticate('facebook'), function(req, res){ });
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/' }),
