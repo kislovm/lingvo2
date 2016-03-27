@@ -4,6 +4,8 @@ var $ = require('jquery');
 
 module.exports = Marionette.ItemView.extend({
 
+    className: 'dictionaries-holder',
+
     template: require('../../templates/dictionary-section.hbs'),
 
     initialize: function() {
