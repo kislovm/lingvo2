@@ -5,7 +5,21 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('./app/models').User;
 var Dictionary = require('./app/models').Dictionary;
 
+var createDictionaryForUser = function(user) {
+    return new Dictionary({
+        name: 'Main',
+        user: user.id,
+        created: Date.now() })
+        .save()
+        .then(function(dictionary) {
+            return Dictionary.findOne(dictionary).populate('user').exec();
+        }, function(rejection) {
+            console.log('/n', rejection);
+        });
+};
+
 var createUser = function(profile, username, password) {
+    var u;
     var user = {
         created: Date.now()
     };
@@ -20,7 +34,13 @@ var createUser = function(profile, username, password) {
         user.password = password;
     }
 
-    return new User(user).save();
+    return new User(user).save()
+        .then(createDictionaryForUser)
+        .then(function(dictionary) {
+            var user = dictionary.user;
+            user.selected = dictionary._id;
+            return user.save();
+        });
 };
 
 module.exports = {
@@ -41,18 +61,6 @@ module.exports = {
                     return createUser(profile);
                 }
             })
-            .then(function(user) {
-                u = user;
-                return (new Dictionary({
-                    name: 'Main',
-                    user: user.id,
-                    created: Date.now() }))
-                    .save();
-            })
-            .then(function(dictionary) {
-                u.selected = dictionary._id;
-                return u.save();
-            })
             .then(function() { done(null, user) });
     }),
     twitter: new TwitterStrategy({
@@ -69,14 +77,6 @@ module.exports = {
                 else {
                     return createUser(profile);
                 }
-            })
-            .then(function(user) {
-                (new Dictionary({
-                    name: 'Main',
-                    user: user.id,
-                    created: Date.now() }))
-                    .save()
-                    .then(function() { done(null, user) });
             });
     }),
     email: new LocalStrategy(

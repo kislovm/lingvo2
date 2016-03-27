@@ -22,7 +22,7 @@ var Episode = new Schema({
 
 Episode.index({ publicationDate: -1, category: 1 });
 
-var User = {
+var User = new Schema({
     oauthID: Number,
     created: Date,
     name: String,
@@ -32,6 +32,10 @@ var User = {
     language: String,
     autosave: { type: Boolean, default: true },
     selected: { type: Schema.Types.ObjectId, ref: 'Dictionary' }
+});
+
+User.methods.verifyPassword = function(password) {
+    return this.password === password;
 };
 
 var Dictionary = {

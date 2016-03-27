@@ -202,6 +202,10 @@ p{
 	display: inline-block;
 	margin-left: 30px;
 }
+.social {
+	display: inline-block;
+	width: 100%;
+}
 .password{
 	background: #fff;
 
@@ -1213,35 +1217,47 @@ background: #eeeeee;
 	margin-top: 0;
 }
 .sign {
-	position: fixed;
-	width: 264px;
 	background: white;
-	left: 37%;
 	font: 14px 'Helvetica', sans-serif;
-	z-index: 1000;
-	display: none;
-
+}
+.sign-up.active,
+.sign-in.active {
+	background: #fff;
+	color: black;
 }
 .sign-in {
 	float: left;
-	height: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	width: 132px;
-	color: black;
+	padding: 10px;
+	line-height: 2em;
+	width: 50%;
+	display: inline-block;
+	box-sizing: border-box;
+	background: #4E6BA5;
+	color: white;
 	font: 18px 'Helvetica-Bold', sans-serif;
-
+	cursor: pointer;
+}
+.sign-in:hover {
+	background: #fff;
+	color: black;
 }
 .sign-up {
+	cursor: pointer;
 	float: right;
-	height: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	width: 132px;
-	background: #a8191d;
+	line-height: 2em;
+	padding: 10px;
+	display: inline-block;
+	box-sizing: border-box;
+	width: 50%;
+	background: #4E6BA5;
 	color: white;
 	font: 18px 'Helvetica-Bold', sans-serif;
 }
+
+ .sign-up:hover {
+	 background: #fff;
+	 color: black;
+ }
 .sign-btn {
 	width: 188px;
 	border: none;
@@ -1252,12 +1268,13 @@ background: #eeeeee;
 	display: block;
 	color: white;
 	font-family: 'Helvetica-Neu';
-	margin-left: 40px;
+	margin-left: 50%;
+	left: -94px;
 	position: relative;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	display: block;
-
+	cursor: pointer;
 }
 .sign-btn:after {
 	content: '';
@@ -1274,20 +1291,20 @@ background: #eeeeee;
 	background: #446098;
 	color: white;
 	border: 1px solid #355187;
-	margin-top: 50px;
-
-
+}
+.fb-btn:hover {
+	background: #405694;
 }
 .fb-btn:before {
 	content: '';
 	width: 30px;
-	height: 33px;
+	height: 31px;
 	background: url('../img/fb-icon.png') no-repeat;
 	background-color: transparent;
 	position: absolute;
 	border-right: 1px solid #355187;
 	background-position: -5px -4px;
-	bottom: 2px;
+	bottom: 0;
 	left: 2px;
 }
 .fb-btn:after {
@@ -1297,18 +1314,19 @@ background: #eeeeee;
 	background: #39abdc;
 	color: white;
 	border: 1px solid #1380ae;
-
-
+}
+.tw-btn:hover {
+	background: #35a8d9;
 }
 .tw-btn:before {
 	content: '';
 	width: 30px;
-	height: 33px;
+	height: 31px;
 	background: transparent  url('../img/tw-icon.png') no-repeat;
 	position: absolute;
 	border-right: 1px solid #1380ae;
 	background-position: -6px -2px;
-	bottom: 2px;
+	bottom: 0;
 	left: 3px;
 }
 .tw-btn:after {
@@ -1324,12 +1342,12 @@ background: #eeeeee;
 .gg-btn:before {
 	content: '';
 	width: 30px;
-	height: 33px;
+	height: 31px;
 	background: transparent  url('../img/gg-icon.png') no-repeat;
 	position: absolute;
 	border-right: 1px solid #cd3b24;
 	background-position: -7px -4px;
-	bottom: 2px;
+	bottom: 0;
 	left: 3px;
 }
 .gg-btn:after {
@@ -1345,11 +1363,11 @@ background: #eeeeee;
 .ggw-btn:before {
 	content: '';
 	width: 30px;
-	height: 33px;
+	height: 31px;
 	background: transparent url('../img/ggw-icon.png') no-repeat;
 	background-position: -5px -4px;
 	position: absolute;
-	bottom: 2px;
+	bottom: 0;
 	left: 3px;
 	border-right: 1px solid #c2c2c2;
 }
@@ -1377,13 +1395,17 @@ background: #eeeeee;
 }
 .or-icon span {
 	position: relative;
-	top: 3px;
-
+	top: 6px;
+	left: 6px;
 }
 .login-m-form {
-	background: #dddddd;
+	text-align: center;
+	background: #cfcfcf;
 }
 .login-m-form input {
+	width: 90%;
+	box-sizing: border-box;
+	margin: 0 5%;
 	border: none;
 	padding-left: 10px;
 	padding-top: 5px;
@@ -1409,8 +1431,7 @@ background: #eeeeee;
 	padding-bottom: 13px;
 }
 .sign-login {
-	float: left;
-	width: 132px;
+	text-align: center;
 	background: white;
 	color: black;
 	padding-top: 10px;
@@ -1419,15 +1440,8 @@ background: #eeeeee;
 	position: relative;
 	cursor: pointer;
 }
-.sign-login:after {
-	content: '';
-	position: absolute;
-	right: 0;
-	bottom: 1px;
-	height: 36px;
-	width: 1px;
-	background: #dddddd;
-
+.sign-login:hover {
+	background: #f6f6f6;
 }
 .popup-wrapper {
     position: fixed;
@@ -1570,7 +1584,6 @@ input[type=range]::-webkit-slider-runnable-track {
 	top: 80px;
 	width: 310px;
 	bottom: 0;
-	background: white;
 }
 .dict-title h3 {
   font: 14px 'Helvetica-Bold', sans-serif;
@@ -1707,13 +1720,6 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 .time {
   right: 60px;
-}
-.sign {
-  left: 13%;
-  background: white;
-  z-index: 99;
-  opacity: 1;
-  bottom: 14%;
 }
 .dict-checkbox {
   display: none;

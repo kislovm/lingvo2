@@ -1,5 +1,6 @@
 var Marionette = require('backbone.marionette');
 var DictionarySection = require('./views/dictionary-section');
+var LoginForm = require('./views/login');
 var Settings = require('./views/settings');
 var AppLayoutView = require('./views/layouts/app-layout');
 var EpisodesView = require('./views/episodes');
@@ -16,6 +17,10 @@ module.exports = Marionette.Controller.extend({
 
         App.core.vent.bind('router:inited', function() {
             App.menuView = new MenuView({ el: $('.menu' )});
+        }, this);
+
+        App.core.vent.bind('show-login', function() {
+            App.layoutView.showChildView('dictionaries', new LoginForm());
         }, this);
 
         $(window).scroll(function() {
@@ -54,8 +59,12 @@ module.exports = Marionette.Controller.extend({
 
         App.languageView = new LanguageView({ el: $('.lang-select'), model: App.data.user });
 
-        App.layoutView.showChildView('dictionaries', new DictionarySection());
-        App.layoutView.showChildView('settings', new Settings());
+        if(App.data.user.get('registred') === true) {
+            App.layoutView.showChildView('dictionaries', new DictionarySection());
+            App.layoutView.showChildView('settings', new Settings());
+        } else {
+            App.layoutView.showChildView('dictionaries', new LoginForm());
+        }
         App.tipOfTheDay = new TipOfTheDayView({ el: $('.tip-of-the-day') });
     },
 

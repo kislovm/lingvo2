@@ -1,9 +1,10 @@
-var home = require('../controllers/home'),
-    stat = require('../controllers/stat'),
-    episodes = require('../controllers/episodes'),
-    user = require('../controllers/user'),
-    dictionary = require('../controllers/dictionary'),
-    translation = require('../controllers/translation');
+var home = require('../controllers/home');
+var stat = require('../controllers/stat');
+var episodes = require('../controllers/episodes');
+var user = require('../controllers/user');
+var auth = require('../controllers/auth');
+var dictionary = require('../controllers/dictionary');
+var translation = require('../controllers/translation');
 
 var UserModel = require('./models').User;
 var DictionaryModel = require('./models').Dictionary;
@@ -42,17 +43,18 @@ module.exports.initialize = function(app) {
     app.get('/word/:id/delete', ensureAuthenticated, addUser, account.deleteWord);
 
     app.get('/auth/email', passport.authenticate('local'), function(req, res) {
-        res.json('123');
+        res.json({ success: true });
     });
 
     app.get('/auth/facebook', passport.authenticate('facebook'), function(req, res){ });
-    app.get('/auth/facebook/callback',
+    app.get(
+        '/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/' }),
-        function(req, res) { res.redirect('/#'); });
+        auth.redirect);
     app.get('/auth/twitter', passport.authenticate('twitter'), function(req, res){ });
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', { failureRedirect: '/' }),
-        function(req, res) { res.redirect('/#'); });
+        auth.redirect);
     app.get('/logout', function(req, res){
         req.logout();
         res.redirect('/');
