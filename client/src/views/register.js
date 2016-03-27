@@ -23,22 +23,33 @@ module.exports = Marionette.ItemView.extend({
         var isPasswordConfirmValid = this.$el.find('.password-confirm-input').val() === this.$el.find('.password-input').val();
 
         if(!isEmailValid) {
-            alert('Please enter correct email');
+            this.setError('Please enter correct email');
         } else if(!isPasswordValid) {
-            alert('Please enter password');
+            this.setError('Please enter password');
         } else if(!isPasswordConfirmValid) {
-            alert('Please enter same password');
+            this.setError('Please enter same password');
+        } else {
+            this.hideError();
         }
 
         return isEmailValid && isPasswordValid && isPasswordConfirmValid;
+    },
+
+    setError: function(error) {
+        this.$el.find('.form-error').text(error);
+        this.$el.find('.form-error').removeClass('hidden');
+    },
+
+    hideError: function() {
+        this.$el.find('.form-error').addClass('hidden');
     },
 
     onLogin: function() {
         if(this.validate()) {
             $.get('/auth/email', this.getFormData(), this.onLoginRequest.bind(this), 'json')
                 .fail(function() {
-                    alert('Wrong password');
-                });
+                    this.setError('Wrong password');
+                }.bind(this));
         }
     },
 

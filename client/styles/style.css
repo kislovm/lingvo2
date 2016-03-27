@@ -1421,7 +1421,14 @@ background: #eeeeee;
 	margin-bottom: 10px;
 }
 .login-m-form input[type=password] {
-	margin-bottom: 0;
+	margin-bottom: 15px;
+}
+.form-error {
+	color: red;
+	margin-bottom: 15px;
+}
+.hidden {
+	display: none;
 }
 .login-m-form-restore {
 	display: block;

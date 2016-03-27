@@ -8,7 +8,8 @@ module.exports = Marionette.ItemView.extend({
 
     events: {
         'click .sign-login': 'onLogin',
-        'click .sign-up': 'onSignUp'
+        'click .sign-up': 'onSignUp',
+        'clock .login-m-form-restore': 'onRestore'
     },
 
     emailRegexp: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
@@ -22,26 +23,41 @@ module.exports = Marionette.ItemView.extend({
         var isPasswordValid = this.$el.find('.password-input').val().length > 0;
 
         if(!isEmailValid) {
-            alert('Please enter correct email');
+            this.setError('Please enter correct email');
         } else if(!isPasswordValid) {
-            alert('Please enter password');
+            this.setError('Please enter password');
+        } else {
+            this.hideError();
         }
 
         return isEmailValid && isPasswordValid;
+    },
+
+    setError: function(error) {
+        this.$el.find('.form-error').text(error);
+        this.$el.find('.form-error').removeClass('hidden');
+    },
+
+    hideError: function() {
+        this.$el.find('.form-error').addClass('hidden');
     },
 
     onLogin: function() {
         if(this.validate()) {
             $.get('/auth/email', this.getFormData(), this.onLoginRequest.bind(this), 'json')
                 .fail(function() {
-                    alert('Wrong password');
-                });
+                    this.setError('Wrong password');
+                }.bind(this));
         }
     },
 
     onSignUp: function() {
         this.remove();
         App.layoutView.showChildView('dictionaries', new Register());
+    },
+
+    onRestore: function() {
+
     },
 
     onLoginRequest: function(data) {
