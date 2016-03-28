@@ -31,7 +31,7 @@ module.exports = function (languageName) {
 
     this.setToCache = function(translation, lang) {
         translation.lang = lang;
-        translation.translations = translation.translations;
+        translation.translations = JSON.stringify(translation.translations);
         return new TranslationCache(translation).save();
     };
 
