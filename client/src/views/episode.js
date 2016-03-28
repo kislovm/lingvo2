@@ -22,6 +22,9 @@ module.exports = Marionette.ItemView.extend({
         this.xhr
             .then((function(data) {
                 data.word = word;
+                if(typeof data.translations === 'string') {
+                    data.translations = JSON.parse(data.translations);
+                }
                 data.translations = data.translations.slice(0,3);
 
                 ModuiPopup.open({

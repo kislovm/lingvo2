@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 
 var Episode = new Schema({
@@ -60,11 +60,19 @@ Word.pre('remove', function(next){
     );
 });
 
+var Translation = {
+    phrase: String,
+    lang: String,
+    translations: String,
+    transcription: String
+};
+
 var models = {
     Episode: mongoose.model('Episode', Episode),
     User: mongoose.model('User', User),
     Dictionary: mongoose.model('Dictionary', Dictionary),
-    Word: mongoose.model('Word', Word)
+    Word: mongoose.model('Word', Word),
+    Translation: mongoose.model('Translation', Translation)
 };
 
 module.exports = models;
