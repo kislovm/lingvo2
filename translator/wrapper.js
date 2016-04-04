@@ -29,17 +29,84 @@ module.exports = function (languageName) {
         return TranslationCache.findOne({ phrase: word, lang: lang }).exec();
     };
 
+    this.getFromCacheStemmed = function(word, lang) {
+        return this.getFromCache(this.stemWord(word), lang);
+    };
+
     this.setToCache = function(translation, lang) {
-        translation.lang = lang;
-        translation.translations = JSON.stringify(translation.translations);
-        return new TranslationCache(translation).save();
+        if(translation.translations && translation.translations.length) {
+            translation.lang = lang;
+            translation.translations = JSON.stringify(translation.translations);
+            return new TranslationCache(translation).save();
+        }
     };
 
     this.getFromExternal = function(word, lang) {
-        return translator.translate('en', lang, word);
+        return translator.translate('en', lang, word)
+            .then(function(translation) {
+                if (translation.translations.length > 0) {
+                    this.setToCache(translation, lang);
+                    return translation;
+                } else {
+                    return null;
+                }
+            }.bind(this));
+    };
+
+    this.getFromExternalStemmed = function(word, lang) {
+        return this.getFromExternal(this.stemWord(word), lang);
+    };
+
+    this.getFromYandex = function(word, lang) {
+            return this.yaTranslate(word, lang);
+    };
+
+    this.tryTranslate = function (methods, word, lang, transcription) {
+        var method = methods.shift();
+        var tryTranslate = this.tryTranslate;
+        return new Promise(function(resolve, reject) {
+            method.call(this, word, lang)
+                .then(function(translation) {
+                        if(translation) {
+                        translation.transcription = transcription;
+                        resolve(translation)
+                    } else {
+                        this.tryTranslate(methods, word, lang)
+                            .then(function(translation) {
+                                translation.transcription = transcription;
+                                resolve(translation);
+                            });
+                    }
+                }.bind(this));
+        }.bind(this));
+    };
+
+    this.getNoTranslation = function(word, lang) {
+        return new Promise(function(resolve, reject) {
+            resolve({
+            phrase: word,
+            translations: [{ text: 'No translation' }]
+            })
+        });
     };
 
     this.translate = function(word) {
+        var transcription = translator.getTranscription(word);
+        return this.tryTranslate([
+                this.getFromCache,
+                this.getFromCacheStemmed,
+                this.getFromExternal,
+                this.getFromExternalStemmed,
+                this.getFromYandex,
+                this.getNoTranslation
+            ],
+            word,
+            this.language,
+            transcription
+        );
+    };
+
+    this.translate3 = function(word) {
         var lang = this.language;
 
         return this.getFromCache(word, lang)
@@ -59,14 +126,7 @@ module.exports = function (languageName) {
                                             return translation;
                                         } else {
                                             return this.getFromExternal(this.stemWord(word), lang)
-                                                .then(function(translation) {
-                                                    if(translation) {
-                                                        this.setToCache(translation, lang);
-                                                        return translation;
-                                                    } else {
-                                                        return this.yaTranslate(word, lang);
-                                                    }
-                                                }.bind(this));
+                                                .then(this.getFromYandex.bind(this, word, lang));
                                         }
                                     }.bind(this));
                             }
