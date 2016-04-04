@@ -67,15 +67,11 @@ module.exports = function (languageName) {
         return new Promise(function(resolve, reject) {
             method.call(this, word, lang)
                 .then(function(translation) {
-                        if(translation) {
+                    if(translation) {
                         translation.transcription = transcription;
                         resolve(translation)
                     } else {
-                        this.tryTranslate(methods, word, lang)
-                            .then(function(translation) {
-                                translation.transcription = transcription;
-                                resolve(translation);
-                            });
+                        resolve(this.tryTranslate(methods, word, lang, transcription));
                     }
                 }.bind(this));
         }.bind(this));
