@@ -18,11 +18,19 @@ module.exports = function (languageName) {
             yaTranslate.translate(word, { from: 'en', to: lang, key: key }, function(error, translation) {
                 resolve({
                     translations: translation.text.map(function (word) {
-                        return {text: word}
+                        return { text: word }
                     })
                 });
             });
         });
+    };
+
+    this.setToCache = function(translation) {
+        if(translation.translations && translation.translations.length) {
+            translation.lang = this.language;
+            translation.translations = JSON.stringify(translation.translations);
+            return new TranslationCache(translation).save();
+        }
     };
 
     this.getFromCache = function(word, lang) {
@@ -33,24 +41,18 @@ module.exports = function (languageName) {
         return this.getFromCache(this.stemWord(word), lang);
     };
 
-    this.setToCache = function(translation, lang) {
-        if(translation.translations && translation.translations.length) {
-            translation.lang = lang;
-            translation.translations = JSON.stringify(translation.translations);
-            return new TranslationCache(translation).save();
-        }
-    };
-
     this.getFromExternal = function(word, lang) {
         return translator.translate('en', lang, word)
-            .then(function(translation) {
-                if (translation.translations.length > 0) {
-                    this.setToCache(translation, lang);
-                    return translation;
-                } else {
-                    return null;
-                }
-            }.bind(this));
+            .then(this.getFromExternalCallback.bind(this));
+    };
+
+    this.getFromExternalCallback = function(translation) {
+        if (translation.translations.length > 0) {
+            this.setToCache(translation);
+            return translation;
+        } else {
+            return null;
+        }
     };
 
     this.getFromExternalStemmed = function(word, lang) {
@@ -58,18 +60,20 @@ module.exports = function (languageName) {
     };
 
     this.getFromYandex = function(word, lang) {
-            return this.yaTranslate(word, lang);
+        return this.yaTranslate(word, lang);
     };
 
     this.tryTranslate = function (methods, word, lang, transcription) {
         var method = methods.shift();
-        var tryTranslate = this.tryTranslate;
+
         return new Promise(function(resolve, reject) {
             method.call(this, word, lang)
                 .then(function(translation) {
                     if(translation) {
-                        translation.transcription = transcription;
-                        resolve(translation)
+                        if(!translation.transcription) {
+                            translation.transcription = transcription;
+                        }
+                        resolve(translation);
                     } else {
                         resolve(this.tryTranslate(methods, word, lang, transcription));
                     }
@@ -80,26 +84,24 @@ module.exports = function (languageName) {
     this.getNoTranslation = function(word, lang) {
         return new Promise(function(resolve, reject) {
             resolve({
-            phrase: word,
-            translations: [{ text: 'No translation' }]
+                phrase: word,
+                translations: [{ text: 'No translation' }]
             })
         });
     };
 
     this.translate = function(word) {
         var transcription = translator.getTranscription(word);
-        return this.tryTranslate([
-                this.getFromCache,
-                this.getFromCacheStemmed,
-                this.getFromExternal,
-                this.getFromExternalStemmed,
-                this.getFromYandex,
-                this.getNoTranslation
-            ],
-            word,
-            this.language,
-            transcription
-        );
+        var methods = [
+            this.getFromCache,
+            this.getFromCacheStemmed,
+            this.getFromExternal,
+            this.getFromExternalStemmed,
+            this.getFromYandex,
+            this.getNoTranslation
+        ];
+
+        return this.tryTranslate(methods, word, this.language, transcription);
     };
 
     this.translate3 = function(word) {
