@@ -17,6 +17,7 @@ module.exports = function (languageName) {
         return new Promise(function (resolve, reject){
             yaTranslate.translate(word, { from: 'en', to: lang, key: key }, function(error, translation) {
                 resolve({
+                    phrase: word,
                     translations: translation.text.map(function (word) {
                         return { text: word }
                     })
