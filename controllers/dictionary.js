@@ -10,15 +10,22 @@ module.exports = {
         Dictionary.findOne({ user: req.user._id })
             .populate('words')
             .then(function(dictionary) {
-                return Promise.all(dictionary.words.map(function(word) {
-                    return translationWrapper.translate(word.text);
+                return Promise.all(dictionary.words.map(function(word, i) {
+                    return new Promise(function(resolve) {
+                        translationWrapper.translate(word.text)
+                            .then(function(translation) {
+                                resolve({
+                                    id: i,
+                                    phrase: word.text,
+                                    translations: translation.translations.slice(0,5),
+                                    transcription: translation.transcription
+                                })
+                            });
+                    });
                 }));
             })
             .then(function(words) {
-                res.json(words.map(function(word, i) {
-                    word.id = i;
-                    return word;
-                }));
+                res.json(words);
             });
     },
 

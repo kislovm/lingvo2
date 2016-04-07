@@ -35,7 +35,15 @@ module.exports = function (languageName) {
     };
 
     this.getFromCache = function(word, lang) {
-        return TranslationCache.findOne({ phrase: word, lang: lang }).exec();
+        return TranslationCache.findOne({ phrase: word, lang: lang }).exec()
+            .then(function(translation) {
+                if(translation) {
+                    translation = translation.toJSON();
+                    translation.translations = JSON.parse(translation.translations);
+                }
+
+                return translation;
+            });
     };
 
     this.getFromCacheStemmed = function(word, lang) {
