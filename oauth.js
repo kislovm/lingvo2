@@ -2,6 +2,8 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 
+var EmailController = require('./email/controller');
+
 var User = require('./app/models').User;
 var Dictionary = require('./app/models').Dictionary;
 
@@ -18,8 +20,21 @@ var createDictionaryForUser = function(user) {
         });
 };
 
+var saveDictionaryForUser = function(dictionary) {
+    var user = dictionary.user;
+    user.selected = dictionary._id;
+    return user.save();
+};
+
+var sendEmailForUser = function(user) {
+    if(user.username) {
+        EmailController.sendRegistrationEmail(user.username);
+    }
+
+    return user;
+};
+
 var createUser = function(profile, username, password) {
-    var u;
     var user = {
         created: Date.now()
     };
@@ -36,11 +51,8 @@ var createUser = function(profile, username, password) {
 
     return new User(user).save()
         .then(createDictionaryForUser)
-        .then(function(dictionary) {
-            var user = dictionary.user;
-            user.selected = dictionary._id;
-            return user.save();
-        });
+        .then(saveDictionaryForUser)
+        .then(sendEmailForUser);
 };
 
 module.exports = {
