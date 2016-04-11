@@ -1,4 +1,4 @@
-var Email = require('email');
+var Email = require('email').Email;
 
 var senderMail = 'noreply@upvoc.com';
 
