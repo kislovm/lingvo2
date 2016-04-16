@@ -1,5 +1,6 @@
 var Marionette = require('backbone.marionette');
 var $ = require('jquery');
+var Register = require('./register');
 
 module.exports = Marionette.ItemView.extend({
 
