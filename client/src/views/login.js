@@ -1,6 +1,7 @@
 var Marionette = require('backbone.marionette');
 var $ = require('jquery');
 var Register = require('./register');
+var Restore = require('./restore');
 
 module.exports = Marionette.ItemView.extend({
 
@@ -9,7 +10,7 @@ module.exports = Marionette.ItemView.extend({
     events: {
         'click .sign-login': 'onLogin',
         'click .sign-up': 'onSignUp',
-        'clock .login-m-form-restore': 'onRestore'
+        'click .login-m-form-restore': 'onRestore'
     },
 
     emailRegexp: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
@@ -57,7 +58,8 @@ module.exports = Marionette.ItemView.extend({
     },
 
     onRestore: function() {
-
+        this.remove();
+        App.layoutView.showChildView('dictionaries', new Restore());
     },
 
     onLoginRequest: function(data) {

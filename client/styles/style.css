@@ -1425,7 +1425,7 @@ background: #eeeeee;
 }
 .form-error {
 	color: red;
-	margin-bottom: 15px;
+	padding-bottom: 10px;
 }
 .hidden {
 	display: none;

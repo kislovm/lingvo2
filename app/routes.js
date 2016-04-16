@@ -42,6 +42,8 @@ module.exports.initialize = function(app) {
 
     app.get('/word/:id/delete', ensureAuthenticated, addUser, account.deleteWord);
 
+    app.get('/auth/forgot', auth.sendPassword);
+
     app.get('/auth/email', passport.authenticate('local'), function(req, res) {
         res.json({ success: true });
     });
