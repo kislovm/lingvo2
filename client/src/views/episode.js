@@ -14,6 +14,7 @@ module.exports = Marionette.ItemView.extend({
     },
 
     openPopup: function(e) {
+        yaCounter.reachGoal('word-click');
         var target = $(e.currentTarget);
         var word = target.text().match(/(\w+|-|—|–|')+/g);
 
@@ -44,7 +45,7 @@ module.exports = Marionette.ItemView.extend({
     showMore: function() {
         this.$el.find('.episode-body').removeClass('hidden');
         this.$el.find('.episode-description').addClass('hidden');
-        counter.reachGoal('show-more');
+        yaCounter.reachGoal('show-more');
     },
 
     tagName: 'div',

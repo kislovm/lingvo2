@@ -57,10 +57,7 @@ module.exports.initialize = function(app) {
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', { failureRedirect: '/' }),
         auth.redirect);
-    app.get('/logout', function(req, res){
-        req.logout();
-        res.redirect('/');
-    });
+    app.get('/logout', auth.logout);
 };
 
 function addDictWords(req, res, next) {

@@ -14,6 +14,7 @@ module.exports = Marionette.ItemView.extend({
     },
 
     close: function() {
+        yaCounter.reachGoal('hint-click');
         App.data.user.set('hideHint', true).save();
         this.destroy();
     }

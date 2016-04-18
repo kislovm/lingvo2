@@ -12,22 +12,16 @@ module.exports = Marionette.ItemView.extend({
         this.model = App.data.user;
     },
 
-    events: function() {
-        if(!App.data.user.get('registred')) {
-            return {
-                'click input': 'notRegistred',
-                'click select': 'notRegistred',
-                'click .settings-link': 'notRegistred',
-                'change .sorting-block-select': 'changeSort'
-            };
-        } else {
-            return {
-                'change .autosave-slider': 'autosaveChange',
-                'change .highlight-slider': 'highlightChange',
-                'click .settings-link': 'openSettings',
-                'change .sorting-block-select': 'changeSort'
-            };
-        }
+    events: {
+        'change .autosave-slider': 'autosaveChange',
+        'change .highlight-slider': 'highlightChange',
+        'click .settings-link': 'openSettings',
+        'change .sorting-block-select': 'changeSort',
+        'click .sorting-block-select': 'clickSort'
+    },
+
+    clickSort: function() {
+        yaCounter.reachGoal('click-sort');
     },
 
     changeSort: function() {
@@ -35,8 +29,8 @@ module.exports = Marionette.ItemView.extend({
         this.dictionaryView.setSortByTime(sortByTime);
     },
 
-    openSettings: function()
-    {
+    openSettings: function() {
+        yaCounter.reachGoal('setting-click');
         $('body').addClass('popup');
     },
 
@@ -46,8 +40,8 @@ module.exports = Marionette.ItemView.extend({
         alert('Пожалуйста, зарегистрируйтесь');
     },
 
-    autosaveChange: function(e)
-    {
+    autosaveChange: function(e) {
+        yaCounter.reachGoal('autosave-click');
         this.model.set('autosave', e.currentTarget.checked);
         this.model.save();
     },

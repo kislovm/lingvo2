@@ -16,7 +16,10 @@ module.exports = Marionette.ItemView.extend({
         }
     },
 
-    _save: function() {
+    _save: function(e) {
+        if(e) {
+            yaCounter.reachGoal('save-word');
+        }
         if(App.data.user.get('registred')) {
             $.post('/dictionary/add/word', this.model.toJSON(), 'json')
                 .success(function () {

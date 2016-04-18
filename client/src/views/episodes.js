@@ -7,6 +7,10 @@ module.exports = Marionette.CollectionView.extend({
     },
 
     increment: function() {
+        if(!this.isSent) {
+            yaCounter.reachGoal('episodes-scrolled');
+            this.isSent = true;
+        }
         this.collection.increment();
     },
 

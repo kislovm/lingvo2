@@ -78,6 +78,7 @@ module.exports = Marionette.Controller.extend({
     },
 
     category: function(category) {
+        window.yaCounter.reachGoal('category-click', { name: category });
         App.core.vent.trigger('app:log', 'Controller: "Category" route hit.');
 
         var view = new EpisodesView({ collection: new EpisodesCollection([], { category: category }) });

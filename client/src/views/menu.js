@@ -6,8 +6,16 @@ module.exports = Marionette.ItemView.extend({
     template: false,
 
     initialize: function() {
+        this.$el.scroll(this.onScroll);
         this.listenTo(App.router, 'route', this.selectActive);
         this.selectActive();
+    },
+
+    onScroll: function() {
+        if(!this.isSent) {
+            window.yaCounter.reachGoal('category-scroll');
+            this.isSent = true;
+        }
     },
 
     selectActive: function() {

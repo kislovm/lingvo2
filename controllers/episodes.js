@@ -3,6 +3,8 @@ var Natural = require('natural');
 var sanitizeHtml = require('sanitize-html');
 var parser = require('../parser/parser');
 
+var Stat = require('../stat/controller');
+
 module.exports = {
     index: function(req, res) {
         this.category(req, res);

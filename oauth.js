@@ -7,6 +7,8 @@ var EmailController = require('./email/controller');
 var User = require('./app/models').User;
 var Dictionary = require('./app/models').Dictionary;
 
+var Stat = require('./stat/controller');
+
 var createDictionaryForUser = function(user) {
     return new Dictionary({
         name: 'Main',
@@ -52,7 +54,8 @@ var createUser = function(profile, username, password) {
     return new User(user).save()
         .then(createDictionaryForUser)
         .then(saveDictionaryForUser)
-        .then(sendEmailForUser);
+        .then(sendEmailForUser)
+        .then(Stat.log.registration);
 };
 
 module.exports = {
@@ -67,13 +70,16 @@ module.exports = {
         User.findOne({ oauthID: profile.id }).exec()
             .then(function(user) {
                 if (user != null) {
+                    Stat.log.login();
                     done(null, user);
                 }
                 else {
                     return createUser(profile);
                 }
             })
-            .then(function() { done(null, user) });
+            .then(function() {
+                done(null, user)
+            });
     }),
     twitter: new TwitterStrategy({
         consumerKey: 'N9B2OdY4aSrY4TIJYEs6E6DtF',
@@ -84,6 +90,7 @@ module.exports = {
         User.findOne({ oauthID: profile.id }).exec()
             .then(function(user) {
                 if (user != null) {
+                    Stat.log.login();
                     done(null, user);
                 }
                 else {
@@ -97,6 +104,7 @@ module.exports = {
                 .then(function (user) {
                     if (!user) { return createUser(null, username, password); }
                     if (!user.verifyPassword(password)) { return false; }
+                    Stat.log.login();
                     return user;
                 }, function(error) {
                     return done(error);

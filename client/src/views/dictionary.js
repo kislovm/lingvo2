@@ -11,7 +11,8 @@ module.exports = Marionette.ItemView.extend({
 
     events: {
         'click .word-cancel': 'cancel',
-        'click .word-delete': 'delete'
+        'click .word-delete': 'delete',
+        'click .transcription-f': 'checkboxClick'
     },
 
     initialize: function() {
@@ -21,16 +22,29 @@ module.exports = Marionette.ItemView.extend({
         this.fetchData();
     },
 
+    dictionaryScroll: function() {
+        if(!this.isSent) {
+            yaCounter.reachGoal('dictionary-scroll');
+            this.isSent = true;
+        }
+    },
+
     setSortByTime: function(sortByTime) {
         this.sortByTime = sortByTime;
         this.render();
     },
 
+    checkboxClick: function() {
+        yaCounter.reachGoal('checkbox-click');
+    },
+
     cancel: function() {
+        yaCounter.reachGoal('cancel-click');
         this.$el.find(':checkbox').prop('checked', false);
     },
 
     delete: function() {
+        yaCounter.reachGoal('delete-click');
         var value = {
             words: Array.prototype.map.call(this.$el.find(':checkbox:checked'),
                 function(el) {
@@ -74,6 +88,7 @@ module.exports = Marionette.ItemView.extend({
             }
             return this.wordTemplate(word);
         }, this));
+        this.$el.find('.dictionary').scroll(this.dictionaryScroll.bind(this));
     }
 
 });

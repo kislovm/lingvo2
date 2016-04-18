@@ -67,12 +67,19 @@ var Translation = {
     transcription: String
 };
 
+var Statistic = {
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
+    action: String,
+    params: String
+};
+
 var models = {
     Episode: mongoose.model('Episode', Episode),
     User: mongoose.model('User', User),
     Dictionary: mongoose.model('Dictionary', Dictionary),
     Word: mongoose.model('Word', Word),
-    Translation: mongoose.model('Translation', Translation)
+    Translation: mongoose.model('Translation', Translation),
+    Statistic: mongoose.model('Statistic', Statistic)
 };
 
 module.exports = models;
