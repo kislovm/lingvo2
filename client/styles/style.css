@@ -1,48 +1,27 @@
- @font-face {
-    font-family: 'Intro-Inline'; /* Гарнитура шрифта */
-    src: url(../fonts/Intro-Inline.otf); /* Путь к файлу со шрифтом */
-   }
-   @font-face {
-    font-family: 'Phosphate'; /* Гарнитура шрифта */
-    src: url(../fonts/Phosphate.ttf); /* Путь к файлу со шрифтом */
-   }
-     @font-face {
-    font-family: 'Helvetica'; /* Гарнитура шрифта */
-    src: url(../fonts/HelveticaLight.ttf); /* Путь к файлу со шрифтом */
-   }
-    @font-face {
-    font-family: 'Helvetica-Med'; /* Гарнитура шрифта */
-    src: url(../fonts/HelveticaBlack.ttf); /* Путь к файлу со шрифтом */
-   }
-    @font-face {
-    font-family: 'Helvetica-Bold'; /* Гарнитура шрифта */
-    src: url(../fonts/HelveticaBold.ttf); /* Путь к файлу со шрифтом */
-   }
-     @font-face {
-    font-family: 'Condensed-Bold'; /* Гарнитура шрифта */
-    src: url(../fonts/DINCondensedBold.ttf); /* Путь к файлу со шрифтом */
-   }
-   @font-face {
-    font-family: 'Myriad'; /* Гарнитура шрифта */
-    src: url(../fonts/MyriadPro-It.otf); /* Путь к файлу со шрифтом */
-   }
-   @font-face {
-    font-family: 'Roboto-Regular'; /* Гарнитура шрифта */
-    src: url(../fonts/RobotoRegular.ttf); /* Путь к файлу со шрифтом */
-   }
-   @font-face {
-    font-family: 'Helvetica-Neu'; /* Гарнитура шрифта */
-    src: url(../fonts/HelveticaNeueCyr-Medium.otf); /* Путь к файлу со шрифтом */
-   }
-	   @font-face {
-    font-family: 'Intro'; /* Гарнитура шрифта */
-    src: url(../fonts/IntroRegular.ttf); /* Путь к файлу со шрифтом */
-   }
+@font-face {
+	font-family: 'Helvetica'; /* Гарнитура шрифта */
+	src: url(../fonts/HelveticaLight.ttf); /* Путь к файлу со шрифтом */
+}
+@font-face {
+	font-family: 'Helvetica-Med'; /* Гарнитура шрифта */
+	src: url(../fonts/HelveticaBlack.ttf); /* Путь к файлу со шрифтом */
+}
+@font-face {
+	font-family: 'Helvetica-Bold'; /* Гарнитура шрифта */
+	src: url(../fonts/HelveticaBold.ttf); /* Путь к файлу со шрифтом */
+}
+@font-face {
+	font-family: 'Helvetica-Neu'; /* Гарнитура шрифта */
+	src: url(../fonts/HelveticaNeueCyr-Medium.otf); /* Путь к файлу со шрифтом */
+}
+@font-face {
+	font-family: 'Intro'; /* Гарнитура шрифта */
+	src: url(../fonts/IntroRegular.ttf); /* Путь к файлу со шрифтом */
+}
 
 body{
 	margin: 0;
 	padding: 0;
-	font-family: 'Myriad Pro';
 	font-size: 12px;
 	line-height: 14px;
 	background: #e2e2e2;
@@ -548,7 +527,7 @@ p{
 }
 .settings-title h3{
 
-	font: 26px/31px 'Condensed-Bold', sans-serif;
+	font: 26px/31px 'Helvetica-Bold', sans-serif;
 	text-transform: uppercase;
 	font-weight: bold;
 	margin-left: 25px;
