@@ -208,4 +208,20 @@
         width: 315px;
         margin: 0 auto;
     }
+
+    .open-settings {
+        height: 2em;
+        width: 2em;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #3E5B95;
+        vertical-align: middle;
+    }
+
+    .open-settings-gear {
+        width: 60%;
+        height: 60%;
+        vertical-align: sub;
+    }
 }

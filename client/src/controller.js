@@ -2,6 +2,7 @@ var Marionette = require('backbone.marionette');
 var DictionarySection = require('./views/dictionary-section');
 var LoginForm = require('./views/login');
 var Settings = require('./views/settings');
+var MobileFooter = require('./views/mobile-footer');
 var AppLayoutView = require('./views/layouts/app-layout');
 var EpisodesView = require('./views/episodes');
 var EpisodesCollection = require('./collections/episodes');
@@ -65,6 +66,9 @@ module.exports = Marionette.Controller.extend({
         } else {
             App.layoutView.showChildView('dictionaries', new LoginForm());
         }
+
+        App.layoutView.showChildView('mobileFooter', new MobileFooter());
+
         App.tipOfTheDay = new TipOfTheDayView({ el: $('.tip-of-the-day') });
     },
 

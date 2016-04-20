@@ -8,7 +8,8 @@ module.exports = Marionette.LayoutView.extend({
         content: '.center-content',
         dictionaries: '.dictionaries-section',
         tipOfTheDay: '.tip-of-the-day',
-        settings: '.functions-language'
+        settings: '.functions-language',
+        mobileFooter: '.showsettings'
     }
 });
 
