@@ -1,4 +1,4 @@
-var Marionette = require('backbone.Marionette');
+var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
     template: require('../../templates/mobile-footer.hbs'),
