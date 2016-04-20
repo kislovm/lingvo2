@@ -21,6 +21,9 @@
         line-height: 1em;
         font-size: 1.7vh;
         background-color: rgb(246,246,246);
+        width: 100vw;
+        min-width: initial;
+        padding-top: 7em;
     }
 
     .allocation p {
@@ -36,7 +39,7 @@
     }
 
     .logo {
-        line-height: 1em;
+        line-height: 1.9em;
         width: 30%;
         text-align: center;
         padding-bottom: 0;
@@ -64,12 +67,8 @@
     }
 
     .main-header {
-        position: relative;
+        position: fixed;
         width: 100%
-    }
-
-    #content-wrapper {
-        width: auto;
     }
 
     .lang-select {
@@ -78,7 +77,8 @@
         display: inline-block;
         padding: 1em 0 1em 0;
         float: none;
-        font-size: 1.3em;
+        font-size: 1.4em;
+        line-height: initial;
     }
 
     .switch-lang {
@@ -101,9 +101,15 @@
 
     .center-block {
         width: 100vw;
+        position: relative;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 0;
     }
 
     .showsettings {
+        z-index: 99;
         position: fixed;
         display: block;
         bottom: 0;
@@ -190,7 +196,7 @@
     .functions-language-slider:after {
         display: block;
         width: 100%;
-        0.11em solid rgba(200,200,200,.4)
+        border: 0.11em solid rgba(200,200,200,.4)
     }
 
     .functions-news-title,
