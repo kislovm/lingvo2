@@ -25,6 +25,7 @@ module.exports = Marionette.Controller.extend({
         }, this);
 
         App.core.vent.bind('dictionary:show', this.onShowDictionary, this);
+        App.core.vent.bind('dictionary:close', this.onCloseDictionary, this);
 
         $(window).scroll(function() {
             clearTimeout($.data(this, 'scrollTimer'));
@@ -72,6 +73,10 @@ module.exports = Marionette.Controller.extend({
         App.layoutView.showChildView('mobileFooter', new MobileFooter());
 
         App.tipOfTheDay = new TipOfTheDayView({ el: $('.tip-of-the-day') });
+    },
+
+    onCloseDictionary: function() {
+        $('.dictionaries-section').removeClass('show');
     },
 
     onShowDictionary: function() {

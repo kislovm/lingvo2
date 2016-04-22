@@ -17,7 +17,12 @@ module.exports = Marionette.ItemView.extend({
         'change .highlight-slider': 'highlightChange',
         'click .settings-link': 'openSettings',
         'change .sorting-block-select': 'changeSort',
-        'click .sorting-block-select': 'clickSort'
+        'click .sorting-block-select': 'clickSort',
+        'click .dict-title-close': 'close'
+    },
+
+    close: function() {
+        App.core.vent.trigger('dictionary:close');
     },
 
     clickSort: function() {
