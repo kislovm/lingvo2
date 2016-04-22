@@ -123,6 +123,10 @@
         font-family: 'Helvetica-Neu', sans-serif;
     }
 
+    .dictionary {
+        top: 12em;
+    }
+
     .dictionaries-section {
         display: none;
     }

@@ -72,6 +72,6 @@ module.exports = Marionette.Controller.extend({
 
     onShowDictionary: function() {
         $('.dictionaries-section').addClass('show').appendTo('body');
-        $('body').removeClass('body-fixed');
+        $('body').addClass('body-fixed');
     }
 });
