@@ -1,9 +1,6 @@
 node_modules
 .idea
 .sass-cache
-bower_components
-bower_components/*/*
-!bower_components/*/.bower.json
 build
 public
 client/requires
