@@ -8,10 +8,12 @@ module.exports = Marionette.ItemView.extend({
 
     initialize: function() {
         this.$el.scroll(this.onScroll);
-        this.$el.mCustomScrollbar({
-            axis: 'x',
-            theme: 'minimal-dark'
-        });
+        if (navigator.appVersion.indexOf('Win') !== -1) {
+            this.$el.mCustomScrollbar({
+                axis: 'x',
+                theme: 'minimal-dark'
+            });
+        }
         this.listenTo(App.router, 'route', this.selectActive);
         this.selectActive();
     },
