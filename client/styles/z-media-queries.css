@@ -1,6 +1,7 @@
 @media only screen and (max-device-width: 1024px) {
     .center-block {
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
 
     .main-header {
