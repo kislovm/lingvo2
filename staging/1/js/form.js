@@ -14,7 +14,7 @@ $(function() {
         return isEmailValid && isPasswordValid;
     };
 
-    var onSuccess = function() {
+    var onSuccess = function(data) {
         if(data && data.success === true) {
             window.location = '/';
         }
