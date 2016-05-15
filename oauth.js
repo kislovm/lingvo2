@@ -1,13 +1,13 @@
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
-
-var EmailController = require('./email/controller');
+var vk = require('./auth/vk');
 
 var User = require('./app/models').User;
 var Dictionary = require('./app/models').Dictionary;
 
 var Stat = require('./stat/controller');
+var EmailController = require('./email/controller');
 
 var createDictionaryForUser = function(user) {
     return new Dictionary({
@@ -59,6 +59,7 @@ var createUser = function(profile, username, password) {
 };
 
 module.exports = {
+    vk: vk,
     facebook: new FacebookStrategy({
         clientID: '109742002694234',
         clientSecret: 'c32d39b4bc019785d4eba3a458a248cc',
@@ -77,7 +78,7 @@ module.exports = {
                     return createUser(profile);
                 }
             })
-            .then(function() {
+            .then(function(user) {
                 done(null, user)
             });
     }),

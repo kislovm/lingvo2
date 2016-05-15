@@ -48,6 +48,11 @@ module.exports.initialize = function(app) {
         res.json({ success: true });
     });
 
+    app.get('/auth/vk', passport.authenticate('vk'), function(req, res){ });
+    app.get(
+        '/auth/vk/callback',
+        passport.authenticate('vk', { failureRedirect: '/' }),
+        auth.redirect);
     app.get('/auth/facebook', passport.authenticate('facebook'), function(req, res){ });
     app.get(
         '/auth/facebook/callback',
