@@ -21,7 +21,7 @@ $(function() {
     };
 
     $('form').submit(function(e) {
-        e.preventDefaut();
+        e.preventDefault();
         var form = $(this);
 
         if(validate(form)) {
