@@ -2,6 +2,8 @@ var User = require('../app/models').User;
 var createUser = require('./helper');
 var VKStrategy = require('passport-vkontakte').Strategy;
 
+var Stat = require('../stat/controller');
+
 module.exports = new VKStrategy({
         clientID: 5464545, // VK.com docs call it 'API ID'
         clientSecret: 'WKzyLR1YsQXuSpz2rLNq',
@@ -18,7 +20,7 @@ module.exports = new VKStrategy({
                     return createUser(profile);
                 }
             })
-            .then(function() {
+            .then(function(user) {
                 done(null, user)
             });
     }
