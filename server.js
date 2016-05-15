@@ -40,6 +40,7 @@ app.use(expressSession({
 passport.use(oauth.facebook);
 passport.use(oauth.twitter);
 passport.use(oauth.email);
+passport.use(oauth.vk);
 
 app.use(passport.initialize());
 app.use(passport.session());
