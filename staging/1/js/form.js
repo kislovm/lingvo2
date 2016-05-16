@@ -40,4 +40,12 @@ $(function() {
         }
 
     });
+
+    $('.green-button').click(function() {
+        window.yaCounter.reachGoal('green-button-click');
+    });
+
+    $('.blue-button').click(function() {
+        window.yaCounter.reachGoal('blue-button-click');
+    });
 });
