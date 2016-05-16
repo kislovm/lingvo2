@@ -43,6 +43,10 @@ module.exports = {
     },
 
     get: function(req, res) {
+        if(req.user && req.user.language !== req.session.language) {
+            req.user.language = req.session.language;
+            req.user.save();
+        }
         var difficulties = {
             'general': 'General',
             'business': 'Business English',
