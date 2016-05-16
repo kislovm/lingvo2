@@ -20,6 +20,12 @@ $(function() {
         }
     };
 
+    $('.language__switch-lang').change(function() {
+        var value = $(this).val();
+
+        $.post('/user/lang', { language: value });
+    });
+
     $('form').submit(function(e) {
         e.preventDefault();
         var form = $(this);

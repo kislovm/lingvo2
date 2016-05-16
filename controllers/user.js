@@ -2,6 +2,18 @@ var models = require('../app/models');
 var dictionary = require('../app/dictionary.js');
 
 module.exports = {
+    setLang: function(req, res) {
+        req.session.language = req.body.language;
+        if (req.user) {
+            req.user.language = req.session.language;
+            req.user.save();
+        }
+
+        res.json({
+            success: true
+        });
+    },
+
     set: function(req, res) {
         var difficulties = {
             'General': 'general',
