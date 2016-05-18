@@ -1,15 +1,15 @@
-var express = require('express'),
-    http = require('http'),
-    path = require('path'),
-    mongoose = require('mongoose'),
-    routes = require('./app/routes'),
-    exphbs = require('express-handlebars'),
-    bodyParser = require('body-parser'),
-    methodOverride = require('method-override'),
-    cookieParser = require('cookie-parser'),
-    expressSession = require('express-session'),
-    expressErrorHandler = require('express-error-handler'),
-    app = express();
+var express = require('express');
+var http = require('http');
+var path = require('path');
+var mongoose = require('mongoose');
+var routes = require('./app/routes');
+var exphbs = require('express-handlebars');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var cookieParser = require('cookie-parser');
+var expressSession = require('express-session');
+var expressErrorHandler = require('express-error-handler');
+var app = express();
 
 var MongoStore = require('connect-mongo')(expressSession);
 
@@ -51,7 +51,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 app.use(cookieParser());
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'staging/1')));
+app.use('/css/', express.static(path.join(__dirname, 'public/css')));
+app.use('/js/', express.static(path.join(__dirname, 'public/js')));
 app.use('/img/', express.static(path.join(__dirname, '/client/images')));
 app.use('/fonts/', express.static(path.join(__dirname, '/client/fonts')));
 

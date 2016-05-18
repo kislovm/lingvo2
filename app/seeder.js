@@ -6,10 +6,9 @@ var sanitizeHtml = require('sanitize-html');
 var cheerio = require('cheerio');
 
 var parseRssCnnCom = function($) {
-      return $('p').filter('[class~=\'zn-body__paragraph\']')
+      return $('div').filter('[class~=\'zn-body__paragraph\']')
       .map(function() {
           var text = $(this).text();
-          if(text.indexOf('(CNN)') != -1 ) return '';
           return text
       }).get().join('</br>');
     },
@@ -115,8 +114,14 @@ module.exports = {
 
         feedUrls[key].forEach(function(feed) {
           var _key = key;
+            var options = {
+                url: feed.url,
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+                }
+            };
 
-          var request = Request(feed.url),
+          var request = Request(options),
               feedparser = new FeedParser();
 
           request.on('response', function(res) {
@@ -173,7 +178,12 @@ module.exports = {
                       ep.description = ep.description.slice(0, -3);
                   }
 
-                  Request(ep.link, function(err, res, body){
+                  Request({
+                      url: ep.link,
+                          headers: {
+                              'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+                          }
+                    }, function(err, res,body){
                     if(err) {
                       console.log(err);
                     } else{

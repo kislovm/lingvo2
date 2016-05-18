@@ -15,7 +15,7 @@ var account = require('../controllers/account');
 var passport = require('passport');
 
 module.exports.initialize = function(app) {
-    app.get('/', addUser, home.index);
+    app.get('/news', addUser, home.index);
     app.get('/stat', stat.index);
 
     app.get('/api/episodes/all/all/:page?', addUser, addDictWords, episodes.index);
