@@ -45,6 +45,7 @@
     "grunt-nodemon": "~0.3",
     "grunt-shell-spawn": "~0.3.0",
     "handlebars": "~3.0",
+    "handlebars-helper-i18n": "^0.1.0",
     "handlebars-runtime": "~1.0.12",
     "hbsfy": "~2.2",
     "jquery": "^2.1.4",

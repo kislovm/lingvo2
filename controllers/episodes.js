@@ -37,6 +37,17 @@ module.exports = {
         });
     },
 
+    one: function(req, res) {
+        models.Episode.findOne({ _id: req.params.id })
+            .select('title link name publicationDate image processedDescription processedBody originalArticleLink')
+            .exec()
+            .then(
+                function(episode) {
+                    res.json([episode]);
+                }
+        );
+    },
+
     count: function(req, res) {
         var tokenizer = new Natural.WordTokenizer(),
             tokens = {},

@@ -19,6 +19,7 @@ module.exports.initialize = function(app) {
     app.get('/stat', stat.index);
 
     app.get('/api/episodes/all/all/:page?', addUser, addDictWords, episodes.index);
+    app.get('/api/episodes/get/:id?', addUser, addDictWords, episodes.one);
     app.get('/api/episodes/:category/:page?', addUser, addDictWords, episodes.category);
 
     app.get('/count', episodes.count);

@@ -11,6 +11,11 @@ var expressSession = require('express-session');
 var expressErrorHandler = require('express-error-handler');
 var app = express();
 
+var Handlebars = require('handlebars');
+var helper = require('handlebars-helper-i18n');
+
+Handlebars.registerHelper('i18n', helper.i18n);
+
 var MongoStore = require('connect-mongo')(expressSession);
 
 var oauth = require('./oauth.js');
