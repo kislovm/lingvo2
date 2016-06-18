@@ -357,6 +357,7 @@ p{
 	color: #646464;
 	position: relative;
     width: 520px;
+		text-align: center;
 }
 .close-cross {
 	width: 20px;
