@@ -348,15 +348,15 @@ p{
 	float: left;
 }
 .allocation{
-	margin-left: 200px;
+	margin-left: 50px;
 	float: left;
 }
 .allocation p{
 	padding: 12px 0;
-	font: 15px 'Helvetica-Neu', sans-serif;
+	font: 18px 'Helvetica-Neu', sans-serif;
 	color: #646464;
 	position: relative;
-    width: 400px;
+    width: 520px;
 }
 .close-cross {
 	width: 20px;
@@ -364,7 +364,7 @@ p{
 	background: url('../img/show-cross.png') no-repeat;
 	background-size: 80%;
     position: absolute;
-    right: 0.5em;
+    right: -2.5em;
     top: 0.6em;
 	cursor: pointer;
 }
@@ -816,6 +816,10 @@ p{
 	color: #000;
 	position: relative;
 	white-space: pre-line;
+}
+
+.news p{
+	padding: 4px 0;
 }
 
 .news:last-child:not(.hidden) {
