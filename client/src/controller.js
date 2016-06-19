@@ -4,7 +4,9 @@ var UiController = require('./ui-controller');
 
 var EpisodesView = require('./views/episodes');
 var EpisodesCollection = require('./collections/episodes');
-var EpisodeCollection = require('./collections/episode');
+
+var EpisodeView = require('./views/episode');
+var EpisodeModel = require('./models/episode');
 
 
 module.exports = Marionette.Controller.extend({
@@ -30,9 +32,9 @@ module.exports = Marionette.Controller.extend({
     },
 
     episode: function(episodeId) {
-        var view = new EpisodesView({ collection: new EpisodeCollection([], { episodeId: episodeId }) });
+        var view = new EpisodeView({ model: new EpisodeModel({ _id: episodeId, opened: true }) });
 
-        view.collection.fetch();
+        view.model.fetch();
         App.layoutView.content.show(view);
         App.router.navigate('episode/' + episodeId);
     }

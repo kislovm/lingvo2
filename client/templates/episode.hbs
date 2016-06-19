@@ -9,10 +9,16 @@
     <a class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
 {{/if}}
 <div class="news-text-holder">
-    <div class="news episode-description">
-        {{{ processedDescription }}}
-    </div>
-    <div class="news episode-body hidden">
-        {{{ processedBody }}}
-    </div>
+    {{#if opened}}
+        <div class="news episode-body">
+            {{{ processedBody }}}
+        </div>
+    {{else}}
+        <div class="news episode-description">
+            {{{ processedDescription }}}
+        </div>
+        <div class="news episode-body hidden">
+            {{{ processedBody }}}
+        </div>
+    {{/if}}
 </div>

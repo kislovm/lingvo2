@@ -43,7 +43,7 @@ module.exports = {
             .exec()
             .then(
                 function(episode) {
-                    res.json([episode]);
+                    res.json(episode);
                 }
         );
     },

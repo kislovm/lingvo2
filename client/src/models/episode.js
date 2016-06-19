@@ -3,7 +3,7 @@ var $ = require('jquery');
 
 module.exports = EpisodeModel = Backbone.Model.extend({
     idAttribute: '_id',
-    urlRoot: 'api/episode',
+    urlRoot: 'api/episodes/get/',
     parse: function(data) {
         if(!data || !data.title) return;
 
