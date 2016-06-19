@@ -24,7 +24,7 @@ module.exports = {
 
         models.Episode
             .find(query)
-            .select('title link name publicationDate image processedDescription processedBody originalArticleLink')
+            .select('_id title link name publicationDate image processedDescription processedBody originalArticleLink')
             .sort('-publicationDate')
             .skip(skip)
             .limit(10)

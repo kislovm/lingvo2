@@ -5,5 +5,9 @@ module.exports = require('./episodes').extend({
 
     initialize: function(data, options) {
         this.episodeId = options.episodeId;
+    },
+
+    increment: function() {
+        return;
     }
 });
