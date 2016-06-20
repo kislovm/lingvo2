@@ -32,7 +32,7 @@ module.exports = Marionette.Controller.extend({
     },
 
     episode: function(episodeId) {
-        var view = new EpisodeView({ model: new EpisodeModel({ _id: episodeId, opened: true }) });
+        var view = new EpisodeView({ model: new EpisodeModel({ _id: episodeId, singlePage: true }) });
 
         view.model.fetch();
         App.layoutView.content.show(view);

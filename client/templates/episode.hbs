@@ -1,4 +1,8 @@
-<h2 class="name-news"><a href="#/episode/{{_id}}" target="_blank">{{{ processedTitle }}}</a></h2>
+{{#if singlePage}}
+    <h2 class="name-news">{{{ processedTitle }}}</h2>
+{{else}}
+    <h2 class="name-news"><a href="#/episode/{{_id}}" target="_blank">{{{ processedTitle }}}</a></h2>
+{{/if}}
 <p>
     <span class="original-article-link">Original&nbsp;article:&nbsp;
         <a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a>
@@ -9,7 +13,7 @@
     <a class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
 {{/if}}
 <div class="news-text-holder">
-    {{#if opened}}
+    {{#if singlePage}}
         <div class="news episode-body">
             {{{ processedBody }}}
         </div>
