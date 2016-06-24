@@ -1,7 +1,7 @@
 {{#if singlePage}}
     <h2 class="name-news">{{{ processedTitle }}}</h2>
 {{else}}
-    <h2 class="name-news"><a href="#/episode/{{_id}}" target="_blank">{{{ processedTitle }}}</a></h2>
+    <a href="#/episode/{{_id}}" target="_blank"><h2 class="name-news">{{ title }}</h2></a>
 {{/if}}
 <p>
     <span class="original-article-link">Original&nbsp;article:&nbsp;
