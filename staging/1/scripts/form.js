@@ -26,6 +26,8 @@ $(function() {
         $.post('/user/lang', { language: value });
     });
 
+    $.post('/user/lang', { language: 'russian' });
+
     $('form').submit(function(e) {
         e.preventDefault();
         var form = $(this);
