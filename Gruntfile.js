@@ -15,8 +15,8 @@ module.exports = function(grunt) {
                 options: {
                     lngs: ['en', 'ru-RU', 'dev'],
                     resource: {
-                        loadPath: 'i18n/{{lng}}/{{ns}}.json',
-                        savePath: 'locale/i18n/{{lng}}/{{ns}}.json'
+                        loadPath: 'locale/i18n/{{lng}}/{{ns}}.json',
+                        savePath: 'i18n/{{lng}}/{{ns}}.json'
                     }
                 }
             }
