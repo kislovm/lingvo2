@@ -11,12 +11,12 @@ module.exports = function(grunt) {
         i18next: {
             dev: {
                 src: ['client/**/*.{js,hbs}', 'controllers/*.js'],
-                dest: 'public',
+                dest: 'locale',
                 options: {
                     lngs: ['en', 'ru-RU', 'dev'],
                     resource: {
                         loadPath: 'i18n/{{lng}}/{{ns}}.json',
-                        savePath: 'i18n/{{lng}}/{{ns}}.json'
+                        savePath: 'locale/i18n/{{lng}}/{{ns}}.json'
                     }
                 }
             }

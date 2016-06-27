@@ -20,10 +20,10 @@ var Backend = require('i18next-node-fs-backend');
 
 var options = {
     lngs: ['en', 'ru-RU'],
-    resGetPath: 'public/i18n/__lng__/__ns__.json',
+    resGetPath: 'locale/i18n/__lng__/__ns__.json',
     debug: true,
     backend: {
-        loadPath: 'public/i18n/{{lng}}/{{ns}}.json'
+        loadPath: 'locale/i18n/{{lng}}/{{ns}}.json'
     }
 };
 
