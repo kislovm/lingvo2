@@ -14,24 +14,24 @@
          <div class="main-header clearfix">
             <div class="logo">
                 <a href="/">upvoc</a>
-                <p class="logo-p">improve your <br> english vocabulary</p>
+                <p class="logo-p">{{{lang.logoP}}}</p>
             </div>
             <div class="lang-select">
-                <span>My language:</span>
+                <span>{{lang.myLang}}:</span>
                     <select class='switch-lang'>
-                        <option value="chinese">Chinese</option>
-                        <option value="arabic">Arabic</option>
-                        <option value="portugal">Portugal</option>
-                        <option value="russian">Russian</option>
-                        <option value="spanish">Spanish</option>
-                        <option value="turkish">Turkish</option>
+                        <option value="chinese">{{lang.chinese}}</option>
+                        <option value="arabic">{{lang.arabic}}</option>
+                        <option value="portugal">{{lang.portugal}}</option>
+                        <option value="russian">{{lang.russian}}</option>
+                        <option value="spanish">{{lang.spanish}}</option>
+                        <option value="turkish">{{lang.turkish}}</option>
                     </select>
             </div>
             <div class="enter-block">
                 {{#if user}}
-                    <a href = "/account/" class="login-m">{{{ user.name }}}</a>&nbsp;/&nbsp;<a href = "/logout/" class="login-m">Sign out</a>
+                    <a href = "/account/" class="login-m">{{{ user.name }}}</a>&nbsp;/&nbsp;<a href = "/logout/" class="login-m">{{lang.signOut}}</a>
                 {{else}}
-                    Login&nbsp;via
+                    {{lang.loginVia}}
                     <a href="/auth/facebook" class="login-m">Facebook</a>
                     |
                     <a href="/auth/twitter" class="login-m">Twitter</a>
@@ -39,19 +39,19 @@
             </div>
             <div class="enter"></div>
             <ul class="menu clearfix">
-                <li class="menu-item"><a href="#"><span>All</span></a></li>
-                <li class="menu-item"><a href="#category/world"><span>World</span></a></li>
-                <li class="menu-item"><a href="#category/politics"><span>Politics</span></a></li>
-                <li class="menu-item"><a href="#category/economics"><span>Economics</span></a></li>
-                <li class="menu-item"><a href="#category/tech"><span>Technology</span></a></li>
-                <li class="menu-item"><a href="#category/sport"><span>Sport</span></a></li>
-                <li class="menu-item"><a href="#category/science"><span>Science</span></a></li>
-                <li class="menu-item"><a href="#category/culture"><span>Culture</span></a></li>
-                <li class="menu-item"><a href="#category/social"><span>Social</span></a></li>
+                <li class="menu-item"><a href="#"><span>{{lang.all}}</span></a></li>
+                <li class="menu-item"><a href="#category/world"><span>{{lang.world}}</span></a></li>
+                <li class="menu-item"><a href="#category/politics"><span>{{lang.politics}}</span></a></li>
+                <li class="menu-item"><a href="#category/economics"><span>{{lang.economics}}</span></a></li>
+                <li class="menu-item"><a href="#category/tech"><span>{{lang.tech}}</span></a></li>
+                <li class="menu-item"><a href="#category/sport"><span>{{lang.sport}}</span></a></li>
+                <li class="menu-item"><a href="#category/science"><span>{{lang.science}}</span></a></li>
+                <li class="menu-item"><a href="#category/culture"><span>{{lang.culture}}</span></a></li>
+                <li class="menu-item"><a href="#category/social"><span>{{lang.social}}</span></a></li>
             </ul>
             <div class="top-line clearfix tip-of-the-day">
                 <div class="allocation">
-                    <p>Click unknown word to see its translation<span class="close-cross"></span></p>
+                    <p>{{lang.tipOfTheDay}}<span class="close-cross"></span></p>
                 </div>
             </div>
         </div>

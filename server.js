@@ -11,10 +11,31 @@ var expressSession = require('express-session');
 var expressErrorHandler = require('express-error-handler');
 var app = express();
 
-var Handlebars = require('handlebars');
-var helper = require('handlebars-helper-i18n');
+var i18next = require('i18next');
+var i18nText = require('i18next-text');
+var middleware = require('i18next-express-middleware');
+var XHR = 'i18next-xhr-backend';
+var Backend = require('i18next-node-fs-backend');
 
-Handlebars.registerHelper('i18n', helper.i18n);
+
+var options = {
+    lngs: ['en', 'ru-RU'],
+    resGetPath: 'public/i18n/__lng__/__ns__.json',
+    debug: true,
+    backend: {
+        loadPath: 'public/i18n/{{lng}}/{{ns}}.json'
+    }
+};
+
+i18next._ = i18nText._;
+
+i18next
+    .use(middleware.LanguageDetector)
+    .use(XHR)
+    .use(Backend)
+    .init(options, function() {
+        console.log(i18next._('Russian', {lng: 'ru-RU'}));
+    });
 
 var MongoStore = require('connect-mongo')(expressSession);
 
@@ -43,12 +64,17 @@ app.use(expressSession({
 }));
 
 passport.use(oauth.facebook);
+
 passport.use(oauth.twitter);
 passport.use(oauth.email);
 passport.use(oauth.vk);
-
 app.use(passport.initialize());
+
 app.use(passport.session());
+
+app.use(middleware.handle(i18next, {
+    removeLngFromUrl: false
+}));
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
