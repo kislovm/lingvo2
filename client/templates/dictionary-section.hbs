@@ -1,14 +1,14 @@
 <div class="dict-title">
-    <h3>My dictionaries<img class="dict-title-close" src="/img/close.png"/></h3>
+    <h3>{{i18n 'My dictionaries'}}<img class="dict-title-close" src="/img/close.png"/></h3>
 </div>
 <div class="functions">
     <div class="dict__setting">
-        <a class="left-title settings-link fake-link">My settings</a>
+        <a class="left-title settings-link fake-link">{{i18n 'My settings'}}</a>
     </div>
 </div>
 <div class="functions">
     <div class="dict__setting">
-        <h5 class="left-title">Autosave</h5>
+        <h5 class="left-title">{{i18n 'Autosave'}}</h5>
         <div class="slider-check">
             <input type="checkbox" {{#if autosave}}checked="checked"{{/if}} value="autosave" id="autosave" name="autosave" class="autosave-slider checkbox-cust" />
             <label for="autosave"></label>
@@ -16,17 +16,17 @@
     </div>
 </div>
 <div class="sorting-block">
-    <h3 class="sorting-block-title">Sort by:</h3>
+    <h3 class="sorting-block-title">{{i18n 'Sort by'}}:</h3>
     <select class="sorting-block-select">
-        <option>A-Z</option>
-        <option>Time added</option>
+        <option>{{i18n 'A-Z'}}</option>
+        <option>{{i18n 'Time added'}}</option>
     </select>
 </div>
 <div class="clearfix"></div>
 <div class="dictionary-wrapper">
     <div class="dictionary">
         <div class="text-block"></div>
-        <div class="word-delete top">Delete selected</div>
-        <div class="word-cancel top">Cancel</div>
+        <div class="word-delete top">{{i18n 'Delete selected'}}</div>
+        <div class="word-cancel top">{{i18n 'Cancel'}}</div>
     </div>
 </div>

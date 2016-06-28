@@ -12,11 +12,18 @@ var expressErrorHandler = require('express-error-handler');
 var app = express();
 
 var i18next = require('i18next');
-var i18nText = require('i18next-text');
 var middleware = require('i18next-express-middleware');
-var XHR = 'i18next-xhr-backend';
 var Backend = require('i18next-node-fs-backend');
 
+var i18nText = require('i18next-text');
+
+var hbs = exphbs.create({
+    defaultLayout: 'main',
+    layoutsDir: app.get('views') + '/layouts',
+    helpers: {
+        i18n: i18nText.handlebarsHelper
+    }
+});
 
 var options = {
     lngs: ['en', 'ru-RU'],
@@ -27,15 +34,12 @@ var options = {
     }
 };
 
-i18next._ = i18nText._;
+i18nText.init();
 
 i18next
     .use(middleware.LanguageDetector)
-    .use(XHR)
     .use(Backend)
-    .init(options, function() {
-        console.log(i18next._('Russian', {lng: 'ru-RU'}));
-    });
+    .init(options);
 
 var MongoStore = require('connect-mongo')(expressSession);
 
@@ -47,10 +51,7 @@ var connection = mongoose.connect('mongodb://localhost/MyApp');
 
 app.set('port', process.env.PORT || 3302);
 app.set('views', __dirname + '/views');
-app.engine('handlebars', exphbs({
-    defaultLayout: 'main',
-    layoutsDir: app.get('views') + '/layouts'
-}));
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 passport.serializeUser(function(user, done) { done(null, user); });
@@ -83,6 +84,7 @@ app.use(methodOverride());
 app.use(cookieParser());
 
 app.use('/', express.static(path.join(__dirname, 'staging/1')));
+app.use('/locale', express.static(path.join(__dirname, 'locale')));
 app.use('/css/', express.static(path.join(__dirname, 'public/css')));
 app.use('/js/', express.static(path.join(__dirname, 'public/js')));
 app.use('/img/', express.static(path.join(__dirname, '/client/images')));
