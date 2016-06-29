@@ -54,7 +54,7 @@ var parseRssCnnCom = function($) {
       if(!fbs_settings.content) {
         console.log($.html());
       } else {
-        return $(fbs_settings.content.body).text();
+        return $(fbs_settings.content.body).text().replace(/(?:\\[rn]|[\r\n]+)+/g, "</br>");
       }
     },
     parseTelegraphFeedsportalCom = function($) {
