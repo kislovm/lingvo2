@@ -28,9 +28,10 @@ module.exports = function (languageName) {
 
     this.setToCache = function(translation) {
         if(translation.translations && translation.translations.length) {
-            translation.lang = this.language;
-            translation.translations = JSON.stringify(translation.translations);
-            return new TranslationCache(translation).save();
+            var model = new TranslationCache(translation);
+            model.lang = this.language;
+            model.translations = JSON.stringify(translation.translations);
+            return model.save();
         }
     };
 
