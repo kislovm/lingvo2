@@ -54,7 +54,7 @@ var parseRssCnnCom = function($) {
       if(!fbs_settings.content) {
         console.log($.html());
       } else {
-        return $(fbs_settings.content.body).text();
+        return $(fbs_settings.content.body).text().replace(/(?:\\[rn]|[\r\n]+)+/g, "</br>");
       }
     },
     parseTelegraphFeedsportalCom = function($) {
@@ -193,12 +193,21 @@ module.exports = {
                         ep.description = ep.description.slice(0, -19);
                       }
                       ep.originalArticleLink = getOriginalArticleLink(ep.link);
+                      if(!ep.body || ep.body.length < 1500) {
+                          return;
+                      }
                     }
 
                     models.Episode.findOne({ title: ep.title}, function(err, episode) {
                       if (!err) {
                         if (!episode) {
                           episode = new models.Episode(ep);
+
+                            if(!ep.image) {
+                                if(Math.random() >= 0.5) {
+                                    return;
+                                }
+                            }
 
                           episode.save(function(err) {
                             if (!err) {

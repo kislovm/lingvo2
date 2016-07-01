@@ -55,7 +55,10 @@ var createUser = function(profile, username, password) {
         .then(createDictionaryForUser)
         .then(saveDictionaryForUser)
         .then(sendEmailForUser)
-        .then(Stat.log.registration);
+        .then(function(user) {
+            Stat.log.registration()
+            return user;
+        });
 };
 
 module.exports = {

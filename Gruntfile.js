@@ -8,6 +8,20 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        i18next: {
+            dev: {
+                src: ['client/**/*.{js,hbs}', 'controllers/*.js'],
+                dest: 'locale',
+                options: {
+                    lngs: ['en', 'ru-RU', 'dev'],
+                    resource: {
+                        loadPath: 'locale/i18n/{{lng}}/{{ns}}.json',
+                        savePath: 'i18n/{{lng}}/{{ns}}.json'
+                    }
+                }
+            }
+        },
+
         clean: {
             build: ['build'],
             dev: {
@@ -141,6 +155,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('i18next-scanner');
 
     grunt.registerTask('init:dev', ['clean', 'browserify:vendor']);
 

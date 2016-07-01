@@ -48,7 +48,7 @@ module.exports = Marionette.ItemView.extend({
         if(this.validate()) {
             $.get('/auth/email', this.getFormData(), this.onLoginRequest.bind(this), 'json')
                 .fail(function() {
-                    this.setError('Wrong password');
+                    this.setError(i18n.t('Wrong password'));
                 }.bind(this));
         }
     },

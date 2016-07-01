@@ -24,7 +24,7 @@ module.exports = {
 
         models.Episode
             .find(query)
-            .select('title link name publicationDate image processedDescription processedBody originalArticleLink')
+            .select('_id title link name publicationDate image processedDescription processedBody originalArticleLink')
             .sort('-publicationDate')
             .skip(skip)
             .limit(10)
@@ -35,6 +35,17 @@ module.exports = {
                     res.json(episodes);
                 }
         });
+    },
+
+    one: function(req, res) {
+        models.Episode.findOne({ _id: req.params.id })
+            .select('title link name publicationDate image processedDescription processedBody originalArticleLink')
+            .exec()
+            .then(
+                function(episode) {
+                    res.json(episode);
+                }
+        );
     },
 
     count: function(req, res) {

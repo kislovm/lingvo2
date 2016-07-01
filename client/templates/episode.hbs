@@ -1,4 +1,8 @@
-<h2 class="name-news episode-more"><a>{{{ processedTitle }}}</a></h2>
+{{#if singlePage}}
+    <h2 class="name-news">{{{ processedTitle }}}</h2>
+{{else}}
+    <a href="#/episode/{{_id}}" target="_blank"><h2 class="name-news">{{ title }}</h2></a>
+{{/if}}
 <p>
     <span class="original-article-link">Original&nbsp;article:&nbsp;
         <a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a>
@@ -9,10 +13,16 @@
     <a class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
 {{/if}}
 <div class="news-text-holder">
-    <div class="news episode-description">
-        {{{ processedDescription }}}
-    </div>
-    <div class="news episode-body hidden">
-        {{{ processedBody }}}
-    </div>
+    {{#if singlePage}}
+        <div class="news episode-body">
+            {{{ processedBody }}}
+        </div>
+    {{else}}
+        <div class="news episode-description">
+            {{{ processedDescription }}}
+        </div>
+        <div class="news episode-body hidden">
+            {{{ processedBody }}}
+        </div>
+    {{/if}}
 </div>

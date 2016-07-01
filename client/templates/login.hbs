@@ -1,18 +1,18 @@
 <div class="sign">
-    <div class="sign-in active">Sign In</div>
-    <div class="sign-up">Sign Up</div>
+    <div class="sign-in active">{{i18n 'Sign In'}}</div>
+    <div class="sign-up">{{i18n 'Sign Up'}}</div>
     <div class="social">
-        <a href="/auth/facebook"><button class="fb-btn sign-btn"><span class="btn-text-first">Sign in with Facebook</span></button></a>
-        <a href="/auth/twitter"><button class="tw-btn sign-btn"><span class="btn-text">Sign in with Twitter</span></button></a>
+        <a href="/auth/facebook"><button class="fb-btn sign-btn"><span class="btn-text-first">{{i18n 'Sign in with Facebook'}}</span></button></a>
+        <a href="/auth/twitter"><button class="tw-btn sign-btn"><span class="btn-text">{{i18n 'Sign in with Twitter'}}</span></button></a>
     </div>
-    <div class="or-icon"><span>or</span></div>
+    <div class="or-icon"><span>{{i18n 'or'}}</span></div>
     <div class="login-m-form">
         <form method='post'>
             <input type="text" name="username" class="login-m-form-login login-input" placeholder="Email">
-            <input type="password" name="password" class="login-m-form-password password-input" placeholder="Password">
+            <input type="password" name="password" class="login-m-form-password password-input" placeholder="{{i18n 'Password'}}">
             <div class="form-error hidden"></div>
-            <a class="login-m-form-restore">Forgot password?</a>
+            <a class="login-m-form-restore">{{i18n 'Forgot password'}}?</a>
         </form>
     </div>
-    <div class="sign-login">Login</div>
+    <div class="sign-login">{{i18n 'Login'}}</div>
 </div>
