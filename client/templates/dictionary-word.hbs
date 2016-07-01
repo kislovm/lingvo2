@@ -1,14 +1,15 @@
-<div class="transcription-f">
-     <input type="checkbox" class="dict-checkbox" id="{{id}}" value="{{phrase}}">
-     <label for="{{id}}">
-         <div class="tr-words">
-             <span class="transition-word">{{phrase}}</span>
-             <span class="transcription-word">[{{transcription}}]</span>
-         </div>
-         <div class="translating">
-             {{#each translations}}
-                 {{this.text}}{{#unless @last}},{{/unless}}
-             {{/each}}
-         </div>
-     </label>
+<div class="b-dictionaries-block__word">
+    <div class="b-dictionaries-block__word-check b-form b-form__checkbox">
+        <input type="checkbox" class="dict-checkbox" id="{{id}}" value="{{phrase}}">
+        <label for="{{id}}"></label>
+    </div>
+    <div class="b-dictionaries-block__word-body">
+        <div class="b-dictionaries-block__word-title">
+            {{phrase}} <span class="b-dictionaries-block__word-title--grey">[{{transcription}}]</span>
+        </div>
+        {{#each translations}}
+            {{this.text}}
+            {{#unless @last}},{{/unless}}
+        {{/each}}
+    </div>
 </div>

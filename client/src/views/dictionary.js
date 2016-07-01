@@ -82,13 +82,13 @@ module.exports = Marionette.ItemView.extend({
 
     onRender: function() {
         this.collection.set(this.collection.sortBy(this.getComparator(), this));
-        this.$el.find('.dictionary').html(this.collection.toJSON().map(function(word) {
+        this.$el.find('.word-js').html(this.collection.toJSON().map(function(word) {
             if(typeof word.translations === 'string') {
                 word.translations = JSON.parse(word.translations);
             }
             return this.wordTemplate(word);
         }, this));
-        this.$el.find('.dictionary').scroll(this.dictionaryScroll.bind(this));
+        this.$el.find('.word-js').scroll(this.dictionaryScroll.bind(this));
     }
 
 });
