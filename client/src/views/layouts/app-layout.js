@@ -5,11 +5,11 @@ module.exports = Marionette.LayoutView.extend({
     el: '.content-holder',
 
     regions: {
-        content: '.center-content',
-        dictionaries: '.dictionaries-section',
-        tipOfTheDay: '.tip-of-the-day',
-        settings: '.functions-language',
-        mobileFooter: '.showsettings'
+        content: '.episodes-js',
+        dictionaries: '.dictionaries-block-js',
+        //tipOfTheDay: '.tip-of-the-day',
+        settings: '.settings-js',
+        //mobileFooter: '.showsettings-js',
+        authorization: '.authorization-block-js'
     }
 });
-

@@ -1,34 +1,54 @@
-<h3 class="settings-header">{{ i18n 'My settings' }}<span class="close-cross"></span></h3>
-<div class="settings-content">
-    <h4 class="functions-news-title">{{ i18n 'News Sources'}}</h4>
-    <div class="functions-settings-news">
-                <div class="functions-box">
-                    <input type="checkbox" value="cnn.com" class="functions-checkbox-settings" id="cnn">
-                    <label for="cnn">CNN</label>
-                </div>
-                <div class="functions-box">
-                    <input type="checkbox" value="bbc.com" class="functions-checkbox-settings" id="bbc">
-                    <label for="bbc">BBC</label>
-                </div>
-                <div class="functions-box">
-                    <input type="checkbox" value="economist.com" class="functions-checkbox-settings" id="economist">
-                    <label for="economist">Economist</label>
-                </div>
-                <div class="functions-box">
-                    <input type="checkbox" value="usatoday.com" class="functions-checkbox-settings" id="usatoday">
-                    <label for="usatoday">USA Today</label>
-                </div>
-                <div class="functions-box">
-                    <input type="checkbox" value="forbes.com" class="functions-checkbox-settings" id="forbes">
-                    <label for="forbes">Forbes</label>
-                </div>
-                <div class="functions-box">
-                    <input type="checkbox" value="telegraph.co.uk" class="functions-checkbox-settings" id="telegraph">
-                    <label for="telegraph">Telegraph</label>
-                </div>
-                <div class="functions-box">
-                    <input type="checkbox" value="techcrunch.com" class="functions-checkbox-settings" id="techcrunch">
-                    <label for="techcrunch">Techcrunch</label>
-                </div>
+<h2 class="b-settings__title">
+{{ i18n 'News Sources'}}
+<button type="button" name="button" class="b-settings__close settings-a-js">
+    <svg class="icon-cross">
+        <use xlink:href="#icon-cross"></use>
+    </svg>
+</button>
+</h2>
+<div class="b-settings__source">
+    <div class="b-settings__source-item b-form b-form__checkbox b-form__checkbox--two">
+        <input type="checkbox" value="cnn.com" class="functions-checkbox-settings" id="cnn">
+        <label for="cnn">
+            <svg class="icon CNN">
+                <use xlink:href="#CNN"></use>
+            </svg>
+        </label>
+        <input type="checkbox" value="bbc.com" class="functions-checkbox-settings" id="bbc">
+        <label for="bbc">
+            <svg class="icon BBC">
+                <use xlink:href="#BBC"></use>
+            </svg>
+        </label>
+        <input type="checkbox" value="economist.com" class="functions-checkbox-settings" id="economist">
+        <label for="economist">
+            <svg class="icon Economist">
+                <use xlink:href="#Economist"></use>
+            </svg>
+        </label>
+        <input type="checkbox" value="usatoday.com" class="functions-checkbox-settings" id="usatoday">
+        <label for="usatoday">
+            <svg class="icon USATODAY">
+                <use xlink:href="#USATODAY"></use>
+            </svg>
+        </label>
+        <input type="checkbox" value="forbes.com" class="functions-checkbox-settings" id="forbes">
+        <label for="forbes">
+            <svg class="icon Forbes">
+                <use xlink:href="#Forbes"></use>
+            </svg>
+        </label>
+        <input type="checkbox" value="telegraph.co.uk" class="functions-checkbox-settings" id="telegraph">
+        <label for="telegraph">
+            <svg class="icon Telegraph">
+                <use xlink:href="#Telegraph"></use>
+            </svg>
+        </label>
+        <input type="checkbox" value="techcrunch.com" class="functions-checkbox-settings" id="techcrunch">
+        <label for="techcrunch">
+            <svg class="icon Techcrunch">
+                <use xlink:href="#Techcrunch"></use>
+            </svg>
+        </label>
     </div>
 </div>

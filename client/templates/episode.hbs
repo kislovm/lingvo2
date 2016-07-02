@@ -1,28 +1,32 @@
-{{#if singlePage}}
-    <h2 class="name-news">{{{ processedTitle }}}</h2>
-{{else}}
-    <a href="#/episode/{{_id}}" target="_blank"><h2 class="name-news">{{ title }}</h2></a>
-{{/if}}
-<p>
-    <span class="original-article-link">Original&nbsp;article:&nbsp;
-        <a href="{{{ link }}}" target="_blank">{{{ originalArticleLink }}}</a>
-    </span>&nbsp;&mdash;&nbsp;{{ formattedDate }}
-</p>
-<a href="#"><blockquote class="newsinform">{{ name }}</blockquote></a>
-{{#if image}}
-    <a class="illustration" style="background-image: url('{{ image }}')" onclick="counter.reachGoal('inside-article')"></a>
-{{/if}}
-<div class="news-text-holder">
+<section class="b-episode">
+    <div class="b-episode__title">
+        {{#if singlePage}}
+            <a href="#">{{{ processedTitle }}}</a>
+        {{else}}
+            <a href="#/episode/{{_id}}" target="_blank">{{ title }}</a>
+        {{/if}}
+    </div>
+    <div class="b-episode__top">
+        <a href="{{{ link }}}" class="b-episode__source">
+            <svg class="{{ name }}">
+                <use xlink:href="#{{ name }}"></use>
+            </svg>
+        </a>
+        {{ formattedDate }}
+    </div>
+    {{#if image}}
+          <img class="b-episode__img" src="{{ image }}" alt="" onclick="counter.reachGoal('inside-article')" />
+    {{/if}}
     {{#if singlePage}}
-        <div class="news episode-body">
+        <div class="b-episode__body">
             {{{ processedBody }}}
         </div>
     {{else}}
-        <div class="news episode-description">
+        <div class="b-episode__description episode-description-js">
             {{{ processedDescription }}}
         </div>
-        <div class="news episode-body hidden">
+        <div class="b-episode__body episode-body-js b-episode__body--hidden">
             {{{ processedBody }}}
         </div>
     {{/if}}
-</div>
+</section>

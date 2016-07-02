@@ -43,8 +43,8 @@ module.exports = Marionette.ItemView.extend({
     },
 
     showMore: function() {
-        this.$el.find('.episode-body').removeClass('hidden');
-        this.$el.find('.episode-description').addClass('hidden');
+        this.$el.find('.episode-body-js').removeClass('b-episode__body--hidden');
+        this.$el.find('.episode-description-js').addClass('b-episode__description--hidden');
         yaCounter.reachGoal('show-more');
     },
 

@@ -30,7 +30,7 @@ module.exports = Marionette.ItemView.extend({
     },
 
     changeSort: function() {
-        var sortByTime = this.$el.find('.sorting-block-select').val() === 'Time added';
+        var sortByTime = this.$el.find('.sorting-block-select').val() === 'time';
         this.dictionaryView.setSortByTime(sortByTime);
     },
 
@@ -60,7 +60,7 @@ module.exports = Marionette.ItemView.extend({
     onRender: function()
     {
         this.dictionaryView = new DictionaryView({
-            el: this.$el.find('.dictionary-wrapper'),
+            el: this.$el.find('.dictionaries-block-words-js'),
             model: App.data.user
         });
     }
