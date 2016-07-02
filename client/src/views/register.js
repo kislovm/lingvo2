@@ -8,7 +8,8 @@ module.exports = Marionette.ItemView.extend({
 
     events: {
         'click .sign-login': 'onLogin',
-        'click .sign-in': 'onSignIn'
+        'click .sign-in': 'onSignIn',
+        'click .auth-close-a-js': 'onClose'
     },
 
     emailRegexp: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
@@ -22,11 +23,11 @@ module.exports = Marionette.ItemView.extend({
         var isPasswordValid = this.$el.find('.password-input').val().length > 0;
         var isPasswordConfirmValid = this.$el.find('.password-confirm-input').val() === this.$el.find('.password-input').val();
 
-        if(!isEmailValid) {
+        if (!isEmailValid) {
             this.setError('Please enter correct email');
-        } else if(!isPasswordValid) {
+        } else if (!isPasswordValid) {
             this.setError('Please enter password');
-        } else if(!isPasswordConfirmValid) {
+        } else if (!isPasswordConfirmValid) {
             this.setError('Please enter same password');
         } else {
             this.hideError();
@@ -45,7 +46,7 @@ module.exports = Marionette.ItemView.extend({
     },
 
     onLogin: function() {
-        if(this.validate()) {
+        if (this.validate()) {
             $.get('/auth/email', this.getFormData(), this.onLoginRequest.bind(this), 'json')
                 .fail(function() {
                     this.setError(i18n.t('Wrong password'));
@@ -57,9 +58,15 @@ module.exports = Marionette.ItemView.extend({
         this.remove();
         App.core.vent.trigger('show-login');
     },
+    onClose: function() {
+        this.remove();
+        App.core.vent.trigger('show-login');
+        $('.b-authorization').toggleClass("b-authorization--visibility");
+        $('body').toggleClass("body-fixed");
+    },
 
     onLoginRequest: function(data) {
-        if(data && data.success === true) {
+        if (data && data.success === true) {
             window.location.reload();
         }
     }

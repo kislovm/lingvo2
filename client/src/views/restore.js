@@ -9,7 +9,8 @@ module.exports = Marionette.ItemView.extend({
     events: {
         'click .sign-in': 'onSignIn',
         'click .sign-up': 'onSignUp',
-        'click .sign-login': 'onLogin'
+        'click .sign-login': 'onLogin',
+        'click .auth-close-a-js': 'onClose',
     },
 
     onSignIn: function() {
@@ -19,11 +20,18 @@ module.exports = Marionette.ItemView.extend({
 
     onSignUp: function() {
         this.remove();
-        App.layoutView.showChildView('dictionaries', new Register());
+        App.layoutView.showChildView('authorization', new Register());
+    },
+
+    onClose: function() {
+        this.remove();
+        App.core.vent.trigger('show-login');
+        $('.b-authorization').toggleClass("b-authorization--visibility");
+        $('body').toggleClass("body-fixed");
     },
 
     onLogin: function() {
-        if(this.validate()) {
+        if (this.validate()) {
             $.get('/auth/forgot', this.getFormData(), this.onLoginRequest.bind(this), 'json')
                 .fail(function() {
                     this.setError('Wrong password');
@@ -40,7 +48,7 @@ module.exports = Marionette.ItemView.extend({
     validate: function() {
         var isEmailValid = this.emailRegexp.test(this.$el.find('.login-input').val());
 
-        if(!isEmailValid) {
+        if (!isEmailValid) {
             this.setError('Please enter correct email');
         } else {
             this.hideError();
@@ -59,10 +67,10 @@ module.exports = Marionette.ItemView.extend({
     },
 
     onLoginRequest: function(data) {
-        if(data) {
-            if(data.success === true) {
+        if (data) {
+            if (data.success === true) {
                 this.setError('Password sent to provided email');
-            } else if(data.notFound === true) {
+            } else if (data.notFound === true) {
                 this.setError('Provided email not found');
             }
         }

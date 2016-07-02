@@ -10,7 +10,8 @@ module.exports = Marionette.ItemView.extend({
     events: {
         'click .sign-login': 'onLogin',
         'click .sign-up': 'onSignUp',
-        'click .login-m-form-restore': 'onRestore'
+        'click .login-m-form-restore': 'onRestore',
+        'click .auth-close-a-js': 'onClose'
     },
 
     emailRegexp: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
@@ -23,9 +24,9 @@ module.exports = Marionette.ItemView.extend({
         var isEmailValid = this.emailRegexp.test(this.$el.find('.login-input').val());
         var isPasswordValid = this.$el.find('.password-input').val().length > 0;
 
-        if(!isEmailValid) {
+        if (!isEmailValid) {
             this.setError('Please enter correct email');
-        } else if(!isPasswordValid) {
+        } else if (!isPasswordValid) {
             this.setError('Please enter password');
         } else {
             this.hideError();
@@ -44,7 +45,7 @@ module.exports = Marionette.ItemView.extend({
     },
 
     onLogin: function() {
-        if(this.validate()) {
+        if (this.validate()) {
             $.get('/auth/email', this.getFormData(), this.onLoginRequest.bind(this), 'json')
                 .fail(function() {
                     this.setError('Wrong password');
@@ -54,16 +55,23 @@ module.exports = Marionette.ItemView.extend({
 
     onSignUp: function() {
         this.remove();
-        App.layoutView.showChildView('dictionaries', new Register());
+        App.layoutView.showChildView('authorization', new Register());
     },
 
     onRestore: function() {
         this.remove();
-        App.layoutView.showChildView('dictionaries', new Restore());
+        App.layoutView.showChildView('authorization', new Restore());
+    },
+
+    onClose: function() {
+        this.remove();
+        App.core.vent.trigger('show-login');
+        $('.b-authorization').toggleClass("b-authorization--visibility");
+        $('body').toggleClass("body-fixed");
     },
 
     onLoginRequest: function(data) {
-        if(data && data.success === true) {
+        if (data && data.success === true) {
             window.location.reload();
         }
     }
