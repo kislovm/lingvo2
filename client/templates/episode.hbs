@@ -1,7 +1,7 @@
 <section class="b-episode">
     <div class="b-episode__title">
         {{#if singlePage}}
-            {{{ processedTitle }}}
+            <a>{{{ processedTitle }}}</a> 
         {{else}}
             <a href="#/episode/{{_id}}" target="_blank">{{ title }}</a>
         {{/if}}
