@@ -1,6 +1,7 @@
 var Login = require('./login');
 var Marionette = require('backbone.marionette');
 var $ = require('jquery');
+var Restore = require('./restore');
 
 module.exports = Marionette.ItemView.extend({
 
@@ -9,6 +10,7 @@ module.exports = Marionette.ItemView.extend({
     events: {
         'click .sign-login': 'onLogin',
         'click .sign-in': 'onSignIn',
+        'click .login-m-form-restore': 'onRestore',
         'click .auth-close-a-js': 'onClose'
     },
 
@@ -52,6 +54,11 @@ module.exports = Marionette.ItemView.extend({
                     this.setError(i18n.t('Wrong password'));
                 }.bind(this));
         }
+    },
+
+    onRestore: function() {
+        this.remove();
+        App.layoutView.showChildView('authorization', new Restore());
     },
 
     onSignIn: function() {

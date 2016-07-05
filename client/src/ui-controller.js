@@ -33,10 +33,10 @@ module.exports = Marionette.Controller.extend({
         App.mywordView = new MyWordView({
             el: $('body')
         });
-
+        /*
         this.onOrientationChange();
         $(window).on('orientationchange', this.onOrientationChange);
-
+        */
         if (App.data.user.get('registred') === true) {
             App.layoutView.showChildView('dictionaries', new DictionarySectionView());
             App.layoutView.showChildView('settings', new SettingsView());

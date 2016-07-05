@@ -1133,6 +1133,35 @@ fieldset[disabled] a.button {
     background-color: transparent;
     border-color: #ff0000; }
 
+.button--b {
+  color: #fff;
+  background-color: #394778;
+  border-color: transparent; }
+  .button--b:hover {
+    color: #fff;
+    background-color: #293355;
+    border-color: transparent; }
+  .button--b:focus, .button--b.focus {
+    color: #fff;
+    background-color: #293355;
+    border-color: transparent; }
+  .button--b:active, .button--b.active {
+    color: #fff;
+    background-color: #293355;
+    border-color: transparent; }
+    .button--b:active:hover, .button--b:active:focus, .button--b:active.focus, .button--b.active:hover, .button--b.active:focus, .button--b.active.focus {
+      color: #fff;
+      background-color: #1d243d;
+      border-color: transparent; }
+  .button--b:active, .button--b.active {
+    background-image: none; }
+  .button--b.disabled:hover, .button--b.disabled:focus, .button--b.disabled.focus, .button--b[disabled]:hover, .button--b[disabled]:focus, .button--b[disabled].focus,
+  fieldset[disabled] .button--b:hover,
+  fieldset[disabled] .button--b:focus,
+  fieldset[disabled] .button--b.focus {
+    background-color: #394778;
+    border-color: transparent; }
+
 html {
   font-size: 62.5%;
   /* sets the base font to 10px for easier math */ }
@@ -1602,7 +1631,7 @@ select::-ms-expand {
     position: relative;
     top: 3px; }
   .b-settings__source .USATODAY {
-    width: 6rem;
+    width: 8rem;
     height: 4rem;
     position: relative;
     top: 6px; }
@@ -2098,13 +2127,15 @@ select::-ms-expand {
   bottom: 0;
   top: 0;
   left: 0;
-  background: #fff;
+  background: #f5f5f5;
   width: 100%;
   height: 120%;
   color: #000;
-  padding: 1.5rem;
+  padding: 8rem 0;
   font-size: 1.6rem;
-  z-index: 9999; }
+  z-index: 9999;
+  min-height: 100%;
+  overflow-x: auto; }
   .b-authorization--visibility {
     display: block; }
   .b-authorization p {
@@ -2112,10 +2143,8 @@ select::-ms-expand {
   .b-authorization__title {
     position: relative;
     padding-bottom: 1rem;
-    font-weight: 700;
-    font-size: 1.6rem;
-    border-bottom: 1px solid #e5e5e5;
-    margin-bottom: 1rem; }
+    font-weight: 400;
+    font-size: 1.4rem; }
     .b-authorization__title-logo {
       fill: #000;
       text-align: center;
@@ -2133,8 +2162,8 @@ select::-ms-expand {
     position: absolute;
     background-color: transparent;
     border: 0;
-    right: 0;
-    top: 0; }
+    right: 15px;
+    top: 15px; }
     .b-authorization__close .icon-cross {
       width: 2.6rem;
       height: 2.6rem; }
@@ -2148,12 +2177,21 @@ select::-ms-expand {
     .b-authorization__menu:after {
       clear: both; }
   .b-authorization__form {
-    margin-bottom: 15px; }
+    margin: 10px 5px; }
+    .b-authorization__form--r {
+      margin-bottom: 114px; }
+    .b-authorization__form--r2 {
+      margin-bottom: 185px; }
+    .b-authorization__form-message {
+      color: #979797;
+      font-size: 1.2rem;
+      margin-top: 40px; }
     .b-authorization__form input {
       border: 0;
       border-radius: 0;
       border-bottom: 1px solid #e5e5e5;
-      padding: 0.5rem 1rem;
+      background-color: transparent;
+      padding: 1.4rem 1rem;
       width: 100%;
       line-height: 36px;
       color: #757474;
@@ -2163,44 +2201,81 @@ select::-ms-expand {
     .b-authorization__form input:active,
     .b-authorization__form input:hover {
       border-bottom: 1px solid #000; }
-  .b-authorization__social-list {
-    display: table;
-    width: 100%; }
-  .b-authorization__social-item {
-    display: table-cell;
-    text-align: center; }
-    .b-authorization__social-item .icon {
-      width: 4rem;
-      height: 4rem; }
-  .b-authorization__content {
-    display: none; }
-    .b-authorization__content button {
-      padding: 1.4rem;
-      font-size: 1.4rem; }
-  .b-authorization__input {
-    display: none; }
-  .b-authorization__label {
-    display: block;
-    float: left;
-    width: 50%;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    font-size: 1.4rem;
-    line-height: 2rem;
-    background: #4e6ba5;
-    border-radius: 30px;
-    transition: all 0.3s; }
-  .b-authorization__label:hover {
-    color: #fff;
-    cursor: pointer; }
-  .b-authorization__input:checked + .b-authorization__label {
+  .b-authorization__social {
+    margin: 70px 0 30px; }
+    .b-authorization__social-title {
+      font-size: 12px;
+      text-transform: uppercase; }
+    .b-authorization__social-list {
+      display: table;
+      width: 100%; }
+    .b-authorization__social-item {
+      display: table-cell;
+      text-align: center; }
+      .b-authorization__social-item .icon {
+        fill: #fff;
+        width: 4rem;
+        height: 4rem;
+        position: relative;
+        top: 6px; }
+    .b-authorization__social a {
+      width: 5rem;
+      height: 5rem;
+      display: block;
+      margin: 0 auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.4); }
+    .b-authorization__social .vk {
+      background: #45668E; }
+    .b-authorization__social .twitter {
+      background: #4099FF; }
+    .b-authorization__social .facebook {
+      background: #3B5998; }
+      .b-authorization__social .facebook .icon {
+        top: 10px; }
+  .b-authorization__link-group:before, .b-authorization__link-group:after {
+    content: " ";
+    display: table; }
+  .b-authorization__link-group:after {
+    clear: both; }
+  .b-authorization__link {
+    font-size: 14px;
     color: #000;
-    background: #fff;
-    cursor: auto; }
-  .b-authorization #tabOne:checked ~ #login,
-  .b-authorization #tabTwo:checked ~ #register {
-    display: block; }
+    display: block;
+    padding: 20px 0; }
+    .b-authorization__link--r {
+      float: right; }
+    .b-authorization__link--l {
+      float: left; }
+  .b-authorization__button {
+    background: #394778;
+    color: #fff;
+    border: 1px solid #394778;
+    padding: 14px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3);
+    font-size: 1.4rem; }
+  .b-authorization__fix {
+    position: relative; }
+
+@media (min-width: 768px) {
+  .b-authorization__block {
+    background-color: #fff;
+    padding: 70px 25px;
+    border-radius: 3px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1); }
+  .b-authorization__link {
+    font-size: 14px;
+    color: #000;
+    display: block;
+    padding: 0;
+    margin: 20px 0; }
+    .b-authorization__link--r {
+      float: right; }
+    .b-authorization__link--l {
+      float: left; }
+  .b-authorization__fix {
+    position: relative;
+    bottom: -50px; } }
 
 .p-main {
   width: 100%;
