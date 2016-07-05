@@ -9,6 +9,7 @@ var LanguageView = require('./views/language');
 //var TipOfTheDayView = require('./views/tip-of-the-day');
 var MyWordView = require('./views/myword');
 var LoginFormView = require('./views/login');
+var RegisterFormView = require('./views/register');
 //var MobileFooterView = require('./views/mobile-footer');
 
 var DictionarySectionView = require('./views/dictionary-section');
@@ -18,6 +19,7 @@ module.exports = Marionette.Controller.extend({
     initialize: function() {
         this.listenTo(App.core.vent, 'router:inited', this.onRouterInited);
         this.listenTo(App.core.vent, 'show-login', this.onShowLogin);
+        this.listenTo(App.core.vent, 'show-register', this.onShowRegister);
 
         this.listenTo(App.core.vent, 'dictionary:show', this.onShowDictionary);
         this.listenTo(App.core.vent, 'dictionary:close', this.onCloseDictionary);
@@ -55,6 +57,10 @@ module.exports = Marionette.Controller.extend({
 
     onShowLogin: function() {
         App.layoutView.showChildView('authorization', new LoginFormView());
+    },
+
+    onShowRegister: function() {
+        App.layoutView.showChildView('authorization', new RegisterFormView());
     },
 
     onOrientationChange: function() {

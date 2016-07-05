@@ -20,7 +20,7 @@ module.exports = Marionette.ItemView.extend({
 
     onSignUp: function() {
         this.remove();
-        App.layoutView.showChildView('authorization', new Register());
+        App.core.vent.trigger('show-register');
     },
 
     onClose: function() {
