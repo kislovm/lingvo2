@@ -10,8 +10,6 @@ module.exports = Marionette.ItemView.extend({
     wordTemplate: require('../../templates/dictionary-word.hbs'),
 
     events: {
-        'click .word-cancel': 'cancel',
-        'click .word-delete': 'delete',
         'click .transcription-f': 'checkboxClick'
     },
 

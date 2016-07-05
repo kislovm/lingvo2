@@ -18,7 +18,17 @@ module.exports = Marionette.ItemView.extend({
         'click .settings-link': 'openSettings',
         'change .sorting-block-select': 'changeSort',
         'click .sorting-block-select': 'clickSort',
-        'click .dict-title-close': 'close'
+        'click .dict-title-close': 'close',
+        'click .word-cancel': 'cancel',
+        'click .word-delete': 'delete'
+    },
+
+    cancel: function() {
+        this.dictionaryView.cancel();
+    },
+
+    delete: function() {
+        this.dictionaryView.delete();
     },
 
     close: function() {
