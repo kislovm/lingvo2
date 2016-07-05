@@ -1,59 +1,34 @@
 <div class="container">
+    <button type="button" name="button" class="b-authorization__close auth-close-a-js">
+        <svg class="icon-cross">
+            <use xlink:href="#icon-cross"></use>
+        </svg>
+    </button>
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-            <div class="b-authorization__title">
-                <a href="#" class="b-authorization__title-logo">
-                    <svg class="logo">
-                        <use xlink:href="#logo"></use>
-                    </svg>
-                    <span class="b-authorization__title-slogan">
-                Новости на английском с переводом в один клик
-            </span>
-                </a>
-                <button type="button" name="button" class="b-authorization__close auth-close-a-js">
-                    <svg class="icon-cross">
-                        <use xlink:href="#icon-cross"></use>
-                    </svg>
-                </button>
-            </div>
-            <input id="tabOne" class="b-authorization__input" type="radio" name="authorization" checked>
-            <label for="tabOne" class="b-authorization__label sign-in" title="Вход">{{i18n 'Sign In'}}</label>
-            <input id="tabTwo" class="b-authorization__input" type="radio" name="authorization">
-            <label for="tabTwo" class="b-authorization__label sign-up" title="Регистрация">{{i18n 'Sign Up'}}</label>
-            <div id="login" class="b-authorization__content">
-                <div class="b-authorization__form">
+            <div class="b-authorization__block">
+                <div class="b-authorization__title">
+                    <a href="#" class="b-authorization__title-logo">
+                        <svg class="logo">
+                            <use xlink:href="#logo"></use>
+                        </svg>
+                        <span class="b-authorization__title-slogan">Восстановление пароля</span>
+                    </a>
+                </div>
+                <div class="b-authorization__form b-authorization__form--r2">
+                    <p class="b-authorization__form-message">Введите адрес электронной почты, который вы использовали для регистрации.</p>
                     <form method='post'>
-                        <input type="text" name="username" class="login-m-form-login login-input" placeholder="Email">
                         <div class="form-error hidden"></div>
+                        <input type="text" name="username" class="login-m-form-login login-input" placeholder="Email">
                     </form>
                 </div>
-                <button type="button" name="button" class="button button--block sign-login">{{i18n 'Restore'}}</button>
-            </div>
-            <div class="b-authorization__social">
-                <p>с помощью аккаунта в соц. сетях</p>
-                <ul class="b-authorization__social-list">
-                    <li class="b-authorization__social-item">
-                        <a href="/auth/facebook">
-                            <svg class="icon icon-facebook">
-                                <use xlink:href="#icon-facebook"></use>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="b-authorization__social-item">
-                        <a href="/auth/twitter">
-                            <svg class="icon icon-twitter">
-                                <use xlink:href="#icon-twitter"></use>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="b-authorization__social-item">
-                        <a href="/auth/vk">
-                            <svg class="icon icon-vk">
-                                <use xlink:href="#icon-vk"></use>
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
+                <div class="b-authorization__fix">
+                    <button type="button" name="button" class="button button--block b-authorization__button">отпарвить</button>
+                    <div class="b-authorization__link-group">
+                        <a href="#" class="b-authorization__link b-authorization__link--l sign-in">{{i18n 'Sign In'}}</a>
+                        <a href="#" class="b-authorization__link b-authorization__link--r sign-up">{{i18n 'Sign Up'}}</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

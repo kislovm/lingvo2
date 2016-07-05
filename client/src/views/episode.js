@@ -23,21 +23,23 @@ module.exports = Marionette.ItemView.extend({
         this.xhr
             .then((function(data) {
                 data.word = word;
-                if(typeof data.translations === 'string') {
+                if (typeof data.translations === 'string') {
                     data.translations = JSON.parse(data.translations);
                 }
-                data.translations = data.translations.slice(0,3);
+                data.translations = data.translations.slice(0, 3);
 
                 ModuiPopup.open({
-                    target : target,
-                    position : 'top center',
-                    contents : new WordPopup({ model: new Model(data) })
+                    target: target,
+                    position: 'top center',
+                    contents: new WordPopup({
+                        model: new Model(data)
+                    })
                 });
             }).bind(this));
     },
 
     onPopupShow: function() {
-        if(this.xhr) {
+        if (this.xhr) {
             this.xhr.abort();
         }
     },
@@ -48,9 +50,9 @@ module.exports = Marionette.ItemView.extend({
         yaCounter.reachGoal('show-more');
     },
 
-    tagName: 'div',
+    tagName: 'section',
 
-    className: 'novelty',
+    className: 'b-episode',
 
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);

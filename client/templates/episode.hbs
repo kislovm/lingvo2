@@ -1,32 +1,30 @@
-<section class="b-episode">
-    <div class="b-episode__title">
-        {{#if singlePage}}
-            <a>{{{ processedTitle }}}</a> 
-        {{else}}
-            <a href="#/episode/{{_id}}" target="_blank">{{ title }}</a>
-        {{/if}}
-    </div>
-    <div class="b-episode__top">
-        <a href="{{{ link }}}" class="b-episode__source">
-            <svg class="{{ name }}">
-                <use xlink:href="#{{ name }}"></use>
-            </svg>
-        </a>
-        {{ formattedDate }}
-    </div>
-    {{#if image}}
-          <img class="b-episode__img" src="{{ image }}" alt="" onclick="counter.reachGoal('inside-article')" />
-    {{/if}}
+<div class="b-episode__title">
     {{#if singlePage}}
-        <div class="b-episode__body">
-            {{{ processedBody }}}
-        </div>
+        <a>{{{ processedTitle }}}</a>
     {{else}}
-        <div class="b-episode__description episode-description-js">
-            {{{ processedDescription }}}
-        </div>
-        <div class="b-episode__body episode-body-js b-episode__body--hidden">
-            {{{ processedBody }}}
-        </div>
+        <a href="#/episode/{{_id}}" target="_blank">{{ title }}</a>
     {{/if}}
-</section>
+</div>
+<div class="b-episode__top">
+    <a href="{{{ link }}}" class="b-episode__source">
+        <svg class="{{ name }}">
+            <use xlink:href="#{{ name }}"></use>
+        </svg>
+    </a>
+    {{ formattedDate }}
+</div>
+{{#if image}}
+    <img class="b-episode__img" src="{{ image }}" alt="" onclick="counter.reachGoal('inside-article')" />
+{{/if}}
+{{#if singlePage}}
+    <div class="b-episode__body">
+        {{{ processedBody }}}
+    </div>
+{{else}}
+    <div class="b-episode__description episode-description-js">
+        {{{ processedDescription }}}
+    </div>
+    <div class="b-episode__body episode-body-js b-episode__body--hidden">
+        {{{ processedBody }}}
+    </div>
+{{/if}}
