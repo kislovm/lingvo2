@@ -9,12 +9,13 @@ module.exports = Marionette.ItemView.extend({
     },
 
     initialize: function() {
-        this.$el.find('.switch-lang').val(this.model.get('language'));
+        var lang = this.model.get('language');
+        this.$el.find('.switch-lang[value="' + lang + '"]').prop('checked', true);
     },
 
     change: function() {
         yaCounter.reachGoal('change-lang');
-        this.model.set('language', this.$el.find('.switch-lang').val());
+        this.model.set('language', this.$el.find('.switch-lang:checked').val());
         this.model.save();
     }
 
