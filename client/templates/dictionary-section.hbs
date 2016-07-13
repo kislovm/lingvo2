@@ -9,10 +9,19 @@
     <div class="b-dictionaries-block__body">
         <div class="b-dictionaries-block__top word-js">
             <div class="b-dictionaries-block__top-sort b-form">
-                <select class="sorting-block-select">
-                    <option value="az">{{i18n 'A-Z'}}</option>
-                    <option value="time">{{i18n 'Time added'}}</option>
-                </select>
+                <a class="sort-js">{{i18n 'A-Z'}}</a>
+                <div class="sort-b-js b-select">
+                    <ul class="lang-select">
+                        <li>
+                            <input id="az" type="radio" name="lang-lang" value="az" class="sorting-block-select" checked>
+                            <label for="az">{{i18n 'A-Z'}}</label>
+                        </li>
+                        <li>
+                            <input id="time" type="radio" name="lang-lang" value="time" class="sorting-block-select">
+                            <label for="time">{{i18n 'Time added'}}</label>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="b-dictionaries-block__top-auto">
                 {{i18n 'Autosave'}}

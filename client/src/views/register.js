@@ -70,6 +70,7 @@ module.exports = Marionette.ItemView.extend({
         App.core.vent.trigger('show-login');
         $('.b-authorization').toggleClass("b-authorization--visibility");
         $('body').toggleClass("body-fixed");
+        $('.p-main').toggleClass("p-main--fix");
     },
 
     onLoginRequest: function(data) {

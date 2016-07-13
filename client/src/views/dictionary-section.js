@@ -1,4 +1,5 @@
-﻿var Marionette = require('backbone.marionette');
+﻿
+var Marionette = require('backbone.marionette');
 var DictionaryView = require('./dictionary');
 var $ = require('jquery');
 
@@ -10,6 +11,7 @@ module.exports = Marionette.ItemView.extend({
 
     initialize: function() {
         this.model = App.data.user;
+        var lang = this.model.get('language');
     },
 
     events: {
@@ -20,7 +22,8 @@ module.exports = Marionette.ItemView.extend({
         'click .sorting-block-select': 'clickSort',
         'click .dict-title-close': 'close',
         'click .word-cancel': 'cancel',
-        'click .word-delete': 'delete'
+        'click .word-delete': 'delete',
+        'click .dict-checkbox': 'viewBlock'
     },
 
     cancel: function() {
@@ -38,9 +41,16 @@ module.exports = Marionette.ItemView.extend({
     clickSort: function() {
         yaCounter.reachGoal('click-sort');
     },
+    viewBlock: function() {
+        if ($('.dict-checkbox:checked').val()) {
+            $(".b-dictionaries-block__button").css("display", "block");
+        } else {
+            $(".b-dictionaries-block__button").css("display", "none");
+        }
+    },
 
     changeSort: function() {
-        var sortByTime = this.$el.find('.sorting-block-select').val() === 'time';
+        var sortByTime = this.$el.find('.sorting-block-select:checked').val() === 'time';
         this.dictionaryView.setSortByTime(sortByTime);
     },
 
@@ -49,8 +59,7 @@ module.exports = Marionette.ItemView.extend({
         $('body').addClass('popup');
     },
 
-    notRegistred: function(e)
-    {
+    notRegistred: function(e) {
         e.preventDefault();
         alert('Пожалуйста, зарегистрируйтесь');
     },
@@ -61,14 +70,12 @@ module.exports = Marionette.ItemView.extend({
         this.model.save();
     },
 
-    highlightChange: function(e)
-    {
+    highlightChange: function(e) {
         this.model.set('autosave', e.currentTarget.checked);
         this.model.save();
     },
 
-    onRender: function()
-    {
+    onRender: function() {
         this.dictionaryView = new DictionaryView({
             el: this.$el.find('.dictionaries-block-words-js'),
             model: App.data.user

@@ -10,7 +10,13 @@ module.exports = Marionette.ItemView.extend({
         'click .my-words-js': 'myWords',
         'click .authorization-js': 'authorization',
         'click .settings-a-js': 'settings',
-        'click .dictionaries-js': 'dictionaries'
+        'click .dictionaries-js': 'dictionaries',
+        'click .language-js': 'language',
+        'click .switch-lang': 'language',
+        'click .sort-js': 'sort',
+        'click .sorting-block-select': 'sort',
+        'mouseenter .b-dictionaries-block__words': 'dMouseenter',
+        'mouseleave .b-dictionaries-block__words': 'dMouseleave'
     },
 
     myWords: function() {
@@ -59,21 +65,37 @@ module.exports = Marionette.ItemView.extend({
         }
         */
         if ($(window).width() <= '750') {
-          $('body').toggleClass("body-fixed");
+            $('body').toggleClass("body-fixed");
         }
     },
     authorization: function() {
         this.$el.find('.b-authorization').toggleClass("b-authorization--visibility");
         $('body').toggleClass("body-fixed");
+        $('.p-main').toggleClass("p-main--fix");
     },
     settings: function() {
         this.$el.find('.b-settings').toggleClass("b-settings--visibility");
         if ($(window).width() <= '750') {
-          $('body').toggleClass("body-fixed");
+            $('body').toggleClass("body-fixed");
+            $('.p-main').toggleClass("p-main--fix");
         }
+
     },
     dictionaries: function() {
         this.$el.find('.b-dictionaries').toggleClass("b-dictionaries--visibility");
         $('body').toggleClass("body-fixed");
+        $('.p-main').toggleClass("p-main--fix");
+    },
+    dMouseenter: function() {
+        $('body').css("overflow","hidden");
+    },
+    dMouseleave: function() {
+        $('body').css("overflow","auto");
+    },
+    language: function() {
+        this.$el.find('.language-b-js').toggleClass("b-select--visibility");
+    },
+    sort: function() {
+        this.$el.find('.sort-b-js').toggleClass("b-select--visibility");
     }
 });

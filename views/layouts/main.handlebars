@@ -99,113 +99,149 @@
             </symbol>
         </defs>
     </svg>
-    <header class="h">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-3 col-sm-2">
-                    <a href="#" class="h__logo">
-                        <svg class="logo">
-                            <use xlink:href="#logo"></use>
-                        </svg>
-                    </a>
-                </div>
-                <div class="col-xs-7 col-sm-8">
-                    <div class="row">
-                        <div class="col-sm-5 h__slogan">
-                            Новости на английском
-                            <br> с переводом в один клик
-                        </div>
-                        <div class="col-xs-12 col-sm-7">
-                            <div class="row">
-                                {{#if user}}
-                                    <div class="col-xs-12 col-sm-8 h__language">
-                                        <span class="lang-select">
-                                      <span>{{lang.myLang}}:</span>
-                                        <select class='switch-lang'>
-                                            <option value="chinese">Chinese</option>
-                                            <option value="arabic">Arabic</option>
-                                            <option value="portugal">Portugal</option>
-                                            <option value="russian">Russian</option>
-                                            <option value="spanish">Spanish</option>
-                                            <option value="turkish">Turkish</option>
-                                        </select>
-                                        </span>
-                                    </div>
-                                    <div class="col-sm-4 h__my-words">
-                                        <a class="my-words-js">
-                                            <svg class="icon-dictionary">
-                                                <use xlink:href="#icon-dictionary"></use>
-                                            </svg>
-                                            Мои слова
-                                        </a>
-                                    </div>
-                                {{else}}
-                                    <div class="col-sm-12 h__language">
-                                        <span class="lang-select">
-                                    <span>{{lang.myLang}}:</span>
-                                        <select class='switch-lang'>
-                                            <option value="chinese">Chinese</option>
-                                            <option value="arabic">Arabic</option>
-                                            <option value="portugal">Portugal</option>
-                                            <option value="russian">Russian</option>
-                                            <option value="spanish">Spanish</option>
-                                            <option value="turkish">Turkish</option>
-                                        </select>
-                                        </span>
-                                    </div>
-                                {{/if}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{#if user}}
-                    <div class="col-sm-2 h__authorization">
-                        <a href="/logout/" class="">{{lang.signOut}}</a>
-                        <a class="settings-a-js">
-                            <svg class="icon-settings">
-                                <use xlink:href="#icon-settings"></use>
+    <main class="p-main">
+        <header class="h">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-2">
+                        <a href="#" class="h__logo">
+                            <svg class="logo">
+                                <use xlink:href="#logo"></use>
                             </svg>
                         </a>
                     </div>
-                {{else}}
-                    <div class="col-sm-2 h__authorization  h__authorization--padding">
-                        <a href="#" class="authorization-js">{{lang.loginVia}}</a>
+                    <div class="col-xs-7 col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-5 h__slogan">
+                                Новости на английском
+                                <br> с переводом в один клик
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                <div class="row">
+                                    {{#if user}}
+                                        <div class="col-xs-12 col-sm-8 h__language">
+                                            <a class="language-js h__language-select">{{lang.myLang}}: {{user.language}}</a>
+                                            <div class="language-b-js b-select">
+                                                <ul class="lang-select">
+                                                    <li>
+                                                        <input id="chinese" type="radio" name="select-lang" value="chinese" class="switch-lang">
+                                                        <label for="chinese">Chinese</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="arabic" type="radio" name="select-lang" value="arabic" class="switch-lang">
+                                                        <label for="arabic">Arabic</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="portugal" type="radio" name="select-lang" value="portugal" class="switch-lang">
+                                                        <label for="portugal">Portugal</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="russian" type="radio" name="select-lang" value="russian" class="switch-lang">
+                                                        <label for="russian">Russian</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="spanish" type="radio" name="select-lang" value="spanish" class="switch-lang">
+                                                        <label for="spanish">Spanish</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="turkish" type="radio" name="select-lang" value="turkish" class="switch-lang">
+                                                        <label for="turkish">Turkish</label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 h__my-words">
+                                            <a class="my-words-js">
+                                                <svg class="icon-dictionary">
+                                                    <use xlink:href="#icon-dictionary"></use>
+                                                </svg>
+                                                Мои слова
+                                            </a>
+                                        </div>
+                                    {{else}}
+                                        <div class="col-sm-12 h__language">
+                                            <a class="h__language-select language-js">{{lang.myLang}}:Lang</a>
+                                            <div class="language-b-js b-select">
+                                                <ul class="lang-select">
+                                                    <li>
+                                                        <input id="chinese" type="radio" name="select-lang" value="chinese" class="switch-lang">
+                                                        <label for="chinese">Chinese</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="arabic" type="radio" name="select-lang" value="arabic" class="switch-lang">
+                                                        <label for="arabic">Arabic</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="portugal" type="radio" name="select-lang" value="portugal" class="switch-lang">
+                                                        <label for="portugal">Portugal</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="russian" type="radio" name="select-lang" value="russian" class="switch-lang">
+                                                        <label for="russian">Russian</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="spanish" type="radio" name="select-lang" value="spanish" class="switch-lang">
+                                                        <label for="spanish">Spanish</label>
+                                                    </li>
+                                                    <li>
+                                                        <input id="turkish" type="radio" name="select-lang" value="turkish" class="switch-lang">
+                                                        <label for="turkish">Turkish</label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                {{/if}}
-                {{#if user}}
-                    <a href="/logout/" class="col-xs-2 h__authorization-mobil">
-                        <svg class="icon-login">
-                            <use xlink:href="#icon-login"></use>
-                        </svg>
-                    </a>
-                {{else}}
-                    <a href="#" class="col-xs-2 h__authorization-mobil authorization-js">
-                        <svg class="icon-login">
-                            <use xlink:href="#icon-login"></use>
-                        </svg>
-                    </a>
-                {{/if}}
-            </div>
-        </div>
-        <section class="p-main__categories">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-offset-1 col-sm-10 dictionaries-center-block-js p-main--pad6">
-                        <section class="b-categories">
-                            <a href="#" class="b-categories__item">{{lang.all}}</a>
-                            <a href="#category/world" class="b-categories__item">{{lang.world}}</a>
-                            <a href="#category/politics" class="b-categories__item">{{lang.politics}}</a>
-                            <a href="#category/tech" class="b-categories__item">{{lang.tech}}</a>
-                            <a href="#category/social" class="b-categories__item">{{lang.social}}</a>
-                            <a href="#category/culture" class="b-categories__item">{{lang.culture}}</a>
-                            <a href="#category/sport" class="b-categories__item">{{lang.sport}}</a>
-                        </section>
-                    </div>
+                    {{#if user}}
+                        <div class="col-sm-2 h__authorization">
+                            <a href="/logout/" class="">{{lang.signOut}}</a>
+                            <a class="settings-a-js">
+                                <svg class="icon-settings">
+                                    <use xlink:href="#icon-settings"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    {{else}}
+                        <div class="col-sm-2 h__authorization  h__authorization--padding">
+                            <a href="#" class="authorization-js">{{lang.loginVia}}</a>
+                        </div>
+                    {{/if}}
+                    {{#if user}}
+                        <a href="/logout/" class="col-xs-2 h__authorization-mobil">
+                            <svg class="icon-login">
+                                <use xlink:href="#icon-login"></use>
+                            </svg>
+                        </a>
+                    {{else}}
+                        <a href="#" class="col-xs-2 h__authorization-mobil authorization-js">
+                            <svg class="icon-login">
+                                <use xlink:href="#icon-login"></use>
+                            </svg>
+                        </a>
+                    {{/if}}
                 </div>
             </div>
-        </section>
-    </header>
-    <main class="p-main">
+            <section class="p-main__categories">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-offset-1 col-sm-10 dictionaries-center-block-js p-main--pad6">
+                            <section class="b-categories">
+                                <a href="#" class="b-categories__item">{{lang.all}}</a>
+                                <a href="#category/world" class="b-categories__item">{{lang.world}}</a>
+                                <a href="#category/politics" class="b-categories__item">{{lang.politics}}</a>
+                                <a href="#category/tech" class="b-categories__item">{{lang.tech}}</a>
+                                <a href="#category/social" class="b-categories__item">{{lang.social}}</a>
+                                <a href="#category/culture" class="b-categories__item">{{lang.culture}}</a>
+                                <a href="#category/sport" class="b-categories__item">{{lang.sport}}</a>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </header>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 episodes-js p-main--pad6">
@@ -242,11 +278,11 @@
                 </div>
             {{/if}}
         </section>
-        <section class="b-authorization authorization-block-js">
-        </section>
-        <section class="b-settings settings-js">
-        </section>
     </main>
+    <section class="b-authorization authorization-block-js">
+    </section>
+    <section class="b-settings settings-js">
+    </section>
     <!-- Yandex.Metrika counter -->
     <script src="https://mc.yandex.ru/metrika/watch.js" type="text/javascript"></script>
     <script type="text/javascript">

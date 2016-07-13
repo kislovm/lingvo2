@@ -22,34 +22,34 @@
                         <input type="password" name="password" class="login-m-form-password password-input" placeholder="{{i18n 'Password'}}">
                     </form>
                 </div>
-                <div class="b-authorization__social">
-                    <p class="b-authorization__social-title">войти через</p>
-                    <ul class="b-authorization__social-list">
-                        <li class="b-authorization__social-item">
-                            <a href="/auth/facebook" class="facebook">
-                                <svg class="icon icon-facebook">
-                                    <use xlink:href="#icon-facebook"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="b-authorization__social-item">
-                            <a href="/auth/twitter" class="twitter">
-                                <svg class="icon icon-twitter">
-                                    <use xlink:href="#icon-twitter"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="b-authorization__social-item">
-                            <a href="/auth/vk" class="vk">
-                                <svg class="icon icon-vk">
-                                    <use xlink:href="#icon-vk"></use>
-                                </svg>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
                 <div class="b-authorization__fix">
-                    <button type="button" name="button" class="button button--block b-authorization__button sign-login">{{i18n 'Login'}}</button>
+                    <div class="b-authorization__social">
+                        <p class="b-authorization__social-title">войти через</p>
+                        <ul class="b-authorization__social-list">
+                            <li class="b-authorization__social-item">
+                                <a href="/auth/facebook" class="facebook">
+                                    <svg class="icon icon-facebook">
+                                        <use xlink:href="#icon-facebook"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="b-authorization__social-item">
+                                <a href="/auth/twitter" class="twitter">
+                                    <svg class="icon icon-twitter">
+                                        <use xlink:href="#icon-twitter"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="b-authorization__social-item">
+                                <a href="/auth/vk" class="vk">
+                                    <svg class="icon icon-vk">
+                                        <use xlink:href="#icon-vk"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" name="button" class="button button--b button--block b-authorization__button sign-login">{{i18n 'Login'}}</button>
                     <div class="b-authorization__link-group">
                         <a href="#" class="b-authorization__link b-authorization__link--l sign-up">{{i18n 'Sign Up'}}</a>
                         <a href="#" class="b-authorization__link b-authorization__link--r login-m-form-restore ">{{i18n 'Forgot password'}}</a>
