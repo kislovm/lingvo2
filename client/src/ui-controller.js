@@ -29,7 +29,7 @@ module.exports = Marionette.Controller.extend({
         //App.layoutView.showChildView('mobileFooter', new MobileFooterView());
         //App.tipOfTheDay = new TipOfTheDayView({ el: $('.tip-of-the-day') });
         App.languageView = new LanguageView({
-            el: $('.lang-select'),
+            el: $('.js-language-select'),
             model: App.data.user
         });
         App.mywordView = new MyWordView({

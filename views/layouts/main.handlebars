@@ -119,7 +119,7 @@
                             <div class="col-xs-12 col-sm-7">
                                 <div class="row">
                                     {{#if user}}
-                                        <div class="col-xs-12 col-sm-8 h__language">
+                                        <div class="col-xs-12 col-sm-8 h__language js-language-select">
                                             <a class="language-js h__language-select">{{lang.myLang}}: {{user.language}}</a>
                                             <div class="language-b-js b-select">
                                                 <ul class="lang-select">
@@ -159,8 +159,8 @@
                                             </a>
                                         </div>
                                     {{else}}
-                                        <div class="col-sm-12 h__language">
-                                            <a class="h__language-select language-js">{{lang.myLang}}:Lang</a>
+                                        <div class="col-sm-12 h__language js-language-select">
+                                            <a class="h__language-select language-js">{{lang.myLang}}: {{user.language}}</a>
                                             <div class="language-b-js b-select">
                                                 <ul class="lang-select">
                                                     <li>
