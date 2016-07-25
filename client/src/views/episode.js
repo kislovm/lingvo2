@@ -10,7 +10,8 @@ module.exports = Marionette.ItemView.extend({
     events: {
         'click .episode-more': 'showMore',
         'click .illustration': 'showMore',
-        'click .word': 'openPopup'
+        'click .word': 'openPopup',
+        'click .episode-link': 'openEpisode'
     },
 
     openPopup: function(e) {
@@ -48,6 +49,10 @@ module.exports = Marionette.ItemView.extend({
         this.$el.find('.episode-body-js').removeClass('b-episode__body--hidden');
         this.$el.find('.episode-description-js').addClass('b-episode__description--hidden');
         yaCounter.reachGoal('show-more');
+    },
+
+    openEpisode: function() {
+        yaCounter.reachGoal('open-episode');
     },
 
     tagName: 'section',
