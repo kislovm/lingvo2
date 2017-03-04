@@ -15,34 +15,34 @@ var account = require('../controllers/account');
 var passport = require('passport');
 
 module.exports.initialize = function(app) {
-    app.get('/news', addUser, home.index);
+    app.get('/news', home.index);
     app.get('/stat', stat.index);
 
-    app.get('/api/episodes/all/all/:page?', addUser, addDictWords, episodes.index);
-    app.get('/api/episodes/get/:id?', addUser, addDictWords, episodes.one);
-    app.get('/api/episodes/:category/:page?', addUser, addDictWords, episodes.category);
+    app.get('/api/episodes/all/all/:page?', addDictWords, episodes.index);
+    app.get('/api/episodes/get/:id?', addDictWords, episodes.one);
+    app.get('/api/episodes/:category/:page?', addDictWords, episodes.category);
 
     app.get('/count', episodes.count);
 
-    app.post('/user', addUser, user.set);
-    app.post('/user/lang', addUser, user.setLang);
-    app.get('/user', addUser, user.get);
+    app.post('/user', user.set);
+    app.post('/user/lang', user.setLang);
+    app.get('/user', user.get);
 
-    app.get('/account', ensureAuthenticated, addUser, account.index);
-    app.get('/account/edit', ensureAuthenticated, addUser, account.edit);
+    app.get('/account', ensureAuthenticated, account.index);
+    app.get('/account/edit', ensureAuthenticated, account.edit);
 
-    app.get('/dictionary', ensureAuthenticated, addUser, dictionary.get);
-    app.post('/dictionary/word/delete', ensureAuthenticated, addUser, dictionary.delete);
-    app.get('/dictionary/add', ensureAuthenticated, addUser, account.add);
-    app.get('/dictionary/list', ensureAuthenticated, addUser, account.listDictionary);
-    app.post('/dictionary/list', ensureAuthenticated, addUser, account.setDictionary);
-    app.post('/dictionary/add/word', ensureAuthenticated, addUser, account.addWord);
-    app.get('/dictionary/edit/:name', ensureAuthenticated, addUser, account.editDictonary);
-    app.get('/dictionary/delete/:name', ensureAuthenticated, addUser, account.deleteDictonary);
+    app.get('/dictionary', ensureAuthenticated, dictionary.get);
+    app.post('/dictionary/word/delete', ensureAuthenticated, dictionary.delete);
+    app.get('/dictionary/add', ensureAuthenticated, account.add);
+    app.get('/dictionary/list', ensureAuthenticated, account.listDictionary);
+    app.post('/dictionary/list', ensureAuthenticated, account.setDictionary);
+    app.post('/dictionary/add/word', ensureAuthenticated, account.addWord);
+    app.get('/dictionary/edit/:name', ensureAuthenticated, account.editDictonary);
+    app.get('/dictionary/delete/:name', ensureAuthenticated, account.deleteDictonary);
 
     app.get('/translate/:word', translation.translate);
 
-    app.get('/word/:id/delete', ensureAuthenticated, addUser, account.deleteWord);
+    app.get('/word/:id/delete', ensureAuthenticated, account.deleteWord);
 
     app.get('/auth/forgot', auth.sendPassword);
 
@@ -80,36 +80,6 @@ function addDictWords(req, res, next) {
         return next();
     }
 
-}
-
-function addUser(req, res, next) {
-    var user;
-
-    UserModel.findById(req.session.passport.user).populate('selected').exec()
-        .then(function (u) {
-            if(!u) {
-                next();
-            } else if (u.selected) {
-                req.user = u;
-                next();
-            } else {
-                return UserModel.findById(req.session.passport.user).exec();
-            }
-        },
-        function() {
-            return UserModel.findById(req.session.passport.user).exec();
-        })
-        .then(function(u) {
-            user = u;
-
-            return DictionaryModel.findOne({ user: user._id }).exec();
-        })
-        .then(function(dictionary) {
-            user.selected = dictionary;
-
-            return user.save();
-        })
-        .then(addUser.bind(req, res, next))
 }
 
 function ensureAuthenticated(req, res, next) {

@@ -15,7 +15,7 @@ var RegisterFormView = require('./views/register');
 var DictionarySectionView = require('./views/dictionary-section');
 var SettingsView = require('./views/settings');
 
-module.exports = Marionette.Controller.extend({
+module.exports = Marionette.Object.extend({
     initialize: function() {
         this.listenTo(App.core.vent, 'router:inited', this.onRouterInited);
         this.listenTo(App.core.vent, 'show-login', this.onShowLogin);

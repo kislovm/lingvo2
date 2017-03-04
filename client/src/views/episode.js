@@ -4,7 +4,7 @@ var ModuiPopup = require('modui-popup');
 var WordPopup = require('./word-popup');
 var Model = require('backbone').Model;
 
-module.exports = Marionette.ItemView.extend({
+module.exports = Marionette.View.extend({
     template: require('../../templates/episode.hbs'),
 
     events: {

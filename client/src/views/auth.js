@@ -2,7 +2,7 @@ var Marionette = require('backbone.marionette');
 var Popup = require('modui-popup');
 var DictionaryPopup = require('./dictionary-popup');
 
-module.exports = Marionette.ItemView.extend({
+module.exports = Marionette.View.extend({
 
     el: '.auth',
 

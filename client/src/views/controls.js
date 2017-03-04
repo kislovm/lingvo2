@@ -1,7 +1,7 @@
 var Marionette = require('backbone.marionette'),
     UserModel = require('../models/user');
 
-module.exports = ControlsView = Marionette.ItemView.extend({
+module.exports = ControlsView = Marionette.View.extend({
 
     model: UserModel,
 

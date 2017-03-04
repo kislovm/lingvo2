@@ -3,7 +3,7 @@ var $ = require('jquery');
 var Register = require('./register');
 var Restore = require('./restore');
 
-module.exports = Marionette.ItemView.extend({
+module.exports = Marionette.View.extend({
 
     template: require('../../templates/login.hbs'),
 

@@ -28,7 +28,7 @@ var hbs = exphbs.create({
 var options = {
     lngs: ['en', 'ru-RU'],
     resGetPath: 'locale/i18n/__lng__/__ns__.json',
-    debug: true,
+    debug: false,
     backend: {
         loadPath: 'locale/i18n/{{lng}}/{{ns}}.json'
     }

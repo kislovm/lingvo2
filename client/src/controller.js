@@ -9,7 +9,7 @@ var EpisodeView = require('./views/episode');
 var EpisodeModel = require('./models/episode');
 
 
-module.exports = Marionette.Controller.extend({
+module.exports = Marionette.Object.extend({
     initialize: function() {
         App.uiController = new UiController();
     },
@@ -18,7 +18,7 @@ module.exports = Marionette.Controller.extend({
         var view = new EpisodesView({ collection: new EpisodesCollection() });
 
         view.collection.fetch();
-        App.layoutView.content.show(view);
+        App.layoutView.getRegion('content').show(view);
     },
 
     category: function(category) {
@@ -27,7 +27,7 @@ module.exports = Marionette.Controller.extend({
         var view = new EpisodesView({ collection: new EpisodesCollection([], { category: category }) });
 
         view.collection.fetch();
-        App.layoutView.content.show(view);
+        App.layoutView.getRegion('content').show(view);
         App.router.navigate('category/' + category);
     },
 
@@ -35,7 +35,7 @@ module.exports = Marionette.Controller.extend({
         var view = new EpisodeView({ model: new EpisodeModel({ _id: episodeId, singlePage: true }) });
 
         view.model.fetch();
-        App.layoutView.content.show(view);
+        App.layoutView.getRegion('content').show(view);
         App.router.navigate('episode/' + episodeId);
     }
 

@@ -2,7 +2,7 @@ var $ = require('jquery');
 require('malihu-custom-scrollbar-plugin')($);
 var Marionette = require('backbone.marionette');
 
-module.exports = Marionette.ItemView.extend({
+module.exports = Marionette.View.extend({
 
     template: false,
 

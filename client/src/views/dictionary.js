@@ -2,7 +2,7 @@ var Marionette = require('backbone.marionette');
 var DictionaryCollection = require('../collections/dictionary');
 var $ = require('jquery');
 
-module.exports = Marionette.ItemView.extend({
+module.exports = Marionette.View.extend({
 
     collection: new DictionaryCollection(),
 
