@@ -75,7 +75,7 @@ module.exports = Marionette.Object.extend({
         clearTimeout($.data(this, 'scrollTimer'));
         $.data(this, 'scrollTimer', setTimeout(function() {
             if ($(window).scrollTop() >= $(document).height() - ($(window).height() * 2)) {
-                App.layoutView.content.currentView.increment()
+                App.layoutView.getRegion('content').currentView.increment()
             }
         }, 50));
     },
